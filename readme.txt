@@ -34,19 +34,6 @@ location.
 = ICONS =
 1. There are some default icons in the `/wp-content/plugins/store-locator/icons` directory. Add your own custom icons in this directory to display them on the map.
 
-== Screenshots ==
-= Admin =
-1. News & Upgrades Page
-2. Map Designer Page
-
-= Addons =
-3. CSV/XML Exporter/Importer
-4. Point, Click, Add Mapper
-5. Multi-Field Updater
-
-= User Interface =
-6. Store Locator User Interface
-
 == Frequently Asked Questions ==
 
 = Do I need a Google Account to use this store locator? =
