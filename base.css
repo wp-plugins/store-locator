@@ -1,0 +1,17 @@
+.sl_footer td, .sl_footer td a, .sl_footer td a:link, .sl_footer td a:hover, .sl_footer td a:active, .sl_footer td a:visited {
+	font-weight:normal;
+	font-size:10px;
+}
+#sl_div a.storelocatorlink {
+	color:blue;
+}
+.sl_footer {
+	background-color:black;
+	padding:3px;
+	border:0px black solid;
+	color #aaa;
+}
+.sl_footer a {
+	color:#fff;
+	border:0px black solid;
+}
