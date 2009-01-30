@@ -36,16 +36,16 @@ location.
 
 == Screenshots ==
 = Admin =
-![News & Upgrades Page](http://viadat.com/images/new-upgrades.gif)
-![Map Designer Page](http://viadat.com/images/map-designer.gif)
+1. News & Upgrades Page
+2. Map Designer Page
 
 = Addons =
-![CSV/XML Exporter/Importer](http://viadat.com/wp-content/uploads/wpsc/product_images/csv_xml_importer_exporter.jpg)
-![Point, Click, Add Mapper](http://viadat.com/wp-content/uploads/wpsc/product_images/point_click_add.jpg)
-![Multi-Field Updater](http://viadat.com/wp-content/uploads/wpsc/product_images/multi_field_updater.jpg)
+3. CSV/XML Exporter/Importer
+4. Point, Click, Add Mapper
+5. Multi-Field Updater
 
 = User Interface =
-![Store Locator User Interface](http://viadat.com/images/store-locator.gif)
+6. Store Locator User Interface
 
 == Frequently Asked Questions ==
 
