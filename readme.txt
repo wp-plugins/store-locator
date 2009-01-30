@@ -34,6 +34,19 @@ location.
 = ICONS =
 1. There are some default icons in the `/wp-content/plugins/store-locator/icons` directory. Add your own custom icons in this directory to display them on the map.
 
+== Screenshots ==
+= Admin =
+<img src='http://viadat.com/images/new-upgrades.gif' width='400px'>
+<img src='http://viadat.com/images/map-designer.gif' width='400px'>
+
+= Addons =
+<img src='http://viadat.com/wp-content/uploads/wpsc/product_images/csv_xml_importer_exporter.jpg' >
+<img src='http://viadat.com/wp-content/uploads/wpsc/product_images/point_click_add.jpg' >
+<img src='http://viadat.com/wp-content/uploads/wpsc/product_images/multi_field_updater.jpg'>
+
+= User Interface =
+<img src='http://viadat.com/images/store-locator.gif' width='400px'>
+
 == Frequently Asked Questions ==
 
 = Do I need a Google Account to use this store locator? =
