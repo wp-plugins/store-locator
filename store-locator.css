@@ -11,7 +11,7 @@
 }
 #sl_div table, #sl_div tr, #sl_div td {
 	border:none;
-	padding:0px;
+	/*padding:0px;*/
 }
 #sl_div #map { color:black; font-weight:normal;}
 #map_sidebar { background-color:white; font-weight:normal;}

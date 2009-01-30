@@ -281,7 +281,7 @@ function ajax_map($content) {
 $form="
 <div id='sl_div'>
   <form onsubmit='searchLocations(); return false;' name='searchForm'>
-    <table width=1 border=0><tr>
+    <table border=0 cellpadding='3px'><tr>
 	<td valign=top><nobr>$search_label&nbsp;</nobr></td>
 	<td ";
 	
