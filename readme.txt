@@ -31,6 +31,10 @@ location.
 
 1. Unzip & Upload the entire theme folder to the `/wp-content/plugins/store-locator/themes` directory. Themes will show up under the "Map Designer" Tab.
 
+= OTHER NOTES =
+
+Will be moving to new location
+
 = ICONS =
 1. There are some default icons in the `/wp-content/plugins/store-locator/icons` directory. Add your own custom icons in this directory to display them on the map.
 
