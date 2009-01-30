@@ -1,0 +1,59 @@
+<div class='wrap'>
+<?php 
+
+if ($_POST) {
+update_option('store_locator_api_key', $_POST[store_locator_api_key]);
+
+$sl_google_map_arr=explode(":", $_POST[google_map_domain]);
+update_option('sl_google_map_country', $sl_google_map_arr[0]);
+update_option('sl_google_map_domain', $sl_google_map_arr[1]);
+
+print "<div class='highlight'>Successful Update.</div> <!--meta http-equiv='refresh' content='0'-->";
+}
+
+print "<h2>Update Your Google API Key</h2><br><form action='' method='post'><table class='widefat'><thead><tr ><td colspan='1'>Your API Key Status:</td><td>";
+load_plugin_textdomain('api-key');
+$domain='api=key';
+$slak=get_option('store_locator_api_key');
+
+if (!$slak || trim($slak)=='') {
+	print "<div style='border:solid red 1px; padding:5px; background-color:pink; width:400px; color:black'>".__("Please Update Your Google API Key", $domain)."</div>";
+}
+else {
+	print "<div style='border:solid green 1px; padding:5px; background-color:LightGreen; width:400px; color:black'>".__("API Key Submitted", $domain)."</div>";
+}
+
+print "</td></tr></thead><tr><td>".__("Google API Key:")."</td><td><input name='store_locator_api_key' value='$slak' size='100'><br><br><div class=''><strong>".__("Note: <br>", $domain)."</strong>".__("Each API Key is unique to one web domain. To obtain a Google API Key for this domain ($_SERVER[HTTP_HOST]):<br><br><b>Step 1.</b> Log into your Google Account<br>(If you use any Google Product, such as Gmail, Google Docs, etc., then you have a Google Account. If not, <a href='https://www.google.com/accounts/' target='_blank'>you can sign up for one</a>) <br><br><b>Step 2.</b> Visit:", $domain)." <a href='http://code.google.com/apis/maps/signup.html' target='_blank'>http://code.google.com/apis/maps/signup.html</a> and submit your domain, and receive an API Key from Google</div></td></tr>";
+
+print "<tr><td>Select Your Location:</td><td><select name='google_map_domain'>";
+$the_domain["United States"]="maps.google.com";
+$the_domain["Austria"]="maps.google.com.at";
+$the_domain["Australia"]="maps.google.com.au";
+$the_domain["Bosnia and Herzegovina"]="maps.google.com.ba";
+$the_domain["Belgium"]="maps.google.be";
+$the_domain["Brazil"]="maps.google.com.br";
+$the_domain["Canada"]="maps.google.ca";
+$the_domain["Switzerland"]="maps.google.ch";
+$the_domain["Germany"]="maps.google.de";
+$the_domain["Denmark"]="maps.google.dk";
+$the_domain["Spain"]="maps.google.es";
+$the_domain["Finland"]="maps.google.fi";
+$the_domain["France"]="maps.google.fr";
+$the_domain["Japan"]="maps.google.jp";
+$the_domain["Netherlands"]="maps.google.nl";
+$the_domain["Norway"]="maps.google.no";
+$the_domain["New Zealand"]="maps.google.co.nz";
+$the_domain["Poland"]="maps.google.pl";
+$the_domain["Russia"]="maps.google.ru";
+$the_domain["Sweden"]="maps.google.se";
+$the_domain["Taiwan"]="maps.google.tw";
+$the_domain["United Kingdom"]="maps.google.co.uk";
+
+foreach ($the_domain as $key=>$value) {
+	$selected=(get_option('sl_google_map_domain')==$value)?" selected " : "";
+	print "<option value='$key:$value' $selected>$key ($value)</option>\n";
+}
+
+print "</select><br><br><input type='submit' value='".__("Update API Key", $domain)."' class='button'></td></tr></table></form>";
+
+?></div>
