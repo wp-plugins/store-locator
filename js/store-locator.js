@@ -32,7 +32,7 @@
 		map.addControl(new GMapTypeControl(G_SATELLITE_MAP));
 		map.addMapType(G_PHYSICAL_MAP);
 		geocoder.getLatLng(sl_google_map_country, function(latlng) {
-			map.setCenter(latlng, sl_zoom_level);
+			map.setCenter(latlng, sl_zoom_level, sl_map_type);
 		});
       }
 	  

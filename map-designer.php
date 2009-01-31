@@ -20,6 +20,7 @@ update_option('sl_use_city_search', $_POST[sl_use_city_search]);
 //update_option('sl_use_name_search', $_POST[sl_use_name_search]);
 $_POST[sl_remove_credits]=($_POST[sl_remove_credits]=="")? 0 : $_POST[sl_remove_credits];
 update_option('sl_remove_credits', $_POST[sl_remove_credits]);
+update_option('sl_map_type', $_POST[sl_map_type]);
 
 print "<div class='highlight'>".__("Successful Update", $text_domain)." $view_link</div> <!--meta http-equiv='refresh' content='0'-->";
 }
@@ -70,7 +71,19 @@ $checked=(get_option('sl_use_city_search')==1)? " checked " : "";
 //$checked2=(get_option('sl_use_name_search')==1)? " checked " : "";
 $checked3=(get_option('sl_remove_credits')==1)? " checked " : "";
 
+$map_type["Show Default Street Map Only"]="G_DEFAULT_MAP";
+$map_type["Show Satellite Imagery Only"]="G_SATELLITE_MAP";
+$map_type["Show Satellite Imagery + Street Map"]="G_HYBRID_MAP";
+$map_type["Show Terrain + Street Map"]="G_PHYSICAL_MAP";
+
+	foreach($map_type as $key=>$value) {
+		$selected2=(get_option('sl_map_type')==$value)? " selected " : "";
+		$map_type_options.="<option value='$value' $selected2>$key</option>\n";
+	}
+
 print "
+<tr><td>".__("Choose Default Map Type Shown to Visitors", $text_domain).":</td>
+<td><select name='sl_map_type'>\n".$map_type_options."</select></td></tr>
 <tr><td>".__("Allow User Search By City?", $text_domain).":</td>
 <td><input name='sl_use_city_search' value='1' type='checkbox' $checked></td></tr>
 <!--tr><td>".__("Allow User Search By Name of Location?", $text_domain).":</td>

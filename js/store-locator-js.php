@@ -24,4 +24,6 @@ $end_size=getimagesize(get_option('sl_map_end_icon'));
 print "var sl_map_end_icon_width=$end_size[0];";
 print "var sl_map_end_icon_height=$end_size[1];";
 
+print "var sl_map_type=".get_option('sl_map_type').";";
+
 ?>

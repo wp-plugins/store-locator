@@ -16,9 +16,14 @@ function initialize_variables() {
 
 global $height, $width, $width_units, $height_units, $radii;
 global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base, $location_table_view;
-global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search;
+global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search, $sl_default_map;
 
 
+$sl_map_type=get_option('sl_map_type');
+if (empty($sl_map_type)) {
+	$sl_map_type=G_DEFAULT_MAP;
+	add_option('sl_map_type', $sl_map_type);
+	}
 $sl_remove_credits=get_option('sl_remove_credits');
 if (empty($sl_remove_credits)) {
 	$sl_remove_credits="0";
@@ -291,7 +296,7 @@ $form="
 	";
 	
 	if ($cs_array && get_option('sl_use_city_search')==1) {
-		$form.="<td valign='top'><nobr>&nbsp;<b>OR</b>&nbsp;</nobr></td>";
+		$form.="<td valign='top'><nobr>&nbsp;<!--b>OR</b-->&nbsp;</nobr></td>";
 	}
 	
 	if ($cs_array && get_option('sl_use_city_search')==1) {
