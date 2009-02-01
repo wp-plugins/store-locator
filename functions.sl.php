@@ -17,8 +17,14 @@ function initialize_variables() {
 global $height, $width, $width_units, $height_units, $radii;
 global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base, $location_table_view;
 global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search, $sl_default_map;
+global $sl_radius_label;
 
 
+$sl_radius_label=get_option('sl_radius_label');
+if (empty($sl_radius_label)) {
+	$sl_radius_label="Radius";
+	add_option('sl_radius_label', $sl_radius_label);
+	}
 $sl_map_type=get_option('sl_map_type');
 if (empty($sl_map_type)) {
 	$sl_map_type=G_DEFAULT_MAP;
@@ -323,9 +329,10 @@ $form="
 	//$form.="<input name='addressInput3'><input type='hidden' value='1' name='name_search'></td>";
 	}*/
 	
+	$sl_radius_label=get_option('sl_radius_label');
 	$form.="
 	</tr><tr>
-	 <td valign=top>".__("Radius", $text_domain)."</td>
+	 <td valign=top>".__("$sl_radius_label", $text_domain)."</td>
 	 <td width='33%' valign='top' ";
 	
 	if (get_option('sl_use_city_search')==1) {$form.="colspan='2'";}

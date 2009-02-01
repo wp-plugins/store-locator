@@ -13,6 +13,7 @@ update_option('sl_map_home_icon', $_POST[icon]);
 update_option('sl_map_end_icon', $_POST[icon2]);
 update_option('sl_map_theme', $_POST[theme]);
 update_option('sl_search_label', $_POST[search_label]);
+update_option('sl_radius_label', $_POST[sl_radius_label]);
 update_option('sl_zoom_level', $_POST[zoom_level]);
 $_POST[sl_use_city_search]=($_POST[sl_use_city_search]=="")? 0 : $_POST[sl_use_city_search];
 update_option('sl_use_city_search', $_POST[sl_use_city_search]);
@@ -90,6 +91,8 @@ print "
 <td><input name='sl_use_name_search' value='1' type='checkbox' $checked2></td></tr-->
 <tr><td>".__("Address Input Label", $text_domain).":</td>
 <td><input name='search_label' value='$search_label'></td></tr>
+<tr><td>".__("Radius Dropdown Label", $text_domain).":</td>
+<td><input name='sl_radius_label' value='$sl_radius_label'></td></tr>
 <tr><td>".__("Default Map Zoom Level", $text_domain).":</td>
 <td>$zoom</td></tr>
 <tr><td>".__("Map Height", $text_domain).":</td>
