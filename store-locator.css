@@ -1,0 +1,27 @@
+#sl_div {
+	/*background-image:url(bg.jpg);*/
+	/*background-repeat:repeat-x;*/
+	padding:10px;
+	color:black;
+	font-weight:bold;
+}
+#sl_div a {
+	/*color:black;
+	text-decoration:underline;*/
+}
+#sl_div table, #sl_div tr, #sl_div td {
+	border:none;
+	/*padding:0px;*/
+}
+#sl_div #map { color:black; font-weight:normal;}
+#map_sidebar { background-color:white; font-weight:normal;}
+#addressInput {
+	border:solid 1px silver;
+	padding-left:3px; padding-top:3px;
+	background:transparent url(images/search-input.gif) repeat-x;
+	width:100%; height:18px;
+	/*font-weight:bold;*/
+}
+#addressSubmit {	/*width:184px; height:31px;*/}
+#radiusSelect { /*height:27px; width:100px;*/}
+#addressInput, #addressSubmit, #radiusSelect { font-size:14px;}
