@@ -4,7 +4,7 @@ Donate link: http://www.viadat.com/donate
 Tags: store locator, location finder, google maps, ecommerce, e-commerce, business locations
 Requires at least: 2.3.3
 Tested up to: 2.7
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 
 A store locator plugin for developers who create sites in Wordpress & web site owners who want to quickly show important locations.
 
@@ -25,7 +25,7 @@ location.
 = ADD-ONS =
 
 1. Unzip & Upload the entire add-on folder to the `/wp-content/plugins/store-locator/addons` directory.
-2. Activate the add-on by updating the License Key that you receive after purchase at the bottom of the "News & Upgrades" Page.
+2. Activate the add-on by updating the Activation Key that you receive after purchase at the bottom of the "News & Upgrades" Page.
 
 = THEMES =
 

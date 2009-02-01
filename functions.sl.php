@@ -342,7 +342,7 @@ $form="
 	</tr></table>
 <table width=100% cellspacing='0px' cellpadding='0px' style='/*border:solid silver 1px*/'> 
      <tr>
-        <td width='100%' valign='top'> <div id='map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' width='100%' $hide><tr><td><a href='http://www.viadat.com/category/store-locator' target='_blank'>Lots of Locales</a></td><td align='right' style='padding-right:5px'> <a href='http://www.viadat.com' target='_blank' title='by Viadat Creations'>by Viadat</a></td></tr></table>
+        <td width='100%' valign='top'> <div id='map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' width='100%' $hide><tr><td><a href='http://www.viadat.com/store-locator' target='_blank'>Lots of Locales</a></td><td align='right' style='padding-right:5px'> <a href='http://www.viadat.com' target='_blank' title='by Viadat Creations'>by Viadat</a></td></tr></table>
 		</td>
       </tr>
 	  <tr id='cm_mapTR'>
@@ -503,6 +503,7 @@ function comma($a) {
 	$a=ereg_replace("'", "&#39;", $a);
 	$a=ereg_replace(">", "&gt;", $a);
 	$a=ereg_replace("<", "&lt;", $a);
+	$a=ereg_replace(" & ", " &amp; ", $a);
 	return ereg_replace("," ,"&#44;" ,$a);
 	
 }

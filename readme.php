@@ -1,5 +1,5 @@
 <div class='wrap'>
-<h2>About Lots of Locales (LoL!) Store Locator Plugin</h2><br>
+<h2>About Lots of Locales (LoL) Store Locator Plugin</h2><br>
 <?php
 
 //print "<span style='font-size:14px; font-family:Helvetica'>";

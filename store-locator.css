@@ -6,8 +6,8 @@
 	font-weight:bold;
 }
 #sl_div a {
-	color:black;
-	text-decoration:underline;
+	/*color:black;
+	text-decoration:underline;*/
 }
 #sl_div table, #sl_div tr, #sl_div td {
 	border:none;

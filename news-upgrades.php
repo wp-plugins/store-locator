@@ -51,7 +51,7 @@ print "</td>
 <table width='100%'>
 <thead><tr>
 <th colspan='1'>".
-__("License Keys", $text_domain).
+__("Activation Keys", $text_domain).
 "</th>
 </tr></thead>
 <tr>
@@ -78,7 +78,7 @@ while (false !== ($a_lic=readdir($ao_dir))) {
 $lic_str.="<td><div class='highlight' $style><b>".ucwords(ereg_replace("-", " ", $a_lic))."</b></div>
 <table style='border:none'>
 <tr>
-<td>".__("License Key", $text_domain).":</td></tr>
+<td>".__("Key", $text_domain).":</td></tr>
 <tr><td><input name='sl_license_".$a_lic."' value='".$a_lic_arr["sl_license_".$a_lic]."' size=25>
 <input name='sl_activation_".$a_lic."' value='".$a_lic_arr["sl_activation_".$a_lic]."' type='hidden'></td></tr>
 </table>

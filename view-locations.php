@@ -10,7 +10,7 @@ foreach($_GET as $key=>$val) {
 }
 //$view_all_link=(!empty($_GET[q]))?"<a href='?q=page=$sl_dir/view-locations.php' style='font-size:12px'>Back&nbsp;to&nbsp;View&nbsp;All</a>&nbsp;&nbsp;":"";
 print "<form><table cellpadding='0px' cellspacing='0px' width='100%'><tr><td>
-<h2>".__("View Locations", $text_domain)."</h2></td><td align='right'><h2 style='float:right; padding-right:0px; width:100%'><input value='$_GET[q]' name='q'><input type='submit' value='Search Locations' class='button'></h2>$hidden</td></tr></table></form><br>";
+<h2>".__("Manage Locations", $text_domain)."</h2></td><td align='right'><h2 style='float:right; padding-right:0px; width:100%'><input value='$_GET[q]' name='q'><input type='submit' value='Search Locations' class='button'></h2>$hidden</td></tr></table></form><br>";
 
 $slak=get_option('store_locator_api_key');
 if (!$slak) {
