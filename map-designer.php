@@ -14,6 +14,7 @@ update_option('sl_map_end_icon', $_POST[icon2]);
 update_option('sl_map_theme', $_POST[theme]);
 update_option('sl_search_label', $_POST[search_label]);
 update_option('sl_radius_label', $_POST[sl_radius_label]);
+update_option('sl_website_label', $_POST[sl_website_label]);
 update_option('sl_zoom_level', $_POST[zoom_level]);
 $_POST[sl_use_city_search]=($_POST[sl_use_city_search]=="")? 0 : $_POST[sl_use_city_search];
 update_option('sl_use_city_search', $_POST[sl_use_city_search]);
@@ -72,7 +73,7 @@ $checked=(get_option('sl_use_city_search')==1)? " checked " : "";
 //$checked2=(get_option('sl_use_name_search')==1)? " checked " : "";
 $checked3=(get_option('sl_remove_credits')==1)? " checked " : "";
 
-$map_type["Show Default Street Map Only"]="G_DEFAULT_MAP";
+$map_type["Show Default Street Map Only"]="G_NORMAL_MAP";
 $map_type["Show Satellite Imagery Only"]="G_SATELLITE_MAP";
 $map_type["Show Satellite Imagery + Street Map"]="G_HYBRID_MAP";
 $map_type["Show Terrain + Street Map"]="G_PHYSICAL_MAP";
@@ -93,6 +94,8 @@ print "
 <td><input name='search_label' value='$search_label'></td></tr>
 <tr><td>".__("Radius Dropdown Label", $text_domain).":</td>
 <td><input name='sl_radius_label' value='$sl_radius_label'></td></tr>
+<tr><td>".__("Website URL Label", $text_domain).":</td>
+<td><input name='sl_website_label' value='$sl_website_label'></td></tr>
 <tr><td>".__("Default Map Zoom Level", $text_domain).":</td>
 <td>$zoom</td></tr>
 <tr><td>".__("Map Height", $text_domain).":</td>

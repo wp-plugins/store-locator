@@ -17,9 +17,14 @@ function initialize_variables() {
 global $height, $width, $width_units, $height_units, $radii;
 global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base, $location_table_view;
 global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search, $sl_default_map;
-global $sl_radius_label;
+global $sl_radius_label, $sl_website_label;
 
 
+$sl_website_label=get_option('sl_website_label');
+if (empty($sl_website_label)) {
+	$sl_radius_label="Website";
+	add_option('sl_website_label', $sl_website_label);
+	}
 $sl_radius_label=get_option('sl_radius_label');
 if (empty($sl_radius_label)) {
 	$sl_radius_label="Radius";
