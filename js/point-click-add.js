@@ -70,7 +70,27 @@
        if (!latlng) {
          alert(address + ' not found');
        } else {
-          map.setCenter(new GLatLng(latlng.lat(),latlng.lng(),10));
+          point = new GLatLng(latlng.lat(),latlng.lng());
+		  map.setCenter(new GLatLng(latlng.lat(),latlng.lng(),10));
+		  
+		  
+        marker = new GMarker(point);
+        map.addOverlay(marker);
+        marker.openInfoWindowHtml(
+        '<b>latlng:</b>' + place.Point.coordinates[1] + "," + place.Point.coordinates[0] + '<br>' +
+        '<b>Status Code:</b>' + response.Status.code + '<br>' +
+        '<b>Address:</b>' + place.address + '<br>' +
+        '<b>Country code:</b>' + place.AddressDetails.Country.CountryNameCode +
+		'<form name="pcaForm" method="get">' +
+		'<input type=hidden name="page" value="' + sl_dir + '/add-locations.php"' +
+		'<input type=hidden name="mode" value="pca"' +
+		'<input type=hidden name="step" value="1"' +
+		'<input type=hidden name="lat" value="' + place.Point.coordinates[1] + '"' +
+		'<input type=hidden name="lng" value="' + place.Point.coordinates[0] + '"' +
+		'<input type=hidden name="address" value="' + place.address + '"' +
+		'<b>Enter Location\'s Name:</b>&nbsp;<input name="name" ><br>' +
+		'<input type="submit" class="button" value="Add This Location"></form>' +
+		'<div name="ajaxMsg"></div>');
        }
      });
 	}
