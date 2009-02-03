@@ -22,7 +22,7 @@ global $sl_radius_label, $sl_website_label;
 
 $sl_website_label=get_option('sl_website_label');
 if (empty($sl_website_label)) {
-	$sl_radius_label="Website";
+	$sl_website_label="Website";
 	add_option('sl_website_label', $sl_website_label);
 	}
 $sl_radius_label=get_option('sl_radius_label');
