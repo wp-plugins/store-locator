@@ -362,7 +362,7 @@ $form="
         </td></tr>
     </tbody>
   </table>
-  <script type='text/javascript'>if (document.getElementById('map')){setTimeout('load()',1000);}</script>
+  <script type=\"text/javascript\">if (document.getElementById(\"map\")){setTimeout(\"load()\",1000);}</script>
 </form>
 </div>";
 	

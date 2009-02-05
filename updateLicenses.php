@@ -50,14 +50,14 @@ foreach ($_POST as $key=>$value) {
 		$activ_option=get_option("$activ");
 		if (empty($key_option)) {
 			add_option("$key", $value);
-		} /*else {
+		} else {
 			update_option("$key", $value);
-		}*/
+		}
 		if (empty($activ_option)) {
 			add_option("$activ", $enc);
-		} /*else {
+		} else {
 			update_option("$activ", $enc);
-		}*/
+		}
 		print "<div class='highlight'> Successful validation using key '$value' $view_link</div><br>";
 	  }
 	  else {
