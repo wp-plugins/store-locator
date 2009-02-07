@@ -55,9 +55,9 @@ while ($row = @mysql_fetch_assoc($result)){
   echo 'lat="' . $row['sl_latitude'] . '" ';
   echo 'lng="' . $row['sl_longitude'] . '" ';
   echo 'distance="' . $row['sl_distance'] . '" ';
-  echo 'description="' . comma($row['sl_description']) . '" ';
+  echo 'description="' . parseToXML($row['sl_description']) . '" ';
   echo 'url="' . $row['sl_url'] . '" ';
-  echo 'hours="' . comma($row['sl_hours']) . '" ';
+  echo 'hours="' . parseToXML($row['sl_hours']) . '" ';
   echo 'phone="' . $row['sl_phone'] . '" ';
   echo 'image="' . $row['sl_image'] . '" ';
   echo "/>\n";

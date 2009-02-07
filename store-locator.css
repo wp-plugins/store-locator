@@ -9,6 +9,10 @@
 	/*color:black;
 	text-decoration:underline;*/
 }
+#sl_div img {
+	background-color:none;
+	background-image:none;
+}
 #sl_div table, #sl_div tr, #sl_div td {
 	border:none;
 	/*padding:0px;*/

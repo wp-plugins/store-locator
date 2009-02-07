@@ -22,7 +22,10 @@ update_option('sl_use_city_search', $_POST[sl_use_city_search]);
 //update_option('sl_use_name_search', $_POST[sl_use_name_search]);
 $_POST[sl_remove_credits]=($_POST[sl_remove_credits]=="")? 0 : $_POST[sl_remove_credits];
 update_option('sl_remove_credits', $_POST[sl_remove_credits]);
+$_POST[sl_load_locations_default]=($_POST[sl_load_locations_default]=="")? 0 : $_POST[sl_load_locations_default];
+update_option('sl_load_locations_default', $_POST[sl_load_locations_default]);
 update_option('sl_map_type', $_POST[sl_map_type]);
+update_option('sl_num_initial_displayed', $_POST[sl_num_initial_displayed]);
 
 print "<div class='highlight'>".__("Successful Update", $text_domain)." $view_link</div> <!--meta http-equiv='refresh' content='0'-->";
 }
@@ -72,6 +75,7 @@ $zoom.="</select>";
 $checked=(get_option('sl_use_city_search')==1)? " checked " : "";
 //$checked2=(get_option('sl_use_name_search')==1)? " checked " : "";
 $checked3=(get_option('sl_remove_credits')==1)? " checked " : "";
+$checked4=(get_option('sl_load_locations_default')==1)? " checked " : "";
 
 $map_type["Show Default Street Map Only"]="G_NORMAL_MAP";
 $map_type["Show Satellite Imagery Only"]="G_SATELLITE_MAP";
@@ -88,6 +92,10 @@ print "
 <td><select name='sl_map_type'>\n".$map_type_options."</select></td></tr>
 <tr><td>".__("Allow User Search By City?", $text_domain).":</td>
 <td><input name='sl_use_city_search' value='1' type='checkbox' $checked></td></tr>
+<tr><td>".__("Show Locations By Default When Map Loads?", $text_domain).":</td>
+<td><input name='sl_load_locations_default' value='1' type='checkbox' $checked4> (Still a Beta feature, meaning it may not always work properly)</td></tr>
+<tr><td>".__("Number of Locations Shown By Default", $text_domain).":</td>
+<td><input name='sl_num_initial_displayed' value='$sl_num_initial_displayed'> (Recommended Max: 50)</td></tr>
 <!--tr><td>".__("Allow User Search By Name of Location?", $text_domain).":</td>
 <td><input name='sl_use_name_search' value='1' type='checkbox' $checked2></td></tr-->
 <tr><td>".__("Address Input Label", $text_domain).":</td>

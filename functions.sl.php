@@ -7,6 +7,7 @@ $xmlStr=str_replace('>','&gt;',$xmlStr);
 $xmlStr=str_replace('"','&quot;',$xmlStr); 
 $xmlStr=str_replace("'",'&#39;',$xmlStr); 
 $xmlStr=str_replace("&",'&amp;',$xmlStr); 
+$xmlStr=str_replace("," ,"&#44;" ,$xmlStr);
 return $xmlStr; 
 } 
 
@@ -17,9 +18,19 @@ function initialize_variables() {
 global $height, $width, $width_units, $height_units, $radii;
 global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base, $location_table_view;
 global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search, $sl_default_map;
-global $sl_radius_label, $sl_website_label;
+global $sl_radius_label, $sl_website_label, $sl_num_initial_displayed, $sl_load_locations_default;
 
 
+$sl_load_locations_default=get_option('sl_load_locations_default');
+if (empty($sl_load_locations_default)) {
+	$sl_load_locations_default="0";
+	add_option('sl_load_locations_default', $sl_load_locations_default);
+	}
+$sl_num_initial_displayed=get_option('sl_num_initial_displayed');
+if (empty($sl_num_initial_displayed)) {
+	$sl_num_initial_displayed="25";
+	add_option('sl_num_initial_displayed', $sl_num_initial_displayed);
+	}
 $sl_website_label=get_option('sl_website_label');
 if (empty($sl_website_label)) {
 	$sl_website_label="Website";

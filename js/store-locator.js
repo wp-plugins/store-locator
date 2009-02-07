@@ -26,10 +26,10 @@
         map = new GMap2(document.getElementById('map'));
        map.addControl(new GSmallMapControl());
 		//map.addControl(new GSmallZoomControl());
-		map.addControl(new GOverviewMapControl());
+		//map.addControl(new GOverviewMapControl());
 		//map.addControl(new GLargeMapControl); //11/29/08 1:19am Moyo
         //map.addControl(new GMapTypeControl());
-		map.addControl(new GMapTypeControl(G_SATELLITE_MAP));
+		map.addControl(new GMapTypeControl());
 		map.addMapType(G_PHYSICAL_MAP);
 		geocoder.getLatLng(sl_google_map_country, function(latlng) {
 			map.setCenter(latlng, sl_zoom_level, sl_map_type);
@@ -37,7 +37,8 @@
       }
 	  
 	  //added by Moyo 1/25/09 to show locations by default
-	 var bounds = new GLatLngBounds();
+	if (sl_load_locations_default=="1") {
+	var bounds = new GLatLngBounds();
 	  markerOpts = { icon:theIcon };
       GDownloadUrl(add_base + "/data-xml.php", function(data, responseCode) {
 		var xml = GXml.parse(data);
@@ -62,9 +63,10 @@
 			map.addOverlay(marker);
 			bounds.extend(point);
 		}
-		map.setCenter(bounds.getCenter(), (map.getBoundsZoomLevel(bounds)-0));
+		map.setCenter(bounds.getCenter(), (map.getBoundsZoomLevel(bounds)-1));
 	  });
-    }
+     }
+	}
 
    function searchLocations() {
      var address = document.getElementById('addressInput').value;
