@@ -182,7 +182,7 @@
 	  //var more = address.split(',')[3];
 	  if (url.indexOf("http://")!=-1 && url.indexOf(".")!=-1) {link="<a href='"+url+"' target='_blank' class='storelocatorlink'><nobr>" + sl_website_label +"</nobr></a>&nbsp;|&nbsp;"} else {url=""; link="";}
 	  
-      var html = '<center><table width="96%" cellpadding="4px" cellspacing="0" class="searchResultsTable"><tr><td width="30%" style="padding-right:4px" valign="top"><b>' + name + '</b><br>' + distance.toFixed(1) + ' ' + sl_distance_unit + '</td><td width="40%" valign="top">' + street + '<br/>' + city + ', ' + state_zip +' </td><td width="30%" valign="top" style="text-align:right">' + link + '<a href="http://' + sl_google_map_domain + '/maps?q=' + homeAddress + ' to ' + address + '" target="_blank" class="storelocatorlink">Directions</a></td></tr></table></center>'; // Get Directions link added by Moyo 5/23/08
+      var html = '<center><table width="96%" cellpadding="4px" cellspacing="0" class="searchResultsTable"><tr><td width="30%" style="padding-right:4px" valign="top"><b>' + name + '</b><br>' + distance.toFixed(1) + ' ' + sl_distance_unit + '</td><td width="40%" valign="top">' + street + '<br/>' + city + state_zip +' </td><td width="30%" valign="top" style="text-align:right">' + link + '<a href="http://' + sl_google_map_domain + '/maps?q=' + homeAddress + ' to ' + address + '" target="_blank" class="storelocatorlink">Directions</a></td></tr></table></center>'; // Get Directions link added by Moyo 5/23/08
       /*if (resultsDisplayed==0) {
 		div.innerHTML = "<table><tr><td>";
 	  }*/
