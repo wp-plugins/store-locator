@@ -110,7 +110,7 @@ print "
 <td><input name='height' value='$height'>&nbsp;".choose_units($height_units, "height_units")."</td></tr>
 <tr><td>".__("Map Width", $text_domain).": </td>
 <td><input name='width' value='$width'>&nbsp;".choose_units($width_units, "width_units")."</td></tr>
-<tr><td>".__("Map Radii Options (in miles)", $text_domain).":<br>(1 mile ~ 1.61 kilometers) </td>
+<tr><td>".__("Map Radii Options (in ".get_option('sl_distance_unit').")", $text_domain).":<!--br>(1 mile ~ 1.61 kilometers)--></td>
 <td><input  name='radii' value='$radii' size='70'><br><br>".__("Note: Seperate each number with a comma ',' , and put paratheseses '( )' around the default radius you would like to show", $text_domain)."</td></tr>
 <tr><td valign='top'>".__("Choose Theme", $text_domain)."</td><td valign='top'> <select name='theme' onchange=\"\"><option value=''>".__("No Theme Selected", $text_domain)."</option>$theme_str</select> <br><br></td></tr>
 <tr><td>".__("Remove Credits & Google Terms link?", $text_domain).":</td>

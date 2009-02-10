@@ -19,12 +19,12 @@ global $height, $width, $width_units, $height_units, $radii;
 global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base, $location_table_view;
 global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search, $sl_default_map;
 global $sl_radius_label, $sl_website_label, $sl_num_initial_displayed, $sl_load_locations_default;
+global $sl_distance_unit;
 
-
-$sl_load_locations_default=get_option('sl_load_locations_default');
-if (empty($sl_load_locations_default)) {
-	$sl_load_locations_default="0";
-	add_option('sl_load_locations_default', $sl_load_locations_default);
+$sl_distance_unit=get_option('sl_distance_unit');
+if (empty($sl_distance_unit)) {
+	$sl_distance_unit="miles";
+	add_option('$sl_distance_unit', $sl_distance_unit);
 	}
 $sl_num_initial_displayed=get_option('sl_num_initial_displayed');
 if (empty($sl_num_initial_displayed)) {
@@ -267,10 +267,11 @@ function ajax_map($content) {
 		$r_array=explode(",", $radii);
 		$search_label=(get_option('sl_search_label'))? get_option('sl_search_label') : "Address" ;
 		
+		$unit_display=(get_option('sl_distance_unit')=="km")? "km" : "mi";
 		foreach ($r_array as $value) {
 			$s=(ereg("\(.*\)", $value))? " selected " : "" ;
 			$value=ereg_replace("[^0-9]", "", $value);
-			$r_options.="<option value='$value' $s>$value mi. (".round($value*1.609344,1)." km)</option>
+			$r_options.="<option value='$value' $s>$value $unit_display</option>
 			";
 		}
 		
