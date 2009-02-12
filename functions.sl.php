@@ -43,7 +43,7 @@ if (empty($sl_radius_label)) {
 	}
 $sl_map_type=get_option('sl_map_type');
 if (empty($sl_map_type)) {
-	$sl_map_type=G_DEFAULT_MAP;
+	$sl_map_type=G_NORMAL_MAP;
 	add_option('sl_map_type', $sl_map_type);
 	}
 $sl_remove_credits=get_option('sl_remove_credits');
