@@ -157,10 +157,10 @@
 	  
 	  
 	  if (homeAddress.split(" ").join("")!="") {
-		var html = '<div style="padding:10px; max-width:500px; max-height:400px;" ><!--tr><td--><strong>' + name + '</strong><br>' + address + '<br/> <a href="http://' + sl_google_map_domain + '/maps?q=' + homeAddress + ' to ' + address + '" target="_blank" class="storelocatorlink">Directions</a> ' + more_html + '<br/><!--/td></tr--></div>'; // Get Directions link added by Moyo 5/23/08
+		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + address + '<br/> <a href="http://' + sl_google_map_domain + '/maps?q=' + homeAddress + ' to ' + address + '" target="_blank" class="storelocatorlink">Directions</a> ' + more_html + '<br/><!--/td></tr--></div>'; // Get Directions link added by Moyo 5/23/08
 	  }
 	  else {
-		var html = '<div style="padding:10px; max-width:500px; max-height:400px;" ><!--tr><td--><strong>' + name + '</strong><br>' + address + '<br/> <a href="http://' + sl_google_map_domain + '/maps?q=' + address + '" target="_blank" class="storelocatorlink">Map</a> ' + more_html + '<!--/td></tr--></div>';
+		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + address + '<br/> <a href="http://' + sl_google_map_domain + '/maps?q=' + address + '" target="_blank" class="storelocatorlink">Map</a> ' + more_html + '<!--/td></tr--></div>';
 	  }
       GEvent.addListener(marker, 'click', function() {
         marker.openInfoWindowHtml(html);

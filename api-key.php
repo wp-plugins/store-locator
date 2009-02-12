@@ -77,6 +77,6 @@ foreach ($the_distance_unit as $key=>$value) {
 	print "<option value='$value' $selected>$key</option>\n";
 }
 
-print "</select><br><input type='submit' value='".__("Update", $text_domain)."' class='button'></td></tr></table></form>";
+print "</select><br><br><input type='submit' value='".__("Update", $text_domain)."' class='button'></td></tr></table></form>";
 
 ?></div>

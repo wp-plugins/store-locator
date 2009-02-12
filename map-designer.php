@@ -112,8 +112,8 @@ print "
 <td><input name='width' value='$width'>&nbsp;".choose_units($width_units, "width_units")."</td></tr>
 <tr><td>".__("Map Radii Options (in ".get_option('sl_distance_unit').")", $text_domain).":<!--br>(1 mile ~ 1.61 kilometers)--></td>
 <td><input  name='radii' value='$radii' size='70'><br><br>".__("Note: Seperate each number with a comma ',' , and put paratheseses '( )' around the default radius you would like to show", $text_domain)."</td></tr>
-<tr><td valign='top'>".__("Choose Theme", $text_domain)."</td><td valign='top'> <select name='theme' onchange=\"\"><option value=''>".__("No Theme Selected", $text_domain)."</option>$theme_str</select> <br><br></td></tr>
-<tr><td>".__("Remove Credits & Google Terms link?", $text_domain).":</td>
+<tr><td valign='top'>".__("Choose Theme", $text_domain)."</td><td valign='top'> <select name='theme' onchange=\"\"><option value=''>".__("No Theme Selected", $text_domain)."</option>$theme_str</select>&nbsp;&nbsp;&nbsp;<a href='http://www.viadat.com/products-page/store-locator-themes/' target='_blank'>get&nbsp;themes &raquo;</a> <br><br></td></tr>
+<tr><td>".__("Remove Credits?", $text_domain).":</td>
 <td><input name='sl_remove_credits' value='1' type='checkbox' $checked3></td></tr>
 <tr><td valign='top'>".__("Home Icon", $text_domain).":</td>
 <td valign='top'> <input name='icon' size='70' value='$icon' onchange=\"document.getElementById('prev').src=this.value\">&nbsp;&nbsp;<img id='prev' src='$icon'> <br><div style=''>$icon_str</div><br></td></tr>

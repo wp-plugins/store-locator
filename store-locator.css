@@ -18,6 +18,7 @@
 	/*padding:0px;*/
 }
 #sl_div #map { color:black; font-weight:normal;}
+#sl_info_bubble { padding:10px; /* max-width:500px; max-height:400px; */ font-size:1em;}
 #map_sidebar { background-color:white; font-weight:normal;}
 #addressInput {
 	border:solid 1px silver;
