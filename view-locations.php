@@ -100,6 +100,17 @@ print "<b>".__("Updater", $text_domain).":</b>&nbsp;".get_option('sl_location_up
 
 print "</td></tr></table><br>";
 include("mgmt-buttons-links.php");
+//print "<br>";
+
+//for search links
+		$numMembers=$wpdb->get_results("SELECT sl_id FROM " . $wpdb->prefix . "store_locator  $where");
+		$numMembers2=count($numMembers); 
+		$start=($_GET[start]=="")? 0 : $_GET[start];
+		$num_per_page=50; //edit this to determine how many locations to view per page of 'Manage Locations' page
+		if ($numMembers2!=0) {include("$sl_path/search_links.php");}
+		include("$sl_path/qstring.php");
+//end of for search links
+
 print "<br>
 <table class='widefat' cellspacing=0>
 <thead><tr >
@@ -127,8 +138,11 @@ print "<th>(Lat, Lon)</th>
 
 set_query_defaults();
 
-	if ($locales=$wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "store_locator  $where ORDER BY $o $d", ARRAY_A)) {
+
+	if ($locales=$wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "store_locator  $where ORDER BY $o $d LIMIT $start,$num_per_page", ARRAY_A)) {
 		//function do_trim($a){return trim($a);}
+		
+		
 		
 		foreach ($locales as $value) {
 			
