@@ -102,12 +102,14 @@ print "</td></tr></table><br>";
 include("mgmt-buttons-links.php");
 //print "<br>";
 
+set_query_defaults();
+
 //for search links
 		$numMembers=$wpdb->get_results("SELECT sl_id FROM " . $wpdb->prefix . "store_locator  $where");
 		$numMembers2=count($numMembers); 
 		$start=($_GET[start]=="")? 0 : $_GET[start];
-		$num_per_page=50; //edit this to determine how many locations to view per page of 'Manage Locations' page
-		if ($numMembers2!=0) {include("$sl_path/search_links.php");}
+		$num_per_page=30; //edit this to determine how many locations to view per page of 'Manage Locations' page
+		if ($numMembers2!=0) {include("$sl_path/search-links.php");}
 		include("$sl_path/qstring.php");
 //end of for search links
 
@@ -135,8 +137,6 @@ print "<th><a href='".ereg_replace("&o=$_GET[o]&d=$_GET[d]", "", $_SERVER[REQUES
 
 print "<th>(Lat, Lon)</th>
 </tr></thead>";
-
-set_query_defaults();
 
 
 	if ($locales=$wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "store_locator  $where ORDER BY $o $d LIMIT $start,$num_per_page", ARRAY_A)) {
@@ -211,7 +211,8 @@ print "<td>($value[sl_latitude],&nbsp;$value[sl_longitude])</td>
 	print "</table>
 	<input name='act' type='hidden'><br>";
 //include("mgmt-buttons-links.php");
-	
+if ($numMembers2!=0) {include("$sl_path/search-links.php");}
+
 print "</form>";
 	
 }
