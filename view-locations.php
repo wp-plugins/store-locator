@@ -108,7 +108,7 @@ set_query_defaults();
 		$numMembers=$wpdb->get_results("SELECT sl_id FROM " . $wpdb->prefix . "store_locator  $where");
 		$numMembers2=count($numMembers); 
 		$start=($_GET[start]=="")? 0 : $_GET[start];
-		$num_per_page=30; //edit this to determine how many locations to view per page of 'Manage Locations' page
+		$num_per_page=100; //edit this to determine how many locations to view per page of 'Manage Locations' page
 		if ($numMembers2!=0) {include("$sl_path/search-links.php");}
 		include("$sl_path/qstring.php");
 //end of for search links

@@ -155,12 +155,16 @@
 	  if (hours!="") {more_html+="<br/><b>Hours:</b> "+hours;} else {hours=""}
 	  if (phone!="") {more_html+="<br/><b>Phone:</b> "+phone;} else {phone=""}
 	  
+		var street = address.split(',')[0]; if (street.split(' ').join('')!=""){street+='<br/>';}else{street="";}
+		var city = address.split(',')[1]; if (city.split(' ').join('')!=""){city+=', ';}else{city="";}
+		var state_zip = address.split(',')[2]; 	  
+		//address=street + city + state_zip;
 	  
 	  if (homeAddress.split(" ").join("")!="") {
-		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + address + '<br/> <a href="http://' + sl_google_map_domain + '/maps?q=' + homeAddress + ' to ' + address + '" target="_blank" class="storelocatorlink">Directions</a> ' + more_html + '<br/><!--/td></tr--></div>'; // Get Directions link added by Moyo 5/23/08
+		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + street + city + state_zip + '<br/> <a href="http://' + sl_google_map_domain + '/maps?q=' + homeAddress + ' to ' + address + '" target="_blank" class="storelocatorlink">Directions</a> ' + more_html + '<br/><!--/td></tr--></div>'; // Get Directions link added by Moyo 5/23/08
 	  }
 	  else {
-		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + address + '<br/> <a href="http://' + sl_google_map_domain + '/maps?q=' + address + '" target="_blank" class="storelocatorlink">Map</a> ' + more_html + '<!--/td></tr--></div>';
+		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + street + city + state_zip + '<br/> <a href="http://' + sl_google_map_domain + '/maps?q=' + address + '" target="_blank" class="storelocatorlink">Map</a> ' + more_html + '<!--/td></tr--></div>';
 	  }
       GEvent.addListener(marker, 'click', function() {
         marker.openInfoWindowHtml(html);
@@ -176,7 +180,7 @@
     function createSidebarEntry(marker, name, address, distance, homeAddress, url) { // homeAddress param added by Moyo 5/23/08
 	document.getElementById('map_sidebar_td').style.display='block';
       var div = document.createElement('div');
-	  var street = address.split(',')[0];
+	  var street = address.split(',')[0]; 
 	  var city = address.split(',')[1]; if (city.split(' ').join('')!=""){city+=', ';}else{city="";}
 	  var state_zip = address.split(',')[2]; 
 	  //var more = address.split(',')[3];

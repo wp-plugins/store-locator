@@ -4,15 +4,13 @@
 	font-weight: bold;
 }
 
-.tableRowHeader  td a,.tableRowHeader  th a,.widefat thead td a,.widefat thead th a
-	{
+.tableRowHeader  td a,.tableRowHeader  th a,.widefat thead td a,.widefat thead th a	{
 	color: gold;
 	font-weight: bold;
 	text-decoration: underline;
 }
 
-.widefat,.widefat thead td a,.widefat thead th a,.widefat td,.widefat th
-	{
+.widefat,.widefat thead td a,.widefat thead th a,.widefat td,.widefat th	{
 	font-size: 12px;
 }
 
