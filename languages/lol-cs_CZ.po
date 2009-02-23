@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/store-locator\n"
 "POT-Creation-Date: 2009-02-10 20:31+0000\n"
-"PO-Revision-Date: 2009-02-22 14:25-0600\n"
+"PO-Revision-Date: 2009-02-23 06:55-0600\n"
 "Last-Translator: Viadat Creations <info@viadat.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -325,8 +325,8 @@ msgid "No Theme Selected"
 msgstr "Zádný motiv vybrán"
 
 #: map-designer.php:116
-msgid "Remove Credits & Google Terms link?"
-msgstr "Vymazat Credits & Google Terms odkaz?"
+msgid "Remove Credits?"
+msgstr "Vymazat Credits?"
 
 #: map-designer.php:118
 msgid "Home Icon"

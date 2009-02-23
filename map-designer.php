@@ -77,10 +77,10 @@ $checked=(get_option('sl_use_city_search')==1)? " checked " : "";
 $checked3=(get_option('sl_remove_credits')==1)? " checked " : "";
 $checked4=(get_option('sl_load_locations_default')==1)? " checked " : "";
 
-$map_type["Show Default Street Map Only"]="G_NORMAL_MAP";
-$map_type["Show Satellite Imagery Only"]="G_SATELLITE_MAP";
-$map_type["Show Satellite Imagery + Street Map"]="G_HYBRID_MAP";
-$map_type["Show Terrain + Street Map"]="G_PHYSICAL_MAP";
+$map_type["".__("Show Default Street Map Only", $text_domain).""]="G_NORMAL_MAP";
+$map_type["".__("Show Satellite Imagery Only", $text_domain).""]="G_SATELLITE_MAP";
+$map_type["".__("Show Satellite Imagery + Street Map", $text_domain).""]="G_HYBRID_MAP";
+$map_type["".__("Show Terrain + Street Map", $text_domain).""]="G_PHYSICAL_MAP";
 
 	foreach($map_type as $key=>$value) {
 		$selected2=(get_option('sl_map_type')==$value)? " selected " : "";
@@ -93,9 +93,9 @@ print "
 <tr><td>".__("Allow User Search By City?", $text_domain).":</td>
 <td><input name='sl_use_city_search' value='1' type='checkbox' $checked></td></tr>
 <tr><td>".__("Show Locations By Default When Map Loads?", $text_domain).":</td>
-<td><input name='sl_load_locations_default' value='1' type='checkbox' $checked4> (Still a Beta feature, meaning it may not always work properly)</td></tr>
+<td><input name='sl_load_locations_default' value='1' type='checkbox' $checked4> (".__("Still a Beta feature, meaning it may not always work properly", $text_domain).")</td></tr>
 <tr><td>".__("Number of Locations Shown By Default", $text_domain).":</td>
-<td><input name='sl_num_initial_displayed' value='$sl_num_initial_displayed'> (Recommended Max: 50)</td></tr>
+<td><input name='sl_num_initial_displayed' value='$sl_num_initial_displayed'> (".__("Recommended Max: 50", $text_domain).")</td></tr>
 <!--tr><td>".__("Allow User Search By Name of Location?", $text_domain).":</td>
 <td><input name='sl_use_name_search' value='1' type='checkbox' $checked2></td></tr-->
 <tr><td>".__("Address Input Label", $text_domain).":</td>
