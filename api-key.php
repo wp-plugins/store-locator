@@ -70,8 +70,8 @@ foreach ($the_domain as $key=>$value) {
 print "</select></td></tr>
 <tr><td>".__("Select Distance Unit", $text_domain).":</td><td><select name='sl_distance_unit'>";
 
-$the_distance_unit["Kilometers"]="km";
-$the_distance_unit["Miles"]="miles";
+$the_distance_unit["".__("Kilometers", $text_domain).""]="km";
+$the_distance_unit["".__("Miles", $text_domain).""]="miles";
 foreach ($the_distance_unit as $key=>$value) {
 	$selected=(get_option('sl_distance_unit')==$value)?" selected " : "";
 	print "<option value='$value' $selected>$key</option>\n";
