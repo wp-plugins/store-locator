@@ -10,7 +10,7 @@
 	text-decoration:underline;*/
 }
 #sl_div img {
-	background-color:none;
+	background-color:transparent;
 	background-image:none;
 }
 #sl_div table, #sl_div tr, #sl_div td {
