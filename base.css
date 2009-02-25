@@ -23,3 +23,10 @@
 	font-size:10px;
 	text-align:left;
 }
+.sl_header img, .sl_header td {
+border: none;
+}
+.sl_header td {
+	vertical-align:top;
+	text-align:left;
+}

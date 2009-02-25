@@ -138,7 +138,7 @@
          sidebar.appendChild(sidebarEntry);
          bounds.extend(point);
        }
-	  map.setCenter(bounds.getCenter(), (map.getBoundsZoomLevel(bounds)-0)); //8/28/08: -1 to zoom out one step
+	  map.setCenter(bounds.getCenter(), (map.getBoundsZoomLevel(bounds)-1)); //8/28/08: -1 to zoom out one step
 	 });
 	  
    }

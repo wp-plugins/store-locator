@@ -296,8 +296,8 @@ function ajax_map($content) {
 	$theme_base=$sl_base."/themes/".get_option('sl_map_theme');
 	$theme_path=$sl_path."/themes/".get_option('sl_map_theme');
 	if (get_option('sl_map_theme')=="") {
-		$theme_base=$sl_base."/images/";
-		$theme_path=$sl_path."/images/";
+		$theme_base=$sl_base."/images";
+		$theme_path=$sl_path."/images";
 	}
 	$sub_img=$theme_base."/search_button.png";
 	$mousedown=(file_exists($theme_path."/search_button_down.png"))? "onmousedown=\"this.src='$theme_base/search_button_down.png'\" onmouseup=\"this.src='$theme_base/search_button.png'\"" : "";
@@ -309,7 +309,7 @@ function ajax_map($content) {
 $form="
 <div id='sl_div'>
   <form onsubmit='searchLocations(); return false;' name='searchForm'>
-    <table border=0 cellpadding='3px'><tr>
+    <table border=0 cellpadding='3px' class='sl_header'><tr>
 	<td valign=top><nobr>$search_label&nbsp;</nobr></td>
 	<td ";
 	
