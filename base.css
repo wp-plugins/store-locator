@@ -23,7 +23,7 @@
 	font-size:10px;
 	text-align:left;
 }
-.sl_header img, .sl_header td {
+.sl_header img, .sl_header td, .sl_header #addressSubmit {
 border: none;
 }
 .sl_header td {
