@@ -161,7 +161,18 @@ $base_url = "http://" . MAPS_HOST . "/maps/geo?output=csv&key=" . KEY;
 
 // Iterate through the rows, geocoding each address
     $request_url = $base_url . "&q=" . urlencode($address);
-    $csv = file_get_contents($request_url) or die("url not loading");
+   
+//New code to accomdate those without 'file_get_contents' functionality for their server - added 3/27/09 8:56am - provided by Daniel C. - thank you
+   if (extension_loaded("curl") && function_exists("curl_init")) {
+$cURL = curl_init();
+curl_setopt($cURL, CURLOPT_URL, $request_url);
+curl_setopt($cURL, CURLOPT_RETURNTRANSFER, 1);
+$csv = curl_exec($cURL);
+curl_close($cURL);  
+}else{
+     $csv = file_get_contents($request_url) or die("url not loading");
+}
+//End of new code
 
     $csvSplit = split(",", $csv);
     $status = $csvSplit[0];
