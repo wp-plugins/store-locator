@@ -64,7 +64,7 @@ if ($_POST) {
 $ao_dir=opendir($sl_path."/addons/");
 print "<table width='100%' border='0'><tr>"; 
 while (false !== ($a_lic=readdir($ao_dir))) {
-	if (!ereg("^\.{1,2}$", $a_lic) && !ereg("\.(php|txt|htm(l)?)", $a_lic)) {
+	if (!ereg("^\.{1,2}$", $a_lic) && !ereg("\.(php|txt|htm(l)?)", $a_lic) && !ereg("_vti", $a_lic)) {
 
 			$style="style='border:red; background-color:salmon'";
 		if (get_option('sl_activation_'.$a_lic)!="") {
@@ -91,7 +91,7 @@ $ctr++;
 print "</table>";
 print "<form method='post' name='licenseForm'><table style='border:none'><tr>$lic_str</tr></table>
 <br><input type='submit' value='".__("Update All", $text_domain)."' class='button'>
-<br>".__("Looking for more upgrades & themes", $text_domain)."? <a href='http://www.viadat.com/products-page'>".__("It's all right here", $text_domain)."</a>
+<br><br>".__("Looking for more upgrades & themes", $text_domain)."? <a href='http://www.viadat.com/products-page'>".__("It's all right here", $text_domain)."</a>
 </form>
 
 </div>
