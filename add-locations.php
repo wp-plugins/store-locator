@@ -112,6 +112,9 @@ if (file_exists($sl_path."/addons/csv-xml-importer-exporter/csv-import-form.php"
 	include($sl_path."/addons/csv-xml-importer-exporter/csv-import-form.php");
 	print "<br>";
 }
+else {
+	print "<A href='http://www.viadat.com/products-page/store-locator-add-ons/csv-importer--exporter--xml-exporter/' target='_blank'><center><b>Addon:</b> CSV Importer/Exporter & XML Exporter</center><br><br><img src='$sl_base/screenshot-3.jpg' border='0'></a>";
+}
 include($sl_path."/database-info.php");
 if (file_exists($sl_path."/addons/db-importer/db-import-form.php")) {
 	include($sl_path."/addons/db-importer/db-import-form.php");
@@ -124,6 +127,9 @@ print "
 
 if (file_exists($sl_path."/addons/point-click-add/point-click-add-form.php")) {
 	include($sl_path."/addons/point-click-add/point-click-add-form.php");
+}
+else {
+	print "<A href='http://www.viadat.com/products-page/store-locator-add-ons/point-click--add-mapper/' target='_blank'><center><b>Addon:</b> Point, Click, Add Mapper</center><br><br><img src='$sl_base/screenshot-4.jpg' border='0'></a>";
 }
 
 print "</td>

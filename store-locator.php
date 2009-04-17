@@ -3,7 +3,7 @@
 Plugin Name: Store Locator
 Plugin URI: http://www.viadat.com/store-locator
 Description: A store locator / location finder plugin focused on providing mapping tools for web designers & developers who create sites in Wordpress & web site owners needing to show important stores or any other type of location.
-Version: 1.2.20
+Version: 1.2.20.1
 Author: Viadat Creations
 Author URI: http://www.viadat.com
 */
@@ -40,7 +40,4 @@ return $opt;
 function plugin_update_disabled_notice() {
 echo '<tr><td class="plugin-update" colspan="5"><a href="http://www.viadat.com/vdl/store-locator.zip">Download the latest version</a> & upload it to your server.</td></tr>';
 }
-
-
-
 ?>
