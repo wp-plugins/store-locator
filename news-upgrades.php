@@ -1,8 +1,34 @@
+<?php 
+include("sl-update.php"); ?>
+<?php
+//$canwrite = $this->is_upgrade_directory_writable();
+$canwrite = true;
+
+print "<div class='wrap'>
+<Table class='widefat' cellpadding='0px' cellspacing='0px'>
+<tr><td colspan='2'>
+<table width='100%'><thead><tr>
+<th>Update Central</th></tr></thead>
+<tr><td>
+";
+?>
+<form class="form-table" name="dofollow" action="" method="post">
+<p class="submit">
+<input type="submit" <?php if (!$canwrite) echo(' disabled="disabled" ');?> name="sl_update" style='font-weight:bold' value="<?php _e('Quick Updater', $text_domain)?> &raquo;" />
+<strong><?php print "Current Version: $sl_version "; ?></strong><br><?php _e("(As requested, this updater preserves added themes, addons, images, icons, language files, etc.  Remember, backup & check for updates often.)", $text_domain) ?>
+</form>
+</p>
+<p><?php if (ereg('wordpress-store-locator-location-finder', $_SERVER[REQUEST_URI])) { print "<b>Note:</b> Your directory is <b>'wordpress-store-locator-location-finder'</b>. Please rename to <b>'store-locator'</b> to continue receiving notifications of future updates in your admin panel."; } ?></p>
+
+<?php if (!$canwrite) {
+	echo("<p><strong>"); echo(sprintf(__("Please make sure that %s is writable.", $text_domain), $sl_up->upgrade_folder)); echo("</p></strong>");
+} ?>
+</p>
 <?php
 
 print "
-<div class='wrap'>
-<Table class='widefat' cellpadding='0px' cellspacing='0px'>
+</td></tr></table>
+</td></tr>
 <tr><td valign='top' width='50%'>
 
 <table width='100%'><thead><tr>
@@ -64,7 +90,7 @@ if ($_POST) {
 $ao_dir=opendir($sl_path."/addons/");
 print "<table width='100%' border='0'><tr>"; 
 while (false !== ($a_lic=readdir($ao_dir))) {
-	if (!ereg("^\.{1,2}$", $a_lic) && !ereg("\.(php|txt|htm(l)?)", $a_lic) && !ereg("_vti", $a_lic)) {
+	if (!ereg("^\.{1,2}$", $a_lic) && !ereg("\.(php|txt|htm(l)?)", $a_lic)) {
 
 			$style="style='border:red; background-color:salmon'";
 		if (get_option('sl_activation_'.$a_lic)!="") {
@@ -90,8 +116,8 @@ $ctr++;
 }
 print "</table>";
 print "<form method='post' name='licenseForm'><table style='border:none'><tr>$lic_str</tr></table>
-<br><input type='submit' value='".__("Update All", $text_domain)."' class='button'>
-<br><br>".__("Looking for more upgrades & themes", $text_domain)."? <a href='http://www.viadat.com/products-page'>".__("It's all right here", $text_domain)."</a>
+<br><input type='submit' value='".__("Activate", $text_domain)."' class='button'>
+<br>".__("Looking for more addons & themes", $text_domain)."? <a href='http://www.viadat.com/products-page'>".__("It's all right here", $text_domain)."</a>
 </form>
 
 </div>
