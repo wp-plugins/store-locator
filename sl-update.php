@@ -163,4 +163,5 @@ if ($_POST['sl_update']) {
 ?>
 <?php if ($message) : ?>
 <div id="message" class="updated fade"><p><?php echo $message; ?></p></div>
+<meta http-equiv="refresh" content="3;url=./admin.php?page=<?php print $sl_dir;?>/news-upgrades.php" />
 <?php endif; ?>

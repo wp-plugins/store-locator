@@ -14,7 +14,7 @@ print "<div class='wrap'>
 ?>
 <form class="form-table" name="dofollow" action="" method="post">
 <p class="submit">
-<input type="submit" <?php if (!$canwrite) echo(' disabled="disabled" ');?> name="sl_update" style='font-weight:bold' value="<?php _e('Quick Updater', $text_domain)?> &raquo;" />
+<input type="submit" <?php if (!$canwrite) echo(' disabled="disabled" ');?> name="sl_update" style='font-weight:bold' value="<?php _e('Check for Updates', $text_domain)?> &raquo;" />
 <strong><?php print "Current Version: $sl_version "; ?></strong><br><?php _e("(As requested, this updater preserves added themes, addons, images, icons, language files, etc.  Remember, backup & check for updates often.)", $text_domain) ?>
 </form>
 </p>
