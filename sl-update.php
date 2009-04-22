@@ -157,6 +157,8 @@ if ($_POST['sl_update']) {
 			else {
 				//Call install_table() to make sure database is up to date for this newest version, since activation hook may not be called
 				install_table();
+				//Call initialize_variables() in order to set the default value of any newly introduced variables 
+				initialize_variables();
 			}
 		}
 	
