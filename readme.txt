@@ -4,7 +4,7 @@ Donate link: http://www.viadat.com/donate
 Tags: store locator, location finder, google maps, ecommerce, e-commerce, business locations
 Requires at least: 2.3.3
 Tested up to: 2.7.1
-Stable tag: 1.2.21.3
+Stable tag: 1.2.22
 
 A store locator plugin for developers who create sites in Wordpress & web site owners who want to quickly show important locations.
 
@@ -33,19 +33,6 @@ location.
 
 = ICONS =
 1. There are some default icons in the `/wp-content/plugins/store-locator/icons` directory. Add your own custom icons in this directory to display them on the map.
-
-== Screenshots ==
-= Admin =
-1. News & Upgrades Page
-2. Map Designer Page
-
-= Addons =
-3. CSV/XML Exporter/Importer
-4. Point, Click, Add Mapper
-5. Multi-Field Updater
-
-= User Interface =
-6. Store Locator User Interface
 
 == Frequently Asked Questions ==
 
