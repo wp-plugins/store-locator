@@ -24,15 +24,18 @@
       if (GBrowserIsCompatible()) {
         geocoder = new GClientGeocoder();
         map = new GMap2(document.getElementById('map'));
-       map.addControl(new GSmallMapControl());
+		//map.addControl(new GSmallMapControl());
 		//map.addControl(new GSmallZoomControl());
-		//map.addControl(new GOverviewMapControl());
+		if (sl_map_overview_control==1) {
+			map.addControl(new GOverviewMapControl());
+			}
 		//map.addControl(new GLargeMapControl); //11/29/08 1:19am Moyo
         //map.addControl(new GMapTypeControl());
-		map.addControl(new GMapTypeControl());
+		//map.addControl(new GMapTypeControl());
 		map.addMapType(G_PHYSICAL_MAP);
 		geocoder.getLatLng(sl_google_map_country, function(latlng) {
 			map.setCenter(latlng, sl_zoom_level, sl_map_type);
+			map.setUIToDefault();
 		});
       }
 	  
@@ -64,6 +67,7 @@
 			bounds.extend(point);
 		}
 		map.setCenter(bounds.getCenter(), (map.getBoundsZoomLevel(bounds)-1));
+		map.setUIToDefault();
 	  });
      }
 	}

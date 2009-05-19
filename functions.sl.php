@@ -19,12 +19,18 @@ global $height, $width, $width_units, $height_units, $radii;
 global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base, $location_table_view;
 global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search, $sl_default_map;
 global $sl_radius_label, $sl_website_label, $sl_num_initial_displayed, $sl_load_locations_default;
-global $sl_distance_unit;
+global $sl_distance_unit, $sl_map_overview_control;
 
+
+$sl_map_overview_control=get_option('sl_map_overview_control');
+if (empty($sl_map_overview_control)) {
+	$sl_map_overview_control="0";
+	add_option('sl_map_overview_control', $sl_distance_unit);
+	}
 $sl_distance_unit=get_option('sl_distance_unit');
 if (empty($sl_distance_unit)) {
 	$sl_distance_unit="miles";
-	add_option('$sl_distance_unit', $sl_distance_unit);
+	add_option('sl_distance_unit', $sl_distance_unit);
 	}
 $sl_num_initial_displayed=get_option('sl_num_initial_displayed');
 if (empty($sl_num_initial_displayed)) {
@@ -388,6 +394,9 @@ $form="
   <script type=\"text/javascript\">if (document.getElementById(\"map\")){setTimeout(\"load()\",1000);}</script>
 </form>
 </div>";
+
+	//ereg("\[STORE-LOCATOR [tag=\"(.*)\"]?\]", $matched); 
+	//global $map_tag=$matched[1];
 	
 	return eregi_replace("\[STORE-LOCATOR(.*)?\]", $form, $content);
 	}

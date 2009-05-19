@@ -26,6 +26,7 @@ $_POST[sl_load_locations_default]=($_POST[sl_load_locations_default]=="")? 0 : $
 update_option('sl_load_locations_default', $_POST[sl_load_locations_default]);
 update_option('sl_map_type', $_POST[sl_map_type]);
 update_option('sl_num_initial_displayed', $_POST[sl_num_initial_displayed]);
+update_option('sl_map_overview_control', $_POST[sl_map_overview_control]);
 
 print "<div class='highlight'>".__("Successful Update", $text_domain)." $view_link</div> <!--meta http-equiv='refresh' content='0'-->";
 }
@@ -76,6 +77,7 @@ $checked=(get_option('sl_use_city_search')==1)? " checked " : "";
 //$checked2=(get_option('sl_use_name_search')==1)? " checked " : "";
 $checked3=(get_option('sl_remove_credits')==1)? " checked " : "";
 $checked4=(get_option('sl_load_locations_default')==1)? " checked " : "";
+$checked5=(get_option('sl_map_overview_control')==1)? " checked " : "";
 
 $map_type["".__("Show Default Street Map Only", $text_domain).""]="G_NORMAL_MAP";
 $map_type["".__("Show Satellite Imagery Only", $text_domain).""]="G_SATELLITE_MAP";
@@ -92,6 +94,8 @@ print "
 <td><select name='sl_map_type'>\n".$map_type_options."</select></td></tr>
 <tr><td>".__("Allow User Search By City?", $text_domain).":</td>
 <td><input name='sl_use_city_search' value='1' type='checkbox' $checked></td></tr>
+<tr><td>".__("Show Map Inset Box?", $text_domain).":</td>
+<td><input name='sl_map_overview_control' value='1' type='checkbox' $checked5></td></tr>
 <tr><td>".__("Show Locations By Default When Map Loads?", $text_domain).":</td>
 <td><input name='sl_load_locations_default' value='1' type='checkbox' $checked4> (".__("Still a Beta feature, meaning it may not always work properly", $text_domain).")</td></tr>
 <tr><td>".__("Number of Locations Shown By Default", $text_domain).":</td>
@@ -110,7 +114,7 @@ print "
 <td><input name='height' value='$height'>&nbsp;".choose_units($height_units, "height_units")."</td></tr>
 <tr><td>".__("Map Width", $text_domain).": </td>
 <td><input name='width' value='$width'>&nbsp;".choose_units($width_units, "width_units")."</td></tr>
-<tr><td>".__("Map Radii Options (in ".get_option('sl_distance_unit').")", $text_domain).":<!--br>(1 mile ~ 1.61 kilometers)--></td>
+<tr><td>".__("Map Radii Options (in ".get_option('sl_distance_unit').")", $text_domain).":</td>
 <td><input  name='radii' value='$radii' size='70'><br><br>".__("Note: Seperate each number with a comma ',' , and put paratheseses '( )' around the default radius you would like to show", $text_domain)."</td></tr>
 <tr><td valign='top'>".__("Choose Theme", $text_domain)."</td><td valign='top'> <select name='theme' onchange=\"\"><option value=''>".__("No Theme Selected", $text_domain)."</option>$theme_str</select>&nbsp;&nbsp;&nbsp;<a href='http://www.viadat.com/products-page/store-locator-themes/' target='_blank'>get&nbsp;themes &raquo;</a> <br><br></td></tr>
 <tr><td>".__("Remove Credits?", $text_domain).":</td>
