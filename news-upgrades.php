@@ -39,10 +39,10 @@ __("Latest News", $text_domain).
 </thead>
 <tr>
 <td width='50%'>
-<div style='overflow:scroll; height:350px; padding:7px;'>";/*
+<div style='overflow:scroll; height:350px; padding:7px;'>
 <script src='http://feeds2.feedburner.com/Viadat?format=sigpro' type='text/javascript' ></script><noscript><p>Subscribe to RSS headline updates from: <a href='http://feeds2.feedburner.com/Viadat'></a><br/>Powered by FeedBurner</p> </noscript>";
-*/
 
+/*
 // include lastRSS library
 include_once ("lastRSS.php");
 // create lastRSS object
@@ -72,7 +72,7 @@ else {
 $c++;
 	}	
 }
-
+*/
 
 print "</td>
 </tr></table>
