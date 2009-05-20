@@ -38,9 +38,11 @@ __("Latest News", $text_domain).
 </tr>
 </thead>
 <tr>
-<td width='50%'><div style='overflow:scroll; height:350px; padding:7px;'>
-<script src='http://feeds.feedburner.com/Viadat?format=sigpro' type='text/javascript' ></script><noscript><p>Subscribe to RSS headline updates from: <a href='http://feeds.feedburner.com/Viadat'></a><br/>Powered by FeedBurner</p> </noscript>";
-/*
+<td width='50%'>
+<div style='overflow:scroll; height:350px; padding:7px;'>";/*
+<script src='http://feeds2.feedburner.com/Viadat?format=sigpro' type='text/javascript' ></script><noscript><p>Subscribe to RSS headline updates from: <a href='http://feeds2.feedburner.com/Viadat'></a><br/>Powered by FeedBurner</p> </noscript>";
+*/
+
 // include lastRSS library
 include_once ("lastRSS.php");
 // create lastRSS object
@@ -48,18 +50,19 @@ $rss = new lastRSS;
 // setup transparent cache
 $rss->cache_dir = './cache'; 
 $rss->cache_time = 3600; // one hour
+
 // load some RSS file
-if ($rs = $rss->get('http://feeds.feedburner.com/Viadat')) {
-	print_r($rs);
+if ($rs = $rss->get('http://feeds2.feedburner.com/Viadat')) {
+	//var_dump($rs);
 $c=1;
 foreach ($rs[items] as $value) {
 
 if ($c<=100) {
 	print "<li><A href=\"$value[link]\" target='_blank' class='home_rss' style='font-size:12px'>
-	<b>$value[title]</b></a></li>
-	<br>
+	<b>$value[title]</b></a></li><b>$value[pubDate]</b><br>
+	<!--br-->
 	<span class='home_rss'> ".
-	str_replace("]]>","",str_replace("</p>", "", html_entity_decode(nl2br($value[description])))).
+	str_replace("]]>","",str_replace("</p>", "", ereg_replace("<!\[CDATA\[", "", html_entity_decode(nl2br($value[description]))))).
 	"</span><br><br>";
 }
 else {
@@ -69,7 +72,7 @@ else {
 $c++;
 	}	
 }
-*/
+
 
 print "</td>
 </tr></table>
@@ -152,7 +155,7 @@ foreach ($rs[items] as $value) {
 if ($c<=100) {
 	print "<li><A href=\"$value[link]\" target='_blank' class='home_rss' style='font-size:12px'>
 	<b>$value[title]</b></a></li>
-	<br>
+	<!--br-->
 	<span class='home_rss'> ".
 	str_replace("]]>","",str_replace("</p>", "", html_entity_decode(nl2br($value[description])))).
 	"</span><br><br>";

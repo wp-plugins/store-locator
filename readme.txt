@@ -3,8 +3,8 @@ Contributors: moaluko
 Donate link: http://www.viadat.com/donate
 Tags: store locator, location finder, google maps, places, stores, maps, mapping, mapper, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.3.3
-Tested up to: 2.7.1
-Stable tag: 1.2.23
+Tested up to: 2.8 Beta 1
+Stable tag: 1.2.23.1
 
 A store locator plugin for developers who create sites in Wordpress & web site owners who want to quickly show important locations.
 
