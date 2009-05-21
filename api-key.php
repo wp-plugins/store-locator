@@ -8,7 +8,7 @@ update_option('sl_language', $_POST[sl_language]);
 $sl_google_map_arr=explode(":", $_POST[google_map_domain]);
 update_option('sl_google_map_country', $sl_google_map_arr[0]);
 update_option('sl_google_map_domain', $sl_google_map_arr[1]);
-update_option('sl_distance_unit', $_POST[sl_distance_unit]);
+
 
 print "<div class='highlight'>".__("Successful Update", $text_domain)."</div> <!--meta http-equiv='refresh' content='0'-->";
 }
@@ -68,15 +68,6 @@ foreach ($the_domain as $key=>$value) {
 	print "<option value='$key:$value' $selected>$key ($value)</option>\n";
 }
 print "</select></td></tr>
-<tr><td>".__("Select Distance Unit", $text_domain).":</td><td><select name='sl_distance_unit'>";
-
-$the_distance_unit["".__("Kilometers", $text_domain).""]="km";
-$the_distance_unit["".__("Miles", $text_domain).""]="miles";
-foreach ($the_distance_unit as $key=>$value) {
-	$selected=(get_option('sl_distance_unit')==$value)?" selected " : "";
-	print "<option value='$value' $selected>$key</option>\n";
-}
-
-print "</select><br><br><input type='submit' value='".__("Update", $text_domain)."' class='button'></td></tr></table></form>";
+<tr><td colspan='2'><input type='submit' value='".__("Update", $text_domain)."' class='button'></td></tr></table></form>";
 
 ?></div>

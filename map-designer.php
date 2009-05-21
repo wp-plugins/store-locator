@@ -27,10 +27,11 @@ update_option('sl_load_locations_default', $_POST[sl_load_locations_default]);
 update_option('sl_map_type', $_POST[sl_map_type]);
 update_option('sl_num_initial_displayed', $_POST[sl_num_initial_displayed]);
 update_option('sl_map_overview_control', $_POST[sl_map_overview_control]);
+update_option('sl_distance_unit', $_POST[sl_distance_unit]);
 
 print "<div class='highlight'>".__("Successful Update", $text_domain)." $view_link</div> <!--meta http-equiv='refresh' content='0'-->";
 }
-print "<h2>".__("Map Designer", $text_domain)."</h2><br><form method='post' name='mapDesigner'><table class='widefat'><thead><tr><td>".__("Option", $text_domain)."</td><td>".__("Value", $text_domain)."</td></tr></thead>";
+print "<h2>".__("Map Designer", $text_domain)."</h2><br><form method='post' name='mapDesigner'><table class='widefat'><thead><tr><td>".__("Map Designer", $text_domain)."</td><td><!--".__("Designer", $text_domain)."--></td></tr></thead>";
 initialize_variables();
 
 $icon_dir=opendir($sl_path."/icons/");
@@ -78,11 +79,16 @@ $checked=(get_option('sl_use_city_search')==1)? " checked " : "";
 $checked3=(get_option('sl_remove_credits')==1)? " checked " : "";
 $checked4=(get_option('sl_load_locations_default')==1)? " checked " : "";
 $checked5=(get_option('sl_map_overview_control')==1)? " checked " : "";
-
+/*
 $map_type["".__("Show Default Street Map Only", $text_domain).""]="G_NORMAL_MAP";
 $map_type["".__("Show Satellite Imagery Only", $text_domain).""]="G_SATELLITE_MAP";
 $map_type["".__("Show Satellite Imagery + Street Map", $text_domain).""]="G_HYBRID_MAP";
-$map_type["".__("Show Terrain + Street Map", $text_domain).""]="G_PHYSICAL_MAP";
+$map_type["".__("Show Terrain + Street Map", $text_domain).""]="G_PHYSICAL_MAP";*/
+
+$map_type["".__("Normal", $text_domain).""]="G_NORMAL_MAP";
+$map_type["".__("Satellite", $text_domain).""]="G_SATELLITE_MAP";
+$map_type["".__("Hybrid", $text_domain).""]="G_HYBRID_MAP";
+$map_type["".__("Physical", $text_domain).""]="G_PHYSICAL_MAP";
 
 	foreach($map_type as $key=>$value) {
 		$selected2=(get_option('sl_map_type')==$value)? " selected " : "";
@@ -90,40 +96,63 @@ $map_type["".__("Show Terrain + Street Map", $text_domain).""]="G_PHYSICAL_MAP";
 	}
 
 print "
-<tr><td>".__("Choose Default Map Type Shown to Visitors", $text_domain).":</td>
+<tr><td colspan='1' width='40%' class='left_side'><h2>".__("Defaults", $text_domain)."</h2>
+<table class='map_designer_section'><tr><td>".__("Choose Default Map Type Shown to Visitors", $text_domain).":</td>
 <td><select name='sl_map_type'>\n".$map_type_options."</select></td></tr>
 <tr><td>".__("Allow User Search By City?", $text_domain).":</td>
 <td><input name='sl_use_city_search' value='1' type='checkbox' $checked></td></tr>
 <tr><td>".__("Show Map Inset Box?", $text_domain).":</td>
 <td><input name='sl_map_overview_control' value='1' type='checkbox' $checked5></td></tr>
 <tr><td>".__("Show Locations By Default When Map Loads?", $text_domain).":</td>
-<td><input name='sl_load_locations_default' value='1' type='checkbox' $checked4> (".__("Still a Beta feature, meaning it may not always work properly", $text_domain).")</td></tr>
+<td><input name='sl_load_locations_default' value='1' type='checkbox' $checked4></td></tr>
 <tr><td>".__("Number of Locations Shown By Default", $text_domain).":</td>
-<td><input name='sl_num_initial_displayed' value='$sl_num_initial_displayed'> (".__("Recommended Max: 50", $text_domain).")</td></tr>
+<td><input name='sl_num_initial_displayed' value='$sl_num_initial_displayed'><br><span style='font-size:80%'>(".__("Recommended Max: 50", $text_domain).")</span></td></tr></table>
+
+</td><!--/tr-->
 <!--tr><td>".__("Allow User Search By Name of Location?", $text_domain).":</td>
 <td><input name='sl_use_name_search' value='1' type='checkbox' $checked2></td></tr-->
-<tr><td>".__("Address Input Label", $text_domain).":</td>
+<!--tr--><td colspan='1' width='60%'><h2>".__("Labels", $text_domain)."</h2>
+<table class='map_designer_section right_side'><tr><td>".__("Address Input Label", $text_domain).":</td>
 <td><input name='search_label' value='$search_label'></td></tr>
 <tr><td>".__("Radius Dropdown Label", $text_domain).":</td>
 <td><input name='sl_radius_label' value='$sl_radius_label'></td></tr>
 <tr><td>".__("Website URL Label", $text_domain).":</td>
-<td><input name='sl_website_label' value='$sl_website_label'></td></tr>
-<tr><td>".__("Default Map Zoom Level", $text_domain).":</td>
+<td><input name='sl_website_label' value='$sl_website_label'></td>
+</tr></table>
+
+</td></tr>
+<tr><td colspan='1' class='left_side'><h2>".__("Dimensions", $text_domain)."</h2>
+<table class='map_designer_section'><tr><td><nobr>".__("Zoom Level", $text_domain).":</nobr></td>
 <td>$zoom</td></tr>
-<tr><td>".__("Map Height", $text_domain).":</td>
+<tr><td><nobr>".__("Map Height", $text_domain).":</nobr></td>
 <td><input name='height' value='$height'>&nbsp;".choose_units($height_units, "height_units")."</td></tr>
-<tr><td>".__("Map Width", $text_domain).": </td>
+<tr><td><nobr>".__("Map Width", $text_domain).":</nobr></td>
 <td><input name='width' value='$width'>&nbsp;".choose_units($width_units, "width_units")."</td></tr>
-<tr><td>".__("Map Radii Options (in ".get_option('sl_distance_unit').")", $text_domain).":</td>
-<td><input  name='radii' value='$radii' size='70'><br><br>".__("Note: Seperate each number with a comma ',' , and put paratheseses '( )' around the default radius you would like to show", $text_domain)."</td></tr>
-<tr><td valign='top'>".__("Choose Theme", $text_domain)."</td><td valign='top'> <select name='theme' onchange=\"\"><option value=''>".__("No Theme Selected", $text_domain)."</option>$theme_str</select>&nbsp;&nbsp;&nbsp;<a href='http://www.viadat.com/products-page/store-locator-themes/' target='_blank'>get&nbsp;themes &raquo;</a> <br><br></td></tr>
-<tr><td>".__("Remove Credits?", $text_domain).":</td>
+<tr><td><nobr>".__("Radii Options<br>(in ".get_option('sl_distance_unit').")", $text_domain).":</nobr></td>
+<td><input  name='radii' value='$radii' size='30'><br><span style='font-size:80%'>".__("Note: Seperate each number with a comma ',' , and put paratheseses '( )' around the default radius you would like to show</span>", $text_domain)."</td></tr>
+<tr><td><nobr>".__("Distance Unit", $text_domain).":</td><td><select name='sl_distance_unit'>";
+$the_distance_unit["".__("Kilometers", $text_domain).""]="km";
+$the_distance_unit["".__("Miles", $text_domain).""]="miles";
+foreach ($the_distance_unit as $key=>$value) {
+	$selected=(get_option('sl_distance_unit')==$value)?" selected " : "";
+	print "<option value='$value' $selected>$key</option>\n";
+}
+print "</select></td></tr>
+</table>
+
+</td><!--/tr>
+<tr--><td colspan='1'><h2>".__("Design", $text_domain)."</h2>
+<table class='map_designer_section right_side'><tr>
+<tr><td valign='top'>".__("Choose Theme", $text_domain)."</td><td valign='top'> <select name='theme' onchange=\"\"><option value=''>".__("No Theme Selected", $text_domain)."</option>$theme_str</select>&nbsp;&nbsp;&nbsp;<a href='http://www.viadat.com/products-page/store-locator-themes/' target='_blank'>Get&nbsp;Themes &raquo;</a></td></tr>
+<tr><td>".__("Remove Credits", $text_domain).":</td>
 <td><input name='sl_remove_credits' value='1' type='checkbox' $checked3></td></tr>
 <tr><td valign='top'>".__("Home Icon", $text_domain).":</td>
-<td valign='top'> <input name='icon' size='70' value='$icon' onchange=\"document.getElementById('prev').src=this.value\">&nbsp;&nbsp;<img id='prev' src='$icon'> <br><div style=''>$icon_str</div><br></td></tr>
+<td valign='top'> <input name='icon' size='70' value='$icon' onchange=\"document.getElementById('prev').src=this.value\">&nbsp;&nbsp;<img id='prev' src='$icon' align='top'> <br><div style=''>$icon_str</div></td></tr>
 <tr><td valign='top'>".__("Destination Icon", $text_domain).":</td>
-<td valign='top'> <input name='icon2' size='70' value='$icon2' onchange=\"document.getElementById('prev2').src=this.value\">&nbsp;&nbsp;<img id='prev2' src='$icon2'> <br><div style=''>$icon2_str</div><br></td></tr>
-<tr><td colspan='2'><div class=''><b>".__("Looking to create or find a unique icon? For ideas, visit", $text_domain)." <a href='http://mapki.com/index.php?title=Icon_Image_Sets' target='_blank'>http://mapki.com/index.php?title=Icon_Image_Sets</a></b></div></td></tr>
+<td valign='top'> <input name='icon2' size='70' value='$icon2' onchange=\"document.getElementById('prev2').src=this.value\">&nbsp;&nbsp;<img id='prev2' src='$icon2'align='top'> <br><div style=''>$icon2_str</div>
+</td></tr>
+<tr><td colspan='2'><div class=''><b>".__("Looking to create or find a unique icon? For ideas, visit", $text_domain)."<br> <a href='http://mapki.com/index.php?title=Icon_Image_Sets' target='_blank'>http://mapki.com/index.php?title=Icon_Image_Sets</a></b></div></td></tr></table>
+</td></tr>
 <tr><td colspan='2'><input type='submit' value='".__("Update", $text_domain)."' class='button'></td></tr></table></form>";
 
 ?>

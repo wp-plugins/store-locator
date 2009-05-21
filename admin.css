@@ -55,3 +55,9 @@ padding:12px;
 div.feedburnerFeedBlock ul li span.headline {
 	font-weight: bold;
 }
+.map_designer_section td {
+	border-bottom:none;
+}
+.left_side {
+	border-right:solid #ddd 1px;
+}
