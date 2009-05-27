@@ -439,7 +439,7 @@ function set_query_defaults() {
 	
 	$where=($_GET[q]!="")? " WHERE sl_store LIKE '%$_GET[q]%' OR sl_address LIKE '%$_GET[q]%' OR sl_city LIKE '%$_GET[q]%' OR sl_state LIKE '%$_GET[q]%' OR sl_zip LIKE '%$_GET[q]%' OR sl_tags LIKE '%$_GET[q]%'" : "" ;
 	$o=($_GET[o])? $_GET[o] : "sl_store";
-	$d=($_GET[d])? $_GET[d] : "ASC";
+	$d=($_GET[d]=="" || $_GET[d]=="DESC")? "ASC" : "DESC";
 }
 /*----------------------------------*/
 function match_imported_data($the_array) {
