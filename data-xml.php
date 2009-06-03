@@ -28,7 +28,7 @@ if (!$db_selected) {
 
 $num_initial_displayed=(trim(get_option('sl_num_initial_displayed'))!="")? get_option('sl_num_initial_displayed') : "25";
 // Select all the rows in the markers table
-$query = "SELECT sl_address, sl_store, sl_city, sl_state, sl_zip, sl_latitude, sl_longitude, sl_description, sl_url, sl_hours, sl_phone, sl_image FROM ".$wpdb->prefix."store_locator LIMIT $num_initial_displayed";
+$query = "SELECT sl_address, sl_store, sl_city, sl_state, sl_zip, sl_latitude, sl_longitude, sl_description, sl_url, sl_hours, sl_phone, sl_image FROM ".$wpdb->prefix."store_locator WHERE sl_store<>'' AND sl_longitude<>'' AND sl_latitude<>'' LIMIT $num_initial_displayed";
 
 $result = mysql_query($query);
 if (!$result) {
