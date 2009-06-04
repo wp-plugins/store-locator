@@ -4,7 +4,7 @@ Donate link: http://www.viadat.com/donate
 Tags: store locator, location finder, google maps, places, stores, maps, mapping, mapper, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.3.3
 Tested up to: 2.8 Beta 2
-Stable tag: 1.2.25.1
+Stable tag: 1.2.26
 
 A store locator plugin for developers who create sites in Wordpress & web site owners who want to quickly show important locations.
 
@@ -20,7 +20,9 @@ location.
 
 1. Upload the `store-locator` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Place the code '[STORE-LOCATOR]' (case-sensitive) in the body of a page or a post to display your store locator
+3. Sign up for a Google Maps API Key for your domain at http://code.google.com/apis/maps/signup.html
+4. Add your locations through the 'Add Locations' page in the Store Locator admin panel
+5. Place the code '[STORE-LOCATOR]' (case-sensitive) in the body of a page or a post to display your store locator
 
 = ADD-ONS =
 
