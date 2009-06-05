@@ -207,7 +207,7 @@ curl_close($cURL);
       // failure to geocode
       $geocode_pending = false;
       echo __("Address " . $address . " failed to geocode. ", $text_domain);
-      echo __("Received status " . $status , $text_domain)."\n";
+      echo __("Received status " . $status , $text_domain)."\n<br>";
     }
     usleep($delay);
 }

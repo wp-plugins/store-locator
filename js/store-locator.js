@@ -9,9 +9,10 @@
 	else if (sl_map_end_icon.indexOf('arrow')!='-1') {theIcon.shadow = add_base + "/icons/arrow_shadow.png";}
 	else if (sl_map_end_icon.indexOf('bubble')!='-1') {theIcon.shadow = add_base + "/icons/bubble_shadow.png";}
 	else if (sl_map_end_icon.indexOf('marker')!='-1') {theIcon.shadow = add_base + "/icons/marker_shadow.png";}
-	else {theIcon.shadow = add_base + "/icons/shadow.png";}
-	//theIcon.iconSize = new GSize(sl_map_end_icon_width, sl_map_end_icon_height);
-	//theIcon.shadowSize = new GSize(30,30);
+	else if (sl_map_end_icon.indexOf('sign')!='-1') {theIcon.shadow = add_base + "/icons/sign_shadow.png";}
+	else {theIcon.shadow = add_base + "/icons/blank.png";}
+	theIcon.iconSize = new GSize(sl_map_end_icon_width, sl_map_end_icon_height);
+	//theIcon.iconSize = new GSize(40, 68);
 
 	// Added by Moyo 5/23/08 11:52 am
 	//var sidebar1 = document.getElementById('sidebar');
@@ -96,8 +97,11 @@
 		theIcon.image = sl_map_home_icon;
 		if (sl_map_home_icon.indexOf('flag')!='-1') {theIcon.shadow = add_base + "/icons/flag_shadow.png";}
 		else if (sl_map_home_icon.indexOf('arrow')!='-1') {theIcon.shadow = add_base + "/icons/arrow_shadow.png";}
-		else {theIcon.shadow = add_base + "/icons/shadow.png";}
-		//theIcon.iconSize = new GSize(sl_map_home_icon_width, sl_map_home_icon_height);
+		else if (sl_map_home_icon.indexOf('bubble')!='-1') {theIcon.shadow = add_base + "/icons/bubble_shadow.png";}
+		else if (sl_map_home_icon.indexOf('marker')!='-1') {theIcon.shadow = add_base + "/icons/marker_shadow.png";}
+		else if (sl_map_home_icon.indexOf('sign')!='-1') {theIcon.shadow = add_base + "/icons/sign_shadow.png";}
+		else {theIcon.shadow = add_base + "/icons/blank.png";}
+		theIcon.iconSize = new GSize(sl_map_home_icon_width, sl_map_home_icon_height);
 		//theIcon.shadowSize = new GSize(30,30);
 		
 		var bounds = new GLatLngBounds(); //added here 1/25/09 by Moyo to handle extending bounds to show searched location
@@ -105,7 +109,7 @@
 		point = new GLatLng (center.lat(), center.lng());
 		bounds.extend(point); //added 1/25/09 to handle showing searched location within bounds everytime
 		var homeMarker = new GMarker(point, markerOpts);
-      var html = '<b>Your Location:</b> <br/>' + homeAddress;
+      var html = '<div id="sl_info_bubble"><b>Your Location:</b> <br/>' + homeAddress + "</div>";
       GEvent.addListener(homeMarker, 'click', function() {
         homeMarker.openInfoWindowHtml(html);
       });

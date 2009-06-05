@@ -3,12 +3,12 @@
 Plugin Name: Store Locator
 Plugin URI: http://www.viadat.com/store-locator
 Description: A store locator / location finder plugin focused on providing mapping tools for web designers & developers who create sites in Wordpress & web site owners needing to show important stores or any other type of location.
-Version: 1.2.26
+Version: 1.2.27
 Author: Viadat Creations
 Author URI: http://www.viadat.com
 */
 
-$sl_version="1.2.26";
+$sl_version="1.2.27";
 $sl_db_version=1.2;
 include_once("variables.sl.php");
 include_once("functions.sl.php");
@@ -28,6 +28,7 @@ add_action('admin_head', 'sl_add_options_page');
 load_plugin_textdomain($text_domain, "/wp-content/plugins/$sl_dir/languages/");
 
 add_filter('option_update_plugins', 'plugin_prevent_upgrade');
+add_filter('transient_update_plugins', 'plugin_prevent_upgrade');
 function plugin_prevent_upgrade($opt) {
 $plugin = plugin_basename(__FILE__);
 if ( $opt && isset($opt->response[$plugin]) ) {
@@ -40,6 +41,6 @@ return $opt;
 }
 function plugin_update_disabled_notice() {
 global $sl_dir;
-echo '<tr><td class="plugin-update" colspan="5">Use the <a href="./admin.php?page='.$sl_dir.'/news-upgrades.php"><b>Quick Updater</b></a> or <a href="http://www.viadat.com/vdl/store-locator.zip">Download the latest version</a></td></tr>';
+echo '<tr><td class="plugin-update" colspan="5" style="text-align:center">Use the <a href="./admin.php?page='.$sl_dir.'/news-upgrades.php"><b>Quick Updater</b></a> or <a href="http://www.viadat.com/vdl/store-locator.zip">Download the latest version</a></td></tr>';
 }
 ?>

@@ -18,8 +18,20 @@
 	/*padding:0px;*/
 }
 #sl_div #map { color:black; font-weight:normal;}
-#sl_info_bubble { padding:10px; max-width:300px; /*max-height:400px; */ font-size:11px; font-family:Arial;}
-#map_sidebar { background-color:white; font-weight:normal;}
+#sl_info_bubble { 
+	padding:10px; 
+	max-width:300px; 
+	/*max-height:400px; */ 
+	font-size:11px; 
+	font-family:Arial;
+	text-align:justify;
+	line-height:normal;
+	}
+#map_sidebar { 
+	/*background-color:transparent; */
+	font-weight:normal;
+	text-align:justify;
+	}
 #addressInput {
 	border:solid 1px silver;
 	padding-left:3px; padding-top:3px;

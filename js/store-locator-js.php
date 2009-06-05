@@ -26,11 +26,11 @@ var sl_website_label='$wl';
 var sl_load_locations_default='".get_option('sl_load_locations_default')."';
 var sl_distance_unit='$du';
 var sl_map_overview_control=$oc;";
-/*$home_size=getimagesize(get_option('sl_map_home_icon'));
+$home_size=getimagesize(ereg_replace($sl_base, $sl_path, get_option('sl_map_home_icon')));
 print "var sl_map_home_icon_width=$home_size[0];";
 print "var sl_map_home_icon_height=$home_size[1];";
 
-$end_size=getimagesize(get_option('sl_map_end_icon'));
+$end_size=getimagesize(ereg_replace($sl_base, $sl_path, get_option('sl_map_end_icon')));
 print "var sl_map_end_icon_width=$end_size[0];";
-print "var sl_map_end_icon_height=$end_size[1];";*/
+print "var sl_map_end_icon_height=$end_size[1];";
 ?>
