@@ -109,7 +109,7 @@
 		point = new GLatLng (center.lat(), center.lng());
 		bounds.extend(point); //added 1/25/09 to handle showing searched location within bounds everytime
 		var homeMarker = new GMarker(point, markerOpts);
-      var html = '<div id="sl_info_bubble"><b>Your Location:</b> <br/>' + homeAddress + "</div>";
+      var html = '<div id="sl_info_bubble"><b>Your Location:</b> <br/>' + homeAddress + '</div>';
       GEvent.addListener(homeMarker, 'click', function() {
         homeMarker.openInfoWindowHtml(html);
       });
