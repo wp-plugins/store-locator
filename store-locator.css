@@ -27,11 +27,6 @@
 	text-align:justify;
 	line-height:normal;
 	}
-#map_sidebar { 
-	/*background-color:transparent; */
-	font-weight:normal;
-	text-align:justify;
-	}
 #addressInput {
 	border:solid 1px silver;
 	padding-left:3px; padding-top:3px;
@@ -42,3 +37,20 @@
 #addressSubmit {	/*width:184px; height:31px;*/}
 #radiusSelect { /*height:27px; width:100px;*/}
 #addressInput, #addressSubmit, #radiusSelect { font-size:14px;}
+
+/*Map Store Results Area Styling*/
+.text_below_map {
+	font-family:Arial;
+	padding:20px;
+	font-size:18px;
+	text-align:justified;
+}
+#map_sidebar { 
+	background-color:transparent;
+	font-weight:normal;
+	text-align:justify;
+	overflow: auto;
+	height:250px;
+	font-size: 11px;
+	/*color: #000;*/
+}

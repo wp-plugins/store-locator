@@ -12,6 +12,8 @@ foreach($_GET as $key=>$val) {
 print "<form><table cellpadding='0px' cellspacing='0px' width='100%'><tr><td>
 <h2>".__("Manage Locations", $text_domain)."</h2></td><td align='right'><h2 style='float:right; padding-right:0px; width:100%'><input value='$_GET[q]' name='q'><input type='submit' value='Search Locations' class='button'></h2>$hidden</td></tr></table></form><br>";
 
+initialize_variables();
+
 $slak=get_option('store_locator_api_key');
 if (!$slak) {
 	include("api-key.php");
@@ -59,6 +61,11 @@ else {
 		//if bulk updating is used
 		include("$sl_path/addons/multiple-field-updater/multiLocationUpdate.php");
 	}
+	if ($_POST[act]=="locationsPerPage") {
+		//If bulk delete is used
+		update_option('sl_admin_locations_per_page', $_POST[sl_admin_locations_per_page]);
+		extract($_POST);
+	}
 	if ($_GET[changeView]==1) {
 		if (get_option('sl_location_table_view')=="Normal") {
 			update_option('sl_location_table_view', 'Expanded');
@@ -92,7 +99,20 @@ else {
 
 
 print "<form name='locationForm' method='post'>";
-print "<table width=100%><tr><td><b>".__("Current View", $text_domain).":</b>&nbsp;".get_option('sl_location_table_view')."&nbsp;(<a href='".ereg_replace("&changeView=1", "", $_SERVER[REQUEST_URI])."&changeView=1'>".__("Change View", $text_domain)."</a>)</td><td align=right>";
+print "<table width=100%><tr><td width='33%'><b>".__("Current View", $text_domain).":</b>&nbsp;".get_option('sl_location_table_view')."&nbsp;(<a href='".ereg_replace("&changeView=1", "", $_SERVER[REQUEST_URI])."&changeView=1'>".__("Change View", $text_domain)."</a>)</td>
+<td width='33%' align='center'>
+<nobr><b>Locations Per Page:</b> <select name='sl_admin_locations_per_page'>
+<option value=''>Choose</option>";
+
+$opt_arr=array(10,25,50,100,200,300,400,500,1000,2000);
+foreach ($opt_arr as $value) {
+	$selected=($sl_admin_locations_per_page==$value)? " selected " : "";
+	print "<option value='$value' $selected>$value</option>";
+}
+print "</select><input type='button' value='".__("Change", $text_domain)."' class='button' onclick=\"LF=document.forms['locationForm'];LF.act.value='locationsPerPage';LF.submit();\">
+</nobr>
+</td>
+<td align=right width='33%'>";
 
 if (file_exists("$sl_path/addons/multiple-field-updater/multiLocationUpdate.php")) {
 print "<b>".__("Updater", $text_domain).":</b>&nbsp;".get_option('sl_location_updater_type')."&nbsp;(<a href='".ereg_replace("&changeUpdater=1", "", $_SERVER[REQUEST_URI])."&changeUpdater=1'>".__("Change Updater", $text_domain)."</a>)";
@@ -108,7 +128,7 @@ set_query_defaults();
 		$numMembers=$wpdb->get_results("SELECT sl_id FROM " . $wpdb->prefix . "store_locator  $where");
 		$numMembers2=count($numMembers); 
 		$start=($_GET[start]=="")? 0 : $_GET[start];
-		$num_per_page=100; //edit this to determine how many locations to view per page of 'Manage Locations' page
+		$num_per_page=$sl_admin_locations_per_page; //edit this to determine how many locations to view per page of 'Manage Locations' page
 		if ($numMembers2!=0) {include("$sl_path/search-links.php");}
 		//include("$sl_path/qstring.php");
 //end of for search links

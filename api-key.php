@@ -39,29 +39,39 @@ print "</td></tr>";*/
 
 print "<tr><td>".__("Select Your Location", $text_domain).":</td><td><select name='google_map_domain'>";
 $the_domain["United States"]="maps.google.com";
-$the_domain["Austria"]="maps.google.com.at";
 $the_domain["Australia"]="maps.google.com.au";
-$the_domain["Bosnia and Herzegovina"]="maps.google.com.ba";
+$the_domain["Austria"]="maps.google.at"; //updated 6/13/09
 $the_domain["Belgium"]="maps.google.be";
+//$the_domain["Bosnia and Herzegovina"]="maps.google.com.ba"; //removed 6/13/09
 $the_domain["Brazil"]="maps.google.com.br";
 $the_domain["Canada"]="maps.google.ca";
-$the_domain["Switzerland"]="maps.google.ch";
+$the_domain["China"]="ditu.google.com"; //added 6/13/09
 $the_domain["Czech Republic"]="maps.google.cz";
-$the_domain["Germany"]="maps.google.de";
 $the_domain["Denmark"]="maps.google.dk";
-$the_domain["Spain"]="maps.google.es";
 $the_domain["Finland"]="maps.google.fi";
 $the_domain["France"]="maps.google.fr";
+$the_domain["Germany"]="maps.google.de";
+$the_domain["Hong Kong"]="maps.google.com.hk"; //added 6/13/09
+$the_domain["India"]="maps.google.co.in"; //added 6/13/09
 $the_domain["Italy"]="maps.google.it";
-$the_domain["Japan"]="maps.google.jp";
+$the_domain["Japan"]="maps.google.co.jp"; //updated 6/13/09
+$the_domain["Kenya"]="maps.google.co.ke"; //added 6/13/09
+$the_domain["Liechtenstein"]="maps.google.li"; //added 6/13/09
+$the_domain["Malaysia"]="maps.google.com.my"; //added 6/13/09
 $the_domain["Netherlands"]="maps.google.nl";
-$the_domain["Norway"]="maps.google.no";
 $the_domain["New Zealand"]="maps.google.co.nz";
+$the_domain["Norway"]="maps.google.no";
 $the_domain["Poland"]="maps.google.pl";
 $the_domain["Russia"]="maps.google.ru";
+$the_domain["Spain"]="maps.google.es";
+$the_domain["South Korea"]="maps.google.co.kr"; //added 6/13/09
 $the_domain["Sweden"]="maps.google.se";
-$the_domain["Taiwan"]="maps.google.tw";
+$the_domain["Switzerland"]="maps.google.ch";
+$the_domain["Taiwan"]="maps.google.com.tw"; //updated 6/13/09
+$the_domain["Thailand"]="maps.google.co.th"; //added 6/13/09
 $the_domain["United Kingdom"]="maps.google.co.uk";
+
+
 
 foreach ($the_domain as $key=>$value) {
 	$selected=(get_option('sl_google_map_domain')==$value)?" selected " : "";

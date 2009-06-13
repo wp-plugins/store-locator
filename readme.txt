@@ -4,7 +4,7 @@ Donate link: http://www.viadat.com/donate
 Tags: store locator, location finder, google maps, places, stores, maps, mapping, mapper, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.3.3
 Tested up to: 2.8
-Stable tag: 1.2.27.2
+Stable tag: 1.2.28
 
 A store locator plugin for developers who create sites in Wordpress & web site owners who want to quickly show important locations.
 
@@ -38,6 +38,8 @@ location.
 
 == Frequently Asked Questions ==
 
+Make sure to check http://docs.viadat.com for the most updated information
+
 = Do I need a Google Account to use this store locator? =
 
 Yes, you will need a Google account in order to retrieve an API for your maps to work properly
@@ -54,9 +56,8 @@ Yes, you will need a Google account in order to retrieve an API for your maps to
 
 This plugin is compatible with all countries that have Google Map domains. This includes:
 
-* Austria
+* Austria (updated as of v1.2.28)
 * Australia
-* Bosnia and Herzegovina
 * Belgium
 * Brazil
 * Canada
@@ -68,13 +69,28 @@ This plugin is compatible with all countries that have Google Map domains. This 
 * Finland
 * France
 * Italy
-* Japan
+* Japan (updated as of v1.2.28)
 * Netherlands
 * Norway
 * New Zealand
 * Poland
 * Russia
 * Sweden
-* Taiwan
+* Taiwan (updated as of v1.2.28)
 * United Kingdom
 * United States
+
+Added (as of v1.2.28):
+
+* China
+* India
+* Hong Kong
+* Kenya
+* Liechtenstein
+* Malaysia
+* South Korea
+* Thailand
+
+Removed (as of v.1.2.28):
+
+* Bosnia and Herzegovina (doesn't appear to be working anymore)

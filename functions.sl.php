@@ -19,18 +19,27 @@ global $height, $width, $width_units, $height_units, $radii;
 global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base, $location_table_view;
 global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search, $sl_default_map;
 global $sl_radius_label, $sl_website_label, $sl_num_initial_displayed, $sl_load_locations_default;
-global $sl_distance_unit, $sl_map_overview_control;
+global $sl_distance_unit, $sl_map_overview_control, $sl_admin_locations_per_page;
 
-
+$sl_admin_locations_per_page=get_option('sl_admin_locations_per_page');
+if (empty($sl_admin_locations_per_page)) {
+	$sl_admin_locations_per_page="100";
+	add_option('sl_admin_locations_per_page', $sl_admin_locations_per_page);
+	}
 $sl_map_overview_control=get_option('sl_map_overview_control');
 if (empty($sl_map_overview_control)) {
 	$sl_map_overview_control="0";
-	add_option('sl_map_overview_control', $sl_distance_unit);
+	add_option('sl_map_overview_control', $sl_map_overview_control);
 	}
 $sl_distance_unit=get_option('sl_distance_unit');
 if (empty($sl_distance_unit)) {
 	$sl_distance_unit="miles";
 	add_option('sl_distance_unit', $sl_distance_unit);
+	}
+$sl_load_locations_default=get_option('sl_load_locations_default');
+if (empty($sl_load_locations_default)) {
+	$sl_load_locations_default="1";
+	add_option('sl_load_locations_default', $sl_load_locations_default);
 	}
 $sl_num_initial_displayed=get_option('sl_num_initial_displayed');
 if (empty($sl_num_initial_displayed)) {
@@ -197,7 +206,7 @@ curl_close($cURL);
 		$query = sprintf("UPDATE " . $wpdb->prefix ."store_locator SET sl_latitude = '%s', sl_longitude = '%s' WHERE sl_id = $sl_id LIMIT 1;", mysql_real_escape_string($lat), mysql_real_escape_string($lng));
 	}
       $update_result = mysql_query($query);
-      if (!$update_result) {
+	if (!$update_result) {
         die("Invalid query: " . mysql_error());
       }
     } else if (strcmp($status, "620") == 0) {
@@ -206,7 +215,7 @@ curl_close($cURL);
     } else {
       // failure to geocode
       $geocode_pending = false;
-      echo __("Address " . $address . " failed to geocode. ", $text_domain);
+      echo __("Address " . $address . " <font color=red>failed to geocode</font>. ", $text_domain);
       echo __("Received status " . $status , $text_domain)."\n<br>";
     }
     usleep($delay);
@@ -332,7 +341,7 @@ $form="
 	
 	if (get_option('sl_use_city_search')!=1) {$form.=" colspan='2' ";}
 	
-	$form.=" valign='top'><input type='text' id='addressInput' size=25/></td>
+	$form.=" valign='top'><input type='text' id='addressInput' size=50/></td>
 	";
 	
 	if ($cs_array && get_option('sl_use_city_search')==1) {
@@ -387,7 +396,7 @@ $form="
 		</td>
       </tr>
 	  <tr id='cm_mapTR'>
-        <td width='' valign='top' style='/*display:hidden; border-right:solid silver*/ 1px' id='map_sidebar_td'> <div id='map_sidebar' style='overflow: auto;width:$width$width_units; height:250px;/* $height$height_units; */font-size: 11px; color: #000;'> <div style='font-family:Arial; padding:20px; font-size:18px; text-align:justified'>".__("Enter Your Address or Zip Code Above", $text_domain).".</div></div>
+        <td width='' valign='top' style='/*display:hidden; border-right:solid silver*/ 1px' id='map_sidebar_td'> <div id='map_sidebar' style='width:$width$width_units;/* $height$height_units; */'> <div class='text_below_map'>".__("Enter Your Address or Zip Code Above", $text_domain).".</div></div>
         </td></tr>
     </tbody>
   </table>
