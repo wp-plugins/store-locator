@@ -412,7 +412,6 @@ $form="
 }
 /*-----------------------------------*/
 function sl_add_options_page() {
-	
 	global $sl_dir, $sl_base, $text_domain;
 	$api=get_option('store_locator_api_key');
 	//add_menu_page('Edit Locations', 'View Locations', 9, '$sl_dir/options-store-locator.php');
@@ -430,17 +429,25 @@ function sl_add_options_page() {
 		//add_submenu_page($sl_dir.'/news-upgrades.php', 'Export Locations', 'Generate CSV Import File [+]', 9, $sl_dir.'/export-locations.php');
 		//add_submenu_page($sl_dir.'/news-upgrades.php', 'Statistics', 'Statistics [+]', 9, $sl_dir.'/statistics.php');
 	}
-	print "<script src='".$sl_base."/js/functions.js'></script>\n
-	<script type='text/javascript'>
-	var sl_dir='".$sl_dir."';
-	var sl_google_map_country='".get_option('sl_google_map_country')."';
-	</script>\n";
-	print "<link rel='stylesheet' type='text/css' href='".$sl_base."/admin.css'>\n";
-	if (ereg("add-locations", $_GET[page])) {
-		$google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
-		print "<script src='http://$google_map_domain/maps?file=api&v=2&key=$api' type='text/javascript'></script>\n";
-		print "<script src='".$sl_base."/js/point-click-add.js'></script>\n";
-	}
+}
+
+function add_admin_javascript() {
+        global $sl_base, $sl_dir, $google_map_domain;
+        print "<script src='".$sl_base."/js/functions.js'></script>\n
+        <script type='text/javascript'>
+        var sl_dir='".$sl_dir."';
+        var sl_google_map_country='".get_option('sl_google_map_country')."';
+        </script>\n";
+        if (ereg("add-locations", $_GET[page])) {
+                $google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
+                print "<script src='http://$google_map_domain/maps?file=api&v=2&key=$api' type='text/javascript'></script>\n";
+                print "<script src='".$sl_base."/js/point-click-add.js'></script>\n";
+        }
+}
+
+function add_admin_stylesheet() {
+  global $sl_base;
+  print "<link rel='stylesheet' type='text/css' href='".$sl_base."/admin.css'>\n";
 }
 /*---------------------------------*/
 function set_query_defaults() {
