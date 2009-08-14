@@ -433,6 +433,7 @@ function sl_add_options_page() {
 
 function add_admin_javascript() {
         global $sl_base, $sl_dir, $google_map_domain;
+		$api=get_option('store_locator_api_key');
         print "<script src='".$sl_base."/js/functions.js'></script>\n
         <script type='text/javascript'>
         var sl_dir='".$sl_dir."';

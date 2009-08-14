@@ -3,8 +3,8 @@ Contributors: moaluko
 Donate link: http://www.viadat.com/donate
 Tags: store locator, location finder, google maps, places, stores, maps, mapping, mapper, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.3.3
-Tested up to: 2.8.1
-Stable tag: 1.2.28.2
+Tested up to: 2.8.4
+Stable tag: 1.2.28.3
 
 A store locator plugin for developers who create sites in Wordpress & web site owners who want to quickly show important locations.
 
@@ -37,8 +37,13 @@ location.
 1. There are some default icons in the `/wp-content/plugins/store-locator/icons` directory. Add your own custom icons in this directory to display them on the map.
 
 == Changelog ==
+
+= 1.2.28.3 =
+* Fixes the "The Google Maps API rejected your request ..." error on the "Add Locations" page.  Good catch by forum user 'Israel' of http://earthsoutlet.com .
+
 = 1.2.28.2 =
 * Incorporated fix for "Warning: Cannot modify header information – headers already sent ..." error occuring for those that have updated to WordPress Version 2.8.1.  Fix provided by forum user 'mikeycnp' here: http://rosile.com/2009/07/wp-store-locator-fix/ --- thank you mikeyncp.  Users, please make sure to leave thank you comment on http://rosile.com .
+
 = 1.2.28.1 =
 * Fixed "You do not have sufficient permissions to access this page." issue occuring for those that have updated to WordPress Version 2.8.1
 * Added this Changelog
