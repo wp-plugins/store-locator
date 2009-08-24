@@ -302,7 +302,7 @@ function ajax_map($content) {
 		}
 		
 		if (get_option('sl_use_city_search')==1) {
-			$cs_array=$wpdb->get_results("SELECT CONCAT(sl_city, ', ', sl_state) as city_state FROM ".$wpdb->prefix."store_locator WHERE sl_city<>'' AND sl_state<>'' AND sl_latitude<>'' AND sl_longitude<>'' GROUP BY city_state ORDER BY city_state ASC", ARRAY_A);
+			$cs_array=$wpdb->get_results("SELECT CONCAT(TRIM(sl_city), ', ', TRIM(sl_state)) as city_state FROM ".$wpdb->prefix."store_locator WHERE sl_city<>'' AND sl_state<>'' AND sl_latitude<>'' AND sl_longitude<>'' GROUP BY city_state ORDER BY city_state ASC", ARRAY_A);
 			//var_dump($cs_array); die();
 			if ($cs_array) {
 				foreach($cs_array as $value) {
