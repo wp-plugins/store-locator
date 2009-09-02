@@ -159,6 +159,10 @@ if ($_POST['sl_update']) {
 				install_table();
 				//Call initialize_variables() in order to set the default value of any newly introduced variables 
 				initialize_variables();
+				//set permissions to 755 for store-locator-js.php
+				/*if (file_exists($sl_path."/js/store-locator-js.php")){
+					chmod($sl_path."/js/store-locator-js.php", 0755);
+				}*/
 			}
 		}
 	
