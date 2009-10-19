@@ -573,4 +573,12 @@ function addon_activation_message($url_of_upgrade="") {
 	global $sl_dir, $text_domain;
 	print "<div style='background-color:#eee; border:solid silver 1px; padding:7px; color:black'>".__("You haven't activated this upgrade yet", $text_domain).". <a href='".get_option('siteurl')."/wp-admin/admin.php?page=$sl_dir/news-upgrades.php'>".__("Activate", $text_domain)."</a></div><br>";
 }
+/*-----------------------------------------------------------*/
+function url_test($url)
+{
+	if(strtolower(substr($url,0,7))=="http://")	{
+		return TRUE; }
+	else{
+		return FALSE; }
+}
 ?>

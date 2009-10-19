@@ -195,6 +195,7 @@ print "<td>($value[sl_latitude],&nbsp;$value[sl_longitude])</td>
 </tr>";
 			}
 			else {
+			$value[sl_url]=(!url_test($value[sl_url]))? "http://".$value[sl_url] : $value[sl_url] ;
 			$value[sl_url]=($value[sl_url]!="")? "<a href='$value[sl_url]' target='blank'>".__("View", $text_domain)."</a>" : "" ;
 			$value[sl_image]=($value[sl_image]!="")? "<a href='$value[sl_image]' target='blank'>".__("View", $text_domain)."</a>" : "" ;
 			$value[sl_description]=($value[sl_description]!="")? "<a onclick='alert(\"".comma($value[sl_description])."\")' href='#'>".__("View", $text_domain)."</a>" : "" ;

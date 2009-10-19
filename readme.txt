@@ -4,7 +4,7 @@ Donate link: http://www.viadat.com/donate
 Tags: store locator, store locater, google maps, dealer locator, dealer locater, zip code search, shop locator, shop finder, zipcode, location finder, places, stores, maps, mapping, mapper, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.3.3
 Tested up to: 2.8.4
-Stable tag: 1.2.29
+Stable tag: 1.2.30
 
 A store locator plugin for developers who create sites in Wordpress & web site owners who want to quickly show important locations.
 
@@ -37,6 +37,10 @@ location.
 1. There are some default icons in the `/wp-content/plugins/store-locator/icons` directory. Add your own custom icons in this directory to display them on the map.
 
 == Changelog ==
+
+= 1.2.30 =
+* Improved handling of URLs for each location. Now, URL will still show up even if you omit the "http://" at the beginning
+* Beautified the default input form on the "Add Locations" page
 
 = 1.2.29 =
 * Fix for some maps having issues showing results in certain browsers

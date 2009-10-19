@@ -157,6 +157,7 @@
       var marker = new GMarker(point, markerOpts);
 	  
 	  var more_html="";
+	  if(url.indexOf("http://")==-1) {url="http://"+url;} //added by Moyo 10/19/2009 so that www.someurl.com will show up as http://www.someurl.com
 	  if (url.indexOf("http://")!=-1 && url.indexOf(".")!=-1) {more_html+="| <a href='"+url+"' target='_blank' class='storelocatorlink'><nobr>" + sl_website_label +"</nobr></a>"} else {url=""}
 	  if (image.indexOf(".")!=-1) {more_html+="<br/><img src='"+image+"' style='width:250px; max-height:200px border:none'>"} else {image=""}
 	  if (description!="") {more_html+="<br/>"+description+"";} else {description=""}
@@ -192,6 +193,7 @@
 	  var city = address.split(',')[1]; if (city.split(' ').join('')!=""){city+=', ';}else{city="";}
 	  var state_zip = address.split(',')[2]; 
 	  //var more = address.split(',')[3];
+	  if(url.indexOf("http://")==-1) {url="http://"+url;} //added by Moyo 10/19/2009 so that www.someurl.com will show up as http://www.someurl.com
 	  if (url.indexOf("http://")!=-1 && url.indexOf(".")!=-1) {link="<a href='"+url+"' target='_blank' class='storelocatorlink'><nobr>" + sl_website_label +"</nobr></a>&nbsp;|&nbsp;"} else {url=""; link="";}
 	  
       var html = '<center><table width="96%" cellpadding="4px" cellspacing="0" class="searchResultsTable"><tr><td width="30%" style="padding-right:4px" valign="top"><b>' + name + '</b><br>' + distance.toFixed(1) + ' ' + sl_distance_unit + '</td><td width="40%" valign="top">' + street + '<br/>' + city + state_zip +' </td><td width="30%" valign="top" style="text-align:right">' + link + '<a href="http://' + sl_google_map_domain + '/maps?saddr=' + homeAddress + '&daddr=' + address + '" target="_blank" class="storelocatorlink">Directions</a></td></tr></table></center>'; // Get Directions link added by Moyo 5/23/08
