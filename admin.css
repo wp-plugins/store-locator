@@ -58,10 +58,10 @@ div.feedburnerFeedBlock ul li span.headline {
 .map_designer_section td {
 	border-bottom:none;
 }
-.manual_add_table td, .manual_add_table td td {
+.manual_add_table td, .manual_add_table td td, .manual_update_table td, .manual_update_table td td, .manual_update_table{
 	border-bottom:none;
 }
-.manual_add_table td td td {
+.manual_add_table td td td, .manual_update_table td td{
 	padding-left:0px; padding-right:0px;
 }
 .left_side {
