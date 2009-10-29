@@ -170,10 +170,10 @@
 		//address=street + city + state_zip;
 	  
 	  if (homeAddress.split(" ").join("")!="") {
-		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + street + city + state_zip + '<br/> <a href="http://' + sl_google_map_domain + '/maps?saddr=' + homeAddress + '&daddr=' + address + '" target="_blank" class="storelocatorlink">Directions</a> ' + more_html + '<br/><!--/td></tr--></div>'; // Get Directions link added by Moyo 5/23/08
+		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + street + city + state_zip + '<br/> <a href="http://' + sl_google_map_domain + '/maps?saddr=' + escape(homeAddress) + '&daddr=' + escape(address) + '" target="_blank" class="storelocatorlink">Directions</a> ' + more_html + '<br/><!--/td></tr--></div>'; // Get Directions link added by Moyo 5/23/08
 	  }
 	  else {
-		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + street + city + state_zip + '<br/> <a href="http://' + sl_google_map_domain + '/maps?q=' + address + '" target="_blank" class="storelocatorlink">Map</a> ' + more_html + '<!--/td></tr--></div>';
+		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + street + city + state_zip + '<br/> <a href="http://' + sl_google_map_domain + '/maps?q=' + escape(address) + '" target="_blank" class="storelocatorlink">Map</a> ' + more_html + '<!--/td></tr--></div>';
 	  }
       GEvent.addListener(marker, 'click', function() {
         marker.openInfoWindowHtml(html);
@@ -196,7 +196,7 @@
 	  if(url.indexOf("http://")==-1) {url="http://"+url;} //added by Moyo 10/19/2009 so that www.someurl.com will show up as http://www.someurl.com
 	  if (url.indexOf("http://")!=-1 && url.indexOf(".")!=-1) {link="<a href='"+url+"' target='_blank' class='storelocatorlink'><nobr>" + sl_website_label +"</nobr></a>&nbsp;|&nbsp;"} else {url=""; link="";}
 	  
-      var html = '<center><table width="96%" cellpadding="4px" cellspacing="0" class="searchResultsTable"><tr><td width="30%" style="padding-right:4px" valign="top"><b>' + name + '</b><br>' + distance.toFixed(1) + ' ' + sl_distance_unit + '</td><td width="40%" valign="top">' + street + '<br/>' + city + state_zip +' </td><td width="30%" valign="top" style="text-align:right">' + link + '<a href="http://' + sl_google_map_domain + '/maps?saddr=' + homeAddress + '&daddr=' + address + '" target="_blank" class="storelocatorlink">Directions</a></td></tr></table></center>'; // Get Directions link added by Moyo 5/23/08
+      var html = '<center><table width="96%" cellpadding="4px" cellspacing="0" class="searchResultsTable"><tr><td width="30%" style="padding-right:4px" valign="top"><b>' + name + '</b><br>' + distance.toFixed(1) + ' ' + sl_distance_unit + '</td><td width="40%" valign="top">' + street + '<br/>' + city + state_zip +' </td><td width="30%" valign="top" style="text-align:right">' + link + '<a href="http://' + sl_google_map_domain + '/maps?saddr=' + escape(homeAddress) + '&daddr=' + escape(address) + '" target="_blank" class="storelocatorlink">Directions</a></td></tr></table></center>'; // Get Directions link added by Moyo 5/23/08
       /*if (resultsDisplayed==0) {
 		div.innerHTML = "<table><tr><td>";
 	  }*/
