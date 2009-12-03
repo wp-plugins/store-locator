@@ -1,0 +1,28 @@
+.tableRowHeader,.tableRowHeader td,.tableRowHeader th {
+	background-color: black;
+	color: white;
+	font-weight: bold;
+}
+
+.tableRowHeader  td a,.tableRowHeader  th a,.widefat thead td a,.widefat thead th a	{
+	color: gold;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.widefat,.widefat thead td a,.widefat thead th a,.widefat td,.widefat th	{
+	font-size: 12px;
+}
+
+.widefat thead,.widefat thead tr {
+	background-color: #464646;
+	background-image: none;
+	color: white;
+}
+
+.highlight {
+	background-color: lightYellow;
+	border: solid gold 1px;
+	padding: 7px;
+	color: #000;
+}
