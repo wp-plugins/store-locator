@@ -260,15 +260,15 @@ function head_scripts() {
 	
 	print "\n<!-- ========= Google Maps Store Locator for WordPress (v$sl_version) ========== -->\n";
 
-	$on_sl_page=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE post_content LIKE '[STORE-LOCATOR%' AND post_status IN ('publish', 'draft') AND post_name='$pagename'", ARRAY_A);		
+	/*$on_sl_page=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE post_content LIKE '[STORE-LOCATOR%' AND post_status IN ('publish', 'draft') AND post_name='$pagename'", ARRAY_A);		
 		
-	if ($on_sl_page || !is_page()) {
+	if ($on_sl_page || !is_page()) {*/
 		$api_key=get_option('store_locator_api_key');
 		$google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
 	
 		print "<script src='http://$google_map_domain/maps?file=api&amp;v=2&amp;key=$api_key&amp;sensor=false' type='text/javascript'></script>\n";
 		print "<link rel='stylesheet' type='text/css' href='".$sl_base."/base.css' />\n";
-		print "<link rel='stylesheet' type='text/css' href='".$sl_base."/store-locator.css'>\n";
+		print "<link rel='stylesheet' type='text/css' href='".$sl_base."/store-locator.css' />\n";
 		$theme=get_option('sl_map_theme');
 		if ($theme!="") {print "\n<link rel='stylesheet' type='text/css' href='".$sl_base."/themes/$theme/style.css' />";}
 		$zl=(trim(get_option('sl_zoom_level'))!="")? get_option('sl_zoom_level') : 4;
@@ -277,13 +277,13 @@ function head_scripts() {
 <script src='".$sl_base."/js/store-locator.js' type='text/javascript'></script>
 <script src='".$sl_base."/js/functions.js' type='text/javascript'></script>";
 			//print "<style></style>";
-	}
+	/*}
 	else {
 		$on_sl_page=$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."posts WHERE post_content LIKE '[STORE-LOCATOR%' AND post_status='publish'", ARRAY_A);
 		print "<!--Shh, no store locator on this page, so no unnecessary scripts :-D (";
 		foreach ($on_sl_page as $value) { print "$value[id],";}
 		print ")-->";
-	}
+	}*/
 	print "\n<!-- ========= End Google Maps Store Locator for WordPress ========== -->\n\n";
 }
 /*-------------------------------*/
