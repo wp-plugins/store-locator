@@ -3,8 +3,8 @@ Contributors: moaluko
 Donate link: http://www.viadat.com/donate
 Tags: store locator, store locater, google maps, dealer locator, dealer locater, zip code search, shop locator, shop finder, zipcode, location finder, places, stores, maps, mapping, mapper, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.3.3
-Tested up to: 2.8.5
-Stable tag: 1.2.32
+Tested up to: 2.8.6
+Stable tag: 1.2.33
 
 A store locator plugin for developers who create sites in Wordpress & web site owners who want to quickly show important locations.
 
@@ -38,6 +38,12 @@ location. Also referred to as a dealer locator (locater), shop finder, and zip c
 1. There are some default icons in the `/wp-content/plugins/store-locator/icons` directory. Add your own custom icons in this directory to display them on the map.
 
 == Changelog ==
+
+= 1.2.33 =
+* Fixed gray / blank map issue due to CSS from certain themes affecting map tile images
+* Cleaned up header javascript, CSS appearance
+* Fixed 'store-locator-js.php' issue causing gray / blank map for some users due to their servers
+* Restricted loading of javascript, CSS to only pages on which store locator shortcode has been placed
 
 = 1.2.32 =
 * Fixed directions link by better handling of '#' (and other symbols) in addresses

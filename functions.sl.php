@@ -256,21 +256,35 @@ function install_table() {
 }
 /*-------------------------------*/
 function head_scripts() {
-	global $sl_dir, $sl_base;
-	$api_key=get_option('store_locator_api_key');
-	$google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
+	global $sl_dir, $sl_base, $wpdb, $sl_version, $pagename;
 	
-	print "<script src='http://$google_map_domain/maps?file=api&amp;v=2&amp;key=$api_key' type='text/javascript'></script>";
-	print "<link rel='stylesheet' type='text/css' href='".$sl_base."/base.css' />\n";
-	print "<link rel='stylesheet' type='text/css' href='".$sl_base."/store-locator.css'>\n";
-	$theme=get_option('sl_map_theme');
-	if ($theme!="") {print "\n<link rel='stylesheet' type='text/css' href='".$sl_base."/themes/$theme/style.css' />";}
+	print "\n<!-- ========= Google Maps Store Locator for WordPress (v$sl_version) ========== -->\n";
+
+	$on_sl_page=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE post_content LIKE '[STORE-LOCATOR%' AND post_status IN ('publish', 'draft') AND post_name='$pagename'", ARRAY_A);		
+		
+	if ($on_sl_page || !is_page()) {
+		$api_key=get_option('store_locator_api_key');
+		$google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
+	
+		print "<script src='http://$google_map_domain/maps?file=api&amp;v=2&amp;key=$api_key&amp;sensor=false' type='text/javascript'></script>\n";
+		print "<link rel='stylesheet' type='text/css' href='".$sl_base."/base.css' />\n";
+		print "<link rel='stylesheet' type='text/css' href='".$sl_base."/store-locator.css'>\n";
+		$theme=get_option('sl_map_theme');
+		if ($theme!="") {print "\n<link rel='stylesheet' type='text/css' href='".$sl_base."/themes/$theme/style.css' />";}
 		$zl=(trim(get_option('sl_zoom_level'))!="")? get_option('sl_zoom_level') : 4;
-		print "
-		<script src='".$sl_base."/js/store-locator-js.php' type='text/javascript'></script>
-		<script src='".$sl_base."/js/store-locator.js' type='text/javascript'></script>
-		<script src='".$sl_base."/js/functions.js' type='text/javascript'></script>";
-		//print "<style></style>";
+		
+		print "<script src='".$sl_base."/js/store-locator-js.php' type='text/javascript'></script>
+<script src='".$sl_base."/js/store-locator.js' type='text/javascript'></script>
+<script src='".$sl_base."/js/functions.js' type='text/javascript'></script>";
+			//print "<style></style>";
+	}
+	else {
+		$on_sl_page=$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."posts WHERE post_content LIKE '[STORE-LOCATOR%' AND post_status='publish'", ARRAY_A);
+		print "<!--Shh, no store locator on this page, so no unnecessary scripts :-D (";
+		foreach ($on_sl_page as $value) { print "$value[id],";}
+		print ")-->";
+	}
+	print "\n<!-- ========= End Google Maps Store Locator for WordPress ========== -->\n\n";
 }
 /*-------------------------------*/
 function foot_scripts() {
@@ -400,7 +414,7 @@ $form="
         </td></tr>
     </tbody>
   </table>
-  <script type=\"text/javascript\">if (document.getElementById(\"map\")){setTimeout(\"load()\",1000);}</script>
+  <script type=\"text/javascript\">if (document.getElementById(\"map\")){setTimeout(\"sl_load()\",1000);}</script>
 </form>
 </div>";
 
@@ -432,7 +446,7 @@ function sl_add_options_page() {
 }
 
 function add_admin_javascript() {
-        global $sl_base, $sl_dir, $google_map_domain;
+        global $sl_base, $sl_dir, $google_map_domain, $sl_path;
 		$api=get_option('store_locator_api_key');
         print "<script src='".$sl_base."/js/functions.js'></script>\n
         <script type='text/javascript'>
@@ -440,9 +454,13 @@ function add_admin_javascript() {
         var sl_google_map_country='".get_option('sl_google_map_country')."';
         </script>\n";
         if (ereg("add-locations", $_GET[page])) {
-                $google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
-                print "<script src='http://$google_map_domain/maps?file=api&v=2&key=$api' type='text/javascript'></script>\n";
-                print "<script src='".$sl_base."/js/point-click-add.js'></script>\n";
+            $google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
+            print "<script src='http://$google_map_domain/maps?file=api&v=2&key=$api&sensor=false' type='text/javascript'></script>\n";
+            if (file_exists($sl_path."/addons/point-click-add/point-click-add.js")) {
+				print "<script src='".$sl_base."/addons/point-click-add/point-click-add.js'></script>\n";
+			} elseif (file_exists($sl_path."/js/point-click-add.js")) {
+				print "<script src='".$sl_base."/js/point-click-add.js'></script>\n";
+			}
         }
 }
 

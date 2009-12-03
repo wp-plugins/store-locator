@@ -21,7 +21,7 @@
 		//sidebar1.innerHTML = '<h1>Enter Your Address or Zip Code Above.</h2>';
 	//}
 	
-    function load() {
+    function sl_load() {
       if (GBrowserIsCompatible()) {
         geocoder = new GClientGeocoder();
         map = new GMap2(document.getElementById('map'));
