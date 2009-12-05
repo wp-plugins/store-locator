@@ -154,7 +154,7 @@ function choose_units($unit, $input_name) {
 	//global $height_units, $width_units;
 	
 	foreach ($unit_arr as $value) {
-		$selected=($value=="$unit")? " selected " : "" ;
+		$selected=($value=="$unit")? " selected='selected' " : "" ;
 		if (!($input_name=="height_units" && $unit=="%")) {
 			$select_field.="\n<option value='$value' $selected>$value</option>";
 		}
@@ -309,10 +309,9 @@ function ajax_map($content) {
 		
 		$unit_display=(get_option('sl_distance_unit')=="km")? "km" : "mi";
 		foreach ($r_array as $value) {
-			$s=(ereg("\(.*\)", $value))? " selected " : "" ;
+			$s=(ereg("\(.*\)", $value))? " selected='selected' " : "" ;
 			$value=ereg_replace("[^0-9]", "", $value);
-			$r_options.="<option value='$value' $s>$value $unit_display</option>
-			";
+			$r_options.="<option value='$value' $s>$value $unit_display</option>";
 		}
 		
 		if (get_option('sl_use_city_search')==1) {
@@ -320,7 +319,7 @@ function ajax_map($content) {
 			//var_dump($cs_array); die();
 			if ($cs_array) {
 				foreach($cs_array as $value) {
-					$cs_options.="<option value='$value[city_state]'>$value[city_state]</option>";
+$cs_options.="<option value='$value[city_state]'>$value[city_state]</option>";
 				}
 			}
 		}
@@ -348,27 +347,25 @@ function ajax_map($content) {
 	
 $form="
 <div id='sl_div'>
-  <form onsubmit='searchLocations(); return false;' name='searchForm'>
-    <table border=0 cellpadding='3px' class='sl_header'><tr>
-	<td valign=top><nobr>$search_label&nbsp;</nobr></td>
+  <form onsubmit='searchLocations(); return false;' name='searchForm' action=''>
+    <table border='0' cellpadding='3px' class='sl_header'><tr>
+	<td valign='top' style='whitespace:nowrap'>$search_label&nbsp;</td>
 	<td ";
 	
 	if (get_option('sl_use_city_search')!=1) {$form.=" colspan='2' ";}
 	
-	$form.=" valign='top'><input type='text' id='addressInput' size=50/></td>
+	$form.=" valign='top'><input type='text' id='addressInput' size='50' /></td>
 	";
 	
 	if ($cs_array && get_option('sl_use_city_search')==1) {
-		$form.="<td valign='top'><nobr>&nbsp;<!--b>OR</b-->&nbsp;</nobr></td>";
+		$form.="<td valign='top'></td>";
 	}
 	
 	if ($cs_array && get_option('sl_use_city_search')==1) {
 	$form.="
 	<td valign='top'>";
 	$form.="<select id='addressInput2' onchange='aI=document.forms[\"searchForm\"].addressInput;if(this.value!=\"\"){oldvalue=aI.value;aI.value=this.value;}else{aI.value=oldvalue;}'>
-	<option value=''>--Search By City--</option>
-	$cs_options
-    </select></td>";
+<option value=''>--Search By City--</option>$cs_options</select></td>";
 	}
 	
 	/*if ($name_array && get_option('sl_use_name_search')==1) {
@@ -389,14 +386,12 @@ $form="
 	$sl_radius_label=get_option('sl_radius_label');
 	$form.="
 	</tr><tr>
-	 <td valign=top>".__("$sl_radius_label", $text_domain)."</td>
+	 <td valign='top'>".__("$sl_radius_label", $text_domain)."</td>
 	 <td width='33%' valign='top' ";
 	
 	if (get_option('sl_use_city_search')==1) {$form.="colspan='2'";}
 	 
-	$form.="><select id='radiusSelect'>
-	$r_options
-    </select>
+	$form.="><select id='radiusSelect'>$r_options</select>
 	</td>
 	<td valign='top' ";
 	
@@ -404,18 +399,16 @@ $form="
 	
 	$form.=" ><input $button_style value='Search Locations' id='addressSubmit'/> </td>
 	</tr></table>
-<table width=100% cellspacing='0px' cellpadding='0px' style='/*border:solid silver 1px*/'> 
+<table width='100%' cellspacing='0px' cellpadding='0px' style='/*border:solid silver 1px*/'> 
      <tr>
-        <td width='100%' valign='top'> <div id='map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' width='$width$width_units;' $hide><tr><td style='text-align:left'><a href='http://www.viadat.com/store-locator' target='_blank'>Lots of Locales</a></td><td align='right' style='padding-right:5px' style='text-align:right'> <a href='http://www.viadat.com' target='_blank' title='by Viadat Creations'>by Viadat</a></td></tr></table>
+        <td width='100%' valign='top'> <div id='map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' width='$width$width_units;' $hide><tr><td style='text-align:left'><a href='http://www.viadat.com/store-locator' target='_blank'>Lots of Locales</a></td><td align='right' style='padding-right:5px; text-align:right'> <a href='http://www.viadat.com' target='_blank' title='by Viadat Creations'>by Viadat</a></td></tr></table>
 		</td>
       </tr>
 	  <tr id='cm_mapTR'>
         <td width='' valign='top' style='/*display:hidden; border-right:solid silver*/ 1px' id='map_sidebar_td'> <div id='map_sidebar' style='width:$width$width_units;/* $height$height_units; */'> <div class='text_below_map'>".__("Enter Your Address or Zip Code Above", $text_domain).".</div></div>
         </td></tr>
-    </tbody>
-  </table>
-  <script type=\"text/javascript\">if (document.getElementById(\"map\")){setTimeout(\"sl_load()\",1000);}</script>
-</form>
+  </table></form>
+<p><script type='text/javascript'>if (document.getElementById('map')){setTimeout('sl_load()',1000);}</script></p>
 </div>";
 
 	//ereg("\[STORE-LOCATOR [tag=\"(.*)\"]?\]", $matched); 

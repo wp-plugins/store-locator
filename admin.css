@@ -16,6 +16,10 @@
 	font-size: 12px;
 }
 
+.widefat td td, .widefat td, .widefat th {
+	border-bottom: none;
+}
+
 .widefat thead,.widefat thead tr {
 	background-color: #464646;
 	background-image: none;

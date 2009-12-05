@@ -76,7 +76,7 @@ print "
 
 <form name='manualAddForm' method=post>
 	<table cellpadding='0' class='widefat'>
-	<thead><tr><td>".__("Type&nbsp;Address", $text_domain)."</td></tr></thead>
+	<thead><tr><th>".__("Type&nbsp;Address", $text_domain)."</th></tr></thead>
 	<tr>
 		<td>
 		<b>".__("The General Address Format", $text_domain).": </b>(<a href=\"#\" onclick=\"show('format'); return false;\">".__("show/hide", $text_domain)."</a>)

@@ -31,7 +31,7 @@ update_option('sl_distance_unit', $_POST[sl_distance_unit]);
 
 print "<div class='highlight'>".__("Successful Update", $text_domain)." $view_link</div> <!--meta http-equiv='refresh' content='0'-->";
 }
-print "<h2>".__("Map Designer", $text_domain)."</h2><br><form method='post' name='mapDesigner'><table class='widefat'><thead><tr><td>".__("Map Designer", $text_domain)."</td><td><!--".__("Designer", $text_domain)."--></td></tr></thead>";
+print "<h2>".__("Map Designer", $text_domain)."</h2><br><form method='post' name='mapDesigner'><table class='widefat'><thead><tr><th colspan='2'>".__("Map Designer", $text_domain)."</th><!--td><".__("Designer", $text_domain)."--></td--></tr></thead>";
 initialize_variables();
 
 $icon_dir=opendir($sl_path."/icons/");
@@ -39,7 +39,7 @@ $icon_dir=opendir($sl_path."/icons/");
 while (false !== ($an_icon=readdir($icon_dir))) {
 if (!ereg("^\.{1,2}$", $an_icon) && !ereg("shadow", $an_icon) && !ereg("\.db", $an_icon)) {
 
-$icon_str.="<img style='cursor:hand; cursor:pointer; border:solid white 2px; padding:2px' src='$sl_base/icons/$an_icon' onclick='document.forms[\"mapDesigner\"].icon.value=this.src;document.getElementById(\"prev\").src=this.src;' onmouseover='style.borderColor=\"red\";' onmouseout='style.borderColor=\"white\";'>";
+$icon_str.="<img style='height:25px; cursor:hand; cursor:pointer; border:solid white 2px; padding:2px' src='$sl_base/icons/$an_icon' onclick='document.forms[\"mapDesigner\"].icon.value=this.src;document.getElementById(\"prev\").src=this.src;' onmouseover='style.borderColor=\"red\";' onmouseout='style.borderColor=\"white\";'>";
 }
 }
 
@@ -48,7 +48,7 @@ while (false !== ($an_icon=readdir($icon_dir))) {
 
 if (!ereg("^\.{1,2}$", $an_icon) && !ereg("shadow", $an_icon) && !ereg("\.db", $an_icon)) {
 
-$icon2_str.="<img style='cursor:hand; cursor:pointer; border:solid white 2px; padding:2px' src='$sl_base/icons/$an_icon' onclick='document.forms[\"mapDesigner\"].icon2.value=this.src;document.getElementById(\"prev2\").src=this.src;' onmouseover='style.borderColor=\"red\";' onmouseout='style.borderColor=\"white\";'>";
+$icon2_str.="<img style='height:25px; cursor:hand; cursor:pointer; border:solid white 2px; padding:2px' src='$sl_base/icons/$an_icon' onclick='document.forms[\"mapDesigner\"].icon2.value=this.src;document.getElementById(\"prev2\").src=this.src;' onmouseover='style.borderColor=\"red\";' onmouseout='style.borderColor=\"white\";'>";
 }
 }
 
@@ -147,9 +147,9 @@ print "</select></td></tr>
 <tr><td>".__("Remove Credits", $text_domain).":</td>
 <td><input name='sl_remove_credits' value='1' type='checkbox' $checked3></td></tr>
 <tr><td valign='top'>".__("Home Icon", $text_domain).":</td>
-<td valign='top'> <input name='icon' size='70' value='$icon' onchange=\"document.getElementById('prev').src=this.value\">&nbsp;&nbsp;<img id='prev' src='$icon' align='top'> <br><div style=''>$icon_str</div></td></tr>
+<td valign='top'> <input name='icon' size='45' value='$icon' onchange=\"document.getElementById('prev').src=this.value\">&nbsp;&nbsp;<img id='prev' src='$icon' align='top'> <br><div style=''>$icon_str</div></td></tr>
 <tr><td valign='top'>".__("Destination Icon", $text_domain).":</td>
-<td valign='top'> <input name='icon2' size='70' value='$icon2' onchange=\"document.getElementById('prev2').src=this.value\">&nbsp;&nbsp;<img id='prev2' src='$icon2'align='top'> <br><div style=''>$icon2_str</div>
+<td valign='top'> <input name='icon2' size='45' value='$icon2' onchange=\"document.getElementById('prev2').src=this.value\">&nbsp;&nbsp;<img id='prev2' src='$icon2'align='top'> <br><div style=''>$icon2_str</div>
 </td></tr>
 <tr><td colspan='2'><div class=''><b>".__("Looking to create or find a unique icon? For ideas, visit", $text_domain)."<br> <a href='http://mapki.com/index.php?title=Icon_Image_Sets' target='_blank'>http://mapki.com/index.php?title=Icon_Image_Sets</a></b></div></td></tr></table>
 </td></tr>
