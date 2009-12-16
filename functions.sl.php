@@ -19,8 +19,13 @@ global $height, $width, $width_units, $height_units, $radii;
 global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base, $location_table_view;
 global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search, $sl_default_map;
 global $sl_radius_label, $sl_website_label, $sl_num_initial_displayed, $sl_load_locations_default;
-global $sl_distance_unit, $sl_map_overview_control, $sl_admin_locations_per_page;
+global $sl_distance_unit, $sl_map_overview_control, $sl_admin_locations_per_page, $sl_instruction_message;
 
+$sl_instruction_message=get_option('sl_instruction_message');
+if (empty($sl_instruction_message)) {
+	$sl_instruction_message="Enter Your Address or Zip Code Above.";
+	add_option('sl_instruction_message', $sl_instruction_message);
+	}
 $sl_admin_locations_per_page=get_option('sl_admin_locations_per_page');
 if (empty($sl_admin_locations_per_page)) {
 	$sl_admin_locations_per_page="100";
@@ -174,6 +179,14 @@ define("KEY", "$api_key");
 $delay = 0;
 $base_url = "http://" . MAPS_HOST . "/maps/geo?output=csv&key=" . KEY;
 
+//Adding ccTLD (Top Level Domain) to help perform more accurate geocoding according to selected Google Maps Domain - 12/16/09
+$ccTLD_arr=explode(".", MAPS_HOST);
+$ccTLD=$ccTLD_arr[count($ccTLD_arr)-1];
+if ($ccTLD!="com") {
+	$base_url .= "&gl=".$ccTLD;
+	//die($base_url);
+}
+
 // Iterate through the rows, geocoding each address
     $request_url = $base_url . "&q=" . urlencode($address);
    
@@ -260,30 +273,43 @@ function head_scripts() {
 	
 	print "\n<!-- ========= Google Maps Store Locator for WordPress (v$sl_version) ========== -->\n";
 
-	/*$on_sl_page=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE post_content LIKE '[STORE-LOCATOR%' AND post_status IN ('publish', 'draft') AND post_name='$pagename'", ARRAY_A);		
-		
-	if ($on_sl_page || !is_page()) {*/
+	//Check if currently on page with shortcode
+	$on_sl_page=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE post_content LIKE '%[STORE-LOCATOR%' AND post_status IN ('publish', 'draft') AND (post_name='$pagename' OR ID='$_GET[p]' OR ID='$_GET[page_id]')", ARRAY_A);		
+	//Checking if code used in posts	
+	$sl_code_is_used_in_posts=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE post_content LIKE '%[STORE-LOCATOR%' AND post_type='post'");
+	//If shortcode used in posts, get post IDs, and put into array of numbers
+	if ($sl_code_is_used_in_posts) {
+		$sl_post_ids=$wpdb->get_results("SELECT ID FROM ".$wpdb->prefix."posts WHERE post_content LIKE '%[STORE-LOCATOR%' AND post_type='post'", ARRAY_A);
+		foreach ($sl_post_ids as $val) { $post_ids_array[]=$val[ID];}
+	}		
+	else {		
+		$post_ids_array=array(9999999999999999999999999999999999999); //post number that'll never be reached
+	}
+	//print_r($post_ids_array);
+	
+	//If on page with store locator shortcode, on an archive, search, or 404 page while shortcode has been used in a post, on the front page, or a specific post with shortcode, display code, otherwise, don't
+	if ($on_sl_page || is_search() || ((is_archive() || is_404()) && $sl_code_is_used_in_posts) || is_front_page() || is_single($post_ids_array)) {
 		$api_key=get_option('store_locator_api_key');
 		$google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
 	
-		print "<script src='http://$google_map_domain/maps?file=api&amp;v=2&amp;key=$api_key&amp;sensor=false' type='text/javascript'></script>\n";
-		print "<link rel='stylesheet' type='text/css' href='".$sl_base."/base.css' />\n";
-		print "<link rel='stylesheet' type='text/css' href='".$sl_base."/store-locator.css' />\n";
-		$theme=get_option('sl_map_theme');
-		if ($theme!="") {print "\n<link rel='stylesheet' type='text/css' href='".$sl_base."/themes/$theme/style.css' />";}
-		$zl=(trim(get_option('sl_zoom_level'))!="")? get_option('sl_zoom_level') : 4;
-		
+		print "<script src='http://$google_map_domain/maps?file=api&v=2&key=$api_key&sensor=false' type='text/javascript'></script>\n";
 		print "<script src='".$sl_base."/js/store-locator-js.php' type='text/javascript'></script>
 <script src='".$sl_base."/js/store-locator.js' type='text/javascript'></script>
-<script src='".$sl_base."/js/functions.js' type='text/javascript'></script>";
+<script src='".$sl_base."/js/functions.js' type='text/javascript'></script>\n";
+		print "<link  href='".$sl_base."/base.css' type='text/css' rel='stylesheet'/>\n";
+		print "<link  href='".$sl_base."/store-locator.css' type='text/css' rel='stylesheet'/>";
+		$theme=get_option('sl_map_theme');
+		if ($theme!="") {print "\n<link href='".$sl_base."/themes/$theme/style.css' rel='stylesheet' type='text/css'/>";}
+		$zl=(trim(get_option('sl_zoom_level'))!="")? get_option('sl_zoom_level') : 4;		
+
 			//print "<style></style>";
-	/*}
+	}
 	else {
-		$on_sl_page=$wpdb->get_results("SELECT id FROM ".$wpdb->prefix."posts WHERE post_content LIKE '[STORE-LOCATOR%' AND post_status='publish'", ARRAY_A);
-		print "<!--Shh, no store locator on this page, so no unnecessary scripts :-D (";
-		foreach ($on_sl_page as $value) { print "$value[id],";}
+		$sl_page_ids=$wpdb->get_results("SELECT ID FROM ".$wpdb->prefix."posts WHERE post_content LIKE '%[STORE-LOCATOR%' AND post_status='publish'", ARRAY_A);
+		print "<!-- No store locator on this page, so no unnecessary scripts for better site performance. (";
+		foreach ($sl_page_ids as $value) { print "$value[ID],";}
 		print ")-->";
-	}*/
+	}
 	print "\n<!-- ========= End Google Maps Store Locator for WordPress ========== -->\n\n";
 }
 /*-------------------------------*/
@@ -303,6 +329,7 @@ function ajax_map($content) {
 		$radii=(get_option('sl_map_radii'))? get_option('sl_map_radii') : "1,5,10,(25),50,100,200,500" ;
 		$height_units=(get_option('sl_map_height_units'))? get_option('sl_map_height_units') : "px";
 		$width_units=(get_option('sl_map_width_units'))? get_option('sl_map_width_units') : "%";
+		$sl_instruction_message=(get_option('sl_instruction_message'))? get_option('sl_instruction_message') : "Enter Your Address or Zip Code Above.";
 	
 		$r_array=explode(",", $radii);
 		$search_label=(get_option('sl_search_label'))? get_option('sl_search_label') : "Address" ;
@@ -405,10 +432,10 @@ $form="
 		</td>
       </tr>
 	  <tr id='cm_mapTR'>
-        <td width='' valign='top' style='/*display:hidden; border-right:solid silver*/ 1px' id='map_sidebar_td'> <div id='map_sidebar' style='width:$width$width_units;/* $height$height_units; */'> <div class='text_below_map'>".__("Enter Your Address or Zip Code Above", $text_domain).".</div></div>
+        <td width='' valign='top' style='/*display:hidden; border-right:solid silver*/ 1px' id='map_sidebar_td'> <div id='map_sidebar' style='width:$width$width_units;/* $height$height_units; */'> <div class='text_below_map'>$sl_instruction_message</div></div>
         </td></tr>
   </table></form>
-<p><script type='text/javascript'>if (document.getElementById('map')){setTimeout('sl_load()',1000);}</script></p>
+<p><script type=\"text/javascript\">if (document.getElementById(\"map\")){setTimeout(\"sl_load()\",1000);}</script></p>
 </div>";
 
 	//ereg("\[STORE-LOCATOR [tag=\"(.*)\"]?\]", $matched); 
@@ -542,6 +569,7 @@ elseif (file_exists("../../../../../../../../wp-config.php")){include("../../../
 /*--------------------------------------------------------------*/
 function insert_matched_data() {
 	global $wpdb;
+
 	$ctr=0;
 	foreach ($_POST[field_map] as $value) {
 		if($value!="") {
@@ -552,7 +580,8 @@ function insert_matched_data() {
 	}
 	$selected_fields=substr($selected_fields,0, strlen($selected_fields)-1);
 
-	for ($entry_number=0; $entry_number<$_POST[total_entries]; $entry_number++) {
+	
+	for ($entry_number=0; $entry_number<$_POST[total_entries]; $entry_number++) { 
 		for ($ctr2=0; $ctr2<count($column_number); $ctr2++) {
 			//print "'".$_POST["column{$column_number[$ctr2]}"][$entry_number]."',";
 			//die();
@@ -567,7 +596,8 @@ function insert_matched_data() {
 		//exit();
 		do_geocoding($for_geo[0][the_address]);
 		$value_string="";
-	}
+
+		}
 }
 /*-------------------------------------------------------------*/
 function comma($a) {

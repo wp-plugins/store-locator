@@ -21,7 +21,7 @@ $center_lng = $_GET["lng"];
 $radius = $_GET["radius"];
 
 //Since miles is default, if kilometers is selected, divide by 1.609344 in order to convert the kilometer value selection back in miles when generating the XML
-$radius=(get_option('sl_distance_unit')=="km")? ($radius/1.609344) : $radius;
+//$radius=(get_option('sl_distance_unit')=="km")? ($radius/1.609344) : $radius;  //Removed 12/16/09, messed up km search
 
 // Opens a connection to a MySQL server
 $connection=mysql_connect ($host, $username, $password);

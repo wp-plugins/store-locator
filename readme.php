@@ -10,6 +10,8 @@ ob_clean();
 //print ereg_replace("(http://.*\..*\..{2,3}\n)", "<a href='\\1' target='_blank'>\\1</a>", $txt);
 //$txt=ereg_replace("(http://www.viadat.com)", "<a href='\\1' target='_blank'>\\1</a>", $txt);
 
+$txt=ereg_replace("\=\=\= ", "<h3>", $txt);
+$txt=ereg_replace(" \=\=\=", "</h3>", $txt);
 $txt=ereg_replace("\=\= ", "<strong>", $txt);
 $txt=ereg_replace(" \=\=", "</strong>", $txt);
 $txt=ereg_replace("\= ", "<u>", $txt);

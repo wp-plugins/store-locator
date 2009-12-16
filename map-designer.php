@@ -15,6 +15,7 @@ update_option('sl_map_theme', $_POST[theme]);
 update_option('sl_search_label', $_POST[search_label]);
 update_option('sl_radius_label', $_POST[sl_radius_label]);
 update_option('sl_website_label', $_POST[sl_website_label]);
+update_option('sl_instruction_message', $_POST[sl_instruction_message]);
 update_option('sl_zoom_level', $_POST[zoom_level]);
 $_POST[sl_use_city_search]=($_POST[sl_use_city_search]=="")? 0 : $_POST[sl_use_city_search];
 update_option('sl_use_city_search', $_POST[sl_use_city_search]);
@@ -112,12 +113,15 @@ print "
 <!--tr><td>".__("Allow User Search By Name of Location?", $text_domain).":</td>
 <td><input name='sl_use_name_search' value='1' type='checkbox' $checked2></td></tr-->
 <!--tr--><td colspan='1' width='60%'><h2>".__("Labels", $text_domain)."</h2>
-<table class='map_designer_section right_side'><tr><td>".__("Address Input Label", $text_domain).":</td>
-<td><input name='search_label' value='$search_label'></td></tr>
+<table class='map_designer_section right_side'>
+<tr><td>".__("Address Input Label", $text_domain).":</td>
+<td><input name='search_label' value=\"$search_label\"></td></tr>
 <tr><td>".__("Radius Dropdown Label", $text_domain).":</td>
-<td><input name='sl_radius_label' value='$sl_radius_label'></td></tr>
+<td><input name='sl_radius_label' value=\"$sl_radius_label\"></td></tr>
 <tr><td>".__("Website URL Label", $text_domain).":</td>
-<td><input name='sl_website_label' value='$sl_website_label'></td>
+<td><input name='sl_website_label' value=\"$sl_website_label\"></td>
+<tr><td>".__("Instruction Message to Users", $text_domain).":</td>
+<td><input name='sl_instruction_message' value=\"".$sl_instruction_message."\" size='50'></td>
 </tr></table>
 
 </td></tr>
@@ -153,7 +157,7 @@ print "</select></td></tr>
 </td></tr>
 <tr><td colspan='2'><div class=''><b>".__("Looking to create or find a unique icon? For ideas, visit", $text_domain)."<br> <a href='http://mapki.com/index.php?title=Icon_Image_Sets' target='_blank'>http://mapki.com/index.php?title=Icon_Image_Sets</a></b></div></td></tr></table>
 </td></tr>
-<tr><td colspan='2'><input type='submit' value='".__("Update", $text_domain)."' class='button'></td></tr></table></form>";
+<tr><td colspan='2'><input type='submit' value='".__("Update", $text_domain)."' class='button-primary'></td></tr></table></form>";
 
 ?>
 </div>

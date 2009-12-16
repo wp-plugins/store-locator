@@ -85,6 +85,6 @@ foreach ($the_domain as $key=>$value) {
 	print "<option value='$key:$value' $selected>$key ($value)</option>\n";
 }
 print "</select></td></tr>
-<tr><td colspan='2'><input type='submit' value='".__("Update", $text_domain)."' class='button'></td></tr></table></form>";
+<tr><td colspan='2'><input type='submit' value='".__("Update", $text_domain)."' class='button-primary'></td></tr></table></form>";
 
 ?></div>

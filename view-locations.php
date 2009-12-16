@@ -10,7 +10,7 @@ foreach($_GET as $key=>$val) {
 }
 //$view_all_link=(!empty($_GET[q]))?"<a href='?q=page=$sl_dir/view-locations.php' style='font-size:12px'>Back&nbsp;to&nbsp;View&nbsp;All</a>&nbsp;&nbsp;":"";
 print "<form><table cellpadding='0px' cellspacing='0px' width='100%'><tr><td>
-<h2>".__("Manage Locations", $text_domain)."</h2></td><td align='right'><h2 style='float:right; padding-right:0px; width:100%'><input value='$_GET[q]' name='q'><input type='submit' value='Search Locations' class='button'></h2>$hidden</td></tr></table></form><br>";
+<h2>".__("Manage Locations", $text_domain)."</h2></td><td align='right'><h2 style='float:right; padding-right:0px; width:100%'><input value='$_GET[q]' name='q'><input type='submit' value='Search Locations' class='button-primary'></h2>$hidden</td></tr></table></form><br>";
 
 initialize_variables();
 
@@ -109,7 +109,7 @@ foreach ($opt_arr as $value) {
 	$selected=($sl_admin_locations_per_page==$value)? " selected " : "";
 	print "<option value='$value' $selected>$value</option>";
 }
-print "</select><input type='button' value='".__("Change", $text_domain)."' class='button' onclick=\"LF=document.forms['locationForm'];LF.act.value='locationsPerPage';LF.submit();\">
+print "</select><input type='button' value='".__("Change", $text_domain)."' class='button-primary' onclick=\"LF=document.forms['locationForm'];LF.act.value='locationsPerPage';LF.submit();\">
 </nobr>
 </td>
 <td align=right width='33%'>";
@@ -185,7 +185,7 @@ print "<th>(Lat, Lon)</th>
 		<table cellpadding='0px' cellspacing='0px'><tr><td style='padding-left:0px' class='nobottom'><input name='city-$value[sl_id]' value='$value[sl_city]' size='21'><br><small>".__("City", $text_domain)."</small></td>
 		<td><input name='state-$value[sl_id]' value='$value[sl_state]' size='7'><br><small>".__("State", $text_domain)."</small></td>
 		<td><input name='zip-$value[sl_id]' value='$value[sl_zip]' size='10'><br><small>".__("Zip", $text_domain)."</small></td></tr></table><br>
-		<nobr><input type='button' class='button' value='".__("Cancel", $text_domain)."' onclick='location.href=\"".ereg_replace("&edit=$_GET[edit]", "",$_SERVER[REQUEST_URI])."\"'><input type='submit' value='".__("Update", $text_domain)."' class='button'></nobr>
+		<nobr><input type='submit' value='".__("Update", $text_domain)."' class='button-primary'><input type='button' class='button' value='".__("Cancel", $text_domain)."' onclick='location.href=\"".ereg_replace("&edit=$_GET[edit]", "",$_SERVER[REQUEST_URI])."\"'></nobr>
 		</td><td>
 		<b>Additional Information</b><br>
 		<textarea name='description-$value[sl_id]' rows='5' cols='17'>$value[sl_description]</textarea>&nbsp;<small>".__("Description", $text_domain)."</small><br>

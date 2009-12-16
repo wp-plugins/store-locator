@@ -143,11 +143,10 @@ function download_newest_version() {
 
 $sl_up=new sl_update();
 
-if ($_POST['sl_update']) {
-			$message = __("Great, successful update.", $text_domain);
+if ($_POST['sl_update'] || ($_GET[_wpnonce] && wp_verify_nonce($_GET[_wpnonce], 'my-nonce') && $_GET[upgrade]==1)) {
 			$success = $sl_up->install_newest_version();
 			if (!$success) {
-				$message = __("Update failed", $text_domain);
+				$message = __("Upgrade failed", $text_domain);
 				if (isset($sl_up->upgrade_error) && !empty($sl_up->upgrade_error)) {
 					$message .= ": " . $sl_up->upgrade_error;
 				} else {
@@ -155,6 +154,10 @@ if ($_POST['sl_update']) {
 				}
 			}
 			else {
+				$message = __("Great, successful upgrade.", $text_domain);
+				if ($_GET[_wpnonce] && wp_verify_nonce($_GET[_wpnonce], 'my-nonce') && $_GET[upgrade]==1) {
+					$message.=" | <a href='./plugins.php'>".__("Return to Plugins page", $text_domain)."</a>";
+				}
 				//Call install_table() to make sure database is up to date for this newest version, since activation hook may not be called
 				install_table();
 				//Call initialize_variables() in order to set the default value of any newly introduced variables 
@@ -169,5 +172,7 @@ if ($_POST['sl_update']) {
 ?>
 <?php if ($message) : ?>
 <div id="message" class="updated fade"><p><?php echo $message; ?></p></div>
+<?php endif; ?>
+<?php if ($_POST['sl_update']) : ?>
 <meta http-equiv="refresh" content="3;url=./admin.php?page=<?php print $sl_dir;?>/news-upgrades.php" />
 <?php endif; ?>

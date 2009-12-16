@@ -12,14 +12,14 @@ elseif (file_exists("../../../../../../../../wp-config.php")){include("../../../
 include("../variables.sl.php");
 $zl=(trim(get_option('sl_zoom_level'))!="")? get_option('sl_zoom_level') : 4;
 $mt=(trim(get_option('sl_map_type'))!="")? get_option('sl_map_type') : "G_NORMAL_MAP";
-$wl=(trim(get_option('sl_website_label'))!="")? get_option('sl_website_label') : "Website";
+$wl=(trim(get_option('sl_website_label'))!="")? parseToXML(get_option('sl_website_label')) : "Website";
 $du=(trim(get_option('sl_distance_unit'))!="")? get_option('sl_distance_unit') : "miles";
 $oc=(trim(get_option('sl_map_overview_control'))!="")? get_option('sl_map_overview_control') : 0;
-print "if (document.getElementById('map')){window.onunload = GUnload;}
+print "if (document.getElementById('map')){window.onunload = function (){ GUnload(); }}
 var add_base='".$sl_base."';		
 var sl_map_home_icon='".get_option('sl_map_home_icon')."';
 var sl_map_end_icon='".get_option('sl_map_end_icon')."';
-var sl_google_map_country='".get_option('sl_google_map_country')."';
+var sl_google_map_country='".parseToXML(get_option('sl_google_map_country'))."';
 var sl_google_map_domain='".get_option('sl_google_map_domain')."';
 var sl_zoom_level=$zl;
 var sl_map_type=$mt;

@@ -14,8 +14,8 @@ print "<div class='wrap'>
 ?>
 <form class="form-table" name="dofollow" action="" method="post">
 <p class="submit">
-<input type="submit" <?php if (!$canwrite) echo(' disabled="disabled" ');?> name="sl_update" style='font-weight:bold' value="<?php _e('Check for Updates', $text_domain)?> &raquo;" />
-<strong><?php print "Current Version: $sl_version "; ?></strong><br><?php _e("(As requested, this updater preserves added themes, addons, images, icons, language files, etc.  Remember, backup & check for updates often.)", $text_domain) ?>
+<strong><?php print __("Current Version", $text_domain).": $sl_version "; ?></strong>&nbsp;&nbsp;&nbsp;<input type="submit" class="button-primary" <?php if (!$canwrite) echo(' disabled="disabled" ');?> name="sl_update" style='font-weight:bold' value="<?php _e('Upgrade to Newest Version', $text_domain)?> &raquo;" />
+<br><?php _e("(This upgrader preserves added themes, addons, images, icons, & language files as requested.  Remember to backup & check for upgrades often.)", $text_domain) ?>
 </form>
 </p>
 <p><?php if (ereg('wordpress-store-locator-location-finder', $_SERVER[REQUEST_URI])) { print "<b>Note:</b> Your directory is <b>'wordpress-store-locator-location-finder'</b>. Please rename to <b>'store-locator'</b> to continue receiving notifications of future updates in your admin panel."; } ?></p>
@@ -119,7 +119,7 @@ $ctr++;
 }
 print "</table>";
 print "<form method='post' name='licenseForm'><table style='border:none'><tr>$lic_str</tr></table>
-<br><input type='submit' value='".__("Activate", $text_domain)."' class='button'>
+<br><input class='button-primary' type='submit' value='".__("Activate", $text_domain)."'>
 <br>".__("Looking for more addons & themes", $text_domain)."? <a href='http://www.viadat.com/products-page'>".__("It's all right here", $text_domain)."</a>
 </form>
 

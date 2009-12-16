@@ -47,13 +47,14 @@ if ($_POST[remote] && trim($_POST[query])!="" || $_POST[finish_import]) {
 //Importing CSV file of addresses
 $newfile="temp-file.csv"; 
 $target_path="$root/";
-$root=$_SERVER[DOCUMENT_ROOT];
-if (move_uploaded_file($_FILES['csv_import']['tmp_name'], "$root/$newfile")) {
-		include($sl_path."/addons/csv-xml-importer-exporter/csvImport.php");
-	}
-	else{
+$root=ABSPATH."wp-content/plugins/".dirname(plugin_basename(__FILE__));
+//print_r($_FILES);
+if (move_uploaded_file($_FILES['csv_import']['tmp_name'], "$root/$newfile") && file_exists($sl_path."/addons/csv-xml-importer-exporter/csvImport.php")) {
+	include($sl_path."/addons/csv-xml-importer-exporter/csvImport.php");
+}
+else{
 		//echo "<div style='background-color:salmon; padding:5px'>There was an error uploading the file, please try again. </div>";
-	}
+}
 
 //If adding via the Point, Click, Add map (accepting AJAX)
 if ($_GET[mode]=="pca") {
@@ -97,7 +98,7 @@ print "
 		<input name='sl_hours'>&nbsp;<small>".__("Hours", $text_domain)."</small><br>
 		<input name='sl_phone'>&nbsp;<small>".__("Phone", $text_domain)."</small><br>
 		<input name='sl_image'>&nbsp;<small>".__("Image URL (shown with location)", $text_domain)."</small><br><br>
-	<input type='submit' value='".__("Add Location", $text_domain)."' class='button'>
+	<input type='submit' value='".__("Add Location", $text_domain)."' class='button-primary'>
 	</td>
 		</tr>
 	</table>
