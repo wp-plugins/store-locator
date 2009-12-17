@@ -4,7 +4,7 @@ Donate link: http://www.viadat.com/donate
 Tags: store locator, store locater, google maps, dealer locator, dealer locater, zip code search, shop locator, shop finder, zipcode, location finder, places, stores, maps, mapping, mapper, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.3.3
 Tested up to: 2.8.6
-Stable tag: 1.2.35
+Stable tag: 1.2.35.1
 
 A store locator plugin for developers who create sites in Wordpress & web site owners who want to quickly show important locations.
 
@@ -38,6 +38,9 @@ location. Also referred to as a dealer locator (locater), shop finder, and zip c
 1. There are some default icons in the `/wp-content/plugins/store-locator/icons` directory. Add your own custom icons in this directory to display them on the map.
 
 == Changelog ==
+
+= 1.2.35.1 =
+* Removed non-working Google Map Country Domains (Hungary, Kenya, Malaysia, South Africa, Thailand -- seems they have map domains, but can't be embedded on websites yet)
 
 = 1.2.35 =
 * Improved restricted loading of JS, CSS to pages & posts on which store locator shortcode has been placed (and the archive pages only if shortcode is placed into any posts, and the home and search pages)
@@ -139,22 +142,22 @@ Added (as of v1.2.28):
 * China
 * India
 * Hong Kong
-* Kenya
 * Liechtenstein
-* Malaysia
 * South Korea
-* Thailand
 
-Removed (as of v.1.2.28):
+Removed (inactive domain or domain can't be used to embed a map on a website yet):
 
-* Bosnia and Herzegovina (doesn't appear to be working anymore)
+* Bosnia and Herzegovina (as of v1.2.28)
+* Hungary (as of v1.2.35.1)
+* Kenya (as of v1.2.35.1)
+* Malaysia (as of v1.2.35.1)
+* South Africa (as of v1.2.35.1)
+* Thailand (as of v1.2.35.1)
 
 Added (as of v1.2.34):
 
 * Argentina
 * Chile
-* Hungary
 * Mexico
 * Portugal
 * Singapore
-* South Africa
