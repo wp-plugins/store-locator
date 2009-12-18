@@ -20,7 +20,13 @@ global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base,
 global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search, $sl_default_map;
 global $sl_radius_label, $sl_website_label, $sl_num_initial_displayed, $sl_load_locations_default;
 global $sl_distance_unit, $sl_map_overview_control, $sl_admin_locations_per_page, $sl_instruction_message;
+global $sl_map_character_encoding;
 
+$sl_map_character_encoding=get_option('sl_map_character_encoding');
+if (empty($sl_map_character_encoding)) {
+	$sl_map_character_encoding="";
+	add_option('sl_map_character_encoding', $sl_map_character_encoding);
+	}
 $sl_instruction_message=get_option('sl_instruction_message');
 if (empty($sl_instruction_message)) {
 	$sl_instruction_message="Enter Your Address or Zip Code Above.";
@@ -187,6 +193,11 @@ if ($ccTLD!="com") {
 	//die($base_url);
 }
 
+//Map Character Encoding
+if (get_option("sl_map_character_encoding")!="") {
+	$base_url .= "&oe=".get_option("sl_map_character_encoding");
+}
+
 // Iterate through the rows, geocoding each address
     $request_url = $base_url . "&q=" . urlencode($address);
    
@@ -269,7 +280,7 @@ function install_table() {
 }
 /*-------------------------------*/
 function head_scripts() {
-	global $sl_dir, $sl_base, $wpdb, $sl_version, $pagename;
+	global $sl_dir, $sl_base, $wpdb, $sl_version, $pagename, $map_character_encoding;
 	
 	print "\n<!-- ========= Google Maps Store Locator for WordPress (v$sl_version) ========== -->\n";
 
@@ -292,7 +303,7 @@ function head_scripts() {
 		$api_key=get_option('store_locator_api_key');
 		$google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
 	
-		print "<script src='http://$google_map_domain/maps?file=api&v=2&key=$api_key&sensor=false' type='text/javascript'></script>\n";
+		print "<script src='http://$google_map_domain/maps?file=api&v=2&key=$api_key&sensor=false{$map_character_encoding}' type='text/javascript'></script>\n";
 		print "<script src='".$sl_base."/js/store-locator-js.php' type='text/javascript'></script>
 <script src='".$sl_base."/js/store-locator.js' type='text/javascript'></script>
 <script src='".$sl_base."/js/functions.js' type='text/javascript'></script>\n";
@@ -446,7 +457,7 @@ $form="
 }
 /*-----------------------------------*/
 function sl_add_options_page() {
-	global $sl_dir, $sl_base, $text_domain;
+	global $sl_dir, $sl_base, $text_domain, $map_character_encoding;
 	$api=get_option('store_locator_api_key');
 	//add_menu_page('Edit Locations', 'View Locations', 9, '$sl_dir/options-store-locator.php');
 	add_menu_page(__("Store Locator", $text_domain), __("Store Locator", $text_domain), 9, $sl_dir.'/news-upgrades.php');
@@ -466,7 +477,7 @@ function sl_add_options_page() {
 }
 
 function add_admin_javascript() {
-        global $sl_base, $sl_dir, $google_map_domain, $sl_path;
+        global $sl_base, $sl_dir, $google_map_domain, $sl_path, $map_character_encoding;
 		$api=get_option('store_locator_api_key');
         print "<script src='".$sl_base."/js/functions.js'></script>\n
         <script type='text/javascript'>
@@ -475,7 +486,8 @@ function add_admin_javascript() {
         </script>\n";
         if (ereg("add-locations", $_GET[page])) {
             $google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
-            print "<script src='http://$google_map_domain/maps?file=api&v=2&key=$api&sensor=false' type='text/javascript'></script>\n";
+			
+            print "<script src='http://$google_map_domain/maps?file=api&v=2&key=$api&sensor=false{$map_character_encoding}' type='text/javascript'></script>\n";
             if (file_exists($sl_path."/addons/point-click-add/point-click-add.js")) {
 				print "<script src='".$sl_base."/addons/point-click-add/point-click-add.js'></script>\n";
 			} elseif (file_exists($sl_path."/js/point-click-add.js")) {

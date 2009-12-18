@@ -9,6 +9,8 @@ $sl_google_map_arr=explode(":", $_POST[google_map_domain]);
 update_option('sl_google_map_country', $sl_google_map_arr[0]);
 update_option('sl_google_map_domain', $sl_google_map_arr[1]);
 
+update_option('sl_map_character_encoding', $_POST[sl_map_character_encoding]);
+
 
 print "<div class='highlight'>".__("Successful Update", $text_domain)."</div> <!--meta http-equiv='refresh' content='0'-->";
 }
@@ -78,11 +80,36 @@ $the_domain["Taiwan"]="maps.google.com.tw"; //updated 6/13/09
 //$the_domain["Thailand"]="maps.google.co.th"; //added 6/13/09 //removed 12/17/09
 $the_domain["United Kingdom"]="maps.google.co.uk";
 
-
+$char_enc["Default (UTF-8)"]="utf-8";
+$char_enc["Western European (ISO-8859-1)"]="iso-8859-1";
+$char_enc["Western/Central European (ISO-8859-2)"]="iso-8859-2";
+$char_enc["Western/Southern European (ISO-8859-3)"]="iso-8859-3";
+$char_enc["Western European/Baltic Countries (ISO-8859-4)"]="iso-8859-4";
+$char_enc["Russian (Cyrillic)"]="iso-8859-5";
+$char_enc["Arabic (ISO-8859-6)"]="iso-8859-6";
+$char_enc["Greek (ISO-8859-7)"]="iso-8859-7";
+$char_enc["Hebrew (ISO-8859-8)"]="iso-8859-8";
+$char_enc["Western European w/amended Turkish (ISO-8859-9)"]="iso-8859-9";
+$char_enc["Western European w/Nordic characters (ISO-8859-10)"]="iso-8859-10";
+$char_enc["Thai (ISO-8859-11)"]="iso-8859-11";
+$char_enc["Baltic languages & Polish (ISO-8859-13)"]="iso-8859-13";
+$char_enc["Celtic languages (ISO-8859-14)"]="iso-8859-14";
+$char_enc["Japanese (Shift JIS)"]="shift_jis";
+$char_enc["Simplified Chinese (China)(GB 2312)"]="gb2312";
+$char_enc["Traditional Chinese (Taiwan)(Big 5)"]="big5";
+$char_enc["Hong Kong (HKSCS)"]="hkscs";
+$char_enc["Korea (EUS-KR)"]="eus-kr";
 
 foreach ($the_domain as $key=>$value) {
 	$selected=(get_option('sl_google_map_domain')==$value)?" selected " : "";
 	print "<option value='$key:$value' $selected>$key ($value)</option>\n";
+}
+print "</select><!--/td></tr><tr><td--><h2>".__("Select Character Encoding", $text_domain)."</h2>
+<select name='sl_map_character_encoding'>";
+
+foreach ($char_enc as $key=>$value) {
+	$selected=(get_option('sl_map_character_encoding')==$value)?" selected " : "";
+	print "<option value='$value' $selected>$key</option>\n";
 }
 print "</select></td></tr>
 <tr><td colspan='2'><input type='submit' value='".__("Update", $text_domain)."' class='button-primary'></td></tr></table></form>";
