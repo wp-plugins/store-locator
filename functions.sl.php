@@ -16,7 +16,7 @@ return $xmlStr;
 function initialize_variables() {
 
 global $height, $width, $width_units, $height_units, $radii;
-global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base, $location_table_view;
+global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base, $sl_upload_base, $location_table_view;
 global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search, $sl_default_map;
 global $sl_radius_label, $sl_website_label, $sl_num_initial_displayed, $sl_load_locations_default;
 global $sl_distance_unit, $sl_map_overview_control, $sl_admin_locations_per_page, $sl_instruction_message;
@@ -119,12 +119,12 @@ if (empty($google_map_domain)) {
 }
 $icon2=get_option('sl_map_end_icon');
 if (empty($icon2)) {
-	add_option('sl_map_end_icon', $sl_base.'/icons/marker.png');
+	add_option('sl_map_end_icon', $sl_upload_base.'/icons/marker.png');
 	$icon2=get_option('sl_map_end_icon');
 }
 $icon=get_option('sl_map_home_icon');
 if (empty($icon)) {
-	add_option('sl_map_home_icon', $sl_base.'/icons/arrow.png');
+	add_option('sl_map_home_icon', $sl_upload_base.'/icons/arrow.png');
 	$icon=get_option('sl_map_home_icon');
 }
 $height=get_option('sl_map_height');
@@ -246,13 +246,10 @@ curl_close($cURL);
 }
 /*-------------------------------*/
 function install_table() {
-	global $wpdb;
-	global $sl_db_version;
+	global $wpdb, $sl_db_version, $sl_path, $sl_upload_path;
 
 	$table_name = $wpdb->prefix . "store_locator";
-	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
-
-		$sql = "CREATE TABLE " . $table_name . " (
+	$sql = "CREATE TABLE " . $table_name . " (
 			sl_id mediumint(8) unsigned NOT NULL auto_increment,
 			sl_store varchar(255) NOT NULL,
 			sl_address varchar(255) NOT NULL,
@@ -271,16 +268,47 @@ function install_table() {
 			sl_private varchar(1) NOT NULL,
 			sl_neat_title varchar(255) NOT NULL,
 			PRIMARY KEY  (sl_id)
-			) ENGINE=innoDB ;";
-
+			) ENGINE=innoDB  DEFAULT CHARACTER SET=utf8  DEFAULT COLLATE=utf8_unicode_ci;";
+	
+	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($sql);
 		add_option("sl_db_version", $sl_db_version);
 	}
+	
+	$installed_ver = get_option( "sl_db_version" );
+	if( $installed_ver != $sl_db_version ) {
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		dbDelta($sql);
+		update_option("sl_db_version", $sl_db_version);
+	}
+	
+	if (!is_dir($sl_upload_path)) {
+		mkdir($sl_upload_path, 0755);
+		if (is_dir($sl_path . "/addons") && !is_dir($sl_upload_path . "/addons")) {
+			copyr($sl_path . "/addons", $sl_upload_path . "/addons");
+		}
+		if (is_dir($sl_path . "/themes") && !is_dir($sl_upload_path . "/themes")) {
+			copyr($sl_path . "/themes", $sl_upload_path . "/themes");
+		}
+		if (is_dir($sl_path . "/languages") && !is_dir($sl_upload_path . "/languages")) {
+			copyr($sl_path . "/languages", $sl_upload_path . "/languages");
+		}
+		if (is_dir($sl_path . "/images") && !is_dir($sl_upload_path . "/images")) {
+			copyr($sl_path . "/images", $sl_upload_path . "/images");
+		}
+		//mkdir($sl_upload_path . "/addons", 0755);
+		//mkdir($sl_upload_path . "/themes", 0755);
+		//mkdir($sl_upload_path . "/languages", 0755);
+		mkdir($sl_upload_path . "/custom-icons", 0755);
+		//mkdir($sl_upload_path . "/images", 0755);
+		mkdir($sl_upload_path . "/custom-css", 0755);
+		//copyr($sl_path . "/store-locator.css", $sl_upload_path . "/custom-css/store-locator.css");
+	}	
 }
 /*-------------------------------*/
 function head_scripts() {
-	global $sl_dir, $sl_base, $wpdb, $sl_version, $pagename, $map_character_encoding;
+	global $sl_dir, $sl_base, $sl_upload_base, $sl_path, $sl_upload_path, $wpdb, $sl_version, $pagename, $map_character_encoding;
 	
 	print "\n<!-- ========= Google Maps Store Locator for WordPress (v$sl_version) ========== -->\n";
 
@@ -303,14 +331,16 @@ function head_scripts() {
 		$api_key=get_option('store_locator_api_key');
 		$google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
 	
-		print "<script src='http://$google_map_domain/maps?file=api&v=2&key=$api_key&sensor=false{$map_character_encoding}' type='text/javascript'></script>\n";
+		print "<script src='http://$google_map_domain/maps?file=api&amp;v=2&amp;key=$api_key&amp;sensor=false{$map_character_encoding}' type='text/javascript'></script>\n";
 		print "<script src='".$sl_base."/js/store-locator-js.php' type='text/javascript'></script>
 <script src='".$sl_base."/js/store-locator.js' type='text/javascript'></script>
 <script src='".$sl_base."/js/functions.js' type='text/javascript'></script>\n";
-		print "<link  href='".$sl_base."/base.css' type='text/css' rel='stylesheet'/>\n";
-		print "<link  href='".$sl_base."/store-locator.css' type='text/css' rel='stylesheet'/>";
+		//print "<link  href='".$sl_base."/base.css' type='text/css' rel='stylesheet'/>\n"; //merged into store-locator.css 12/31/09 (v1.2.37)
+		//if store-locator.css exists in custom-css/ folder in uploads/ dir it takes precedence over, store-locator.css in store-locator plugin directory to allow for css customizations to be preserved after updates
+		$has_custom_css=(file_exists($sl_upload_path."/custom-css/store-locator.css"))? $sl_upload_base."/custom-css" : $sl_base; 
+		print "<link  href='".$has_custom_css."/store-locator.css' type='text/css' rel='stylesheet'/>";
 		$theme=get_option('sl_map_theme');
-		if ($theme!="") {print "\n<link href='".$sl_base."/themes/$theme/style.css' rel='stylesheet' type='text/css'/>";}
+		if ($theme!="") {print "\n<link  href='".$sl_upload_base."/themes/$theme/style.css' rel='stylesheet' type='text/css'/>";}
 		$zl=(trim(get_option('sl_zoom_level'))!="")? get_option('sl_zoom_level') : 4;		
 
 			//print "<style></style>";
@@ -330,7 +360,7 @@ function foot_scripts() {
 /*-------------------------------*/
 function ajax_map($content) {
 
-	global $sl_dir, $sl_base, $sl_path, $text_domain, $wpdb;
+	global $sl_dir, $sl_base, $sl_upload_base, $sl_path, $sl_upload_path, $text_domain, $wpdb;
 	if(! preg_match('|\[STORE-LOCATOR|', $content)) {
 		return $content;
 	}
@@ -370,17 +400,17 @@ $cs_options.="<option value='$value[city_state]'>$value[city_state]</option>";
 				}
 			}
 		}*/
-	$theme_base=$sl_base."/themes/".get_option('sl_map_theme');
-	$theme_path=$sl_path."/themes/".get_option('sl_map_theme');
+	$theme_base=$sl_upload_base."/themes/".get_option('sl_map_theme');
+	$theme_path=$sl_upload_path."/themes/".get_option('sl_map_theme');
 	if (get_option('sl_map_theme')=="") {
-		$theme_base=$sl_base."/images";
-		$theme_path=$sl_path."/images";
+		$theme_base=$sl_upload_base."/images";
+		$theme_path=$sl_upload_path."/images";
 	}
 	$sub_img=$theme_base."/search_button.png";
 	$mousedown=(file_exists($theme_path."/search_button_down.png"))? "onmousedown=\"this.src='$theme_base/search_button_down.png'\" onmouseup=\"this.src='$theme_base/search_button.png'\"" : "";
 	$mouseover=(file_exists($theme_path."/search_button_over.png"))? "onmouseover=\"this.src='$theme_base/search_button_over.png'\" onmouseout=\"this.src='$theme_base/search_button.png'\"" : "";
 	$button_style=(file_exists($theme_path."/search_button.png"))? "type='image' src='$sub_img' $mousedown $mouseover" : "type='submit'";
-	//print "$sub_img | ".$sl_path."/themes/".get_option('sl_map_theme')."/search_button.png";
+	//print "$sub_img | ".$sl_upload_path."/themes/".get_option('sl_map_theme')."/search_button.png";
 	$hide=(get_option('sl_remove_credits')==1)? "style='display:none;'" : "";
 	
 $form="
@@ -457,7 +487,7 @@ $form="
 }
 /*-----------------------------------*/
 function sl_add_options_page() {
-	global $sl_dir, $sl_base, $text_domain, $map_character_encoding;
+	global $sl_dir, $sl_base, $sl_upload_base, $text_domain, $map_character_encoding;
 	$api=get_option('store_locator_api_key');
 	//add_menu_page('Edit Locations', 'View Locations', 9, '$sl_dir/options-store-locator.php');
 	add_menu_page(__("Store Locator", $text_domain), __("Store Locator", $text_domain), 9, $sl_dir.'/news-upgrades.php');
@@ -477,7 +507,7 @@ function sl_add_options_page() {
 }
 
 function add_admin_javascript() {
-        global $sl_base, $sl_dir, $google_map_domain, $sl_path, $map_character_encoding;
+        global $sl_base, $sl_upload_base, $sl_dir, $google_map_domain, $sl_path, $sl_upload_path, $map_character_encoding;
 		$api=get_option('store_locator_api_key');
         print "<script src='".$sl_base."/js/functions.js'></script>\n
         <script type='text/javascript'>
@@ -487,9 +517,9 @@ function add_admin_javascript() {
         if (ereg("add-locations", $_GET[page])) {
             $google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
 			
-            print "<script src='http://$google_map_domain/maps?file=api&v=2&key=$api&sensor=false{$map_character_encoding}' type='text/javascript'></script>\n";
-            if (file_exists($sl_path."/addons/point-click-add/point-click-add.js")) {
-				print "<script src='".$sl_base."/addons/point-click-add/point-click-add.js'></script>\n";
+            print "<script src='http://$google_map_domain/maps?file=api&amp;v=2&amp;key=$api&amp;sensor=false{$map_character_encoding}' type='text/javascript'></script>\n";
+            if (file_exists($sl_upload_path."/addons/point-click-add/point-click-add.js")) {
+				print "<script src='".$sl_upload_base."/addons/point-click-add/point-click-add.js'></script>\n";
 			} elseif (file_exists($sl_path."/js/point-click-add.js")) {
 				print "<script src='".$sl_base."/js/point-click-add.js'></script>\n";
 			}

@@ -31,6 +31,7 @@ if (!$connection) {
 
 // Set the active MySQL database
 $db_selected = mysql_select_db($database, $connection);
+mysql_query("SET NAMES utf8");
 if (!$db_selected) {
   die ('Can\'t use db : ' . mysql_error());
 }

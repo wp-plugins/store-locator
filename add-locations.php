@@ -30,11 +30,11 @@ if ($_POST[sl_store] && $_GET[mode]!="pca") {
 if ($_POST[remote] && trim($_POST[query])!="" || $_POST[finish_import]) {
 	
 	if (ereg(".*\..{2,}", $_POST[server])) {
-		include($sl_path."/addons/db-importer/remoteConnect.php");
+		include($sl_upload_path."/addons/db-importer/remoteConnect.php");
 	}
 	else {
 		/*if (file_exists("addons/db-importer/localImport.php")) {
-			include($sl_path."/addons/db-importer/localImport.php");
+			include($sl_upload_path."/addons/db-importer/localImport.php");
 		}
 		else {*/
 			include($sl_path."/localImport.php");
@@ -49,8 +49,8 @@ $newfile="temp-file.csv";
 $target_path="$root/";
 $root=ABSPATH."wp-content/plugins/".dirname(plugin_basename(__FILE__));
 //print_r($_FILES);
-if (move_uploaded_file($_FILES['csv_import']['tmp_name'], "$root/$newfile") && file_exists($sl_path."/addons/csv-xml-importer-exporter/csvImport.php")) {
-	include($sl_path."/addons/csv-xml-importer-exporter/csvImport.php");
+if (move_uploaded_file($_FILES['csv_import']['tmp_name'], "$root/$newfile") && file_exists($sl_upload_path."/addons/csv-xml-importer-exporter/csvImport.php")) {
+	include($sl_upload_path."/addons/csv-xml-importer-exporter/csvImport.php");
 }
 else{
 		//echo "<div style='background-color:salmon; padding:5px'>There was an error uploading the file, please try again. </div>";
@@ -58,7 +58,7 @@ else{
 
 //If adding via the Point, Click, Add map (accepting AJAX)
 if ($_GET[mode]=="pca") {
-	include($sl_path."/addons/point-click-add/pcaImport.php");
+	include($sl_upload_path."/addons/point-click-add/pcaImport.php");
 }
 	
 $base=get_option('siteurl');
@@ -107,16 +107,16 @@ print "
 </td>
 <td style='/*border-right:solid silver 1px;*/ padding-top:0px;' valign='top'>";
 
-if (file_exists($sl_path."/addons/csv-xml-importer-exporter/csv-import-form.php")) {
-	include($sl_path."/addons/csv-xml-importer-exporter/csv-import-form.php");
+if (file_exists($sl_upload_path."/addons/csv-xml-importer-exporter/csv-import-form.php")) {
+	include($sl_upload_path."/addons/csv-xml-importer-exporter/csv-import-form.php");
 	print "<br>";
 }
 /*else {
 	print "<A href='http://www.viadat.com/products-page/store-locator-add-ons/csv-importer--exporter--xml-exporter/' target='_blank'><center><b>Addon:</b> CSV Importer/Exporter & XML Exporter</center><br><br><img src='$sl_base/screenshot-3.jpg' border='0'></a>";
 }*/
 include($sl_path."/database-info.php");
-if (file_exists($sl_path."/addons/db-importer/db-import-form.php")) {
-	include($sl_path."/addons/db-importer/db-import-form.php");
+if (file_exists($sl_upload_path."/addons/db-importer/db-import-form.php")) {
+	include($sl_upload_path."/addons/db-importer/db-import-form.php");
 }
 
 print "
@@ -124,8 +124,8 @@ print "
 <td valign='top' style='padding-top:0px;'>
 ";
 
-if (file_exists($sl_path."/addons/point-click-add/point-click-add-form.php")) {
-	include($sl_path."/addons/point-click-add/point-click-add-form.php");
+if (file_exists($sl_upload_path."/addons/point-click-add/point-click-add-form.php")) {
+	include($sl_upload_path."/addons/point-click-add/point-click-add-form.php");
 }
 /*else {
 	print "<A href='http://www.viadat.com/products-page/store-locator-add-ons/point-click--add-mapper/' target='_blank'><center><b>Addon:</b> Point, Click, Add Mapper</center><br><br><img src='$sl_base/screenshot-4.jpg' border='0'></a>";

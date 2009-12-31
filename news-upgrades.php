@@ -14,8 +14,8 @@ print "<div class='wrap'>
 ?>
 <form class="form-table" name="dofollow" action="" method="post">
 <p class="submit">
-<strong><?php print __("Current Version", $text_domain).": $sl_version "; ?></strong>&nbsp;&nbsp;&nbsp;<input type="submit" class="button-primary" <?php if (!$canwrite) echo(' disabled="disabled" ');?> name="sl_update" style='font-weight:bold' value="<?php _e('Upgrade to Newest Version', $text_domain)?> &raquo;" />
-<br><?php _e("(This upgrader preserves added themes, addons, images, icons, & language files as requested.  Remember to backup & check for upgrades often.)", $text_domain) ?>
+<strong><?php print __("Current Version", $text_domain).": $sl_version "; ?></strong><!--&nbsp;&nbsp;&nbsp;<input type="submit" class="button-primary" <?php if (!$canwrite) echo(' disabled="disabled" ');?> name="sl_update" style='font-weight:bold' value="<?php _e('Upgrade to Newest Version', $text_domain)?> &raquo;" />
+<br><?php _e("(This upgrader preserves added themes, addons, images, icons, & language files as requested.  Remember to backup & check for upgrades often.)", $text_domain) ?>-->
 </form>
 </p>
 <p><?php if (ereg('wordpress-store-locator-location-finder', $_SERVER[REQUEST_URI])) { print "<b>Note:</b> Your directory is <b>'wordpress-store-locator-location-finder'</b>. Please rename to <b>'store-locator'</b> to continue receiving notifications of future updates in your admin panel."; } ?></p>
@@ -90,21 +90,22 @@ if ($_POST) {
 	include("updateLicenses.php");
 }
 
-$ao_dir=opendir($sl_path."/addons/");
-print "<table width='100%' border='0'><tr>"; 
-while (false !== ($a_lic=readdir($ao_dir))) {
-	if (!ereg("^\.{1,2}$", $a_lic) && !ereg("\.(php|txt|htm(l)?)", $a_lic)) {
+if (is_dir($sl_upload_path."/addons/")) {
+	$ao_dir=opendir($sl_upload_path."/addons/");
+	print "<table width='100%' border='0'><tr>"; 
+	while (false !== ($a_lic=readdir($ao_dir))) {
+		if (!ereg("^\.{1,2}$", $a_lic) && !ereg("\.(php|txt|htm(l)?)", $a_lic)) {
 
 			$style="style='border:red; background-color:salmon'";
-		if (get_option('sl_activation_'.$a_lic)!="") {
-			$a_lic_arr["sl_activation_".$a_lic]=get_option('sl_activation_'.$a_lic);
-			$style="style='border:green; background-color:LightGreen'";
-		}
-		if (get_option('sl_license_'.$a_lic)!="") {
-			$a_lic_arr["sl_license_".$a_lic]=get_option('sl_license_'.$a_lic);
+			if (get_option('sl_activation_'.$a_lic)!="") {
+				$a_lic_arr["sl_activation_".$a_lic]=get_option('sl_activation_'.$a_lic);
+				$style="style='border:green; background-color:LightGreen'";
+			}
+			if (get_option('sl_license_'.$a_lic)!="") {
+				$a_lic_arr["sl_license_".$a_lic]=get_option('sl_license_'.$a_lic);
 			
-		}
-$lic_str.="<td><div class='highlight' $style><b>".ucwords(ereg_replace("-", " ", $a_lic))."</b></div>
+			}
+			$lic_str.="<td><div class='highlight' $style><b>".ucwords(ereg_replace("-", " ", $a_lic))."</b></div>
 <table style='border:none'>
 <tr>
 <td>".__("Key", $text_domain).":</td></tr>
@@ -113,11 +114,13 @@ $lic_str.="<td><div class='highlight' $style><b>".ucwords(ereg_replace("-", " ",
 </table>
 </td>";
 
-if ($ctr%2==1) {$lic_str.="</tr><tr>";}
-$ctr++;
+			if ($ctr%2==1) {$lic_str.="</tr><tr>";}
+			$ctr++;
+		}
 	}
+	print "</table>";
 }
-print "</table>";
+
 print "<form method='post' name='licenseForm'><table style='border:none'><tr>$lic_str</tr></table>
 <br><input class='button-primary' type='submit' value='".__("Activate", $text_domain)."'>
 <br>".__("Looking for more addons & themes", $text_domain)."? <a href='http://www.viadat.com/products-page'>".__("It's all right here", $text_domain)."</a>

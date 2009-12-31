@@ -59,7 +59,7 @@ else {
 	}
 	if (eregi("multi", $_POST[act])) {
 		//if bulk updating is used
-		include("$sl_path/addons/multiple-field-updater/multiLocationUpdate.php");
+		include($sl_upload_path."/addons/multiple-field-updater/multiLocationUpdate.php");
 	}
 	if ($_POST[act]=="locationsPerPage") {
 		//If bulk delete is used
@@ -114,7 +114,7 @@ print "</select><input type='button' value='".__("Change", $text_domain)."' clas
 </td>
 <td align=right width='33%'>";
 
-if (file_exists("$sl_path/addons/multiple-field-updater/multiLocationUpdate.php")) {
+if (file_exists($sl_upload_path."/addons/multiple-field-updater/multiLocationUpdate.php")) {
 print "<b>".__("Updater", $text_domain).":</b>&nbsp;".get_option('sl_location_updater_type')."&nbsp;(<a href='".ereg_replace("&changeUpdater=1", "", $_SERVER[REQUEST_URI])."&changeUpdater=1'>".__("Change Updater", $text_domain)."</a>)";
 }
 

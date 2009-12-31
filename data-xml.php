@@ -1,6 +1,6 @@
 <?php
 /*
-include("$sl_path/cache/cacher.php"); 
+include("$sl_upload_path/cache/cacher.php"); 
 
 var $total_xml;
 function cache_xml($buffer) {
@@ -21,6 +21,7 @@ if (!$connection) {
 
 // Set the active MySQL database
 $db_selected = mysql_select_db($database, $connection);
+mysql_query("SET NAMES utf8");
 if (!$db_selected) {
   die ('Can\'t use db : ' . mysql_error());
 }
@@ -57,7 +58,7 @@ while ($row = @mysql_fetch_assoc($result)){
 // End XML file
 echo "</markers>\n";
 
-/*include("$sl_path/cache/cacher-end.php"); 
+/*include("$sl_upload_path/cache/cacher-end.php"); 
 */
 ?>
 

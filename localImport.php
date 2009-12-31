@@ -27,6 +27,7 @@ $query=$_POST[query];
 //Doesn't use wpdb functionality because it is possible that datbase (or table)
 $link=mysql_connect(DB2_HOST,DB2_USER,DB2_PASS);
 mysql_select_db(DB2_NAME,$link);
+mysql_query("SET NAMES utf8");
 $sql=$query;
 $result=mysql_query($sql,$link);
 $rez=array();

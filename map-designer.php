@@ -35,34 +35,52 @@ print "<div class='highlight'>".__("Successful Update", $text_domain)." $view_li
 print "<h2>".__("Map Designer", $text_domain)."</h2><br><form method='post' name='mapDesigner'><table class='widefat'><thead><tr><th colspan='2'>".__("Map Designer", $text_domain)."</th><!--td><".__("Designer", $text_domain)."--></td--></tr></thead>";
 initialize_variables();
 
-$icon_dir=opendir($sl_path."/icons/");
- 
+$icon_dir=opendir($sl_path."/icons/"); 
 while (false !== ($an_icon=readdir($icon_dir))) {
-if (!ereg("^\.{1,2}$", $an_icon) && !ereg("shadow", $an_icon) && !ereg("\.db", $an_icon)) {
+	if (!ereg("^\.{1,2}$", $an_icon) && !ereg("shadow", $an_icon) && !ereg("\.db", $an_icon)) {
 
-$icon_str.="<img style='height:25px; cursor:hand; cursor:pointer; border:solid white 2px; padding:2px' src='$sl_base/icons/$an_icon' onclick='document.forms[\"mapDesigner\"].icon.value=this.src;document.getElementById(\"prev\").src=this.src;' onmouseover='style.borderColor=\"red\";' onmouseout='style.borderColor=\"white\";'>";
+		$icon_str.="<img style='height:25px; cursor:hand; cursor:pointer; border:solid white 2px; padding:2px' src='$sl_base/icons/$an_icon' onclick='document.forms[\"mapDesigner\"].icon.value=this.src;document.getElementById(\"prev\").src=this.src;' onmouseover='style.borderColor=\"red\";' onmouseout='style.borderColor=\"white\";'>";
+	}
 }
+if (is_dir($sl_upload_path."/custom-icons/")) {
+	$icon_upload_dir=opendir($sl_upload_path."/custom-icons/");
+	while (false !== ($an_icon=readdir($icon_upload_dir))) {
+		if (!ereg("^\.{1,2}$", $an_icon) && !ereg("shadow", $an_icon) && !ereg("\.db", $an_icon)) {
+
+			$icon_str.="<img style='height:25px; cursor:hand; cursor:pointer; border:solid white 2px; padding:2px' src='$sl_upload_base/custom-icons/$an_icon' onclick='document.forms[\"mapDesigner\"].icon.value=this.src;document.getElementById(\"prev\").src=this.src;' onmouseover='style.borderColor=\"red\";' onmouseout='style.borderColor=\"white\";'>";
+		}
+	}
 }
 
 $icon_dir=opendir($sl_path."/icons/");
 while (false !== ($an_icon=readdir($icon_dir))) {
+	if (!ereg("^\.{1,2}$", $an_icon) && !ereg("shadow", $an_icon) && !ereg("\.db", $an_icon)) {
 
-if (!ereg("^\.{1,2}$", $an_icon) && !ereg("shadow", $an_icon) && !ereg("\.db", $an_icon)) {
-
-$icon2_str.="<img style='height:25px; cursor:hand; cursor:pointer; border:solid white 2px; padding:2px' src='$sl_base/icons/$an_icon' onclick='document.forms[\"mapDesigner\"].icon2.value=this.src;document.getElementById(\"prev2\").src=this.src;' onmouseover='style.borderColor=\"red\";' onmouseout='style.borderColor=\"white\";'>";
+		$icon2_str.="<img style='height:25px; cursor:hand; cursor:pointer; border:solid white 2px; padding:2px' src='$sl_base/icons/$an_icon' onclick='document.forms[\"mapDesigner\"].icon2.value=this.src;document.getElementById(\"prev2\").src=this.src;' onmouseover='style.borderColor=\"red\";' onmouseout='style.borderColor=\"white\";'>";
+	}
 }
+if (is_dir($sl_upload_path."/custom-icons/")) {
+	$icon_upload_dir=opendir($sl_upload_path."/custom-icons/");
+	while (false !== ($an_icon=readdir($icon_upload_dir))) {
+		if (!ereg("^\.{1,2}$", $an_icon) && !ereg("shadow", $an_icon) && !ereg("\.db", $an_icon)) {
+
+			$icon2_str.="<img style='height:25px; cursor:hand; cursor:pointer; border:solid white 2px; padding:2px' src='$sl_upload_base/custom-icons/$an_icon' onclick='document.forms[\"mapDesigner\"].icon2.value=this.src;document.getElementById(\"prev2\").src=this.src;' onmouseover='style.borderColor=\"red\";' onmouseout='style.borderColor=\"white\";'>";
+		}
+	}
 }
 
-$theme_dir=opendir($sl_path."/themes/"); 
+if (is_dir($sl_upload_path."/themes/")) {
+	$theme_dir=opendir($sl_upload_path."/themes/"); 
 
-while (false !== ($a_theme=readdir($theme_dir))) {
-if (!ereg("^\.{1,2}$", $a_theme) && !ereg("\.(php|txt|htm(l)?)", $a_theme)) {
+	while (false !== ($a_theme=readdir($theme_dir))) {
+		if (!ereg("^\.{1,2}$", $a_theme) && !ereg("\.(php|txt|htm(l)?)", $a_theme)) {
 
-$selected=($a_theme==get_option('sl_map_theme'))? " selected " : "";
-
-$theme_str.="<option value='$a_theme' $selected>$a_theme</option>\n";
+			$selected=($a_theme==get_option('sl_map_theme'))? " selected " : "";
+			$theme_str.="<option value='$a_theme' $selected>$a_theme</option>\n";
+		}
+	}
 }
-}
+	
 $zl[]=0;$zl[]=1;$zl[]=2;$zl[]=3;$zl[]=4;$zl[]=5;$zl[]=6;$zl[]=7;$zl[]=8;
 $zl[]=9;$zl[]=10;$zl[]=11;$zl[]=12;$zl[]=13;$zl[]=14;$zl[]=15;$zl[]=16;
 $zl[]=17;$zl[]=18;$zl[]=19;
