@@ -160,6 +160,38 @@ if ($_POST['sl_update'] || ($_GET[_wpnonce] && wp_verify_nonce($_GET[_wpnonce], 
 				}
 				//Call install_table() to make sure database is up to date for this newest version, since activation hook may not be called
 				install_table();
+				
+				/*For some reason update from 1.2.36 to 1.2.37, install_table() above isn't automatically copying addons, themes, languages, icons, css, images over to new wp-content/uploads/sl-uploads folder
+				Doing it manually here (as of v1.2.37.1)*/
+				
+				if (!is_dir($sl_upload_path)) {
+					mkdir($sl_upload_path, 0755);
+				}
+		if (is_dir($sl_path . "/addons") && !is_dir($sl_upload_path . "/addons")) {
+			copyr($sl_path . "/addons", $sl_upload_path . "/addons");
+		}
+		if (is_dir($sl_path . "/themes") && !is_dir($sl_upload_path . "/themes")) {
+			copyr($sl_path . "/themes", $sl_upload_path . "/themes");
+		}
+		if (is_dir($sl_path . "/languages") && !is_dir($sl_upload_path . "/languages")) {
+			copyr($sl_path . "/languages", $sl_upload_path . "/languages");
+		}
+		if (is_dir($sl_path . "/images") && !is_dir($sl_upload_path . "/images")) {
+			copyr($sl_path . "/images", $sl_upload_path . "/images");
+		}
+		//mkdir($sl_upload_path . "/addons", 0755);
+		//mkdir($sl_upload_path . "/themes", 0755);
+		//mkdir($sl_upload_path . "/languages", 0755);
+		if (!is_dir($sl_upload_path . "/custom-icons")) {
+			mkdir($sl_upload_path . "/custom-icons", 0755);
+		}
+		//mkdir($sl_upload_path . "/images", 0755);
+		if (!is_dir($sl_upload_path . "/custom-css")) {
+			mkdir($sl_upload_path . "/custom-css", 0755);
+		}
+		//copyr($sl_path . "/store-locator.css", $sl_upload_path . "/custom-css/store-locator.css");
+					
+				
 				//Call initialize_variables() in order to set the default value of any newly introduced variables 
 				initialize_variables();
 				//set permissions to 755 for store-locator-js.php

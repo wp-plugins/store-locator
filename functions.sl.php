@@ -283,8 +283,9 @@ function install_table() {
 		update_option("sl_db_version", $sl_db_version);
 	}
 	
-	if (!is_dir($sl_upload_path)) {
-		mkdir($sl_upload_path, 0755);
+		if (!is_dir($sl_upload_path)) {
+			mkdir($sl_upload_path, 0755);
+		}
 		if (is_dir($sl_path . "/addons") && !is_dir($sl_upload_path . "/addons")) {
 			copyr($sl_path . "/addons", $sl_upload_path . "/addons");
 		}
@@ -300,11 +301,14 @@ function install_table() {
 		//mkdir($sl_upload_path . "/addons", 0755);
 		//mkdir($sl_upload_path . "/themes", 0755);
 		//mkdir($sl_upload_path . "/languages", 0755);
-		mkdir($sl_upload_path . "/custom-icons", 0755);
+		if (!is_dir($sl_upload_path . "/custom-icons")) {
+			mkdir($sl_upload_path . "/custom-icons", 0755);
+		}
 		//mkdir($sl_upload_path . "/images", 0755);
-		mkdir($sl_upload_path . "/custom-css", 0755);
+		if (!is_dir($sl_upload_path . "/custom-css")) {
+			mkdir($sl_upload_path . "/custom-css", 0755);
+		}
 		//copyr($sl_path . "/store-locator.css", $sl_upload_path . "/custom-css/store-locator.css");
-	}	
 }
 /*-------------------------------*/
 function head_scripts() {
@@ -415,9 +419,9 @@ $cs_options.="<option value='$value[city_state]'>$value[city_state]</option>";
 	
 $form="
 <div id='sl_div'>
-  <form onsubmit='searchLocations(); return false;' name='searchForm' action=''>
+  <form onsubmit='searchLocations(); return false;' id='searchForm' action=''>
     <table border='0' cellpadding='3px' class='sl_header'><tr>
-	<td valign='top' style='whitespace:nowrap'>$search_label&nbsp;</td>
+	<td valign='top' id='search_label'>$search_label&nbsp;</td>
 	<td ";
 	
 	if (get_option('sl_use_city_search')!=1) {$form.=" colspan='2' ";}
@@ -431,8 +435,8 @@ $form="
 	
 	if ($cs_array && get_option('sl_use_city_search')==1) {
 	$form.="
-	<td valign='top'>";
-	$form.="<select id='addressInput2' onchange='aI=document.forms[\"searchForm\"].addressInput;if(this.value!=\"\"){oldvalue=aI.value;aI.value=this.value;}else{aI.value=oldvalue;}'>
+	<td id='addressInput2_container'>";
+	$form.="<select id='addressInput2' onchange='aI=document.getElementById(\"searchForm\").addressInput;if(this.value!=\"\"){oldvalue=aI.value;aI.value=this.value;}else{aI.value=oldvalue;}'>
 <option value=''>--Search By City--</option>$cs_options</select></td>";
 	}
 	
@@ -443,7 +447,7 @@ $form="
 	if ($name_array && get_option('sl_use_name_search')==1) {
 	$form.="
 	<td valign='top'>";
-	$form.="<select id='addressInput3' onchange='aI=document.forms[\"searchForm\"].addressInput;if(this.value!=\"\"){oldvalue=aI.value;aI.value=this.value;}else{aI.value=oldvalue;}'>
+	$form.="<select id='addressInput3' onchange='aI=document.getElementById(\"searchForm\").addressInput;if(this.value!=\"\"){oldvalue=aI.value;aI.value=this.value;}else{aI.value=oldvalue;}'>
 	<option value=''>--Search By Name--</option>
 	$name_options
     </select>";
@@ -454,8 +458,8 @@ $form="
 	$sl_radius_label=get_option('sl_radius_label');
 	$form.="
 	</tr><tr>
-	 <td valign='top'>".__("$sl_radius_label", $text_domain)."</td>
-	 <td width='33%' valign='top' ";
+	 <td id='radius_label'>".__("$sl_radius_label", $text_domain)."</td>
+	 <td id='radiusSelect_td' ";
 	
 	if (get_option('sl_use_city_search')==1) {$form.="colspan='2'";}
 	 
@@ -469,11 +473,11 @@ $form="
 	</tr></table>
 <table width='100%' cellspacing='0px' cellpadding='0px' style='/*border:solid silver 1px*/'> 
      <tr>
-        <td width='100%' valign='top'> <div id='map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' width='$width$width_units;' $hide><tr><td style='text-align:left'><a href='http://www.viadat.com/store-locator' target='_blank'>Lots of Locales</a></td><td align='right' style='padding-right:5px; text-align:right'> <a href='http://www.viadat.com' target='_blank' title='by Viadat Creations'>by Viadat</a></td></tr></table>
+        <td width='100%' valign='top'> <div id='map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' width='$width$width_units;' $hide><tr><td class='sl_footer_left_column'><a href='http://www.viadat.com/store-locator' target='_blank'>Lots of Locales</a></td><td class='sl_footer_right_column'> <a href='http://www.viadat.com' target='_blank' title='by Viadat Creations'>by Viadat</a></td></tr></table>
 		</td>
       </tr>
 	  <tr id='cm_mapTR'>
-        <td width='' valign='top' style='/*display:hidden; border-right:solid silver*/ 1px' id='map_sidebar_td'> <div id='map_sidebar' style='width:$width$width_units;/* $height$height_units; */'> <div class='text_below_map'>$sl_instruction_message</div></div>
+        <td width='' valign='top' style='/*display:hidden; border-right:solid silver 1px*/' id='map_sidebar_td'> <div id='map_sidebar' style='width:$width$width_units;/* $height$height_units; */'> <div class='text_below_map'>$sl_instruction_message</div></div>
         </td></tr>
   </table></form>
 <p><script type=\"text/javascript\">if (document.getElementById(\"map\")){setTimeout(\"sl_load()\",1000);}</script></p>

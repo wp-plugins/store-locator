@@ -18,7 +18,7 @@ print "<div class='wrap'>
 <br><?php _e("(This upgrader preserves added themes, addons, images, icons, & language files as requested.  Remember to backup & check for upgrades often.)", $text_domain) ?>-->
 </form>
 </p>
-<p><?php if (ereg('wordpress-store-locator-location-finder', $_SERVER[REQUEST_URI])) { print "<b>Note:</b> Your directory is <b>'wordpress-store-locator-location-finder'</b>. Please rename to <b>'store-locator'</b> to continue receiving notifications of future updates in your admin panel."; } ?></p>
+<p style='color:red'><?php if (ereg('wordpress-store-locator-location-finder', $_SERVER[REQUEST_URI])) { print "<b>Note:</b> Your directory is <b>'wordpress-store-locator-location-finder'</b>. Please rename to <b>'store-locator'</b> to continue receiving notifications of future updates in your admin panel. After changing to <b>'store-locator'</b>, make sure to also update your icon URLs on the 'Map Designer' page."; } ?></p>
 
 <?php if (!$canwrite) {
 	echo("<p><strong>"); echo(sprintf(__("Please make sure that %s is writable.", $text_domain), $sl_up->upgrade_folder)); echo("</p></strong>");

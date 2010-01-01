@@ -4,7 +4,7 @@ Donate link: http://www.viadat.com/donate
 Tags: store locator, store locater, google maps, dealer locator, dealer locater, zip code search, shop locator, shop finder, zipcode, location finder, places, stores, maps, mapping, mapper, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.5
 Tested up to: 2.9.1
-Stable tag: 1.2.37
+Stable tag: 1.2.37.1
 
 A store locator plugin for developers who create sites in Wordpress & web site owners who want to quickly show important locations.
 
@@ -27,14 +27,15 @@ Its strength is in its flexibility to allow you to easily manage a few or a thou
 * Has good loading speed since Javascript & CSS only load on pages that display the map (or might need access to the JS/CSS)
 
 = Upgrades =
-* If you need power features, [supercharge your store locator with addons & themes. Upgrade now!](http://www.viadat.com/products-page)
+If you need power features, enhance your store locator with addons & themes. [Upgrade Here](http://www.viadat.com/products-page)
 
-= Important Links =
-[Store Locator & Translations](http://www.viadat.com/store-locator) | [Blog - New Features & Updates](http://www.viadat.com/category/store-locator) | [Documentation](http://docs.viadat.com)
+= Other Links =
+[Store Locator & Translations](http://www.viadat.com/store-locator) | [Addons & Themes](http://www.viadat.com/products-page) | [Blog - New Features & Updates](http://www.viadat.com/category/store-locator) | [Documentation](http://docs.viadat.com)
 
-= Special Thanks to Translators! (You can always email new translations to info{at}viadat{dot}com) =
-* Simon S. -- German (Deutsche), Italian (Italiano), Czech (Ceština), French (Français)
-* Gwyn F. -- Spanish (Español)
+= Special Thanks to Translators! (Email new translations to info{at}viadat{dot}com) =
+* Simon Schmid: German (Deutsche), Italian (Italiano), Czech (Cestina), French (Francais)
+* Gwyn Fisher: Spanish (Espanol)
+
 (If you provide your web address, we'll link back to you)
 
 == Installation ==
@@ -64,6 +65,11 @@ Its strength is in its flexibility to allow you to easily manage a few or a thou
 
 == Changelog ==
 
+= 1.2.37.1 =
+* Moved more inline styles classes & ids in 'store-locator.css' for better styling of store locator map
+* Updated automatic folder creation and moving of addons, themes, languages, images, etc. in the 'uploads/sl-uploads' folder.  
+* Very important -- make sure to update from version 1.2.37 to avoid any map issues
+
 = 1.2.37 =
 * Updated default database, server, & connection character set and collation.  Should complete international language support.
 * A few XHTML Transitional 1.0 validation fixes
@@ -71,7 +77,7 @@ Its strength is in its flexibility to allow you to easily manage a few or a thou
 * Directory structure update: Upgrades (addons, themes), icons, languages, images, custom css moved to `wp-content/uploads/sl-uploads` directory (moved automatically).  
 * WordPress default one-click updater is now active again.  (Custom quick updater introduced in version 1.2.21 is no longer needed)
 * Moved inline styles to stylesheet classes for search result text and columns, and for text in info bubble on map.  Fully customizable from 'store-locator.css' now.
-* =NOTE:= As a result of the updated directory structure, you no longer need to worry about losing any of your customizations (CSS, addons, themes, icons, images, languages)! Place any customizations that you make into the corresponding folder in the `wp-content/uploads/sl-uploads` directory and they will be safe during upgrades to newer, better versions (For example: if place 'store-locator.css' in the `wp-content/uploads/sl-uploads/custom-css` folder, the plugin will use those styles instead of the styles of any 'store-locator.css' in the main `store-locator` directory.  So, when an update is performed --- you don't lose your style customizations!)
+* NOTE: As a result of the updated directory structure, you no longer need to worry about losing any of your customizations (CSS, addons, themes, icons, images, languages)! Place any customizations that you make into the corresponding folder in the `wp-content/uploads/sl-uploads` directory and they will be safe during upgrades to newer, better versions (For example: if place 'store-locator.css' in the `wp-content/uploads/sl-uploads/custom-css` folder, the plugin will use those styles instead of the styles of any 'store-locator.css' in the main `store-locator` directory.  So, when an update is performed --- you don't lose your style customizations!)
 
 = 1.2.36 =
 * Added option to select character encoding set on 'Localization & Google API Key' page. Should help with supporting characters in many different languages.
