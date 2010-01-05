@@ -1,6 +1,7 @@
 <div class='wrap'>
 <?php 
 
+if (!$_POST) {move_upload_directories();}
 if ($_POST) {
 $_POST[height]=ereg_replace("[^0-9]", "", $_POST[height]);
 $_POST[width]=ereg_replace("[^0-9]", "", $_POST[width]);
@@ -109,11 +110,13 @@ $map_type["".__("Satellite", $text_domain).""]="G_SATELLITE_MAP";
 $map_type["".__("Hybrid", $text_domain).""]="G_HYBRID_MAP";
 $map_type["".__("Physical", $text_domain).""]="G_PHYSICAL_MAP";
 
-	foreach($map_type as $key=>$value) {
-		$selected2=(get_option('sl_map_type')==$value)? " selected " : "";
-		$map_type_options.="<option value='$value' $selected2>$key</option>\n";
-	}
-
+foreach($map_type as $key=>$value) {
+	$selected2=(get_option('sl_map_type')==$value)? " selected " : "";
+	$map_type_options.="<option value='$value' $selected2>$key</option>\n";
+}
+$icon_notification_msg=((ereg("wordpress-store-locator-location-finder", get_option('sl_map_home_icon')) && ereg("^store-locator", $sl_dir)) || (ereg("wordpress-store-locator-location-finder", get_option('sl_map_end_icon')) && ereg("^store-locator", $sl_dir)))? "<div class='highlight' style='background-color:LightYellow;color:red'><span style='color:red'>You have switched from <strong>'wordpress-store-locator-location-finder'</strong> to <strong>'store-locator'</strong> --- great!<br>
+Now, please re-select your <b>'Home Icon'</b> and <b>'Destination Icon'</b> below, so that they show up properly on your store locator map.</span></div>" : "" ;
+	
 print "
 <tr><td colspan='1' width='40%' class='left_side'><h2>".__("Defaults", $text_domain)."</h2>
 <table class='map_designer_section'><tr><td>".__("Choose Default Map Type Shown to Visitors", $text_domain).":</td>
@@ -164,6 +167,7 @@ print "</select></td></tr>
 
 </td><!--/tr>
 <tr--><td colspan='1'><h2>".__("Design", $text_domain)."</h2>
+$icon_notification_msg
 <table class='map_designer_section right_side'><tr>
 <tr><td valign='top'>".__("Choose Theme", $text_domain)."</td><td valign='top'> <select name='theme' onchange=\"\"><option value=''>".__("No Theme Selected", $text_domain)."</option>$theme_str</select>&nbsp;&nbsp;&nbsp;<a href='http://www.viadat.com/products-page/store-locator-themes/' target='_blank'>Get&nbsp;Themes &raquo;</a></td></tr>
 <tr><td>".__("Remove Credits", $text_domain).":</td>

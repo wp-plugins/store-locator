@@ -162,35 +162,9 @@ if ($_POST['sl_update'] || ($_GET[_wpnonce] && wp_verify_nonce($_GET[_wpnonce], 
 				install_table();
 				
 				/*For some reason update from 1.2.36 to 1.2.37, install_table() above isn't automatically copying addons, themes, languages, icons, css, images over to new wp-content/uploads/sl-uploads folder
-				Doing it manually here (as of v1.2.37.1)*/
+				Doing it manually here (as of v1.2.37.1) .  Update: as of 1.2.38, moved to function 'move_upload_directories()' */
 				
-				if (!is_dir($sl_upload_path)) {
-					mkdir($sl_upload_path, 0755);
-				}
-		if (is_dir($sl_path . "/addons") && !is_dir($sl_upload_path . "/addons")) {
-			copyr($sl_path . "/addons", $sl_upload_path . "/addons");
-		}
-		if (is_dir($sl_path . "/themes") && !is_dir($sl_upload_path . "/themes")) {
-			copyr($sl_path . "/themes", $sl_upload_path . "/themes");
-		}
-		if (is_dir($sl_path . "/languages") && !is_dir($sl_upload_path . "/languages")) {
-			copyr($sl_path . "/languages", $sl_upload_path . "/languages");
-		}
-		if (is_dir($sl_path . "/images") && !is_dir($sl_upload_path . "/images")) {
-			copyr($sl_path . "/images", $sl_upload_path . "/images");
-		}
-		//mkdir($sl_upload_path . "/addons", 0755);
-		//mkdir($sl_upload_path . "/themes", 0755);
-		//mkdir($sl_upload_path . "/languages", 0755);
-		if (!is_dir($sl_upload_path . "/custom-icons")) {
-			mkdir($sl_upload_path . "/custom-icons", 0755);
-		}
-		//mkdir($sl_upload_path . "/images", 0755);
-		if (!is_dir($sl_upload_path . "/custom-css")) {
-			mkdir($sl_upload_path . "/custom-css", 0755);
-		}
-		//copyr($sl_path . "/store-locator.css", $sl_upload_path . "/custom-css/store-locator.css");
-					
+				move_upload_directories();
 				
 				//Call initialize_variables() in order to set the default value of any newly introduced variables 
 				initialize_variables();
@@ -203,7 +177,7 @@ if ($_POST['sl_update'] || ($_GET[_wpnonce] && wp_verify_nonce($_GET[_wpnonce], 
 	
 ?>
 <?php if ($message) : ?>
-<div id="message" class="updated fade"><p><?php echo $message; ?></p></div>
+<div id="message" class="highlight"><p><?php echo $message; ?></p></div>
 <?php endif; ?>
 <?php if ($_POST['sl_update']) : ?>
 <meta http-equiv="refresh" content="3;url=./admin.php?page=<?php print $sl_dir;?>/news-upgrades.php" />

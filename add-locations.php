@@ -23,7 +23,7 @@ if ($_POST[sl_store] && $_GET[mode]!="pca") {
 	$wpdb->query("INSERT into ". $wpdb->prefix . "store_locator ($fieldList) VALUES ($valueList)");
 	$address="$_POST[sl_address], $_POST[sl_city], $_POST[sl_state] $_POST[sl_zip]";
 	do_geocoding($address);
-	print "<div class='highlight'>".__("Successful Addition",$text_domain).". $view_link</div> <!--meta http-equiv='refresh' content='0'-->"; //header("location:$_SERVER[HTTP_REFERER]");
+	print "<div class='updated fade'>".__("Successful Addition",$text_domain).". $view_link</div> <!--meta http-equiv='refresh' content='0'-->"; //header("location:$_SERVER[HTTP_REFERER]");
 }
 
 //Importing addresses from an local or remote database

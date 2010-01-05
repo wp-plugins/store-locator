@@ -104,7 +104,7 @@ print "<table width=100%><tr><td width='33%'><b>".__("Current View", $text_domai
 <nobr><b>Locations Per Page:</b> <select name='sl_admin_locations_per_page'>
 <option value=''>Choose</option>";
 
-$opt_arr=array(10,25,50,100,200,300,400,500,1000,2000);
+$opt_arr=array(10,25,50,100,200,300,400,500,1000,2000,4000,5000,10000);
 foreach ($opt_arr as $value) {
 	$selected=($sl_admin_locations_per_page==$value)? " selected " : "";
 	print "<option value='$value' $selected>$value</option>";

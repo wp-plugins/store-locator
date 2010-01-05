@@ -1,38 +1,39 @@
 === Google Maps Store Locator for WordPress ===
 Contributors: moaluko
 Donate link: http://www.viadat.com/donate
-Tags: store locator, store locater, google maps, dealer locator, dealer locater, zip code search, shop locator, shop finder, zipcode, location finder, places, stores, maps, mapping, mapper, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
+Tags: store locator, store locater, google, google maps, dealer locator, dealer locater, zip code search, shop locator, shop finder, zipcode, location finder, places, stores, maps, mapping, mapper, plugin, posts, post, page, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.5
 Tested up to: 2.9.1
-Stable tag: 1.2.37.1
+Stable tag: 1.2.38
 
-A store locator plugin for developers who create sites in Wordpress & web site owners who want to quickly show important locations.
+A store locator plugin that gives you the ability to effectively show important locations (stores, buildings, points of interest, etc.) in an easily searchable manner using Google Maps.
 
 == Description ==
 
-Google Maps Store Locator For WordPress focuses on providing mapping for:
-* Web designers & developers who create sites in Wordpress
-* Web site owners & businesses needing to show important stores or any other type of location. 
+= Provides Mapping, Display, and Search of Locations For: =
+* Web designers & developers who create sites for clients using WordPress
+* Web site owners & businesses who want to show their important locations (stores, buildings, points of interest, etc.) in an easily searchable manner.
 
 Also referred to as a dealer locator (locater), shop finder, and zip code or zipcode search.
 Its strength is in its flexibility to allow you to easily manage a few or a thousand or more locations through the admin interface.
 
-= Cool Built-in Functionality & Features =
+= Great Built-In Functionality & Features =
 * Mapping is available in numerous countries, and will continue to be added as Google adds new countries to their Google Maps API.  See the documentation for the latest.
 * Supports international languages and character sets. 
 * Allows you to use unique map icons or your own custom map icons --- great for branding your map
-* Gives your map the desired look by using our Map Designer&trade; interface in the admin section
+* Gives your map the desired look by using our Map Designer&trade; interface in the WordPress admin section
 * Pick other cool Google Maps options, such as an inset box, zoom level, map types (street, satellite, hybrid, physical), and more
-* Uses miles (American system) or kilometers (Metric system)
-* Has good loading speed since Javascript & CSS only load on pages that display the map (or might need access to the JS/CSS)
+* Can use miles or kilometers
+* Automatically restricts loading of Javascript & CSS to only pages that display the map (or that might need access to the JS & CSS) for better site performance
+* Option to show dropdown list of cities allows visitors to quickly see where your locations are and choose their search accordingly
 
 = Upgrades =
-If you need power features, enhance your store locator with addons & themes. [Upgrade Here](http://www.viadat.com/products-page)
+If you need additional features, enhance your store locator with addons & themes. [Upgrade Here](http://www.viadat.com/products-page)
 
 = Other Links =
-[Store Locator & Translations](http://www.viadat.com/store-locator) | [Addons & Themes](http://www.viadat.com/products-page) | [Blog - New Features & Updates](http://www.viadat.com/category/store-locator) | [Documentation](http://docs.viadat.com)
+[Downloads](http://www.viadat.com/store-locator) | [Addons & Themes](http://www.viadat.com/products-page) | [Blog - New Features & Updates](http://www.viadat.com/category/store-locator) | [Documentation](http://docs.viadat.com)
 
-= Special Thanks to Translators! (Email new translations to info{at}viadat{dot}com) =
+= Special Thanks to Translators (Email new translations to info{at}viadat{dot}com) =
 * Simon Schmid: German (Deutsche), Italian (Italiano), Czech (Cestina), French (Francais)
 * Gwyn Fisher: Spanish (Espanol)
 
@@ -65,6 +66,12 @@ If you need power features, enhance your store locator with addons & themes. [Up
 
 == Changelog ==
 
+= 1.2.38 =
+* Small fix with JS/CSS section message on non-store locator pages
+* Notification message added to admin panel for those switching from 'wordpress-store-locator-location-finder' to 'store-locator' to re-select their icons on the 'Map Designer' page to avoid blank icons on map
+* Higher number options for 'Locations Per Page' on 'Manage Locations' page
+* For those who don't use the default WordPress plugin updater, but instead download and paste on top of an old version, it checks if addons, themes, languages, images moved to 'wp-content/uploads/sl-uploads' and copies them over if they haven't been already
+
 = 1.2.37.1 =
 * Moved more inline styles classes & ids in 'store-locator.css' for better styling of store locator map
 * Updated automatic folder creation and moving of addons, themes, languages, images, etc. in the 'uploads/sl-uploads' folder.  
@@ -74,10 +81,10 @@ If you need power features, enhance your store locator with addons & themes. [Up
 * Updated default database, server, & connection character set and collation.  Should complete international language support.
 * A few XHTML Transitional 1.0 validation fixes
 * Different url encoding for map directions
-* Directory structure update: Upgrades (addons, themes), icons, languages, images, custom css moved to `wp-content/uploads/sl-uploads` directory (moved automatically).  
+* Directory structure update: Upgrades (addons, themes), icons, languages, images, custom css moved to 'wp-content/uploads/sl-uploads' directory (moved automatically).  
 * WordPress default one-click updater is now active again.  (Custom quick updater introduced in version 1.2.21 is no longer needed)
 * Moved inline styles to stylesheet classes for search result text and columns, and for text in info bubble on map.  Fully customizable from 'store-locator.css' now.
-* NOTE: As a result of the updated directory structure, you no longer need to worry about losing any of your customizations (CSS, addons, themes, icons, images, languages)! Place any customizations that you make into the corresponding folder in the `wp-content/uploads/sl-uploads` directory and they will be safe during upgrades to newer, better versions (For example: if place 'store-locator.css' in the `wp-content/uploads/sl-uploads/custom-css` folder, the plugin will use those styles instead of the styles of any 'store-locator.css' in the main `store-locator` directory.  So, when an update is performed --- you don't lose your style customizations!)
+* NOTE: As a result of the updated directory structure, you no longer need to worry about losing any of your customizations (CSS, addons, themes, icons, images, languages)! Place any customizations that you make into the corresponding folder in the 'wp-content/uploads/sl-uploads' directory and they will be safe during upgrades to newer, better versions (For example: if place 'store-locator.css' in the 'wp-content/uploads/sl-uploads/custom-css' folder, the plugin will use those styles instead of the styles of any 'store-locator.css' in the main `store-locator` directory.  So, when an update is performed --- you don't lose your style customizations!)
 
 = 1.2.36 =
 * Added option to select character encoding set on 'Localization & Google API Key' page. Should help with supporting characters in many different languages.

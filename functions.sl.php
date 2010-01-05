@@ -1,5 +1,36 @@
 <?php
 
+function move_upload_directories() {
+	global $sl_upload_path, $sl_path;
+	
+	if (!is_dir($sl_upload_path)) {
+			mkdir($sl_upload_path, 0755);
+	}
+	if (is_dir($sl_path . "/addons") && !is_dir($sl_upload_path . "/addons")) {
+		copyr($sl_path . "/addons", $sl_upload_path . "/addons");
+	}
+	if (is_dir($sl_path . "/themes") && !is_dir($sl_upload_path . "/themes")) {
+		copyr($sl_path . "/themes", $sl_upload_path . "/themes");
+	}
+	if (is_dir($sl_path . "/languages") && !is_dir($sl_upload_path . "/languages")) {
+		copyr($sl_path . "/languages", $sl_upload_path . "/languages");
+	}
+	if (is_dir($sl_path . "/images") && !is_dir($sl_upload_path . "/images")) {
+		copyr($sl_path . "/images", $sl_upload_path . "/images");
+	}
+	//mkdir($sl_upload_path . "/addons", 0755);
+	//mkdir($sl_upload_path . "/themes", 0755);
+	//mkdir($sl_upload_path . "/languages", 0755);
+	if (!is_dir($sl_upload_path . "/custom-icons")) {
+		mkdir($sl_upload_path . "/custom-icons", 0755);
+	}
+	//mkdir($sl_upload_path . "/images", 0755);
+	if (!is_dir($sl_upload_path . "/custom-css")) {
+		mkdir($sl_upload_path . "/custom-css", 0755);
+	}
+	//copyr($sl_path . "/store-locator.css", $sl_upload_path . "/custom-css/store-locator.css");
+}
+/* -----------------*/
 function parseToXML($htmlStr) 
 { 
 $xmlStr=str_replace('<','&lt;',$htmlStr); 
@@ -283,38 +314,14 @@ function install_table() {
 		update_option("sl_db_version", $sl_db_version);
 	}
 	
-		if (!is_dir($sl_upload_path)) {
-			mkdir($sl_upload_path, 0755);
-		}
-		if (is_dir($sl_path . "/addons") && !is_dir($sl_upload_path . "/addons")) {
-			copyr($sl_path . "/addons", $sl_upload_path . "/addons");
-		}
-		if (is_dir($sl_path . "/themes") && !is_dir($sl_upload_path . "/themes")) {
-			copyr($sl_path . "/themes", $sl_upload_path . "/themes");
-		}
-		if (is_dir($sl_path . "/languages") && !is_dir($sl_upload_path . "/languages")) {
-			copyr($sl_path . "/languages", $sl_upload_path . "/languages");
-		}
-		if (is_dir($sl_path . "/images") && !is_dir($sl_upload_path . "/images")) {
-			copyr($sl_path . "/images", $sl_upload_path . "/images");
-		}
-		//mkdir($sl_upload_path . "/addons", 0755);
-		//mkdir($sl_upload_path . "/themes", 0755);
-		//mkdir($sl_upload_path . "/languages", 0755);
-		if (!is_dir($sl_upload_path . "/custom-icons")) {
-			mkdir($sl_upload_path . "/custom-icons", 0755);
-		}
-		//mkdir($sl_upload_path . "/images", 0755);
-		if (!is_dir($sl_upload_path . "/custom-css")) {
-			mkdir($sl_upload_path . "/custom-css", 0755);
-		}
-		//copyr($sl_path . "/store-locator.css", $sl_upload_path . "/custom-css/store-locator.css");
+	move_upload_directories();
 }
 /*-------------------------------*/
 function head_scripts() {
 	global $sl_dir, $sl_base, $sl_upload_base, $sl_path, $sl_upload_path, $wpdb, $sl_version, $pagename, $map_character_encoding;
 	
-	print "\n<!-- ========= Google Maps Store Locator for WordPress (v$sl_version) ========== -->\n";
+	print "\n<!-- ========= Google Maps Store Locator for WordPress (v$sl_version) | http://www.viadat.com/store-locator/ ========== -->\n";
+	//print "<!-- ========= Learn More & Download Here: http://www.viadat.com/store-locator ========== -->\n";
 
 	//Check if currently on page with shortcode
 	$on_sl_page=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE post_content LIKE '%[STORE-LOCATOR%' AND post_status IN ('publish', 'draft') AND (post_name='$pagename' OR ID='$_GET[p]' OR ID='$_GET[page_id]')", ARRAY_A);		
@@ -352,7 +359,9 @@ function head_scripts() {
 	else {
 		$sl_page_ids=$wpdb->get_results("SELECT ID FROM ".$wpdb->prefix."posts WHERE post_content LIKE '%[STORE-LOCATOR%' AND post_status='publish'", ARRAY_A);
 		print "<!-- No store locator on this page, so no unnecessary scripts for better site performance. (";
-		foreach ($sl_page_ids as $value) { print "$value[ID],";}
+		if ($sl_page_ids) {
+			foreach ($sl_page_ids as $value) { print "$value[ID],";}
+		}
 		print ")-->";
 	}
 	print "\n<!-- ========= End Google Maps Store Locator for WordPress ========== -->\n\n";

@@ -1,6 +1,6 @@
 <?php 
-include("sl-update.php"); ?>
-<?php
+include("sl-update.php"); 
+move_upload_directories();
 //$canwrite = $this->is_upgrade_directory_writable();
 $canwrite = true;
 
@@ -18,7 +18,17 @@ print "<div class='wrap'>
 <br><?php _e("(This upgrader preserves added themes, addons, images, icons, & language files as requested.  Remember to backup & check for upgrades often.)", $text_domain) ?>-->
 </form>
 </p>
-<p style='color:red'><?php if (ereg('wordpress-store-locator-location-finder', $_SERVER[REQUEST_URI])) { print "<b>Note:</b> Your directory is <b>'wordpress-store-locator-location-finder'</b>. Please rename to <b>'store-locator'</b> to continue receiving notifications of future updates in your admin panel. After changing to <b>'store-locator'</b>, make sure to also update your icon URLs on the 'Map Designer' page."; } ?></p>
+<p style='color:red'>
+<?php if (ereg('wordpress-store-locator-location-finder', $sl_dir)) { 
+	$icon_notification_msg="<div class='updated fade' style='color:red'><b>Note:</b> Your directory is <b>'wordpress-store-locator-location-finder'</b>. Please rename to <b>'store-locator'</b> to continue receiving notifications of future updates in your admin panel. After changing to <b>'store-locator'</b>, make sure to also update your icon URLs on the 'Map Designer' page.</div>"; 
+	}
+	elseif ((ereg("wordpress-store-locator-location-finder", get_option('sl_map_home_icon')) && ereg("store-locator", $sl_dir)) || (ereg("wordpress-store-locator-location-finder", get_option('sl_map_end_icon')) && ereg("store-locator", $sl_dir))) {
+	$icon_notification_msg="<div class='updated fade' style='color:red'>You have switched from <strong>'wordpress-store-locator-location-finder'</strong> to <strong>'store-locator'</strong> --- great! <br>Now, please re-select your <b>'Home Icon'</b> and <b>'Destination Icon'</b> on the <a href='".get_option('siteurl')."/wp-admin/admin.php?page=$sl_dir/map-designer.php'>Map Designer</a> page, so that they show up properly on your store locator map.</div>";
+	}
+	else {$icon_notification_msg="";}
+	print $icon_notification_msg;
+	?>
+</p>
 
 <?php if (!$canwrite) {
 	echo("<p><strong>"); echo(sprintf(__("Please make sure that %s is writable.", $text_domain), $sl_up->upgrade_folder)); echo("</p></strong>");
