@@ -54,7 +54,7 @@ $pos=($beginning_link-1)*$num_per_page;
 			$curr_page=$_SERVER[QUERY_STRING]."&start=$pos";
 		}
 		if (($start-($k-1)*$num_per_page)<0 || ($start-($k-1)*$num_per_page)>=$num_per_page) {
-			print "<a class='' href=\".?$curr_page\" rel='nofollow'>";
+			print "<a class='' href=\"{$_SERVER[PHP_SELF]}?$curr_page\" rel='nofollow'>";
 		}
 		print $k;
 		if (($start-($k-1)*$num_per_page)<0 || ($start-($k-1)*$num_per_page)>=$num_per_page) {

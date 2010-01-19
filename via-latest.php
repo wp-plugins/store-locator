@@ -40,16 +40,20 @@ if (!class_exists('ViaLatest')) {
 				
 				include_once(ABSPATH . WPINC . '/rss.php');
 				$rss = fetch_rss('http://feeds.feedburner.com/viadat');
-				$items = array_slice($rss->items, 0, 4);
+				if ($rss) {
+					$items = array_slice($rss->items, 0, 4);
+				}
 				?>
-				<?php if (empty($items)) echo '<li>No items</li>';
-				else
+				<?php if (empty($items)) { echo '<li>No items</li>'; }
+				else {
+				echo '<div class="rss-widget"><ul>';
+				//<!--div style="float:right"><a href="http://www.viadat.com/"><img style="margin: 0 0 5px 5px;" src="http://www.viadat.com/images/viadat_emblem_white.jpg" alt="Viadat Creations"/></a></div-->
 				foreach ( $items as $item ) : ?>
-				<a style="font-size: 12px; font-weight:normal;" href='<?php echo $item['link']; ?>' title='<?php echo $item['title']; ?>'><?php echo $item['title']; ?></a>   <span style="font-size: 10px; color: #666;"><?php echo date('F j, Y',strtotime($item['pubdate'])); ?></span><br/><br/> 
-				
-				<!--p><?php //echo substr($item['summary'],0,strpos($item['summary'], "This is a post from")); ?></p-->
+				<li><a class="rsswidget" href='<?php echo $item['link']; ?>' title='<?php echo $item['title']; ?>'><?php echo $item['title']; ?></a>   <span class="rss-date"><?php echo date('F j, Y',strtotime($item['pubdate'])); ?></span><!--br/><br/--> 
+				<!--p><?php //$item['description'] /*echo substr($item['description'],0,strpos($item['description'], "This is a post from"))*/; ?></p--></li>
 				<?php endforeach;
-				//echo '<br><a href="http://www.viadat.com/"><img style="margin: 0 0 5px 5px;" src="http://www.viadat.com/images/viadat_emblem_white.jpg" alt="Viadat Creations"/></a>';
+				print "</ul></div>";
+				}
 				echo $after_widget;
 			}
 		}

@@ -1,34 +1,34 @@
 === Google Maps Store Locator for WordPress ===
-Contributors: moaluko
+Contributors: viadat
 Donate link: http://www.viadat.com/donate
 Tags: store locator, store locater, google, google maps, dealer locator, dealer locater, zip code search, shop locator, shop finder, zipcode, location finder, places, stores, maps, mapping, mapper, plugin, posts, post, page, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.5
 Tested up to: 2.9.1
-Stable tag: 1.2.38
+Stable tag: 1.2.39
 
 A store locator plugin that gives you the ability to effectively show important locations (stores, buildings, points of interest, etc.) in an easily searchable manner using Google Maps.
 
 == Description ==
 
 = Provides Mapping, Display, and Search of Locations For: =
-* Web designers & developers who create sites for clients using WordPress
-* Web site owners & businesses who want to show their important locations (stores, buildings, points of interest, etc.) in an easily searchable manner.
+* Those of you who create sites for clients using WordPress
+* Those of you who want to show your important locations (stores, buildings, points of interest, etc.) in an easily searchable manner.
 
 Also referred to as a dealer locator (locater), shop finder, and zip code or zipcode search.
 Its strength is in its flexibility to allow you to easily manage a few or a thousand or more locations through the admin interface.
 
 = Great Built-In Functionality & Features =
-* Mapping is available in numerous countries, and will continue to be added as Google adds new countries to their Google Maps API.  See the documentation for the latest.
-* Supports international languages and character sets. 
+* You can use it for numerous countries, which will continue to be added as Google adds new countries to their Google Maps API.  See the documentation for the latest
+* Supports international languages and character sets 
 * Allows you to use unique map icons or your own custom map icons --- great for branding your map
 * Gives your map the desired look by using our Map Designer&trade; interface in the WordPress admin section
 * Pick other cool Google Maps options, such as an inset box, zoom level, map types (street, satellite, hybrid, physical), and more
-* Can use miles or kilometers
+* You can use miles or kilometers
 * Automatically restricts loading of Javascript & CSS to only pages that display the map (or that might need access to the JS & CSS) for better site performance
 * Option to show dropdown list of cities allows visitors to quickly see where your locations are and choose their search accordingly
 
 = Upgrades =
-If you need additional features, enhance your store locator with addons & themes. [Upgrade Here](http://www.viadat.com/products-page)
+If you need additional features, enhance your store locator with addons & themes. [Upgrade Now](http://www.viadat.com/products-page)
 
 = Other Links =
 [Downloads](http://www.viadat.com/store-locator) | [Addons & Themes](http://www.viadat.com/products-page) | [Blog - New Features & Updates](http://www.viadat.com/category/store-locator) | [Documentation](http://docs.viadat.com)
@@ -65,6 +65,15 @@ If you need additional features, enhance your store locator with addons & themes
 2. Add your own custom icons in to `wp-content/uploads/sl-uploads/custom-icons` (note the new location for custom icons as of v1.2.37).
 
 == Changelog ==
+
+= 1.2.39 =
+* 'NOT NULL' changed to 'NULL' when creating database table fields to prevent table creation error for some users
+* Missing search button image bug fixed
+* 'Insufficient permissions' issue fixed that's occuring for some users when viewing past the first page of locations on 'Manage Locations' page
+* Styling of hover color, background color, other styling of individual search results div moved to 'store-locator.css' for easier customization
+* Styling updates of address search form elements above the map being mis-aligned by some themes
+* ReadMe in admin section styling update for better readibility
+* Minor admin dashboard rss widget improvements (bugfix/styling)
 
 = 1.2.38 =
 * Small fix with JS/CSS section message on non-store locator pages

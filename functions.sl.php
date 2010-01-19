@@ -3,6 +3,9 @@
 function move_upload_directories() {
 	global $sl_upload_path, $sl_path;
 	
+	if (!is_dir(ABSPATH . "wp-content/uploads")) {
+			mkdir(ABSPATH . "wp-content/uploads", 0755);
+	}
 	if (!is_dir($sl_upload_path)) {
 			mkdir($sl_upload_path, 0755);
 	}
@@ -282,22 +285,22 @@ function install_table() {
 	$table_name = $wpdb->prefix . "store_locator";
 	$sql = "CREATE TABLE " . $table_name . " (
 			sl_id mediumint(8) unsigned NOT NULL auto_increment,
-			sl_store varchar(255) NOT NULL,
-			sl_address varchar(255) NOT NULL,
-			sl_address2 varchar(255) NOT NULL,
-			sl_city varchar(255) NOT NULL,
-			sl_state varchar(255) NOT NULL,
-			sl_zip varchar(255) NOT NULL,
-			sl_latitude varchar(255) NOT NULL,
-			sl_longitude varchar(255) NOT NULL,
-			sl_tags mediumtext NOT NULL,
-			sl_description varchar(255) NOT NULL,
-			sl_url varchar(255) NOT NULL,
-			sl_hours varchar(255) NOT NULL,
-			sl_phone varchar(255) NOT NULL,
-			sl_image varchar(255) NOT NULL,
-			sl_private varchar(1) NOT NULL,
-			sl_neat_title varchar(255) NOT NULL,
+			sl_store varchar(255) NULL,
+			sl_address varchar(255) NULL,
+			sl_address2 varchar(255) NULL,
+			sl_city varchar(255) NULL,
+			sl_state varchar(255) NULL,
+			sl_zip varchar(255) NULL,
+			sl_latitude varchar(255) NULL,
+			sl_longitude varchar(255) NULL,
+			sl_tags mediumtext NULL,
+			sl_description varchar(255) NULL,
+			sl_url varchar(255) NULL,
+			sl_hours varchar(255) NULL,
+			sl_phone varchar(255) NULL,
+			sl_image varchar(255) NULL,
+			sl_private varchar(1) NULL,
+			sl_neat_title varchar(255) NULL,
 			PRIMARY KEY  (sl_id)
 			) ENGINE=innoDB  DEFAULT CHARACTER SET=utf8  DEFAULT COLLATE=utf8_unicode_ci;";
 	
@@ -355,6 +358,7 @@ function head_scripts() {
 		$zl=(trim(get_option('sl_zoom_level'))!="")? get_option('sl_zoom_level') : 4;		
 
 			//print "<style></style>";
+		move_upload_directories();
 	}
 	else {
 		$sl_page_ids=$wpdb->get_results("SELECT ID FROM ".$wpdb->prefix."posts WHERE post_content LIKE '%[STORE-LOCATOR%' AND post_status='publish'", ARRAY_A);
@@ -413,11 +417,18 @@ $cs_options.="<option value='$value[city_state]'>$value[city_state]</option>";
 				}
 			}
 		}*/
-	$theme_base=$sl_upload_base."/themes/".get_option('sl_map_theme');
-	$theme_path=$sl_upload_path."/themes/".get_option('sl_map_theme');
-	if (get_option('sl_map_theme')=="") {
+	
+	if (get_option('sl_map_theme')!="") {
+		$theme_base=$sl_upload_base."/themes/".get_option('sl_map_theme');
+		$theme_path=$sl_upload_path."/themes/".get_option('sl_map_theme');	
+	}
+	else {
 		$theme_base=$sl_upload_base."/images";
 		$theme_path=$sl_upload_path."/images";
+	}
+	if (!file_exists($theme_path."/search_button.png")) {
+		$theme_base=$sl_base."/images";
+		$theme_path=$sl_path."/images";
 	}
 	$sub_img=$theme_base."/search_button.png";
 	$mousedown=(file_exists($theme_path."/search_button_down.png"))? "onmousedown=\"this.src='$theme_base/search_button_down.png'\" onmouseup=\"this.src='$theme_base/search_button.png'\"" : "";

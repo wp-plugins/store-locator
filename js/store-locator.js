@@ -201,22 +201,23 @@
 		div.innerHTML = "<table><tr><td>";
 	  }*/
 	  div.innerHTML = html;
-      div.style.cursor = 'pointer';
+	  div.className='results_entry';
+      /*div.style.cursor = 'pointer';
       div.style.padding = '4px';
 	  div.style.color = 'black'; //added by Moyo 11/2/08 10:43am
 	  div.style.borderBottom = 'solid silver 1px' ; // added by Moyo 5/23/08 11:23am
-	  div.style.backgroundColor = bgcol; //added 12/2/2208
+	  div.style.backgroundColor = bgcol; //added 12/2/2208*/
 	  resultsDisplayed++;
       GEvent.addDomListener(div, 'click', function() {
         GEvent.trigger(marker, 'click');
-      });
+      }); /*
       GEvent.addDomListener(div, 'mouseover', function() {
         div.style.backgroundColor = 'salmon';
       });
       GEvent.addDomListener(div, 'mouseout', function() {
         div.style.backgroundColor = '#fff';
       });
-	  if (bgcol=="white") {bgcol="#ffffff";} else {bgcol="white";}	  
+	  if (bgcol=="white") {bgcol="#ffffff";} else {bgcol="white";}	  */
       return div;
     }
     //]]>
