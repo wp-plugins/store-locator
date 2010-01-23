@@ -4,7 +4,7 @@ Donate link: http://www.viadat.com/donate
 Tags: store locator, store locater, google, google maps, dealer locator, dealer locater, zip code search, shop locator, shop finder, zipcode, location finder, places, stores, maps, mapping, mapper, plugin, posts, post, page, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.5
 Tested up to: 2.9.1
-Stable tag: 1.2.39
+Stable tag: 1.2.39.1
 
 A store locator plugin that gives you the ability to effectively show important locations (stores, buildings, points of interest, etc.) in an easily searchable manner using Google Maps.
 
@@ -36,12 +36,13 @@ If you need additional features, enhance your store locator with addons & themes
 = Special Thanks to Translators (Email new translations to info{at}viadat{dot}com) =
 * Simon Schmid: German (Deutsche), Italian (Italiano), Czech (Cestina), French (Francais)
 * Gwyn Fisher: Spanish (Espanol)
+* [Josef Klimosz](http://pepa.rudice.eu/): Czech (Cestina)(Updated)
 
 (If you provide your web address, we'll link back to you)
 
 == Installation ==
 
-= MAIN PLUGIN =
+= Main Plugin =
 
 1. Upload the `store-locator` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
@@ -49,22 +50,30 @@ If you need additional features, enhance your store locator with addons & themes
 4. Add your locations through the 'Add Locations' page in the Store Locator admin panel
 5. Place the code '[STORE-LOCATOR]' (case-sensitive) in the body of a page or a post to display your store locator
 
-= ADD-ONS =
+= Addons =
 
 1. Unzip & Upload the entire add-on folder to the `/wp-content/uploads/sl-uploads/addons` directory (note the new location for addons as of v1.2.37).
 2. Activate the add-on by updating the Activation Key that you receive after purchase at the bottom of the "News & Upgrades" Page.
 
-= THEMES =
+= Themes =
 
 1. Unzip & Upload the entire theme folder to the `wp-content/uploads/sl-uploads/themes` directory (note the new location for themes as of v1.2.37).
 2. Select theme from the theme dropdown menu under the "Design" section on the "Map Designer"&trade; Page.
 
-= ICONS =
+= Icons =
 
 1. There are some default icons in the `/wp-content/plugins/store-locator/icons` directory. 
 2. Add your own custom icons in to `wp-content/uploads/sl-uploads/custom-icons` (note the new location for custom icons as of v1.2.37).
 
+= Custom CSS (Stylesheet) =
+
+As of version 1.2.37, you can modify the default 'store-locator.css' and place it under `/wp-content/uploads/sl-uploads/custom-css/`. The store locator will give priority to the 'store-locator.css' in the 'custom-css/' folder over the default 'store-locator.css' in the main 'store-locator/' folder. This allows you to upgrade the main store locator plugin without worrying about losing your custom styling. 
+
 == Changelog ==
+
+= 1.2.39.1 =
+* Updated the Czech translation (Thanks to [Josef](http://pepa.rudice.eu/))
+* Small fix to make URLs of icons point to correct directory on first use
 
 = 1.2.39 =
 * 'NOT NULL' changed to 'NULL' when creating database table fields to prevent table creation error for some users

@@ -153,12 +153,12 @@ if (empty($google_map_domain)) {
 }
 $icon2=get_option('sl_map_end_icon');
 if (empty($icon2)) {
-	add_option('sl_map_end_icon', $sl_upload_base.'/icons/marker.png');
+	add_option('sl_map_end_icon', $sl_base.'/icons/marker.png');
 	$icon2=get_option('sl_map_end_icon');
 }
 $icon=get_option('sl_map_home_icon');
 if (empty($icon)) {
-	add_option('sl_map_home_icon', $sl_upload_base.'/icons/arrow.png');
+	add_option('sl_map_home_icon', $sl_base.'/icons/arrow.png');
 	$icon=get_option('sl_map_home_icon');
 }
 $height=get_option('sl_map_height');
