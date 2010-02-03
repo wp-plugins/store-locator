@@ -1,10 +1,10 @@
 === Google Maps Store Locator for WordPress ===
 Contributors: viadat
-Donate link: http://www.viadat.com/donate
+Donate link: http://www.viadat.com/donate/
 Tags: store locator, store locater, google, google maps, dealer locator, dealer locater, zip code search, shop locator, shop finder, zipcode, location finder, places, stores, maps, mapping, mapper, plugin, posts, post, page, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.5
 Tested up to: 2.9.1
-Stable tag: 1.2.39.1
+Stable tag: 1.2.39.2
 
 A store locator plugin that gives you the ability to effectively show important locations (stores, buildings, points of interest, etc.) in an easily searchable manner using Google Maps.
 
@@ -28,10 +28,10 @@ Its strength is in its flexibility to allow you to easily manage a few or a thou
 * Option to show dropdown list of cities allows visitors to quickly see where your locations are and choose their search accordingly
 
 = Upgrades =
-If you need additional features, enhance your store locator with addons & themes. [Upgrade Now](http://www.viadat.com/products-page)
+If you need additional features, enhance your store locator with addons & themes. [Upgrade Here](http://www.viadat.com/products-page/)
 
 = Other Links =
-[Downloads](http://www.viadat.com/store-locator) | [Addons & Themes](http://www.viadat.com/products-page) | [Blog - New Features & Updates](http://www.viadat.com/category/store-locator) | [Documentation](http://docs.viadat.com)
+[Downloads](http://www.viadat.com/store-locator/) | [Addons & Themes](http://www.viadat.com/products-page/) | [Blog - New Features & Updates](http://www.viadat.com/category/store-locator/) | [Documentation](http://docs.viadat.com/)
 
 = Special Thanks to Translators (Email new translations to info{at}viadat{dot}com) =
 * Simon Schmid: German (Deutsche), Italian (Italiano), Czech (Cestina), French (Francais)
@@ -70,6 +70,9 @@ If you need additional features, enhance your store locator with addons & themes
 As of version 1.2.37, you can modify the default 'store-locator.css' and place it under `/wp-content/uploads/sl-uploads/custom-css/`. The store locator will give priority to the 'store-locator.css' in the 'custom-css/' folder over the default 'store-locator.css' in the main 'store-locator/' folder. This allows you to upgrade the main store locator plugin without worrying about losing your custom styling. 
 
 == Changelog ==
+
+= 1.2.39.2 =
+* Small fix of XML issue when displaying locations by default on map load if ampersand (&) is used in a location's URL
 
 = 1.2.39.1 =
 * Updated the Czech translation (Thanks to [Josef](http://pepa.rudice.eu/))
