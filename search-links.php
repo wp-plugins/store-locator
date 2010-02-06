@@ -65,16 +65,16 @@ $pos=($beginning_link-1)*$num_per_page;
 	}
 }
 $cleared=ereg_replace("q=$_GET[q]", "", $_SERVER[REQUEST_URI]);
-$extra_text=($_GET[q])? " for your search of <strong>\"$_GET[q]\"</strong>&nbsp;|&nbsp;<a href='$cleared'>Clear&nbsp;Results</a>" : "" ;
+$extra_text=($_GET[q])? __("for your search of", $text_domain)." <strong>\"$_GET[q]\"</strong>&nbsp;|&nbsp;<a href='$cleared'>".__("Clear&nbsp;Results", $text_domain)."</a>" : "" ;
 ?>
 </td>
 <td align='center' valign='bottom' width='33%'><div class='' style='padding:5px; font-weight:normal'>
 <?php 
 
 	$end_num=($numMembers2<($start+$num_per_page))? $numMembers2 : ($start+$num_per_page) ;
-	print "<nobr>Results <strong>".($start+1)." - ".$end_num."</strong>"; 
+	print "<nobr>".__("Results", $text_domain)." <strong>".($start+1)." - ".$end_num."</strong>"; 
 	if (!ereg("doSearch", $_GET[u])) {
-		print " ({$numMembers2} total)".$extra_text; 
+		print " ($numMembers2 ".__("total", $text_domain).")".$extra_text; 
 	}
 	print "</nobr>";
 
@@ -85,7 +85,7 @@ $extra_text=($_GET[q])? " for your search of <strong>\"$_GET[q]\"</strong>&nbsp;
 <table><tr><td width=75><nobr><img src='/images/spacer.gif' height=1 width=75 alt='' border=0>
 <?php 
 if (($start-$num_per_page)>=0) { ?>
-<a class='' href=".?<?= $prev_page ?>" rel='nofollow'>Previous&nbsp;<?= $num_per_page ?></a>
+<a class='' href=".?<?php print $prev_page; ?>" rel='nofollow'><?php print __("Previous", $text_domain)."&nbsp;$num_per_page"; ?></a>
 <?php } 
 if (($start-$num_per_page)>=0 && ($start+$num_per_page)<$numMembers2) { ?>
 &nbsp;&nbsp;|&nbsp;
@@ -94,7 +94,7 @@ if (($start-$num_per_page)>=0 && ($start+$num_per_page)<$numMembers2) { ?>
 <td width='85px' valign=bottom><img src='/images/spacer.gif' height=1 width=45 alt='' border=0>
 <?php 
 if (($start+$num_per_page)<$numMembers2) { ?>
-<a class='' href=".?<?= $next_page ?>" rel='nofollow'>Next&nbsp;<?= $num_per_page ?></a><br>
+<a class='' href=".?<?php print $next_page; ?>" rel='nofollow'><?php print __("Next", $text_domain)."&nbsp;$num_per_page"; ?></a><br>
 <?php } ?>
 </nobr>
 </td></tr></table>

@@ -1,5 +1,5 @@
 <?php 
-include("sl-update.php"); 
+//include("sl-update.php"); 
 move_upload_directories();
 //$canwrite = $this->is_upgrade_directory_writable();
 $canwrite = true;
@@ -20,7 +20,7 @@ print "<div class='wrap'>
 </p>
 <p style='color:red'>
 <?php if (ereg('wordpress-store-locator-location-finder', $sl_dir)) { 
-	$icon_notification_msg="<div class='updated fade' style='color:red'><b>Note:</b> Your directory is <b>'wordpress-store-locator-location-finder'</b>. Please rename to <b>'store-locator'</b> to continue receiving notifications of future updates in your admin panel. After changing to <b>'store-locator'</b>, make sure to also update your icon URLs on the 'Map Designer' page.</div>"; 
+	$icon_notification_msg="<div class='updated fade' style='color:red'>".__("<b>Note:</b> Your directory is <b>'wordpress-store-locator-location-finder'</b>. Please rename to <b>'store-locator'</b> to continue receiving notifications of future updates in your admin panel. After changing to <b>'store-locator'</b>, make sure to also update your icon URLs on the 'Map Designer' page.", $text_domain)."</div>"; 
 	}
 	elseif ((ereg("wordpress-store-locator-location-finder", get_option('sl_map_home_icon')) && ereg("store-locator", $sl_dir)) || (ereg("wordpress-store-locator-location-finder", get_option('sl_map_end_icon')) && ereg("store-locator", $sl_dir))) {
 	$icon_notification_msg="<div class='updated fade' style='color:red'>You have switched from <strong>'wordpress-store-locator-location-finder'</strong> to <strong>'store-locator'</strong> --- great! <br>Now, please re-select your <b>'Home Icon'</b> and <b>'Destination Icon'</b> on the <a href='".get_option('siteurl')."/wp-admin/admin.php?page=$sl_dir/map-designer.php'>Map Designer</a> page, so that they show up properly on your store locator map.</div>";
@@ -133,7 +133,7 @@ if (is_dir($sl_upload_path."/addons/")) {
 
 print "<form method='post' name='licenseForm'><table style='border:none'><tr>$lic_str</tr></table>
 <br><input class='button-primary' type='submit' value='".__("Activate", $text_domain)."'>
-<br>".__("Looking for more addons & themes", $text_domain)."? <a href='http://www.viadat.com/products-page'>".__("It's all right here", $text_domain)."</a>
+<br>".__("Looking for more addons & themes", $text_domain)."? <a href='http://www.viadat.com/products-page/'>".__("It's all right here", $text_domain)."</a>
 </form>
 
 </div>

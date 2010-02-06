@@ -10,7 +10,7 @@ foreach($_GET as $key=>$val) {
 }
 //$view_all_link=(!empty($_GET[q]))?"<a href='?q=page=$sl_dir/view-locations.php' style='font-size:12px'>Back&nbsp;to&nbsp;View&nbsp;All</a>&nbsp;&nbsp;":"";
 print "<form><table cellpadding='0px' cellspacing='0px' width='100%'><tr><td>
-<h2>".__("Manage Locations", $text_domain)."</h2></td><td align='right'><h2 style='float:right; padding-right:0px; width:100%'><input value='$_GET[q]' name='q'><input type='submit' value='Search Locations' class='button-primary'></h2>$hidden</td></tr></table></form><br>";
+<h2>".__("Manage Locations", $text_domain)."</h2></td><td align='right'><h2 style='float:right; padding-right:0px; width:100%'><input value='$_GET[q]' name='q'><input type='submit' value='".__("Search Locations", $text_domain)."' class='button-primary'></h2>$hidden</td></tr></table></form><br>";
 
 initialize_variables();
 
@@ -101,8 +101,8 @@ else {
 print "<form name='locationForm' method='post'>";
 print "<table width=100%><tr><td width='33%'><b>".__("Current View", $text_domain).":</b>&nbsp;".get_option('sl_location_table_view')."&nbsp;(<a href='".ereg_replace("&changeView=1", "", $_SERVER[REQUEST_URI])."&changeView=1'>".__("Change View", $text_domain)."</a>)</td>
 <td width='33%' align='center'>
-<nobr><b>Locations Per Page:</b> <select name='sl_admin_locations_per_page'>
-<option value=''>Choose</option>";
+<nobr><b>".__("Locations Per Page", $text_domain).":</b> <select name='sl_admin_locations_per_page'>
+<option value=''>".__("Choose", $text_domain)."</option>";
 
 $opt_arr=array(10,25,50,100,200,300,400,500,1000,2000,4000,5000,10000);
 foreach ($opt_arr as $value) {
@@ -187,7 +187,7 @@ print "<th>(Lat, Lon)</th>
 		<td><input name='zip-$value[sl_id]' value='$value[sl_zip]' size='10'><br><small>".__("Zip", $text_domain)."</small></td></tr></table><br>
 		<nobr><input type='submit' value='".__("Update", $text_domain)."' class='button-primary'><input type='button' class='button' value='".__("Cancel", $text_domain)."' onclick='location.href=\"".ereg_replace("&edit=$_GET[edit]", "",$_SERVER[REQUEST_URI])."\"'></nobr>
 		</td><td>
-		<b>Additional Information</b><br>
+		<b>".__("Additional Information", $text_domain)."</b><br>
 		<textarea name='description-$value[sl_id]' rows='5' cols='17'>$value[sl_description]</textarea>&nbsp;<small>".__("Description", $text_domain)."</small><br>
 		<input name='tags-$value[sl_id]' value='$value[sl_tags]'>&nbsp;<small>".__("Tags (seperate with commas)", $text_domain)."</small><br>		
 		<input name='url-$value[sl_id]' value='$value[sl_url]'>&nbsp;<small>".__("URL", $text_domain)."</small><br>

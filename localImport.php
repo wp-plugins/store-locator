@@ -7,13 +7,13 @@ if ($_POST[finish_import]=="1") {
 insert_matched_data();
 //	var_dump($_POST[field_map]);
 	//exit();
-	print "<div class='highlight'>Successful Import. $view_link</div>";
+	print "<div class='highlight'>".__("Successful Import", $text_domain).". $view_link</div>";
 }
 elseif (empty($_POST[finish_import])) {
 //First step in importing address - mapping old table fields to the new table fields
 
 if (!eregi("^select", trim($_POST[query]))) {
-	print "<div class='highlight' style='border:solid red 1px; background-color:salmon'>You May Only Use 'Select' Queries. | <a href='$_SERVER[REQUEST_URI]'>Try Again</a></div>";
+	print "<div class='highlight' style='border:solid red 1px; background-color:salmon'>".__("You May Only Use 'Select' Queries", $text_domain).". | <a href='$_SERVER[REQUEST_URI]'>".__("Try Again", $text_domain)."</a></div>";
 	exit;
 }
 
