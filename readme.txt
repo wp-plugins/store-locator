@@ -3,8 +3,8 @@ Contributors: viadat
 Donate link: http://www.viadat.com/donate/
 Tags: store locator, store locater, google, google maps, dealer locator, dealer locater, zip code search, shop locator, shop finder, zipcode, location finder, places, stores, maps, mapping, mapper, plugin, posts, post, page, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.5
-Tested up to: 2.9.1
-Stable tag: 1.2.39.3
+Tested up to: 3.1
+Stable tag: 1.2.40
 
 A store locator plugin that gives you the ability to effectively show important locations (stores, buildings, points of interest, etc.) in an easily searchable manner using Google Maps.
 
@@ -36,7 +36,12 @@ If you need additional features, enhance your store locator with addons & themes
 = Special Thanks to Translators (Email new translations to info{at}viadat{dot}com) =
 * Simon Schmid: German (Deutsche), Italian (Italiano), Czech (Cestina), French (Francais)
 * Gwyn Fisher: Spanish (Espanol)
-* [Josef Klimosz](http://pepa.rudice.eu/): Czech (Cestina)(Updated)
+* [Josef Klimosz](http://pepa.rudice.eu/): Czech (Cestina)(updated)
+* [Willem-Jan Korsten](http://www.ezhome.nl/): Dutch (Nederlands)
+* [Marcelo V. Araujo](http://www.mgerais.net/): Portuguese (Portugues)
+* [Reno](http://www.creaprime.fr): French (Francais)(updated)
+* [Alf Vidar Snaeland](http://www.fastfrilans.no): Norwegian (Norsk)
+* [Laifeilim](http://www.fileem.com): Simplified Chinese
 
 (If you provide your web address, we'll link back to you)
 
@@ -70,6 +75,14 @@ If you need additional features, enhance your store locator with addons & themes
 As of version 1.2.37, you can modify the default 'store-locator.css' and place it under `/wp-content/uploads/sl-uploads/custom-css/`. The store locator will give priority to the 'store-locator.css' in the 'custom-css/' folder over the default 'store-locator.css' in the main 'store-locator/' folder. This allows you to upgrade the main store locator plugin without worrying about losing your custom styling. 
 
 == Changelog ==
+
+= 1.2.40 =
+* Added updated French translation (Thank you [Reno](http://www.creaprime.fr))
+* Added Norwegian translation (Thank you [Alf Vidar Snaeland](http://www.fastfrilans.no))
+* Added Simplified Chinese translation (Thank you [Laifeilim](http://www.fileem.com)). Copy translations into `/wp-content/uploads/sl-uploads/languages/` to use
+* Small fix for export link path
+* Small fix for navigation links when viewing locations and clicking 'Next' or 'Previous'
+* Added translation wrappers to labels 'Update Central' ('News & Upgrades' page) and 'Additional Information' ('Add Locations' page)
 
 = 1.2.39.3 =
 * Added Dutch translation (Thank you [Willem-Jan](http://www.ezhome.nl/)). Place translation in `/wp-content/uploads/sl-uploads/languages/` to use.

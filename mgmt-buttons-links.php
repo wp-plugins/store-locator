@@ -5,7 +5,9 @@ print "<table width='100%' cellpadding='5px' cellspacing='0' style='border:solid
 <td style='/*background-color:#000;*/ width:20%'><input class='button' type='button' value='".__("Delete Selected", $text_domain)."' onclick=\"if(confirm('".__("You sure", $text_domain)."?')){LF=document.forms['locationForm'];LF.act.value='delete';LF.submit();}else{return false;}\"></td>";
 	if (file_exists($sl_upload_path."/addons/csv-xml-importer-exporter/export-links.php")) {
 		print "<td style='width:13%; text-align:center; color:black; /*background-color:white*/' class='youhave'>";
+		$sl_real_base=$sl_base; $sl_base=$sl_upload_base;
 		include($sl_upload_path."/addons/csv-xml-importer-exporter/export-links.php");
+		$sl_base=$sl_real_base;
 		print "</td>";
 	}
 print "<td style='/*background-color:#000;*/ width:73%; text-align:right; color:white'>";

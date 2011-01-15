@@ -91,7 +91,7 @@ print "
 		<table cellpadding='0px' cellspacing='0px'><tr><td style='padding-left:0px' class='nobottom'><input name='sl_city' size='21'><br><small>".__("City", $text_domain)."</small></td>
 		<td><input name='sl_state' size='7'><br><small>".__("State", $text_domain)."</small></td>
 		<td><input name='sl_zip' size='10'><br><small>".__("Zip", $text_domain)."</small></td></tr></table><br>
-		Additional Information<br>
+		".__("Additional Information", $text_domain)."<br>
 		<textarea name='sl_description' rows='5' cols='17'></textarea>&nbsp;<small>".__("Description", $text_domain)."</small><br>
 		<input name='sl_tags'>&nbsp;<small>".__("Tags (seperate with commas)", $text_domain)."</small><br>		
 		<input name='sl_url'>&nbsp;<small>".__("URL", $text_domain)."</small><br>

@@ -8,7 +8,7 @@ print "<div class='wrap'>
 <Table class='widefat' cellpadding='0px' cellspacing='0px'>
 <tr><td colspan='2'>
 <table width='100%'><thead><tr>
-<th>Update Central</th></tr></thead>
+<th>".__("Update Central", $text_domain)."</th></tr></thead>
 <tr><td>
 ";
 ?>
