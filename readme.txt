@@ -4,7 +4,7 @@ Donate link: http://www.viadat.com/donate/
 Tags: store locator, store locater, google, google maps, dealer locator, dealer locater, zip code search, shop locator, shop finder, zipcode, location finder, places, stores, maps, mapping, mapper, plugin, posts, post, page, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, business locations
 Requires at least: 2.5
 Tested up to: 3.1
-Stable tag: 1.2.40
+Stable tag: 1.2.41
 
 A store locator plugin that gives you the ability to effectively show important locations (stores, buildings, points of interest, etc.) in an easily searchable manner using Google Maps.
 
@@ -75,6 +75,9 @@ If you need additional features, enhance your store locator with addons & themes
 As of version 1.2.37, you can modify the default 'store-locator.css' and place it under `/wp-content/uploads/sl-uploads/custom-css/`. The store locator will give priority to the 'store-locator.css' in the 'custom-css/' folder over the default 'store-locator.css' in the main 'store-locator/' folder. This allows you to upgrade the main store locator plugin without worrying about losing your custom styling. 
 
 == Changelog ==
+
+= 1.2.41 =
+* Added Portuguese translation (Thank you [Marcelo V. Araujo](http://www.mgerais.net))
 
 = 1.2.40 =
 * Added updated French translation (Thank you [Reno](http://www.creaprime.fr))
