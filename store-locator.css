@@ -1,6 +1,7 @@
 /***** Area Above Map DIV. Contains Search Form Inputs *****/
 .sl_header img, .sl_header td, .sl_header #addressSubmit {
 border: none;
+min-width:0px !important;
 }
 .sl_header td {
 	vertical-align:top;
@@ -9,20 +10,26 @@ border: none;
 .sl_header td, .sl_header th, .sl_header tr {
 	padding:4px;
 }
-
+.sl_header input {
+	margin:0px;
+}
+.sl_header img {
+	background: transparent;
+} 
 
 /***** Search Form Inputs  *****/
 /*#search_label {
 	whitespace:nowrap;
 }*/
 #addressInput {
-	border:solid 1px silver;
+	border:solid 1px silver !important;
 	padding-left:3px; /*padding-top:3px;*/
-	background:white url(images/search-input.gif) repeat-x;
+	background:white url(images/search-input.gif) repeat-x !important;
 	width:100%; /*height:18px;*/
 	/*font-weight:bold;*/
 	margin:0px;
 	padding-top:0px;
+	padding-bottom: 0px !important;
 }
 #addressInput2_container {
 	vertical-align:top;
@@ -44,7 +51,7 @@ border: none;
 	/*height:27px; width:100px;*/
 }
 #addressInput, #addressSubmit, #radiusSelect { 
-	font-size:14px;
+	font-size:14px !important;
 }
 
 /***** Store Locator Map DIV *****/
@@ -74,6 +81,7 @@ border: none;
 #sl_div #map { 
 	color:black; 
 	font-weight:normal;
+	overflow:hidden;
 }
 
 /***** Popup Info Window for Specific Location *****/
