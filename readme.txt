@@ -74,7 +74,7 @@ As of version 1.2.37, you can modify the default 'store-locator.css' and place i
 == Changelog ==
 
 = 1.2.43 =
-* Bug fixes
+* Bug fixes   
 
 = 1.2.42.1 =
 * Added new translators to readme
