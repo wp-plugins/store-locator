@@ -346,8 +346,51 @@ function head_scripts() {
 		$google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
 	
 		print "<script src='http://$google_map_domain/maps?file=api&amp;v=2&amp;key=$api_key&amp;sensor=false{$map_character_encoding}' type='text/javascript'></script>\n";
-		print "<script src='".$sl_base."/js/store-locator-js.php' type='text/javascript'></script>
-<script src='".$sl_base."/js/store-locator.js' type='text/javascript'></script>
+		//print "<script src='".$sl_base."/js/store-locator-js.php' type='text/javascript'></script>";
+
+//dynamic js
+//find_wp_config(); 
+		print "<script type=\"text/javascript\">\n";
+		include("variables.sl.php");
+$zl=(trim(get_option('sl_zoom_level'))!="")? get_option('sl_zoom_level') : 4;
+$mt=(trim(get_option('sl_map_type'))!="")? get_option('sl_map_type') : "G_NORMAL_MAP";
+$wl=(trim(get_option('sl_website_label'))!="")? parseToXML(get_option('sl_website_label')) : "Website";
+$du=(trim(get_option('sl_distance_unit'))!="")? get_option('sl_distance_unit') : "miles";
+$oc=(trim(get_option('sl_map_overview_control'))!="")? get_option('sl_map_overview_control') : 0;
+print "if (document.getElementById('map')){window.onunload = function (){ GUnload(); }}
+var add_base='".$sl_base."'; 
+var add_upload_base='".$sl_upload_base."'; 
+var sl_map_home_icon='".get_option('sl_map_home_icon')."'; 
+var sl_map_end_icon='".get_option('sl_map_end_icon')."'; 
+var sl_google_map_country='".parseToXML(get_option('sl_google_map_country'))."'; 
+var sl_google_map_domain='".get_option('sl_google_map_domain')."'; 
+var sl_zoom_level=$zl; 
+var sl_map_type=$mt; 
+var sl_website_label='$wl'; 
+var sl_load_locations_default='".get_option('sl_load_locations_default')."'; 
+var sl_distance_unit='$du'; 
+var sl_map_overview_control='$oc';\n";
+if (ereg($sl_upload_base, get_option('sl_map_home_icon'))){
+	$home_icon_path=ereg_replace($sl_upload_base, $sl_upload_path, get_option('sl_map_home_icon'));
+} else {
+	$home_icon_path=ereg_replace($sl_base, $sl_path, get_option('sl_map_home_icon'));
+}
+$home_size=(function_exists(getimagesize) && file_exists($home_icon_path))? getimagesize($home_icon_path) : array(0 => 20, 1 => 34);
+//$home_size=($home_size[0]=="")? array(0 => 20, 1 => 34) : $home_size;
+print "var sl_map_home_icon_width=$home_size[0];\n";
+print "var sl_map_home_icon_height=$home_size[1];\n";
+if (ereg($sl_upload_base, get_option('sl_map_end_icon'))){
+	$end_icon_path=ereg_replace($sl_upload_base, $sl_upload_path, get_option('sl_map_end_icon'));
+} else {
+	$end_icon_path=ereg_replace($sl_base, $sl_path, get_option('sl_map_end_icon'));
+}
+$end_size=(function_exists(getimagesize) && file_exists($end_icon_path))? getimagesize($end_icon_path) : array(0 => 20, 1 => 34);
+//$end_size=($end_size[0]=="")? array(0 => 20, 1 => 34) : $end_size;
+print "var sl_map_end_icon_width=$end_size[0];\n";
+print "var sl_map_end_icon_height=$end_size[1];\n</script>\n";
+//end dynamic js
+
+		print "<script src='".$sl_base."/js/store-locator.js' type='text/javascript'></script>
 <script src='".$sl_base."/js/functions.js' type='text/javascript'></script>\n";
 		//print "<link  href='".$sl_base."/base.css' type='text/css' rel='stylesheet'/>\n"; //merged into store-locator.css 12/31/09 (v1.2.37)
 		//if store-locator.css exists in custom-css/ folder in uploads/ dir it takes precedence over, store-locator.css in store-locator plugin directory to allow for css customizations to be preserved after updates
@@ -610,13 +653,16 @@ print "</table><input type='hidden' name='finish_import' value='1'>
 }
 /*--------------------------------------------------------------*/
 
-function do_hyperlink(&$text, $target="'_blank'")
+function do_hyperlink(&$text, $target="'_blank'", $type="both")
 {
+  if ($type=="both" || $type=="protocol") {	
    // match protocol://address/path/
-   $text = ereg_replace("[a-zA-Z]+://([.]?[a-zA-Z0-9_/?&amp;%20,=-\+-])*", "<a href=\"\\0\" target=$target>\\0</a>", $text);
-
+   $text = ereg_replace("[a-zA-Z]+://([.]?[a-zA-Z0-9_/?&amp;%20,=-\+-])+", "<a href=\"\\0\" target=$target>\\0</a>", $text);
+  }
+  if ($type=="both" || $type=="noprotocol") {
    // match www.something
    $text = ereg_replace("(^| )(www([.]?[a-zA-Z0-9_/=-\+-])*)", "\\1<a href=\"http://\\2\" target=$target>\\2</a>", $text);
+  }
 
 return $text;
 }
