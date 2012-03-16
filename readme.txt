@@ -73,6 +73,13 @@ As of version 1.2.37, you can modify the default 'store-locator.css' and place i
 
 == Changelog ==
 
+= 1.3 =
+* New horizontal top navigation for Store Locator admin pages
+* Made 'Directions' link label on map & results list editable from Map Designer page
+* Better response messages during key validation
+* Cleaned up 'News & Upgrades' page; updated navigation links of 'Manage Locations'
+* Google API Key submission/important message for new users, instead of restricting view of other pages 
+
 = 1.2.43 =
 * Bug fixes
 
