@@ -52,7 +52,7 @@ function initialize_variables() {
 global $height, $width, $width_units, $height_units, $radii;
 global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base, $sl_upload_base, $location_table_view;
 global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search, $sl_default_map;
-global $sl_radius_label, $sl_website_label, $sl_num_initial_displayed, $sl_load_locations_default;
+global $sl_radius_label, $sl_website_label, $sl_directions_label, $sl_num_initial_displayed, $sl_load_locations_default;
 global $sl_distance_unit, $sl_map_overview_control, $sl_admin_locations_per_page, $sl_instruction_message;
 global $sl_map_character_encoding;
 
@@ -95,6 +95,11 @@ $sl_website_label=get_option('sl_website_label');
 if (empty($sl_website_label)) {
 	$sl_website_label="Website";
 	add_option('sl_website_label', $sl_website_label);
+	}
+$sl_directions_label=get_option('sl_directions_label');
+if (empty($sl_directions_label)) {
+	$sl_directions_label="Directions";
+	add_option('sl_directions_label', $sl_directions_label);
 	}
 $sl_radius_label=get_option('sl_radius_label');
 if (empty($sl_radius_label)) {
@@ -355,6 +360,7 @@ function head_scripts() {
 $zl=(trim(get_option('sl_zoom_level'))!="")? get_option('sl_zoom_level') : 4;
 $mt=(trim(get_option('sl_map_type'))!="")? get_option('sl_map_type') : "G_NORMAL_MAP";
 $wl=(trim(get_option('sl_website_label'))!="")? parseToXML(get_option('sl_website_label')) : "Website";
+$dl=(trim(get_option('sl_directions_label'))!="")? parseToXML(get_option('sl_directions_label')) : "Directions";
 $du=(trim(get_option('sl_distance_unit'))!="")? get_option('sl_distance_unit') : "miles";
 $oc=(trim(get_option('sl_map_overview_control'))!="")? get_option('sl_map_overview_control') : 0;
 print "if (document.getElementById('map')){window.onunload = function (){ GUnload(); }}
@@ -367,6 +373,7 @@ var sl_google_map_domain='".get_option('sl_google_map_domain')."';
 var sl_zoom_level=$zl; 
 var sl_map_type=$mt; 
 var sl_website_label='$wl'; 
+var sl_directions_label='$dl';
 var sl_load_locations_default='".get_option('sl_load_locations_default')."'; 
 var sl_distance_unit='$du'; 
 var sl_map_overview_control='$oc';\n";
@@ -500,7 +507,7 @@ $form="
 	$form.="
 	<td id='addressInput2_container'>";
 	$form.="<select id='addressInput2' onchange='aI=document.getElementById(\"searchForm\").addressInput;if(this.value!=\"\"){oldvalue=aI.value;aI.value=this.value;}else{aI.value=oldvalue;}'>
-<option value=''>--Search By City--</option>$cs_options</select></td>";
+<option value=''>--".__("Search By City", $text_domain)."--</option>$cs_options</select></td>";
 	}
 	
 	/*if ($name_array && get_option('sl_use_name_search')==1) {
@@ -558,26 +565,28 @@ function sl_add_options_page() {
 	$api=get_option('store_locator_api_key');
 	//add_menu_page('Edit Locations', 'View Locations', 9, '$sl_dir/options-store-locator.php');
 	add_menu_page(__("Store Locator", $text_domain), __("Store Locator", $text_domain), 9, $sl_dir.'/news-upgrades.php');
-	if (trim($api)!=""){
-		add_submenu_page($sl_dir.'/news-upgrades.php', __("News & Upgrades", $text_domain), __("News & Upgrades", $text_domain), 9, $sl_dir.'/news-upgrades.php');
-		add_submenu_page($sl_dir.'/news-upgrades.php', __("Manage Locations", $text_domain), __("Manage Locations", $text_domain), 9, $sl_dir.'/view-locations.php');
-		add_submenu_page($sl_dir.'/news-upgrades.php', __("Add Locations", $text_domain), __("Add Locations", $text_domain), 9, $sl_dir.'/add-locations.php');
-		add_submenu_page($sl_dir.'/news-upgrades.php', __("Map Designer", $text_domain), __("Map Designer", $text_domain), 9, $sl_dir.'/map-designer.php');
-	}
+	add_submenu_page($sl_dir.'/news-upgrades.php', __("News & Upgrades", $text_domain), __("News & Upgrades", $text_domain), 9, $sl_dir.'/news-upgrades.php');
+	add_submenu_page($sl_dir.'/news-upgrades.php', __("Manage Locations", $text_domain), __("Manage Locations", $text_domain), 9, $sl_dir.'/view-locations.php');
+	add_submenu_page($sl_dir.'/news-upgrades.php', __("Add Locations", $text_domain), __("Add Locations", $text_domain), 9, $sl_dir.'/add-locations.php');
+	add_submenu_page($sl_dir.'/news-upgrades.php', __("Map Designer", $text_domain), __("Map Designer", $text_domain), 9, $sl_dir.'/map-designer.php');
 	add_submenu_page($sl_dir.'/news-upgrades.php', __("Localization", $text_domain)." &amp; ".__("Google API Key", $text_domain),  __("Localization", $text_domain)." &amp; ".__("Google API Key", $text_domain), 9, $sl_dir.'/api-key.php');
-	if (trim($api)!=""){
-		
-		add_submenu_page($sl_dir.'/news-upgrades.php', __("ReadMe", $text_domain), __("ReadMe", $text_domain), 9, $sl_dir.'/readme.php');
-		//add_submenu_page($sl_dir.'/news-upgrades.php', 'Export Locations', 'Generate CSV Import File [+]', 9, $sl_dir.'/export-locations.php');
-		//add_submenu_page($sl_dir.'/news-upgrades.php', 'Statistics', 'Statistics [+]', 9, $sl_dir.'/statistics.php');
-	}
+	add_submenu_page($sl_dir.'/news-upgrades.php', __("ReadMe", $text_domain), __("ReadMe", $text_domain), 9, $sl_dir.'/readme.php');
+	
 }
 
 function add_admin_javascript() {
         global $sl_base, $sl_upload_base, $sl_dir, $google_map_domain, $sl_path, $sl_upload_path, $map_character_encoding;
 		$api=get_option('store_locator_api_key');
-        print "<script src='".$sl_base."/js/functions.js'></script>\n
-        <script type='text/javascript'>
+	//	print "<script src='http://code.jquery.com/jquery-latest.min.js' type='text/javascript'></script>\n";
+        print "<script src='".$sl_base."/js/functions.js'></script>\n";
+
+//New WP Admin Bar in version 3+ gets in the way of editing a specific location, hide it
+if (ereg("view-locations", $_GET[page])) {
+	print "<style>#wpadminbar {
+	display:none !important;
+}</style>";
+}
+        print "<script type='text/javascript'>
         var sl_dir='".$sl_dir."';
         var sl_google_map_country='".get_option('sl_google_map_country')."';
         </script>\n";

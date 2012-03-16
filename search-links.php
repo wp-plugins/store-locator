@@ -1,4 +1,4 @@
-<table width=100% class='' cellpadding='3px'><tr><td valign=bottom width='33%' style='padding-left:0px'>
+<table width='100%' cellpadding='3px' class='tablenav'><tr><td valign=bottom style='padding-left:0px; float:left; width:200px;' class='tablenav-pages'>
 <?php
 /*
 if(1==1) {
@@ -68,7 +68,7 @@ $cleared=ereg_replace("q=$_GET[q]", "", $_SERVER[REQUEST_URI]);
 $extra_text=($_GET[q])? __("for your search of", $text_domain)." <strong>\"$_GET[q]\"</strong>&nbsp;|&nbsp;<a href='$cleared'>".__("Clear&nbsp;Results", $text_domain)."</a>" : "" ;
 ?>
 </td>
-<td align='center' valign='bottom' width='33%'><div class='' style='padding:5px; font-weight:normal'>
+<td align='center' valign='middle' style=''><div class='' style='padding:5px; font-weight:normal'>
 <?php 
 
 	$end_num=($numMembers2<($start+$num_per_page))? $numMembers2 : ($start+$num_per_page) ;
@@ -81,20 +81,20 @@ $extra_text=($_GET[q])? __("for your search of", $text_domain)." <strong>\"$_GET
 ?>
 </div>
 </td>
-<td align=right valign=bottom width='33%' style='padding-right:0px'>
+<td align=right valign=bottom style='padding-right:0px; width:200px' class='tablenav-pages'>
 <table><tr><td width=75><nobr><img src='/images/spacer.gif' height=1 width=75 alt='' border=0>
 <?php 
 if (($start-$num_per_page)>=0) { ?>
-<a class='' href="<?php print "{$_SERVER[PHP_SELF]}?$prev_page"; ?>" rel='nofollow'><?php print __("Previous", $text_domain)."&nbsp;$num_per_page"; ?></a>
+<a class='' href="<?php print "{$_SERVER[PHP_SELF]}?$prev_page"; ?>" rel='nofollow'>&laquo;&nbsp;<?php print __("Previous", $text_domain)."&nbsp;$num_per_page"; ?></a>
 <?php } 
 if (($start-$num_per_page)>=0 && ($start+$num_per_page)<$numMembers2) { ?>
-&nbsp;&nbsp;|&nbsp;
+<!--&nbsp;&nbsp;|&nbsp;-->
 <?php } ?>
 </td>
 <td width='85px' valign=bottom><img src='/images/spacer.gif' height=1 width=45 alt='' border=0>
 <?php 
 if (($start+$num_per_page)<$numMembers2) { ?>
-<a class='' href="<?php print "{$_SERVER[PHP_SELF]}?$next_page"; ?>" rel='nofollow'><?php print __("Next", $text_domain)."&nbsp;$num_per_page"; ?></a><br>
+<a class='' href="<?php print "{$_SERVER[PHP_SELF]}?$next_page"; ?>" rel='nofollow'><?php print __("Next", $text_domain)."&nbsp;$num_per_page"; ?>&nbsp;&raquo;</a><br>
 <?php } ?>
 </nobr>
 </td></tr></table>

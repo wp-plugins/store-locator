@@ -1,3 +1,7 @@
+<?php
+include("variables.sl.php");
+include("top-nav.php");
+?>
 <div class='wrap'>
 <?php 
 
@@ -16,6 +20,7 @@ update_option('sl_map_theme', $_POST[theme]);
 update_option('sl_search_label', $_POST[search_label]);
 update_option('sl_radius_label', $_POST[sl_radius_label]);
 update_option('sl_website_label', $_POST[sl_website_label]);
+update_option('sl_directions_label', $_POST[sl_directions_label]);
 update_option('sl_instruction_message', $_POST[sl_instruction_message]);
 update_option('sl_zoom_level', $_POST[zoom_level]);
 $_POST[sl_use_city_search]=($_POST[sl_use_city_search]=="")? 0 : $_POST[sl_use_city_search];
@@ -140,6 +145,8 @@ print "
 <td><input name='sl_radius_label' value=\"$sl_radius_label\"></td></tr>
 <tr><td>".__("Website URL Label", $text_domain).":</td>
 <td><input name='sl_website_label' value=\"$sl_website_label\"></td>
+<tr><td>".__("Directions URL Label", $text_domain).":</td>
+<td><input name='sl_directions_label' value=\"$sl_directions_label\"></td>
 <tr><td>".__("Instruction Message to Users", $text_domain).":</td>
 <td><input name='sl_instruction_message' value=\"".$sl_instruction_message."\" size='50'></td>
 </tr></table>

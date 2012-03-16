@@ -1,3 +1,7 @@
+<?php
+include("variables.sl.php");
+include("top-nav.php");
+?>
 <div class='wrap'>
 <?php 
 

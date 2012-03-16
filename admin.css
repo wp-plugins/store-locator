@@ -71,3 +71,10 @@ div.feedburnerFeedBlock ul li span.headline {
 .left_side {
 	border-right:solid #ddd 1px;
 }
+.sl_admin_warning {
+	background-color:pink; 
+	border-left:solid maroon 1px; 
+	border-right:solid maroon 1px; 
+	padding:7px; 
+	width:75%;
+}

@@ -1,3 +1,7 @@
+<?php
+include("variables.sl.php");
+include("top-nav.php");
+?>
 <div class='wrap'>
 <!--h2>About Lots of Locales (LoL) Store Locator Plugin</h2><br-->
 <?php

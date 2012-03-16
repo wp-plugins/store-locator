@@ -170,7 +170,7 @@
 		//address=street + city + state_zip;
 	  
 	  if (homeAddress.split(" ").join("")!="") {
-		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + street + city + state_zip + '<br/> <a href="http://' + sl_google_map_domain + '/maps?saddr=' + encodeURIComponent(homeAddress) + '&daddr=' + encodeURIComponent(address) + '" target="_blank" class="storelocatorlink">Directions</a> ' + more_html + '<br/><!--/td></tr--></div>'; // Get Directions link added by Moyo 5/23/08
+		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + street + city + state_zip + '<br/> <a href="http://' + sl_google_map_domain + '/maps?saddr=' + encodeURIComponent(homeAddress) + '&daddr=' + encodeURIComponent(address) + '" target="_blank" class="storelocatorlink">' + sl_directions_label + '</a> ' + more_html + '<br/><!--/td></tr--></div>'; // Get Directions link added by Moyo 5/23/08
 	  }
 	  else {
 		var html = '<div id="sl_info_bubble"><!--tr><td--><strong>' + name + '</strong><br>' + street + city + state_zip + '<br/> <a href="http://' + sl_google_map_domain + '/maps?q=' + encodeURIComponent(address) + '" target="_blank" class="storelocatorlink">Map</a> ' + more_html + '<!--/td></tr--></div>';
@@ -194,9 +194,9 @@
 	  var state_zip = address.split(',')[2]; 
 	  //var more = address.split(',')[3];
 	  if(url.indexOf("http://")==-1) {url="http://"+url;} //added by Moyo 10/19/2009 so that www.someurl.com will show up as http://www.someurl.com
-	  if (url.indexOf("http://")!=-1 && url.indexOf(".")!=-1) {link="<a href='"+url+"' target='_blank' class='storelocatorlink'><nobr>" + sl_website_label +"</nobr></a>&nbsp;|&nbsp;"} else {url=""; link="";}
+	  if (url.indexOf("http://")!=-1 && url.indexOf(".")!=-1) {link="&nbsp;|&nbsp;<a href='"+url+"' target='_blank' class='storelocatorlink'><nobr>" + sl_website_label +"</nobr></a>"} else {url=""; link="";}
 	  
-      var html = '<center><table width="96%" cellpadding="4px" cellspacing="0" class="searchResultsTable"><tr><td class="results_row_left_column"><span class="location_name">' + name + '</span><br>' + distance.toFixed(1) + ' ' + sl_distance_unit + '</td><td class="results_row_center_column">' + street + '<br/>' + city + state_zip +' </td><td class="results_row_right_column">' + link + '<a href="http://' + sl_google_map_domain + '/maps?saddr=' + encodeURIComponent(homeAddress) + '&daddr=' + encodeURIComponent(address) + '" target="_blank" class="storelocatorlink">Directions</a></td></tr></table></center>'; // Get Directions link added by Moyo 5/23/08
+      var html = '<center><table width="96%" cellpadding="4px" cellspacing="0" class="searchResultsTable"><tr><td class="results_row_left_column"><span class="location_name">' + name + '</span><br>' + distance.toFixed(1) + ' ' + sl_distance_unit + '</td><td class="results_row_center_column">' + street + '<br/>' + city + state_zip +' </td><td class="results_row_right_column"> <a href="http://' + sl_google_map_domain + '/maps?saddr=' + encodeURIComponent(homeAddress) + '&daddr=' + encodeURIComponent(address) + '" target="_blank" class="storelocatorlink">' + sl_directions_label + '</a> ' + link + '</td></tr></table></center>'; // Get Directions link added by Moyo 5/23/08
       /*if (resultsDisplayed==0) {
 		div.innerHTML = "<table><tr><td>";
 	  }*/

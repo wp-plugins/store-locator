@@ -1,5 +1,6 @@
 <?php
-
+include("variables.sl.php");
+include("top-nav.php");
 print "
 <div class='wrap'>
 <h2>".__("Add Locations", $text_domain)."</h2><br>";
