@@ -20,6 +20,10 @@
 	border-bottom: none;
 }
 
+.widefat td {
+	vertical-align:middle !important;
+}
+
 .widefat thead,.widefat thead tr {
 	background-color: #464646;
 	background-image: none;

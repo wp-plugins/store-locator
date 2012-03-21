@@ -13,8 +13,26 @@ foreach($_GET as $key=>$val) {
 	}
 }
 //$view_all_link=(!empty($_GET[q]))?"<a href='?q=page=$sl_dir/view-locations.php' style='font-size:12px'>Back&nbsp;to&nbsp;View&nbsp;All</a>&nbsp;&nbsp;":"";
-print "<form><table cellpadding='0px' cellspacing='0px' width='100%'><tr><td>
-<h2>".__("Manage Locations", $text_domain)."</h2></td><td align='right'><div style='float:right; padding-right:0px; width:100%'><input value='$_GET[q]' name='q'><input type='submit' value='".__("Search Locations", $text_domain)."' class='button-primary'></div>$hidden</td></tr></table></form><br>";
+print "<form><table cellpadding='0px' cellspacing='0px' width='100%'><tr><td style='width:300px'>
+<h2>".__("Manage Locations", $text_domain)."</h2></td>";
+
+if ($num_ugc=$wpdb->get_var("SELECT COUNT(sl_id) FROM ".$wpdb->prefix."store_locator WHERE sl_longitude=0 OR sl_latitude=0")) {
+	if ($_GET[ugc]==1) {
+		$ugc_button_text="Attempt to Re-geocode Selected";
+		$ugc_num=2;
+		$_GET[q]="";$_GET[start]=0; //so that a search query won't interfere with showing ungeocoded locations
+		$onclick_text="onclick=\"LF=document.forms['locationForm'];LF.act.value='regeocode';LF.submit();\"";
+		$cancel_link="<a href='".ereg_replace("&ugc=$_GET[ugc]","",$_SERVER[REQUEST_URI])."'>Cancel</a><br>";
+	} else {
+		$ugc_button_text="Show Un-geocoded Locations ($num_ugc)";
+		$ugc_num=1;
+		$onclick_text="onclick='location.href=\"".ereg_replace("&ugc=$_GET[ugc]","",$_SERVER[REQUEST_URI])."&ugc=$ugc_num\"'";
+		$cancel_link="";
+	}
+	print "<td style='text-align:center'>$cancel_link<input type='button' value='$ugc_button_text' class='button-primary' style='/*background-image:-moz-linear-gradient(center bottom, #900, maroon); background-color: #900; border:maroon*/' $onclick_text></td>";
+}
+
+print "<td align='right' style='width:300px'><div style='float:right; padding-right:0px; width:100%'><input value='$_GET[q]' name='q'><input type='submit' value='".__("Search Locations", $text_domain)."' class='button-primary'></div>$hidden</td></tr></table></form><br>";
 
 initialize_variables();
 
@@ -69,6 +87,27 @@ else {
 		//If change in locations per page
 		update_option('sl_admin_locations_per_page', $_POST[sl_admin_locations_per_page]);
 		extract($_POST);
+	}
+	if ($_POST[act]=="regeocode") {
+		//var_dump($_POST); die();
+		if ($_POST) {extract($_POST);}
+		if (is_array($sl_id)==1) {
+			$id_string="";
+			foreach ($sl_id as $value) {
+				$id_string.="$value,";
+			}
+			$id_string=substr($id_string, 0, strlen($id_string)-1);
+		}
+		else {
+			$id_string=$sl_id;
+		}
+		//die("SELECT * FROM ".$wpdb->prefix."store_locator WHERE sl_id IN ($id_string)");
+		$locs=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."store_locator WHERE sl_id IN ($id_string)", ARRAY_A);
+		//print_r($locs); die();
+		foreach ($locs as $value) {
+			do_geocoding("$value[sl_address] $value[sl_address2], $value[sl_city], $value[sl_state] $value[sl_zip]", $value[sl_id]);
+		}
+		print "<script>location.replace('".ereg_replace("&ugc=$_GET[ugc]", "", $_SERVER[REQUEST_URI])."');</script>";
 	}
 	if ($_GET[changeView]==1) {
 		if (get_option('sl_location_table_view')=="Normal") {
@@ -126,7 +165,17 @@ print "</td></tr></table><br>";
 include("mgmt-buttons-links.php");
 //print "<br>";
 
+//establishes WHERE clause in query from URL querystring
 set_query_defaults();
+
+//overrides WHERE clause to show ungeocoded locations only
+if($_GET[ugc]==1) {
+	$where="WHERE sl_longitude='' OR sl_latitude=''";
+	print "<script>window.onload=function(){checkAll(document.getElementById('master_checkbox'), document.forms[\"locationForm\"]);}</script>";
+	$master_check="checked='checked'";
+} elseif ($_GET[ugc]==2) {
+	
+}
 
 //for search links
 		$numMembers=$wpdb->get_results("SELECT sl_id FROM " . $wpdb->prefix . "store_locator  $where");
@@ -140,7 +189,7 @@ set_query_defaults();
 print "<br>
 <table class='widefat' cellspacing=0 id='loc_table'>
 <thead><tr >
-<th colspan='1'><input type='checkbox' onclick='checkAll(this,document.forms[\"locationForm\"])' class='button'></th>
+<th colspan='1'><input type='checkbox' onclick='checkAll(this,document.forms[\"locationForm\"])' class='button' id='master_checkbox' $master_check></th>
 <th colspan='1'>".__("Actions", $text_domain)."</th>
 <th><a href='".ereg_replace("&o=$_GET[o]&d=$_GET[d]", "", $_SERVER[REQUEST_URI])."&o=sl_id&d=$d'>".__("ID", $text_domain)."</a></th>
 <th><a href='".ereg_replace("&o=$_GET[o]&d=$_GET[d]", "", $_SERVER[REQUEST_URI])."&o=sl_store&d=$d'>".__("Name", $text_domain)."</a></th>
@@ -161,7 +210,6 @@ print "<th><a href='".ereg_replace("&o=$_GET[o]&d=$_GET[d]", "", $_SERVER[REQUES
 
 print "<th>(Lat, Lon)</th>
 </tr></thead>";
-
 
 	if ($locales=$wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "store_locator  $where ORDER BY $o $d LIMIT $start,$num_per_page", ARRAY_A)) {
 		//function do_trim($a){return trim($a);}
