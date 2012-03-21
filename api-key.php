@@ -31,7 +31,7 @@ else {
 	print "<div style='border:solid green 0px; padding:3px; background-color:LightGreen; width:400px; color:black; display:inline;'>".__("API Key Submitted", $text_domain)."</div>";
 }
 
-print "</th></tr></thead><tr><td style='width:40%;' class='left_side'><h2>".__("Google API Key", $text_domain)."</h2><!--/td><td--><input name='store_locator_api_key' value='$slak' size='70'><br><br><div class=''><strong><a href='http://code.google.com/apis/maps/signup.html' target='_blank'>".__("Get your Google API Key", $text_domain)."</a></strong><br>(".__("You'll need to log in with your Google account on the page that opens up. If you don't have an account", $text_domain).", <a href='https://www.google.com/accounts/' target='_blank'>".__("sign up here", $text_domain)."</a>.)</div></td><!--/tr-->";
+print "</th></tr></thead><tr><td style='width:40%;' class='left_side'><h2>".__("Google API Key", $text_domain)."</h2><!--/td><td--><input name='store_locator_api_key' value='$slak' size='70'><br><br><div class=''><strong><a href='https://developers.google.com/maps/documentation/javascript/v2/introduction#Obtaining_Key' target='_blank'>".__("Get your Google API Key", $text_domain)."</a></strong>&nbsp;(".__("link updated as of Store Locator v1.4",$text_domain).")<br>(".__("You'll need to log in with your Google account on the page that opens up. If you don't have an account", $text_domain).", <a href='https://www.google.com/accounts/' target='_blank'>".__("sign up here", $text_domain)."</a>.)</div></td><!--/tr-->";
 
 /*print "<tr><td>".__("Choose Your Language", $text_domain).":</td><td><select name='sl_language'>";
 $the_lang["United States"]="en_EN";

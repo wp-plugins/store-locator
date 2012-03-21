@@ -118,7 +118,7 @@ print "</ul> <!--script>alert('$_SERVER[QUERY_STRING]');</script--> <!--/div-->"
 if (trim(get_option('store_locator_api_key'))=="") {
 print "<div class='sl_admin_warning'>
 <strong>".__("Update Your Google API Key", $text_domain)." <a href='$top_nav_base/api-key.php'>here</a> </strong><br><br>
-<div class=''><strong><a href='http://code.google.com/apis/maps/signup.html' target='_blank'>".__("Get your Google API Key", $text_domain)."</a></strong><br>(".__("You'll need to log in with your Google account on the page that opens up. If you don't have an account", $text_domain).", <a href='https://www.google.com/accounts/' target='_blank'>".__("sign up here", $text_domain)."</a>.)</div>
+<div class=''><strong><a href='https://developers.google.com/maps/documentation/javascript/v2/introduction#Obtaining_Key' target='_blank'>".__("Get your Google API Key", $text_domain)."</a></strong>&nbsp;(".__("link updated as of Store Locator v1.4",$text_domain).")<br>(".__("You'll need to log in with your Google account on the page that opens up. If you don't have an account", $text_domain).", <a href='https://www.google.com/accounts/' target='_blank'>".__("sign up here", $text_domain)."</a>.)</div>
 </div><br>";
 }
 ?>
