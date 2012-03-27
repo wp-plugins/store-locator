@@ -6,7 +6,7 @@ Requires at least: 2.5
 Tested up to: 3.3.1
 Stable tag: 1.4.1
 
-A store locator plugin that gives you the ability to effectively show important locations (stores, buildings, points of interest, etc.) in an easily searchable manner using Google Maps.
+A store locator plugin that gives you the ability to effectively show important locations in an easily searchable manner using Google Maps.
 
 == Description ==
 
