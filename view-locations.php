@@ -18,12 +18,14 @@ print "<form><table cellpadding='0px' cellspacing='0px' width='100%'><tr><td sty
 
 if ($num_ugc=$wpdb->get_var("SELECT COUNT(sl_id) FROM ".$wpdb->prefix."store_locator WHERE sl_longitude=0 OR sl_latitude=0")) {
 	if ($_GET[ugc]==1) {
+		//Step 2 - submit selected un-geocoded locations
 		$ugc_button_text="Attempt to Re-geocode Selected";
 		$ugc_num=2;
 		$_GET[q]="";$_GET[start]=0; //so that a search query won't interfere with showing ungeocoded locations
 		$onclick_text="onclick=\"LF=document.forms['locationForm'];LF.act.value='regeocode';LF.submit();\"";
 		$cancel_link="<a href='".ereg_replace("&ugc=$_GET[ugc]","",$_SERVER[REQUEST_URI])."'>Cancel</a><br>";
 	} else {
+		//Step 1 - Show un-geocoded locations
 		$ugc_button_text="Show Un-geocoded Locations ($num_ugc)";
 		$ugc_num=1;
 		$onclick_text="onclick='location.href=\"".ereg_replace("&ugc=$_GET[ugc]","",$_SERVER[REQUEST_URI])."&ugc=$ugc_num\"'";
@@ -36,11 +38,11 @@ print "<td align='right' style='width:300px'><div style='float:right; padding-ri
 
 initialize_variables();
 
-$slak=get_option('store_locator_api_key');
+/*$slak=get_option('store_locator_api_key');
 if (!$slak) {
 	include("api-key.php");
 }
-else {
+else {*/
 
 	if ($_GET[delete]!="") {
 		//If delete link is clicked
@@ -299,7 +301,7 @@ if ($numMembers2!=0) {include("$sl_path/search-links.php");}
 
 print "</form>";
 	
-}
+//}
 	
 ?>
 </div>
