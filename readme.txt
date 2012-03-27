@@ -1,7 +1,7 @@
 === Google Maps Store Locator for WordPress ===
 Contributors: viadat
 Donate link: http://www.viadat.com/donate/
-Tags: business locations, dealer locator, dealer locater, store locator, store locater, mapping, mapper, google, google maps, buddypress, shop locator, shop finder,  location finder, places, stores, maps, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, zipcode, zip code search
+Tags: business locations,dealer locator,dealer locater,store locator,store locater,mapping,mapper,google,google maps,buddypress,shop locator,shop finder,location finder,places,stores,maps,coordinates,latitude,longitude,geo,geocoding,shops,ecommerce,e-commerce,zipcode,zip code search
 Requires at least: 2.5
 Tested up to: 3.3.1
 Stable tag: 1.4.1
