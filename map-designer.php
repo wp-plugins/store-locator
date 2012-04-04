@@ -131,7 +131,7 @@ print "
 <td><input name='sl_map_overview_control' value='1' type='checkbox' $checked5></td></tr>
 <tr><td>".__("Show Locations By Default When Map Loads?", $text_domain).":</td>
 <td><input name='sl_load_locations_default' value='1' type='checkbox' $checked4></td></tr>
-<tr><td>".__("Number of Locations Shown By Default", $text_domain).":</td>
+<tr><td>".__("Number of Locations Shown By Default", $text_domain)."<br>".__("and in Search Results", $text_domain).":</td>
 <td><input name='sl_num_initial_displayed' value='$sl_num_initial_displayed'><br><span style='font-size:80%'>(".__("Recommended Max: 50", $text_domain).")</span></td></tr></table>
 
 </td><!--/tr-->
@@ -183,7 +183,7 @@ $icon_notification_msg
 <tr><td valign='top'>".__("Destination Icon", $text_domain).":</td>
 <td valign='top'> <input name='icon2' size='45' value='$icon2' onchange=\"document.getElementById('prev2').src=this.value\">&nbsp;&nbsp;<img id='prev2' src='$icon2'align='top'> <br><div style=''>$icon2_str</div>
 </td></tr>
-<tr><td colspan='2'><div class=''><b>".__("Looking to create or find a unique icon? For ideas, visit", $text_domain)."<br> <a href='http://mapki.com/index.php?title=Icon_Image_Sets' target='_blank'>http://mapki.com/index.php?title=Icon_Image_Sets</a></b></div></td></tr></table>
+<tr><td colspan='2'><div class=''><b>".__("Looking to create or find a unique icon? For ideas, visit", $text_domain)."<br> <a href='http://mapki.com/wiki/Icon_Image_Sets' target='_blank'>http://mapki.com/wiki/Icon_Image_Sets</a></b></div></td></tr></table>
 </td></tr>
 <tr><td colspan='2'><input type='submit' value='".__("Update", $text_domain)."' class='button-primary'></td></tr></table></form>";
 

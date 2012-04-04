@@ -101,4 +101,3 @@ if (($start+$num_per_page)<$numMembers2) { ?>
 </td>
 </tr>
 </table>
-<!--div style='margin:0px auto; position:relative; left:50px'><center><?php// if ($current_dir!="articles" && $current_dir!="groups") {include("$root/google/google_ads_728_90_2.php");} ?></center></div><br-->

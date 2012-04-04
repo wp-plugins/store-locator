@@ -480,21 +480,23 @@ $cs_options.="<option value='$value[city_state]'>$value[city_state]</option>";
 		$theme_base=$sl_base."/images";
 		$theme_path=$sl_path."/images";
 	}
-	$sub_img=$theme_base."/search_button.png";
+	$submit_img=$theme_base."/search_button.png";
+	$loading_img=(file_exists($sl_upload_path."/images/loading.gif"))? $sl_upload_base."/images/loading.gif" : $sl_base."/images/loading.gif"; //for loading/processing gif image
 	$mousedown=(file_exists($theme_path."/search_button_down.png"))? "onmousedown=\"this.src='$theme_base/search_button_down.png'\" onmouseup=\"this.src='$theme_base/search_button.png'\"" : "";
 	$mouseover=(file_exists($theme_path."/search_button_over.png"))? "onmouseover=\"this.src='$theme_base/search_button_over.png'\" onmouseout=\"this.src='$theme_base/search_button.png'\"" : "";
-	$button_style=(file_exists($theme_path."/search_button.png"))? "type='image' src='$sub_img' $mousedown $mouseover" : "type='submit'";
-	//print "$sub_img | ".$sl_upload_path."/themes/".get_option('sl_map_theme')."/search_button.png";
+	$button_style=(file_exists($theme_path."/search_button.png"))? "type='image' src='$submit_img' $mousedown $mouseover" : "type='submit'";
+	$button_style.=" onclick=\"showLoadImg('show');\""; //added 3/30/12 for loading/processing gif image
+	//print "$submit_img | ".$sl_upload_path."/themes/".get_option('sl_map_theme')."/search_button.png";
 	$hide=(get_option('sl_remove_credits')==1)? "style='display:none;'" : "";
 	
 $form="
 <div id='sl_div'>
   <form onsubmit='searchLocations(); return false;' id='searchForm' action=''>
-    <table border='0' cellpadding='3px' class='sl_header'><tr>
+    <table border='0' cellpadding='3px' class='sl_header' style='width:$width$width_units;'><tr>
 	<td valign='top' id='search_label'>$search_label&nbsp;</td>
 	<td ";
 	
-	if (get_option('sl_use_city_search')!=1) {$form.=" colspan='2' ";}
+	if (get_option('sl_use_city_search')!=1) {$form.=" colspan='3' ";}
 	
 	$form.=" valign='top'><input type='text' id='addressInput' size='50' /></td>
 	";
@@ -539,11 +541,11 @@ $form="
 	
 	if (get_option('sl_use_city_search')!=1) {$form.="colspan='2'";}
 	
-	$form.=" ><input $button_style value='Search Locations' id='addressSubmit'/> </td>
+	$form.=" ><input $button_style value='Search Locations' id='addressSubmit'/>&nbsp;<img src='$loading_img' id='loadImg' style='display:none; height:28px; vertical-align:bottom; position:relative; top:-8px;'></td>
 	</tr></table>
 <table width='100%' cellspacing='0px' cellpadding='0px' style='/*border:solid silver 1px*/'> 
      <tr>
-        <td width='100%' valign='top'> <div id='map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' width='$width$width_units;' $hide><tr><td class='sl_footer_left_column'><a href='http://www.viadat.com/store-locator' target='_blank'>LotsOfLocales&trade;</a></td><td class='sl_footer_right_column'> <a href='http://www.viadat.com' target='_blank' title='by Viadat Creations'>by Viadat</a></td></tr></table>
+        <td width='100%' valign='top' id='map_td'> <div id='map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' width='$width$width_units;' $hide><tr><td class='sl_footer_left_column'><a href='http://www.viadat.com/store-locator' target='_blank'>LotsOfLocales&trade;</a></td><td class='sl_footer_right_column'> <a href='http://www.viadat.com' target='_blank' title='by Viadat Creations'>by Viadat</a></td></tr></table>
 		</td>
       </tr>
 	  <tr id='cm_mapTR'>
