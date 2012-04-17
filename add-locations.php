@@ -12,6 +12,11 @@ initialize_variables();
 if ($_POST[sl_store] && $_GET[mode]!="pca") {
 	foreach ($_POST as $key=>$value) {
 		if (ereg("sl_", $key)) {
+			if ($key=="sl_tags") {
+				//print "before: $value <br><br>";
+				$value=prepare_tag_string($value);
+				//print "after: $value \r\n"; die();
+			}
 			$fieldList.="$key,";
 			$value=comma($value);
 			$valueList.="\"".stripslashes($value)."\",";
@@ -22,8 +27,10 @@ if ($_POST[sl_store] && $_GET[mode]!="pca") {
 	//$wpdb->query("INSERT into ". $wpdb->prefix . "store_locator (sl_store, sl_address, sl_city, sl_state, sl_zip) VALUES ('$_POST[sl_store]', '$_POST[sl_address]', '$_POST[sl_city]', '$_POST[sl_state]', '$_POST[sl_zip]')");
 	//print "INSERT into ". $wpdb->prefix . "store_locator ($fieldList) VALUES ($valueList)"; exit;
 	$wpdb->query("INSERT into ". $wpdb->prefix . "store_locator ($fieldList) VALUES ($valueList)");
+	$new_loc_id=mysql_insert_id();
 	$address="$_POST[sl_address], $_POST[sl_city], $_POST[sl_state] $_POST[sl_zip]";
 	do_geocoding($address);
+	sl_process_tags($_POST[sl_tags], "insert", $new_loc_id);
 	print "<div class='updated fade'>".__("Successful Addition",$text_domain).". $view_link</div> <!--meta http-equiv='refresh' content='0'-->"; //header("location:$_SERVER[HTTP_REFERER]");
 }
 

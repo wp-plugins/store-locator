@@ -108,7 +108,8 @@
        var sidebar = document.getElementById('map_sidebar');
        sidebar.innerHTML = '';
        if (markers.length == 0) {
-         sidebar.innerHTML = '<div class="no_results_found"><h2>No results found.</h2></div>';
+		 showLoadImg('stop');
+         sidebar.innerHTML = '<div class="text_below_map">No Results Found.</div>';
          geocoder = new GClientGeocoder();
        	geocoder.getLatLng(sl_google_map_country, function(latlng) {
 			map.setCenter(point, sl_zoom_level);
@@ -199,8 +200,12 @@
 function showLoadImg(cmd) {
 	loadImg=document.getElementById('loadImg');
 	if (cmd=='show') {
-		loadImg.style.display='inline';
+		//loadImg.style.display='inline';
+		loadImg.style.opacity = 1;
+		loadImg.style.filter = 'alpha(opacity=100)';
 	} else {
-		loadImg.style.display='none';		
+		//loadImg.style.display='none';
+		loadImg.style.opacity = 0;
+		loadImg.style.filter = 'alpha(opacity=0)';
 	}
 }	

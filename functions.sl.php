@@ -284,7 +284,7 @@ curl_close($cURL);
     usleep($delay);
 }
 /*-------------------------------*/
-function install_table() {
+function sl_install_tables() {
 	global $wpdb, $sl_db_version, $sl_path, $sl_upload_path;
 
 	$table_name = $wpdb->prefix . "store_locator";
@@ -307,6 +307,15 @@ function install_table() {
 			sl_private varchar(1) NULL,
 			sl_neat_title varchar(255) NULL,
 			PRIMARY KEY  (sl_id)
+			) ENGINE=innoDB  DEFAULT CHARACTER SET=utf8  DEFAULT COLLATE=utf8_unicode_ci;";
+			
+	$table_name_2 = $wpdb->prefix . "sl_tag";
+	$sql .= "CREATE TABLE " . $table_name_2 . " (
+			sl_tag_id bigint(20) unsigned NOT NULL auto_increment,
+			sl_tag_name varchar(255) NULL,
+			sl_tag_slug varchar(255) NULL,
+			sl_id mediumint(8) NULL,
+			PRIMARY KEY  (sl_tag_id)
 			) ENGINE=innoDB  DEFAULT CHARACTER SET=utf8  DEFAULT COLLATE=utf8_unicode_ci;";
 	
 	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
@@ -496,7 +505,7 @@ $form="
 	<td valign='top' id='search_label'>$search_label&nbsp;</td>
 	<td ";
 	
-	if (get_option('sl_use_city_search')!=1) {$form.=" colspan='3' ";}
+	if (get_option('sl_use_city_search')!=1) {$form.=" colspan='4' ";}
 	
 	$form.=" valign='top'><input type='text' id='addressInput' size='50' /></td>
 	";
@@ -507,7 +516,7 @@ $form="
 	
 	if ($cs_array && get_option('sl_use_city_search')==1) {
 	$form.="
-	<td id='addressInput2_container'>";
+	<td id='addressInput2_container' colspan='2'>";
 	$form.="<select id='addressInput2' onchange='aI=document.getElementById(\"searchForm\").addressInput;if(this.value!=\"\"){oldvalue=aI.value;aI.value=this.value;}else{aI.value=oldvalue;}'>
 <option value=''>--".__("Search By City", $text_domain)."--</option>$cs_options</select></td>";
 	}
@@ -541,7 +550,8 @@ $form="
 	
 	if (get_option('sl_use_city_search')!=1) {$form.="colspan='2'";}
 	
-	$form.=" ><input $button_style value='Search Locations' id='addressSubmit'/>&nbsp;<img src='$loading_img' id='loadImg' style='display:none; height:28px; vertical-align:bottom; position:relative; top:-8px;'></td>
+	$form.=" ><input $button_style value='Search Locations' id='addressSubmit'/></td>
+	<td><img src='$loading_img' id='loadImg' style='opacity:0; filter:alpha(opacity=0); height:28px; vertical-align:bottom; position:relative; '></td>
 	</tr></table>
 <table width='100%' cellspacing='0px' cellpadding='0px' style='/*border:solid silver 1px*/'> 
      <tr>
@@ -698,6 +708,9 @@ function insert_matched_data() {
 		if($value!="") {
 			$selected_fields.="$value,";
 			$column_number[]=$ctr;
+			if ($value=="sl_tags") {
+				$sl_tags_position=$ctr;
+			}
 		}
 		$ctr++;
 	}
@@ -708,17 +721,25 @@ function insert_matched_data() {
 		for ($ctr2=0; $ctr2<count($column_number); $ctr2++) {
 			//print "'".$_POST["column{$column_number[$ctr2]}"][$entry_number]."',";
 			//die();
-			$value_string.="'".trim($_POST["column{$column_number[$ctr2]}"][$entry_number])."',";
+			$val=trim($_POST["column{$column_number[$ctr2]}"][$entry_number]);
+			if ($val==trim($_POST["column{$sl_tags_position}"][$entry_number])) {
+				$val=prepare_tag_string($val);
+			}
+			$value_string.="'".$val."',";
 			//die($value_string);
 		}
 		$value_string=substr($value_string,0, strlen($value_string)-1);
 		//print "INSERT INTO ".$wpdb->prefix."store_locator ($selected_fields) VALUES ($value_string) <br>"; die();
 		$wpdb->query("INSERT INTO ".$wpdb->prefix."store_locator ($selected_fields) VALUES ($value_string)");
+		$current_loc_id=mysql_insert_id();
 		$for_geo=$wpdb->get_results("SELECT CONCAT(sl_address, ', ', sl_city, ', ', sl_state, ' ', sl_zip) as the_address FROM ".$wpdb->prefix."store_locator WHERE sl_id='".mysql_insert_id()."'", ARRAY_A);
 		//var_dump($for_geo);  
 		//exit();
 		do_geocoding($for_geo[0][the_address]);
 		$value_string="";
+		if (!empty($sl_tags_position) && trim($_POST["column{$sl_tags_position}"][$entry_number])!="") {
+			sl_process_tags($_POST["column{$sl_tags_position}"][$entry_number], "insert", $current_loc_id);
+		}
 
 		}
 }
@@ -744,5 +765,80 @@ function url_test($url)
 		return TRUE; }
 	else{
 		return FALSE; }
+}
+/*-----------------------------------------------------------*/
+function sl_process_tags($tag_string, $db_action="insert", $sl_id="") {
+	global $wpdb;
+	$id_string="";
+	
+	//die($sl_id." - sl_id - start of process tags func"); 
+	
+	if (ereg(",", $sl_id) && !is_array($sl_id)) {
+			$id_string=$sl_id;
+			$sl_id=explode(",",$id_string);
+	} elseif (is_array($sl_id)) {
+		foreach ($sl_id as $value) {
+			$id_string.="$value,";
+		}
+		$id_string=substr($id_string, 0, strlen($id_string)-1);
+	} else {
+		$id_string=$sl_id;
+	}
+	
+	if ($db_action=="insert") {
+		if (ereg(",", $tag_string)) {
+			$sl_tag_array=array_map('trim',explode(",",trim($tag_string)));
+			$sl_tag_array=array_map('strtolower', $sl_tag_array);
+		} else {
+			$sl_tag_array[]=strtolower(trim($tag_string));
+		}
+		$wpdb->query("DELETE FROM ".$wpdb->prefix."sl_tag WHERE sl_id IN ($id_string)"); //clear current tags for locations being modified
+		
+		//build insert query
+		$query="INSERT INTO ".$wpdb->prefix."sl_tag (sl_tag_slug, sl_id) VALUES ";
+		if (!is_array($sl_id)) {
+			$main_sl_id=($sl_id=="")? mysql_insert_id() : $sl_id ;	
+			foreach ($sl_tag_array as $value)  {
+				if (trim($value)!="") {
+					$query.="('$value', '$main_sl_id'),";
+				}
+			}
+		} elseif (is_array($sl_id)) {
+			foreach ($sl_id as $value2) {
+				$main_sl_id=$value2;
+				foreach ($sl_tag_array as $value)  {
+					if (trim($value)!="") {
+						$query.="('$value', '$main_sl_id'),";
+					}
+				}
+			}
+		}
+		$query=substr($query, 0, strlen($query)-1); // remove last comma 
+		//die($query);
+	} elseif ($db_action=="delete") {
+		if (trim($tag_string)=="") {
+			$query="DELETE FROM ".$wpdb->prefix."sl_tag WHERE sl_id IN ($id_string)";
+		} else {
+			$query="DELETE FROM ".$wpdb->prefix."sl_tag WHERE sl_id IN ($id_string) AND sl_tag_slug='".trim($tag_string)."'";
+		}
+	} 
+	$wpdb->query($query);
+	
+}
+/*-----------------------------------------------------------*/
+function prepare_tag_string($sl_tags) {
+	$sl_tags=preg_replace('/\s*,\s*/', ',', $sl_tags);
+	//&#44; - entity symbol for a comma (,)
+	$sl_tags=preg_replace('/\s*\&\#44\;\s*/', '&#44;', $sl_tags);
+	$sl_tags=preg_replace('/\,+/', ', ', $sl_tags);
+	$sl_tags=preg_replace('/(\&\#44\;)+/', '&#44; ', $sl_tags);
+	$sl_tags=trim($sl_tags);
+	if (substr($sl_tags, 0, 1) == ",") {
+		$sl_tags=substr($sl_tags, 1, strlen($sl_tags));
+	}
+	if (substr($sl_tags, strlen($sl_tags)-1, 1) != ",") {
+		$sl_tags.=",";
+	}
+	return $sl_tags;
 }
 ?>

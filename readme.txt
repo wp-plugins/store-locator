@@ -4,9 +4,9 @@ Donate link: http://www.viadat.com/donate/
 Tags: business locations, dealer locator, dealer locater, store locator, store locater, mapping, mapper, google, google maps, buddypress, shop locator, shop finder,  location finder, places, stores, maps, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, zipcode, zip code search
 Requires at least: 2.5
 Tested up to: 3.3.1
-Stable tag: 1.5
+Stable tag: 1.6
 
-A store locator plugin that gives you the ability to effectively show important locations (stores, buildings, points of interest, etc.) in an easily searchable manner using Google Maps.
+A store locator plugin that gives you the ability to effectively show important locations in an easily searchable manner using Google Maps.
 
 == Description ==
 
@@ -72,6 +72,11 @@ If you need additional features, enhance your store locator with addons & themes
 As of version 1.2.37, you can modify the default 'store-locator.css' and place it under `/wp-content/uploads/sl-uploads/custom-css/`. The store locator will give priority to the 'store-locator.css' in the 'custom-css/' folder over the default 'store-locator.css' in the main 'store-locator/' folder. This allows you to upgrade the main store locator plugin without worrying about losing your custom styling. 
 
 == Changelog ==
+
+= 1.6 =
+* Much improved processing image next to search button - important to update from 1.5
+* Tag management improvement/fixes
+* Bug fixes
 
 = 1.5 =
 * Circular loading/processing image next to search button during search to know that locator is actively performing search

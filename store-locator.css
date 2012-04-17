@@ -150,8 +150,9 @@ min-width:0px !important;
 .text_below_map {
 	/*shown before search performed */
 	font-family:Arial;
-	padding:20px;
+	padding:10px;
 	padding-left:0px;
+	padding-right:0px;
 	font-size:18px;
 	text-align:justified;
 }

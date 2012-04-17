@@ -47,25 +47,32 @@ else {*/
 	if ($_GET[delete]!="") {
 		//If delete link is clicked
 		$wpdb->query("DELETE FROM ".$wpdb->prefix."store_locator WHERE sl_id='$_GET[delete]'");
+		sl_process_tags("", "delete", $_GET[delete]);
 	}
 	if ($_POST && $_GET[edit] && $_POST[act]!="delete") {
 		foreach ($_POST as $key=>$value) {
 			if (ereg("\-$_GET[edit]", $key)) {
-				$field_value_str.="sl_".ereg_replace("\-$_GET[edit]", "", $key)."='".trim(comma($value))."', ";
 				$key=ereg_replace("\-$_GET[edit]", "", $key); // stripping off number at the end (giving problems when constructing address string below)
+				if ($key=="sl_tags") {
+					//print "before: $value <br><br>";
+					$value=prepare_tag_string($value);
+					//print "after: $value \r\n"; die();
+				}
+				$field_value_str.=$key."='".trim(comma($value))."', ";				
 				$_POST["$key"]=$value; 
 			}
 		}
 		//var_dump($_POST); exit;
 		$field_value_str=substr($field_value_str, 0, strlen($field_value_str)-2);
 		$edit=$_GET[edit]; extract($_POST);
-		$the_address="$address $address2, $city, $state $zip";
+		$the_address="$sl_address $sl_address2, $sl_city, $sl_state $sl_zip";
 		
 		$old_address=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."store_locator WHERE sl_id=$_GET[edit]", ARRAY_A);
 		//print "address: $the_address<br>";
 		//print "UPDATE ".$wpdb->prefix."store_locator SET $field_value_str WHERE sl_id='$_GET[edit]'"; exit;
 		//print "UPDATE ".$wpdb->prefix."store_locator SET $field_value_str WHERE sl_id='$_GET[edit]'"; exit;
 		$wpdb->query("UPDATE ".$wpdb->prefix."store_locator SET $field_value_str WHERE sl_id=$_GET[edit]");
+		sl_process_tags($_POST[sl_tags], "insert", $_GET[edit]);
 		if ($the_address!="$old_address[sl_address] $old_address[sl_address2], $old_address[sl_city], $old_address[sl_state] $old_address[sl_zip]" || ($old_address[sl_latitude]=="" || $old_address[sl_longitutde]=="")) {
 			do_geocoding($the_address,$_GET[edit]);
 		}
@@ -232,21 +239,21 @@ print "<th>(Lat, Lon)</th>
 	<table cellpadding='0' class='manual_update_table'>
 	<!--thead><tr><td>".__("Type&nbsp;Address", $text_domain)."</td></tr></thead-->
 	<tr>
-		<td valign='top'><b>".__("Name of Location", $text_domain)."</b><br><input name='store-$value[sl_id]' value='$value[sl_store]' size=40><br><br>
-		<b>".__("Address", $text_domain)."</b><br><input name='address-$value[sl_id]' value='$value[sl_address]' size=21>&nbsp;<small>(".__("Street - Line1", $text_domain).")</small><br>
-		<input name='address2-$value[sl_id]' value='$value[sl_address2]' size=21>&nbsp;<small>(".__("Street - Line 2 - optional", $text_domain).")</small><br>
-		<table cellpadding='0px' cellspacing='0px'><tr><td style='padding-left:0px' class='nobottom'><input name='city-$value[sl_id]' value='$value[sl_city]' size='21'><br><small>".__("City", $text_domain)."</small></td>
-		<td><input name='state-$value[sl_id]' value='$value[sl_state]' size='7'><br><small>".__("State", $text_domain)."</small></td>
-		<td><input name='zip-$value[sl_id]' value='$value[sl_zip]' size='10'><br><small>".__("Zip", $text_domain)."</small></td></tr></table><br>
+		<td valign='top'><b>".__("Name of Location", $text_domain)."</b><br><input name='sl_store-$value[sl_id]' value='$value[sl_store]' size=40><br><br>
+		<b>".__("Address", $text_domain)."</b><br><input name='sl_address-$value[sl_id]' value='$value[sl_address]' size=21>&nbsp;<small>(".__("Street - Line1", $text_domain).")</small><br>
+		<input name='sl_address2-$value[sl_id]' value='$value[sl_address2]' size=21>&nbsp;<small>(".__("Street - Line 2 - optional", $text_domain).")</small><br>
+		<table cellpadding='0px' cellspacing='0px'><tr><td style='padding-left:0px' class='nobottom'><input name='sl_city-$value[sl_id]' value='$value[sl_city]' size='21'><br><small>".__("City", $text_domain)."</small></td>
+		<td><input name='sl_state-$value[sl_id]' value='$value[sl_state]' size='7'><br><small>".__("State", $text_domain)."</small></td>
+		<td><input name='sl_zip-$value[sl_id]' value='$value[sl_zip]' size='10'><br><small>".__("Zip", $text_domain)."</small></td></tr></table><br>
 		<nobr><input type='submit' value='".__("Update", $text_domain)."' class='button-primary'><input type='button' class='button' value='".__("Cancel", $text_domain)."' onclick='location.href=\"".ereg_replace("&edit=$_GET[edit]", "",$_SERVER[REQUEST_URI])."\"'></nobr>
 		</td><td>
 		<b>".__("Additional Information", $text_domain)."</b><br>
-		<textarea name='description-$value[sl_id]' rows='5' cols='17'>$value[sl_description]</textarea>&nbsp;<small>".__("Description", $text_domain)."</small><br>
-		<input name='tags-$value[sl_id]' value='$value[sl_tags]'>&nbsp;<small>".__("Tags (seperate with commas)", $text_domain)."</small><br>		
-		<input name='url-$value[sl_id]' value='$value[sl_url]'>&nbsp;<small>".__("URL", $text_domain)."</small><br>
-		<input name='hours-$value[sl_id]' value='$value[sl_hours]'>&nbsp;<small>".__("Hours", $text_domain)."</small><br>
-		<input name='phone-$value[sl_id]' value='$value[sl_phone]'>&nbsp;<small>".__("Phone", $text_domain)."</small><br>
-		<input name='image-$value[sl_id]' value='$value[sl_image]'>&nbsp;<small>".__("Image URL (shown with location)", $text_domain)."</small><br><br>
+		<textarea name='sl_description-$value[sl_id]' rows='5' cols='17'>$value[sl_description]</textarea>&nbsp;<small>".__("Description", $text_domain)."</small><br>
+		<input name='sl_tags-$value[sl_id]' value='$value[sl_tags]'>&nbsp;<small>".__("Tags (seperate with commas)", $text_domain)."</small><br>		
+		<input name='sl_url-$value[sl_id]' value='$value[sl_url]'>&nbsp;<small>".__("URL", $text_domain)."</small><br>
+		<input name='sl_hours-$value[sl_id]' value='$value[sl_hours]'>&nbsp;<small>".__("Hours", $text_domain)."</small><br>
+		<input name='sl_phone-$value[sl_id]' value='$value[sl_phone]'>&nbsp;<small>".__("Phone", $text_domain)."</small><br>
+		<input name='sl_image-$value[sl_id]' value='$value[sl_image]'>&nbsp;<small>".__("Image URL (shown with location)", $text_domain)."</small><br><br>
 	</td>
 		</tr>
 	</table>
