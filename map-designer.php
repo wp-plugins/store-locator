@@ -87,9 +87,9 @@ if (is_dir($sl_upload_path."/themes/")) {
 	}
 }
 	
-$zl[]=0;$zl[]=1;$zl[]=2;$zl[]=3;$zl[]=4;$zl[]=5;$zl[]=6;$zl[]=7;$zl[]=8;
-$zl[]=9;$zl[]=10;$zl[]=11;$zl[]=12;$zl[]=13;$zl[]=14;$zl[]=15;$zl[]=16;
-$zl[]=17;$zl[]=18;$zl[]=19;
+for ($i=0; $i<=19; $i++) {
+	$zl[]=$i;
+}
 
 $zoom="<select name='zoom_level'>";
 foreach ($zl as $value) {

@@ -574,15 +574,17 @@ $form="
 /*-----------------------------------*/
 function sl_add_options_page() {
 	global $sl_dir, $sl_base, $sl_upload_base, $text_domain, $map_character_encoding;
+	
 	$api=get_option('store_locator_api_key');
-	//add_menu_page('Edit Locations', 'View Locations', 9, '$sl_dir/options-store-locator.php');
-	add_menu_page(__("Store Locator", $text_domain), __("Store Locator", $text_domain), 9, $sl_dir.'/news-upgrades.php');
-	add_submenu_page($sl_dir.'/news-upgrades.php', __("News & Upgrades", $text_domain), __("News & Upgrades", $text_domain), 9, $sl_dir.'/news-upgrades.php');
-	add_submenu_page($sl_dir.'/news-upgrades.php', __("Manage Locations", $text_domain), __("Manage Locations", $text_domain), 9, $sl_dir.'/view-locations.php');
-	add_submenu_page($sl_dir.'/news-upgrades.php', __("Add Locations", $text_domain), __("Add Locations", $text_domain), 9, $sl_dir.'/add-locations.php');
-	add_submenu_page($sl_dir.'/news-upgrades.php', __("Map Designer", $text_domain), __("Map Designer", $text_domain), 9, $sl_dir.'/map-designer.php');
-	add_submenu_page($sl_dir.'/news-upgrades.php', __("Localization", $text_domain)." &amp; ".__("Google API Key", $text_domain),  __("Localization", $text_domain)." &amp; ".__("Google API Key", $text_domain), 9, $sl_dir.'/api-key.php');
-	add_submenu_page($sl_dir.'/news-upgrades.php', __("ReadMe", $text_domain), __("ReadMe", $text_domain), 9, $sl_dir.'/readme.php');
+	//add_menu_page('Edit Locations', 'View Locations', 'administrator', '$sl_dir/options-store-locator.php');
+	add_menu_page(__("Store Locator", $text_domain), __("Store Locator", $text_domain), 'administrator', $sl_dir.'/news-upgrades.php');
+	$sl_pg_nu = add_submenu_page($sl_dir.'/news-upgrades.php', __("News & Upgrades", $text_domain), __("News & Upgrades", $text_domain), 'administrator', $sl_dir.'/news-upgrades.php');
+	$sl_pg_ml = add_submenu_page($sl_dir.'/news-upgrades.php', __("Manage Locations", $text_domain), __("Manage Locations", $text_domain), 'administrator', $sl_dir.'/view-locations.php');
+	$sl_pg_al = add_submenu_page($sl_dir.'/news-upgrades.php', __("Add Locations", $text_domain), __("Add Locations", $text_domain), 'administrator', $sl_dir.'/add-locations.php');
+	$sl_pg_md = add_submenu_page($sl_dir.'/news-upgrades.php', __("Map Designer", $text_domain), __("Map Designer", $text_domain), 'administrator', $sl_dir.'/map-designer.php');
+	$sl_pg_lgak = add_submenu_page($sl_dir.'/news-upgrades.php', __("Localization", $text_domain)." &amp; ".__("Google API Key", $text_domain),  __("Localization", $text_domain)." &amp; ".__("Google API Key", $text_domain), 'administrator', $sl_dir.'/api-key.php');
+	$sl_pg_rm = add_submenu_page($sl_dir.'/news-upgrades.php', __("ReadMe", $text_domain), __("ReadMe", $text_domain), 'administrator', $sl_dir.'/readme.php');
+	$sl_pg_settings = add_submenu_page($sl_dir.'/news-upgrades.php', __("Settings", $text_domain), __("Marketplace", $text_domain), 'administrator', $sl_dir.'/marketplace.php');
 	
 }
 
@@ -836,7 +838,7 @@ function prepare_tag_string($sl_tags) {
 	if (substr($sl_tags, 0, 1) == ",") {
 		$sl_tags=substr($sl_tags, 1, strlen($sl_tags));
 	}
-	if (substr($sl_tags, strlen($sl_tags)-1, 1) != ",") {
+	if (substr($sl_tags, strlen($sl_tags)-1, 1) != "," && trim($sl_tags)!="") {
 		$sl_tags.=",";
 	}
 	return $sl_tags;
