@@ -3,8 +3,8 @@ Contributors: viadat
 Donate link: http://www.viadat.com/donate/
 Tags: business locations, dealer locator, dealer locater, store locator, store locater, mapping, mapper, google, google maps, buddypress, shop locator, shop finder,  location finder, places, stores, maps, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, zipcode, zip code search
 Requires at least: 2.5
-Tested up to: 3.3.2
-Stable tag: 1.8
+Tested up to: 3.4.1
+Stable tag: 1.8.1
 
 A store locator plugin that gives you the ability to effectively show important locations in an easily searchable manner using Google Maps.
 
@@ -44,7 +44,7 @@ If you need additional features, enhance your store locator with addons & themes
 * [Laifeilim](http://www.fileem.com): Simplified Chinese
 * Victor Ukhimenko: Russian
 * [Rene](http://wpwebshop.com): Turkish
-* [Love Chandel](http://outshinesolutions.com): Hindi
+* [Outshine Solutions](http://outshinesolutions.com): Hindi
 
 (If you provide your web address, we'll link back to you)
 
@@ -73,9 +73,11 @@ If you need additional features, enhance your store locator with addons & themes
 As of version 1.2.37, you can modify the default 'store-locator.css' and place it under `/wp-content/uploads/sl-uploads/custom-css/`. The store locator will give priority to the 'store-locator.css' in the 'custom-css/' folder over the default 'store-locator.css' in the main 'store-locator/' folder. This allows you to upgrade the main store locator plugin without worrying about losing your custom styling. 
 
 == Changelog ==
+= 1.8.1 =
+* Translator update
 
 = 1.8 =
-* Added Hindi translation (Thank you [Love Chandel](http://outshinesolutions.com)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use.
+* Added Hindi translation (Thank you [Outshine Solutions](http://outshinesolutions.com)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use.
 
 = 1.7 =
 * Improved tagging

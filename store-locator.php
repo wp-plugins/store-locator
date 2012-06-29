@@ -3,7 +3,7 @@
 Plugin Name: Store Locator
 Plugin URI: http://www.viadat.com/store-locator
 Description: A store locator plugin that gives you the ability to effectively show important locations in an easily searchable manner using Google Maps.
-Version: 1.8
+Version: 1.8.1
 Author: Viadat Creations
 Author URI: http://www.viadat.com
 */
