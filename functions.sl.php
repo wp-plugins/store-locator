@@ -776,13 +776,10 @@ function sl_process_tags($tag_string, $db_action="insert", $sl_id="") {
 	//die($sl_id." - sl_id - start of process tags func"); 
 	
 	if (ereg(",", $sl_id) && !is_array($sl_id)) {
-			$id_string=$sl_id;
-			$sl_id=explode(",",$id_string);
+		$id_string=$sl_id;
+		$sl_id=explode(",",$id_string);
 	} elseif (is_array($sl_id)) {
-		foreach ($sl_id as $value) {
-			$id_string.="$value,";
-		}
-		$id_string=substr($id_string, 0, strlen($id_string)-1);
+		$id_string=implode(",", $sl_id);
 	} else {
 		$id_string=$sl_id;
 	}
@@ -829,18 +826,17 @@ function sl_process_tags($tag_string, $db_action="insert", $sl_id="") {
 }
 /*-----------------------------------------------------------*/
 function prepare_tag_string($sl_tags) {
-	$sl_tags=preg_replace('/\s*,\s*/', ',', $sl_tags);
-	//&#44; - entity symbol for a comma (,)
-	$sl_tags=preg_replace('/\s*\&\#44\;\s*/', '&#44;', $sl_tags);
-	$sl_tags=preg_replace('/\,+/', ', ', $sl_tags);
-	$sl_tags=preg_replace('/(\&\#44\;)+/', '&#44; ', $sl_tags);
-	$sl_tags=trim($sl_tags);
 	if (substr($sl_tags, 0, 1) == ",") {
 		$sl_tags=substr($sl_tags, 1, strlen($sl_tags));
 	}
 	if (substr($sl_tags, strlen($sl_tags)-1, 1) != "," && trim($sl_tags)!="") {
 		$sl_tags.=",";
 	}
+	$sl_tags=preg_replace('/\s*,\s*/', ',', $sl_tags);
+	$sl_tags=preg_replace('/\s*\&\#44\;\s*/', '&#44;', $sl_tags);
+	$sl_tags=preg_replace('/\,+/', ', ', $sl_tags);
+	$sl_tags=preg_replace('/(\&\#44\;)+/', '&#44; ', $sl_tags);
+	$sl_tags=trim($sl_tags);
 	return $sl_tags;
 }
 ?>
