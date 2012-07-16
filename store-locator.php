@@ -3,12 +3,12 @@
 Plugin Name: Store Locator
 Plugin URI: http://www.viadat.com/store-locator
 Description: A store locator plugin that gives you the ability to effectively show important locations in an easily searchable manner using Google Maps.
-Version: 1.9
+Version: 1.9.1
 Author: Viadat Creations
 Author URI: http://www.viadat.com
 */
 
-$sl_version="1.9";
+$sl_version="1.9.1";
 $sl_db_version=1.9;
 include_once("variables.sl.php");
 include_once("copyfolder.lib.php");
@@ -16,6 +16,7 @@ include_once("functions.sl.php");
 include_once("via-latest.php");
 
 register_activation_hook( __FILE__, 'sl_install_tables');
+register_activation_hook( __FILE__, 'initialize_variables');
 
 //add_action('wp_head', 'sl_install_tables');
 
@@ -59,6 +60,7 @@ function sl_update_db_check() {
     global $sl_db_version;
     if (get_site_option('sl_db_version') != $sl_db_version) {
         sl_install_tables();
+		initialize_variables();
     }
 }
 add_action('plugins_loaded', 'sl_update_db_check');

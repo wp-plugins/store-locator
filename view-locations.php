@@ -18,7 +18,7 @@ foreach($_GET as $key=>$val) {
 print "<form><table cellpadding='0px' cellspacing='0px' width='100%'><tr><td style='width:300px'>
 <h2>".__("Manage Locations", $text_domain)."</h2></td>";
 
-if ($num_ugc=$wpdb->get_var("SELECT COUNT(sl_id) FROM ".$wpdb->prefix."store_locator WHERE sl_longitude=0 OR sl_latitude=0")) {
+if ($num_ugc=$wpdb->get_var("SELECT COUNT(sl_id) FROM ".$wpdb->prefix."store_locator WHERE sl_longitude=0 OR sl_longitude='' OR sl_longitude IS NULL OR sl_latitude=0 OR sl_latitude='' OR sl_latitude IS NULL")) {
 	if ($_GET['ugc']==1) {
 		//Step 2 - submit selected un-geocoded locations
 		$ugc_button_text="Attempt to Re-geocode Selected";
@@ -166,7 +166,7 @@ set_query_defaults();
 
 //overrides WHERE clause to show ungeocoded locations only
 if($_GET['ugc']==1) {
-	$where="WHERE sl_longitude='' OR sl_latitude=''";
+	$where="WHERE sl_longitude=0 OR sl_longitude='' OR sl_longitude IS NULL OR sl_latitude=0 OR sl_latitude='' OR sl_latitude IS NULL";
 	print "<script>window.onload=function(){checkAll(document.getElementById('master_checkbox'), document.forms[\"locationForm\"]);}</script>";
 	$master_check="checked='checked'";
 } elseif ($_GET['ugc']==2) {

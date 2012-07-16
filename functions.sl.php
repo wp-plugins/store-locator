@@ -54,8 +54,13 @@ global $icon, $icon2, $google_map_domain, $google_map_country, $theme, $sl_base,
 global $search_label, $zoom_level, $sl_use_city_search, $sl_use_name_search, $sl_default_map;
 global $sl_radius_label, $sl_website_label, $sl_directions_label, $sl_num_initial_displayed, $sl_load_locations_default;
 global $sl_distance_unit, $sl_map_overview_control, $sl_admin_locations_per_page, $sl_instruction_message;
-global $sl_map_character_encoding;
+global $sl_map_character_encoding, $sl_start;
 
+$sl_start=get_option('sl_start');
+if (empty($sl_start)) {
+	$sl_start=date("Y-m-d H:i:s");
+	add_option('sl_start', $sl_start);
+	}
 $sl_map_character_encoding=get_option('sl_map_character_encoding');
 if (empty($sl_map_character_encoding)) {
 	$sl_map_character_encoding="";
