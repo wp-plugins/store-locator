@@ -71,6 +71,7 @@ $the_domain["Mexico"]="maps.google.com.mx"; //added 12/5/09
 $the_domain["Netherlands"]="maps.google.nl";
 $the_domain["New Zealand"]="maps.google.co.nz";
 $the_domain["Norway"]="maps.google.no";
+$the_domain["Philippines"]="maps.google.com.ph";
 $the_domain["Poland"]="maps.google.pl";
 $the_domain["Portugal"]="maps.google.pt"; //added 12/5/09
 $the_domain["Russia"]="maps.google.ru";
