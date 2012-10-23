@@ -84,7 +84,7 @@ if ($_POST) {
 }
 
 if (is_dir($sl_upload_path."/addons/")) {
-	$ao_dir=opendir($sl_upload_path."/addons/");
+	$ao_dir=opendir($sl_upload_path."/addons/"); $lic_str="";
 	print "<table width='100%' border='0'><tr>"; 
 	while (false !== ($a_lic=readdir($ao_dir))) {
 		if (!ereg("^\.{1,2}$", $a_lic) && !ereg("\.(php|txt|htm(l)?)", $a_lic)) {
@@ -146,7 +146,7 @@ $rss->cache_time = 3600; // one hour
 if ($rs = $rss->get('http://www.viadat.com/index.php?rss=true&action=product_list&category_id=7')) {
 	//var_dump($rs);
 $c=1;
-foreach ($rs[items] as $value) {
+foreach ($rs['items'] as $value) {
 
 if ($c<=100) {
 	print "<li><A href=\"$value[link]\" target='_blank' class='home_rss' style='font-size:12px'>

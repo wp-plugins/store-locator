@@ -19,7 +19,7 @@ print "<form><table cellpadding='0px' cellspacing='0px' width='100%'><tr><td sty
 <h2>".__("Manage Locations", $text_domain)."</h2></td>";
 
 if ($num_ugc=$wpdb->get_var("SELECT COUNT(sl_id) FROM ".$wpdb->prefix."store_locator WHERE sl_longitude=0 OR sl_longitude='' OR sl_longitude IS NULL OR sl_latitude=0 OR sl_latitude='' OR sl_latitude IS NULL")) {
-	if ($_GET['ugc']==1) {
+	if (!empty($_GET['ugc']) && $_GET['ugc']==1) {
 		//Step 2 - submit selected un-geocoded locations
 		$ugc_button_text="Attempt to Re-geocode Selected";
 		$ugc_num=2;
@@ -29,8 +29,8 @@ if ($num_ugc=$wpdb->get_var("SELECT COUNT(sl_id) FROM ".$wpdb->prefix."store_loc
 	} else {
 		//Step 1 - Show un-geocoded locations
 		$ugc_button_text="Show Un-geocoded Locations ($num_ugc)";
-		$ugc_num=1;
-		$onclick_text="onclick='location.href=\"".ereg_replace("&ugc=$_GET[ugc]","",$_SERVER['REQUEST_URI'])."&ugc=$ugc_num\"'";
+		$ugc_num=1; $ugc=(!empty($_GET['ugc']))? $_GET['ugc'] : "" ;
+		$onclick_text="onclick='location.href=\"".ereg_replace("&ugc=$ugc","",$_SERVER['REQUEST_URI'])."&ugc=$ugc_num\"'";
 		$cancel_link="";
 	}
 	print "<td style='text-align:center'>$cancel_link<input type='button' value='$ugc_button_text' class='button-primary' style='/*background-image:-moz-linear-gradient(center bottom, #900, maroon); background-color: #900; border:maroon*/' $onclick_text></td>";
@@ -69,32 +69,32 @@ initialize_variables();
 		//print "UPDATE ".$wpdb->prefix."store_locator SET $field_value_str WHERE sl_id='$_GET[edit]'"; exit;
 		//print "UPDATE ".$wpdb->prefix."store_locator SET $field_value_str WHERE sl_id='$_GET[edit]'"; exit;
 		$wpdb->query("UPDATE ".$wpdb->prefix."store_locator SET $field_value_str WHERE sl_id=$_GET[edit]");
-		sl_process_tags($_POST['sl_tags'], "insert", $_GET['edit']);
+		if(!empty($_POST['sl_tags'])){sl_process_tags($_POST['sl_tags'], "insert", $_GET['edit']);}
 		
-		if ($the_address!="$old_address[sl_address] $old_address[sl_address2], $old_address[sl_city], $old_address[sl_state] $old_address[sl_zip]" || ($old_address['sl_latitude']=="" || $old_address['sl_longitutde']=="")) {
+		if ($the_address!=$old_address[0]['sl_address']." ".$old_address[0]['sl_address2'].", ".$old_address[0]['sl_city'].", ".$old_address[0]['sl_state']." ".$old_address[0]['sl_zip'] || ($old_address[0]['sl_latitude']=="" || $old_address[0]['sl_longitude']=="")) {
 			do_geocoding($the_address,$_GET['edit']);
 		}
-		print "<script>location.replace('".ereg_replace("&edit=$_GET[edit]", "", $_SERVER[REQUEST_URI])."');</script>";
+		print "<script>location.replace('".ereg_replace("&edit=$_GET[edit]", "", $_SERVER['REQUEST_URI'])."');</script>";
 	}
 	
-	if ($_POST['act']=="delete") {
+	if (!empty($_POST['act']) && $_POST['act']=="delete") {
 		//If bulk delete is used
 		include("deleteLocations.php");
 	}
-	if (eregi("tag", $_POST['act'])) {
+	if (!empty($_POST['act']) && eregi("tag", $_POST['act'])) {
 		//if bulk tagging is used
 		include("tagLocations.php");
 	}
-	if (eregi("multi", $_POST['act'])) {
+	if (!empty($_POST['act']) && eregi("multi", $_POST['act'])) {
 		//if bulk updating is used
 		include($sl_upload_path."/addons/multiple-field-updater/multiLocationUpdate.php");
 	}
-	if ($_POST['act']=="locationsPerPage") {
+	if (!empty($_POST['act']) && $_POST['act']=="locationsPerPage") {
 		//If change in locations per page
 		update_option('sl_admin_locations_per_page', $_POST['sl_admin_locations_per_page']);
 		extract($_POST);
 	}
-	if ($_POST['act']=="regeocode") {
+	if (!empty($_POST['act']) && $_POST['act']=="regeocode") {
 		//var_dump($_POST); die();
 		if ($_POST) {extract($_POST);}
 		if (is_array($sl_id)==1) {
@@ -114,7 +114,7 @@ initialize_variables();
 		}
 		print "<script>location.replace('".ereg_replace("&ugc=$_GET[ugc]", "", $_SERVER['REQUEST_URI'])."');</script>";
 	}
-	if ($_GET['changeView']==1) {
+	if (!empty($_GET['changeView']) && $_GET['changeView']==1) {
 		if (get_option('sl_location_table_view')=="Normal") {
 			update_option('sl_location_table_view', 'Expanded');
 			$tabViewText="Expanded";
@@ -125,7 +125,7 @@ initialize_variables();
 		$_SERVER['REQUEST_URI']=ereg_replace("&changeView=1", "", $_SERVER['REQUEST_URI']);
 		print "<script>location.replace('$_SERVER[REQUEST_URI]');</script>";
 	}
-	if ($_GET['changeUpdater']==1) {
+	if (!empty($_GET['changeUpdater']) && $_GET['changeUpdater']==1) {
 		if (get_option('sl_location_updater_type')=="Tagging") {
 			update_option('sl_location_updater_type', 'Multiple Fields');
 			$updaterTypeText="Multiple Fields";
@@ -165,11 +165,11 @@ include("mgmt-buttons-links.php");
 set_query_defaults();
 
 //overrides WHERE clause to show ungeocoded locations only
-if($_GET['ugc']==1) {
+if(!empty($_GET['ugc']) && $_GET['ugc']==1) {
 	$where="WHERE sl_longitude=0 OR sl_longitude='' OR sl_longitude IS NULL OR sl_latitude=0 OR sl_latitude='' OR sl_latitude IS NULL";
-	print "<script>window.onload=function(){checkAll(document.getElementById('master_checkbox'), document.forms[\"locationForm\"]);}</script>";
+	print "<script>jQuery(document).ready(function(){checkAll(document.getElementById('master_checkbox'), document.forms[\"locationForm\"]);});</script>";
 	$master_check="checked='checked'";
-} elseif ($_GET['ugc']==2) {
+} elseif (!empty($_GET['ugc']) && $_GET['ugc']==2) {
 	
 } else {
 	$master_check="";
@@ -178,7 +178,7 @@ if($_GET['ugc']==1) {
 //for search links
 	$numMembers=$wpdb->get_results("SELECT sl_id FROM " . $wpdb->prefix . "store_locator  $where");
 	$numMembers2=count($numMembers); 
-	$start=($_GET['start']=="")? 0 : $_GET['start'];
+	$start=(empty($_GET['start']))? 0 : $_GET['start'];
 	$num_per_page=$sl_admin_locations_per_page; //edit this to determine how many locations to view per page of 'Manage Locations' page
 	if ($numMembers2!=0) {include("$sl_path/search-links.php");}
 	//include("$sl_path/qstring.php");
@@ -218,11 +218,11 @@ print "<th>(Lat, Lon)</th>
 		
 		foreach ($locales as $value) {
 			
-			$bgcol=($bgcol=="" || $bgcol=="#eee")?"#fff":"#eee";			
-			$bgcol=($value[sl_latitude]=="" || $value[sl_longitude]=="")? "salmon" : $bgcol;			
+			$bgcol=(empty($bgcol) || $bgcol=="#eee")?"#fff":"#eee";			
+			$bgcol=($value['sl_latitude']=="" || $value['sl_longitude']=="")? "salmon" : $bgcol;			
 			$value=array_map("trim",$value);
 			
-			if ($value[sl_id]==$_GET[edit]) {
+			if (!empty($_GET['edit']) && $value['sl_id']==$_GET['edit']) {
 				print "<tr style='background-color:$bgcol'>";
 	
 	print "<td colspan='$colspan'><form name='manualAddForm' method=post>
@@ -236,7 +236,7 @@ print "<th>(Lat, Lon)</th>
 		<table cellpadding='0px' cellspacing='0px'><tr><td style='padding-left:0px' class='nobottom'><input name='sl_city-$value[sl_id]' value='$value[sl_city]' size='21'><br><small>".__("City", $text_domain)."</small></td>
 		<td><input name='sl_state-$value[sl_id]' value='$value[sl_state]' size='7'><br><small>".__("State", $text_domain)."</small></td>
 		<td><input name='sl_zip-$value[sl_id]' value='$value[sl_zip]' size='10'><br><small>".__("Zip", $text_domain)."</small></td></tr></table><br>
-		<nobr><input type='submit' value='".__("Update", $text_domain)."' class='button-primary'><input type='button' class='button' value='".__("Cancel", $text_domain)."' onclick='location.href=\"".ereg_replace("&edit=$_GET[edit]", "",$_SERVER[REQUEST_URI])."\"'></nobr>
+		<nobr><input type='submit' value='".__("Update", $text_domain)."' class='button-primary'><input type='button' class='button' value='".__("Cancel", $text_domain)."' onclick='location.href=\"".ereg_replace("&edit=$_GET[edit]", "",$_SERVER['REQUEST_URI'])."\"'></nobr>
 		</td><td>
 		<b>".__("Additional Information", $text_domain)."</b><br>
 		<textarea name='sl_description-$value[sl_id]' rows='5' cols='17'>$value[sl_description]</textarea>&nbsp;<small>".__("Description", $text_domain)."</small><br>
@@ -253,15 +253,15 @@ print "<th>(Lat, Lon)</th>
 print "</tr>";
 			}
 			else {
-			$value[sl_url]=(!url_test($value[sl_url]) && trim($value[sl_url])!="")? "http://".$value[sl_url] : $value[sl_url] ;
-			$value[sl_url]=($value[sl_url]!="")? "<a href='$value[sl_url]' target='blank'>".__("View", $text_domain)."</a>" : "" ;
-			$value[sl_image]=($value[sl_image]!="")? "<a href='$value[sl_image]' target='blank'>".__("View", $text_domain)."</a>" : "" ;
-			$value[sl_description]=($value[sl_description]!="")? "<a onclick='alert(\"".comma($value[sl_description])."\")' href='#'>".__("View", $text_domain)."</a>" : "" ;
+			$value['sl_url']=(!url_test($value['sl_url']) && trim($value['sl_url'])!="")? "http://".$value['sl_url'] : $value['sl_url'] ;
+			$value['sl_url']=($value['sl_url']!="")? "<a href='$value[sl_url]' target='blank'>".__("View", $text_domain)."</a>" : "" ;
+			$value['sl_image']=($value['sl_image']!="")? "<a href='$value[sl_image]' target='blank'>".__("View", $text_domain)."</a>" : "" ;
+			$value['sl_description']=($value['sl_description']!="")? "<a onclick='alert(\"".comma($value['sl_description'])."\")' href='#'>".__("View", $text_domain)."</a>" : "" ;
 			
-			
+			$edit=(!empty($_GET['edit']))? $_GET['edit'] : "" ;
 			print "<tr style='background-color:$bgcol'>
 			<th><input type='checkbox' name='sl_id[]' value='$value[sl_id]'></th>
-			<th><a class='edit_loc_link' href='".ereg_replace("&edit=$_GET[edit]", "",$_SERVER[REQUEST_URI])."&edit=" . $value[sl_id] ."#a$value[sl_id]' id='$value[sl_id]'>".__("Edit", $text_domain)."</a>&nbsp;|&nbsp;<a class='del_loc_link' href='$_SERVER[REQUEST_URI]&delete=$value[sl_id]' onclick=\"confirmClick('Sure?', this.href); return false;\" id='$value[sl_id]'>".__("Delete", $text_domain)."</a></th>
+			<th><a class='edit_loc_link' href='".ereg_replace("&edit=$edit", "",$_SERVER['REQUEST_URI'])."&edit=" . $value['sl_id'] ."#a$value[sl_id]' id='$value[sl_id]'>".__("Edit", $text_domain)."</a>&nbsp;|&nbsp;<a class='del_loc_link' href='$_SERVER[REQUEST_URI]&delete=$value[sl_id]' onclick=\"confirmClick('Sure?', this.href); return false;\" id='$value[sl_id]'>".__("Delete", $text_domain)."</a></th>
 			<th> $value[sl_id] </th>
 			<td> $value[sl_store] </td>
 <td>$value[sl_address]</td>
@@ -285,7 +285,7 @@ print "<td>($value[sl_latitude],&nbsp;$value[sl_longitude])</td>
 		}
 	}
 	else {
-		$notice=($_GET[q]!="")? __("No Locations Showing for this Search of ", $text_domain)."<b>\"$_GET[q]\"</b>. $view_link" : __("No Locations Currently in Database", $text_domain);
+		$notice=($_GET['q']!="")? __("No Locations Showing for this Search of ", $text_domain)."<b>\"$_GET[q]\"</b>. $view_link" : __("No Locations Currently in Database", $text_domain);
 		print "<tr><td colspan='5'>$notice | <a href='admin.php?page=$sl_dir/add-locations.php'>".__("Add Locations", $text_domain)."</a></td></tr>";
 	}
 	print "</table>

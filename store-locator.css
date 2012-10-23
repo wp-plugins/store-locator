@@ -41,6 +41,7 @@ min-width:0px !important;
  /* */
 }
 #addressSubmit {	
+	background-color: transparent !important;
 	/*width:184px; height:31px;*/
 }
 #radius_label {
@@ -81,6 +82,7 @@ min-width:0px !important;
 	border:none;
 	/*padding:0px;*/
 	margin: 0px;
+	background-color: transparent !important;
 }
 #sl_div #map { 
 	color:black; 

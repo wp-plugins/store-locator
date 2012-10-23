@@ -3,10 +3,10 @@ Contributors: viadat
 Donate link: http://www.viadat.com/donate/
 Tags: business locations, dealer locator, dealer locater, store locator, store locater, mapping, mapper, google, google maps, buddypress, shop locator, shop finder,  location finder, places, stores, maps, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, zipcode, zip code search
 Requires at least: 2.5
-Tested up to: 3.4.1
-Stable tag: 1.9.2
+Tested up to: 3.4.2
+Stable tag: 1.9.3
 
-A store locator plugin that gives you the ability to effectively show important locations in an easily searchable manner using Google Maps.
+A store locator plugin that gives you the ability to effectively display your important locations in an easily searchable manner using Google Maps.
 
 == Description ==
 
@@ -33,7 +33,7 @@ If you need additional features, enhance your store locator with addons & themes
 = Other Links =
 [Downloads](http://www.viadat.com/store-locator/) | [Addons & Themes](http://www.viadat.com/products-page/) | [Blog - New Features & Updates](http://www.viadat.com/category/store-locator/) | [Documentation](http://docs.viadat.com/)
 
-= Special Thanks to Translators (Email new translations to info{at}viadat{dot}com) =
+= Special Thanks to Translators ([How to submit a translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/) | Email new translations to info{at}viadat{dot}com) =
 * Simon Schmid: German (Deutsche), Italian (Italiano), Czech (Cestina), French (Francais)
 * Gwyn Fisher: Spanish (Espanol)
 * [Josef Klimosz](http://pepa.rudice.eu/): Czech (Cestina)(updated)
@@ -53,13 +53,13 @@ If you need additional features, enhance your store locator with addons & themes
 = Main Plugin =
 1. Upload the `store-locator` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Sign up for a Google Maps API Key for your domain at http://code.google.com/apis/maps/signup.html
+3. Sign up for a Google Maps API Key for your domain. Instructions: https://developers.google.com/maps/documentation/javascript/tutorial#api_key
 4. Add your locations through the 'Add Locations' page in the Store Locator admin panel
-5. Place the code '[STORE-LOCATOR]' (case-sensitive) in the body of a page or a post to display your store locator
+5. Place the code **[STORE-LOCATOR]** in the body of a page or a post to display your store locator
 
 = Addons =
-1. Unzip & Upload the entire add-on folder to the `/wp-content/uploads/sl-uploads/addons` directory (note the new location for addons as of v1.2.37).
-2. Activate the add-on by updating the Activation Key that you receive after purchase at the bottom of the "News & Upgrades" Page.
+1. Unzip & Upload the entire addon folder to the `/wp-content/uploads/sl-uploads/addons` directory (note the new location for addons as of v1.2.37).
+2. Activate the addon by updating the Activation Key that you receive after purchase at the bottom of the "News & Upgrades" Page.
 
 = Themes =
 1. Unzip & Upload the entire theme folder to the `wp-content/uploads/sl-uploads/themes` directory (note the new location for themes as of v1.2.37).
@@ -73,6 +73,11 @@ If you need additional features, enhance your store locator with addons & themes
 As of version 1.2.37, you can modify the default 'store-locator.css' and place it under `/wp-content/uploads/sl-uploads/custom-css/`. The store locator will give priority to the 'store-locator.css' in the 'custom-css/' folder over the default 'store-locator.css' in the main 'store-locator/' folder. This allows you to upgrade the main store locator plugin without worrying about losing your custom styling. 
 
 == Changelog ==
+= 1.9.3 =
+* Added South Africa as a country option
+* Bug fixes
+* CSS fixes
+
 = 1.9.2 =
 * Added Philippines as a country option for one's map
 
@@ -263,7 +268,7 @@ Yes, you will need a Google account in order to retrieve an API for your maps to
 
 This plugin is compatible with all countries that have Google Map domains. This includes:
 
-* Austria (updated as of v1.2.28)
+* Austria (updated v1.2.28)
 * Australia
 * Belgium
 * Brazil
@@ -276,38 +281,32 @@ This plugin is compatible with all countries that have Google Map domains. This 
 * Finland
 * France
 * Italy
-* Japan (updated as of v1.2.28)
+* Japan (updated v1.2.28)
 * Netherlands
 * Norway
 * New Zealand
 * Poland
 * Russia
 * Sweden
-* Taiwan (updated as of v1.2.28)
+* Taiwan (updated v1.2.28)
 * United Kingdom
 * United States
 
-Added (as of v1.2.28):
-
+**Added:**
+*as of v1.2.28:*
 * China
 * India
 * Hong Kong
 * Liechtenstein
 * South Korea
 
-Removed (inactive domain or domain can't be used to embed a map on a website yet):
-
-* Bosnia and Herzegovina (as of v1.2.28)
-* Hungary (as of v1.2.35.1)
-* Kenya (as of v1.2.35.1)
-* Malaysia (as of v1.2.35.1)
-* South Africa (as of v1.2.35.1)
-* Thailand (as of v1.2.35.1)
-
-Added (as of v1.2.34):
-
+*as of v1.2.34:*
 * Argentina
 * Chile
 * Mexico
 * Portugal
 * Singapore
+
+*as of v1.9.xx:*
+* Philippines
+* South Africa

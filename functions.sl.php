@@ -204,7 +204,7 @@ if (empty($radii)) {
 /*--------------------------*/
 function choose_units($unit, $input_name) {
 	$unit_arr[]="%";$unit_arr[]="px";$unit_arr[]="em";$unit_arr[]="pt";
-	$select_field.="<select name='$input_name'>";
+	$select_field="<select name='$input_name'>";
 	
 	//global $height_units, $width_units;
 	
@@ -221,9 +221,9 @@ function choose_units($unit, $input_name) {
 function do_geocoding($address,$sl_id="") {
 
 global $wpdb, $text_domain;
-define("MAPS_HOST", get_option('sl_google_map_domain'));
+if (!defined("MAPS_HOST")){define("MAPS_HOST", get_option('sl_google_map_domain'));}
 $api_key=get_option('store_locator_api_key');
-define("KEY", "$api_key");
+if (!defined("KEY")){define("KEY", "$api_key");}
 
 // Initialize delay in geocode speed
 $delay = 0;
@@ -346,13 +346,14 @@ function head_scripts() {
 	//print "<!-- ========= Learn More & Download Here: http://www.viadat.com/store-locator ========== -->\n";
 
 	//Check if currently on page with shortcode
-	$on_sl_page=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE post_content LIKE '%[STORE-LOCATOR%' AND post_status IN ('publish', 'draft') AND (post_name='$pagename' OR ID='$_GET[p]' OR ID='$_GET[page_id]')", ARRAY_A);		
+	$_GET['p']=(!empty($_GET['p']))? $_GET['p'] : ""; $_GET['page_id']=(!empty($_GET['page_id']))? $_GET['page_id'] : "";
+	$on_sl_page=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE LOWER(post_content) LIKE '%[store-locator%' AND post_status IN ('publish', 'draft') AND (post_name='$pagename' OR ID='$_GET[p]' OR ID='$_GET[page_id]')", ARRAY_A);		
 	//Checking if code used in posts	
-	$sl_code_is_used_in_posts=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE post_content LIKE '%[STORE-LOCATOR%' AND post_type='post'");
+	$sl_code_is_used_in_posts=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE LOWER(post_content) LIKE '%[store-locator%' AND post_type='post'");
 	//If shortcode used in posts, get post IDs, and put into array of numbers
 	if ($sl_code_is_used_in_posts) {
-		$sl_post_ids=$wpdb->get_results("SELECT ID FROM ".$wpdb->prefix."posts WHERE post_content LIKE '%[STORE-LOCATOR%' AND post_type='post'", ARRAY_A);
-		foreach ($sl_post_ids as $val) { $post_ids_array[]=$val[ID];}
+		$sl_post_ids=$wpdb->get_results("SELECT ID FROM ".$wpdb->prefix."posts WHERE LOWER(post_content) LIKE '%[store-locator%' AND post_type='post'", ARRAY_A);
+		foreach ($sl_post_ids as $val) { $post_ids_array[]=$val['ID'];}
 	}		
 	else {		
 		$post_ids_array=array(9999999999999999999999999999999999999); //post number that'll never be reached
@@ -396,7 +397,7 @@ if (ereg($sl_upload_base, get_option('sl_map_home_icon'))){
 } else {
 	$home_icon_path=ereg_replace($sl_base, $sl_path, get_option('sl_map_home_icon'));
 }
-$home_size=(function_exists(getimagesize) && file_exists($home_icon_path))? getimagesize($home_icon_path) : array(0 => 20, 1 => 34);
+$home_size=(function_exists("getimagesize") && file_exists($home_icon_path))? getimagesize($home_icon_path) : array(0 => 20, 1 => 34);
 //$home_size=($home_size[0]=="")? array(0 => 20, 1 => 34) : $home_size;
 print "var sl_map_home_icon_width=$home_size[0];\n";
 print "var sl_map_home_icon_height=$home_size[1];\n";
@@ -405,7 +406,7 @@ if (ereg($sl_upload_base, get_option('sl_map_end_icon'))){
 } else {
 	$end_icon_path=ereg_replace($sl_base, $sl_path, get_option('sl_map_end_icon'));
 }
-$end_size=(function_exists(getimagesize) && file_exists($end_icon_path))? getimagesize($end_icon_path) : array(0 => 20, 1 => 34);
+$end_size=(function_exists("getimagesize") && file_exists($end_icon_path))? getimagesize($end_icon_path) : array(0 => 20, 1 => 34);
 //$end_size=($end_size[0]=="")? array(0 => 20, 1 => 34) : $end_size;
 print "var sl_map_end_icon_width=$end_size[0];\n";
 print "var sl_map_end_icon_height=$end_size[1];\n</script>\n";
@@ -425,7 +426,7 @@ print "var sl_map_end_icon_height=$end_size[1];\n</script>\n";
 		move_upload_directories();
 	}
 	else {
-		$sl_page_ids=$wpdb->get_results("SELECT ID FROM ".$wpdb->prefix."posts WHERE post_content LIKE '%[STORE-LOCATOR%' AND post_status='publish'", ARRAY_A);
+		$sl_page_ids=$wpdb->get_results("SELECT ID FROM ".$wpdb->prefix."posts WHERE LOWER(post_content) LIKE '%[store-locator%' AND post_status='publish'", ARRAY_A);
 		print "<!-- No store locator on this page, so no unnecessary scripts for better site performance. (";
 		if ($sl_page_ids) {
 			foreach ($sl_page_ids as $value) { print "$value[ID],";}
@@ -442,7 +443,7 @@ function foot_scripts() {
 function ajax_map($content) {
 
 	global $sl_dir, $sl_base, $sl_upload_base, $sl_path, $sl_upload_path, $text_domain, $wpdb;
-	if(! preg_match('|\[STORE-LOCATOR|', $content)) {
+	if(! preg_match('|\[store-locator|i', $content)) {
 		return $content;
 	}
 	else {
@@ -457,6 +458,7 @@ function ajax_map($content) {
 		$search_label=(get_option('sl_search_label'))? get_option('sl_search_label') : "Address" ;
 		
 		$unit_display=(get_option('sl_distance_unit')=="km")? "km" : "mi";
+		$r_options="";
 		foreach ($r_array as $value) {
 			$s=(ereg("\(.*\)", $value))? " selected='selected' " : "" ;
 			$value=ereg_replace("[^0-9]", "", $value);
@@ -467,6 +469,7 @@ function ajax_map($content) {
 			$cs_array=$wpdb->get_results("SELECT CONCAT(TRIM(sl_city), ', ', TRIM(sl_state)) as city_state FROM ".$wpdb->prefix."store_locator WHERE sl_city<>'' AND sl_state<>'' AND sl_latitude<>'' AND sl_longitude<>'' GROUP BY city_state ORDER BY city_state ASC", ARRAY_A);
 			//var_dump($cs_array); die();
 			if ($cs_array) {
+				$cs_options="";
 				foreach($cs_array as $value) {
 $cs_options.="<option value='$value[city_state]'>$value[city_state]</option>";
 				}
@@ -569,11 +572,8 @@ $form="
   </table></form>
 <p><script type=\"text/javascript\">if (document.getElementById(\"map\")){setTimeout(\"sl_load()\",1000);}</script></p>
 </div>";
-
-	//ereg("\[STORE-LOCATOR [tag=\"(.*)\"]?\]", $matched); 
-	//global $map_tag=$matched[1];
 	
-	return eregi_replace("\[STORE-LOCATOR(.*)?\]", $form, $content);
+	return eregi_replace("\[store-locator(.*)?\]", $form, $content);
 	}
 }
 /*-----------------------------------*/
@@ -581,26 +581,23 @@ function sl_add_options_page() {
 	global $sl_dir, $sl_base, $sl_upload_base, $text_domain, $map_character_encoding;
 	
 	$api=get_option('store_locator_api_key');
-	//add_menu_page('Edit Locations', 'View Locations', 'administrator', '$sl_dir/options-store-locator.php');
 	add_menu_page(__("Store Locator", $text_domain), __("Store Locator", $text_domain), 'administrator', $sl_dir.'/news-upgrades.php');
-	$sl_pg_nu = add_submenu_page($sl_dir.'/news-upgrades.php', __("News & Upgrades", $text_domain), __("News & Upgrades", $text_domain), 'administrator', $sl_dir.'/news-upgrades.php');
-	$sl_pg_ml = add_submenu_page($sl_dir.'/news-upgrades.php', __("Manage Locations", $text_domain), __("Manage Locations", $text_domain), 'administrator', $sl_dir.'/view-locations.php');
-	$sl_pg_al = add_submenu_page($sl_dir.'/news-upgrades.php', __("Add Locations", $text_domain), __("Add Locations", $text_domain), 'administrator', $sl_dir.'/add-locations.php');
-	$sl_pg_md = add_submenu_page($sl_dir.'/news-upgrades.php', __("Map Designer", $text_domain), __("Map Designer", $text_domain), 'administrator', $sl_dir.'/map-designer.php');
-	$sl_pg_lgak = add_submenu_page($sl_dir.'/news-upgrades.php', __("Localization", $text_domain)." &amp; ".__("Google API Key", $text_domain),  __("Localization", $text_domain)." &amp; ".__("Google API Key", $text_domain), 'administrator', $sl_dir.'/api-key.php');
-	$sl_pg_rm = add_submenu_page($sl_dir.'/news-upgrades.php', __("ReadMe", $text_domain), __("ReadMe", $text_domain), 'administrator', $sl_dir.'/readme.php');
-	$sl_pg_settings = add_submenu_page($sl_dir.'/news-upgrades.php', __("Settings", $text_domain), __("Marketplace", $text_domain), 'administrator', $sl_dir.'/marketplace.php');
+	add_submenu_page($sl_dir.'/news-upgrades.php', __("News & Upgrades", $text_domain), __("News & Upgrades", $text_domain), 'administrator', $sl_dir.'/news-upgrades.php');
+	add_submenu_page($sl_dir.'/news-upgrades.php', __("Manage Locations", $text_domain), __("Manage Locations", $text_domain), 'administrator', $sl_dir.'/view-locations.php');
+	add_submenu_page($sl_dir.'/news-upgrades.php', __("Add Locations", $text_domain), __("Add Locations", $text_domain), 'administrator', $sl_dir.'/add-locations.php');
+	add_submenu_page($sl_dir.'/news-upgrades.php', __("Map Designer", $text_domain), __("Map Designer", $text_domain), 'administrator', $sl_dir.'/map-designer.php');
+	add_submenu_page($sl_dir.'/news-upgrades.php', __("Localization", $text_domain)." &amp; ".__("Google API Key", $text_domain),  __("Localization", $text_domain)." &amp; ".__("Google API Key", $text_domain), 'administrator', $sl_dir.'/api-key.php');
+	add_submenu_page($sl_dir.'/news-upgrades.php', __("ReadMe", $text_domain), __("ReadMe", $text_domain), 'administrator', $sl_dir.'/readme.php');
 	
 }
 
 function add_admin_javascript() {
         global $sl_base, $sl_upload_base, $sl_dir, $google_map_domain, $sl_path, $sl_upload_path, $map_character_encoding;
 		$api=get_option('store_locator_api_key');
-	//	print "<script src='http://code.jquery.com/jquery-latest.min.js' type='text/javascript'></script>\n";
         print "<script src='".$sl_base."/js/functions.js'></script>\n";
 
 //New WP Admin Bar in version 3+ gets in the way of editing a specific location, hide it
-if (ereg("view-locations", $_GET[page])) {
+if (ereg("view-locations", $_GET['page'])) {
 	print "<style>#wpadminbar {
 	display:none !important;
 }</style>";
@@ -609,7 +606,7 @@ if (ereg("view-locations", $_GET[page])) {
         var sl_dir='".$sl_dir."';
         var sl_google_map_country='".get_option('sl_google_map_country')."';
         </script>\n";
-        if (ereg("add-locations", $_GET[page])) {
+        if (ereg("add-locations", $_GET['page'])) {
             $google_map_domain=(get_option('sl_google_map_domain')!="")? get_option('sl_google_map_domain') : "maps.google.com";
 			
             print "<script src='http://$google_map_domain/maps?file=api&amp;v=2&amp;key=$api&amp;sensor=false{$map_character_encoding}' type='text/javascript'></script>\n";
@@ -629,9 +626,9 @@ function add_admin_stylesheet() {
 function set_query_defaults() {
 	global $where, $o, $d;
 	
-	$where=($_GET[q]!="")? " WHERE sl_store LIKE '%$_GET[q]%' OR sl_address LIKE '%$_GET[q]%' OR sl_city LIKE '%$_GET[q]%' OR sl_state LIKE '%$_GET[q]%' OR sl_zip LIKE '%$_GET[q]%' OR sl_tags LIKE '%$_GET[q]%'" : "" ;
-	$o=($_GET[o])? $_GET[o] : "sl_store";
-	$d=($_GET[d]=="" || $_GET[d]=="DESC")? "ASC" : "DESC";
+	$where=($_GET['q']!="")? " WHERE sl_store LIKE '%$_GET[q]%' OR sl_address LIKE '%$_GET[q]%' OR sl_city LIKE '%$_GET[q]%' OR sl_state LIKE '%$_GET[q]%' OR sl_zip LIKE '%$_GET[q]%' OR sl_tags LIKE '%$_GET[q]%'" : "" ;
+	$o=(!empty($_GET['o']))? $_GET['o'] : "sl_store";
+	$d=(empty($_GET['d']) || $_GET['d']=="DESC")? "ASC" : "DESC";
 }
 /*----------------------------------*/
 function match_imported_data($the_array) {
