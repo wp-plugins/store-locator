@@ -4,7 +4,7 @@ Donate link: http://www.viadat.com/donate/
 Tags: business locations, dealer locator, dealer locater, store locator, store locater, mapping, mapper, google, google maps, buddypress, shop locator, shop finder,  location finder, places, stores, maps, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, zipcode, zip code search
 Requires at least: 2.5
 Tested up to: 3.4.2
-Stable tag: 1.9.3
+Stable tag: 1.9.4
 
 A store locator plugin that gives you the ability to effectively display your important locations in an easily searchable manner using Google Maps.
 
@@ -33,7 +33,7 @@ If you need additional features, enhance your store locator with addons & themes
 = Other Links =
 [Downloads](http://www.viadat.com/store-locator/) | [Addons & Themes](http://www.viadat.com/products-page/) | [Blog - New Features & Updates](http://www.viadat.com/category/store-locator/) | [Documentation](http://docs.viadat.com/)
 
-= Special Thanks to Translators ([How to submit a translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/) | Email new translations to info{at}viadat{dot}com) =
+= Special Thanks to Translators (Email new translations to info{at}viadat{dot}com) =
 * Simon Schmid: German (Deutsche), Italian (Italiano), Czech (Cestina), French (Francais)
 * Gwyn Fisher: Spanish (Espanol)
 * [Josef Klimosz](http://pepa.rudice.eu/): Czech (Cestina)(updated)
@@ -46,7 +46,7 @@ If you need additional features, enhance your store locator with addons & themes
 * [Rene](http://wpwebshop.com): Turkish
 * [Outshine Solutions](http://outshinesolutions.com): Hindi
 
-(If you provide your web address, we'll link back to you)
+([How to submit your translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/) | If you provide your web address, we'll link back to you)
 
 == Installation ==
 
@@ -73,7 +73,7 @@ If you need additional features, enhance your store locator with addons & themes
 As of version 1.2.37, you can modify the default 'store-locator.css' and place it under `/wp-content/uploads/sl-uploads/custom-css/`. The store locator will give priority to the 'store-locator.css' in the 'custom-css/' folder over the default 'store-locator.css' in the main 'store-locator/' folder. This allows you to upgrade the main store locator plugin without worrying about losing your custom styling. 
 
 == Changelog ==
-= 1.9.3 =
+= 1.9.4 =
 * Added South Africa as a country option
 * Bug fixes
 * CSS fixes
@@ -257,7 +257,7 @@ Make sure to check http://docs.viadat.com for the most updated information
 Yes, you will need a Google account in order to retrieve an API for your maps to work properly
 
 1. To sign up for a Google Account, visit: https://www.google.com/accounts/
-2. To sign up for a Google Maps API Key, visit: http://code.google.com/apis/maps/signup.html
+2. To sign up for a Google Maps API Key, visit: https://developers.google.com/maps/documentation/javascript/tutorial#api_key
 
 = How Do I use a Translation? =
 
@@ -293,20 +293,9 @@ This plugin is compatible with all countries that have Google Map domains. This 
 * United States
 
 **Added:**
-*as of v1.2.28:*
-* China
-* India
-* Hong Kong
-* Liechtenstein
-* South Korea
 
-*as of v1.2.34:*
-* Argentina
-* Chile
-* Mexico
-* Portugal
-* Singapore
+*as of v1.2.28:* China, India, Hong Kong, Liechtenstein, South Korea
 
-*as of v1.9.xx:*
-* Philippines
-* South Africa
+*as of v1.2.34:* Argentina, Chile, Mexico, Portugal, Singapore
+
+*as of v1.9.xx:* Philippines, South Africa
