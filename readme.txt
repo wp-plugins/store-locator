@@ -4,7 +4,7 @@ Donate link: http://www.viadat.com/donate/
 Tags: business locations, dealer locator, dealer locater, store locator, store locater, mapping, mapper, google, google maps, buddypress, shop locator, shop finder,  location finder, places, stores, maps, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, zipcode, zip code search
 Requires at least: 2.5
 Tested up to: 3.4.2
-Stable tag: 1.9.4
+Stable tag: 1.9.5
 
 A store locator plugin that gives you the ability to effectively display your important locations in an easily searchable manner using Google Maps.
 
@@ -21,7 +21,7 @@ Its strength is in its flexibility to allow you to easily manage a few or a thou
 * You can use it for numerous countries, which will continue to be added as Google adds new countries to their Google Maps API.  See the documentation for the latest
 * Supports international languages and character sets 
 * Allows you to use unique map icons or your own custom map icons --- great for branding your map
-* Gives your map the desired look by using our Map Designer&trade; interface in the WordPress admin section
+* Gives your map the desired look by using our MapDesigner&trade; interface in the WordPress admin section
 * Pick other cool Google Maps options, such as an inset box, zoom level, map types (street, satellite, hybrid, physical), and more
 * You can use miles or kilometers
 * Automatically restricts loading of Javascript & CSS to only pages that display the map (or that might need access to the JS & CSS) for better site performance
@@ -55,7 +55,7 @@ If you need additional features, enhance your store locator with addons & themes
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Sign up for a Google Maps API Key for your domain. Instructions: https://developers.google.com/maps/documentation/javascript/tutorial#api_key
 4. Add your locations through the 'Add Locations' page in the Store Locator admin panel
-5. Place the code **[STORE-LOCATOR]** in the body of a page or a post to display your store locator
+5. Place the code `[STORE-LOCATOR]` in the body of a page or a post to display your store locator
 
 = Addons =
 1. Unzip & Upload the entire addon folder to the `/wp-content/uploads/sl-uploads/addons` directory (note the new location for addons as of v1.2.37).
@@ -63,7 +63,7 @@ If you need additional features, enhance your store locator with addons & themes
 
 = Themes =
 1. Unzip & Upload the entire theme folder to the `wp-content/uploads/sl-uploads/themes` directory (note the new location for themes as of v1.2.37).
-2. Select theme from the theme dropdown menu under the "Design" section on the "Map Designer"&trade; Page.
+2. Select theme from the theme dropdown menu under the "Design" section on the "MapDesigner&trade;" Page.
 
 = Icons =
 1. There are some default icons in the `/wp-content/plugins/store-locator/icons` directory. 
@@ -73,6 +73,10 @@ If you need additional features, enhance your store locator with addons & themes
 As of version 1.2.37, you can modify the default 'store-locator.css' and place it under `/wp-content/uploads/sl-uploads/custom-css/`. The store locator will give priority to the 'store-locator.css' in the 'custom-css/' folder over the default 'store-locator.css' in the main 'store-locator/' folder. This allows you to upgrade the main store locator plugin without worrying about losing your custom styling. 
 
 == Changelog ==
+= 1.9.5 =
+* New links for custom icons on MapDesigner&trade; page
+* Minor fixes
+
 = 1.9.4 =
 * Added South Africa as a country option
 * Bug fixes
@@ -123,7 +127,7 @@ As of version 1.2.37, you can modify the default 'store-locator.css' and place i
 
 = 1.3 =
 * New horizontal top navigation for Store Locator admin pages
-* Made 'Directions' link label on map & results list editable from Map Designer page
+* Made 'Directions' link label on map & results list editable from MapDesigner&trade; page
 * Better response messages during key validation
 * Cleaned up 'News & Upgrades' page; updated navigation links of 'Manage Locations'
 * Google API Key submission/important message for new users, instead of restricting view of other pages 
@@ -173,7 +177,7 @@ As of version 1.2.37, you can modify the default 'store-locator.css' and place i
 
 = 1.2.38 =
 * Small fix with JS/CSS section message on non-store locator pages
-* Notification message added to admin panel for those switching from 'wordpress-store-locator-location-finder' to 'store-locator' to re-select their icons on the 'Map Designer' page to avoid blank icons on map
+* Notification message added to admin panel for those switching from 'wordpress-store-locator-location-finder' to 'store-locator' to re-select their icons on the 'MapDesigner&trade;' page to avoid blank icons on map
 * Higher number options for 'Locations Per Page' on 'Manage Locations' page
 * For those who don't use the default WordPress plugin updater, but instead download and paste on top of an old version, it checks if addons, themes, languages, images moved to 'wp-content/uploads/sl-uploads' and copies them over if they haven't been already
 
@@ -199,7 +203,7 @@ As of version 1.2.37, you can modify the default 'store-locator.css' and place i
 
 = 1.2.35 =
 * Improved restricted loading of JS, CSS to pages & posts on which store locator shortcode has been placed (and the archive pages only if shortcode is placed into any posts, and the home and search pages)
-* Added input field on 'Map Designer' page for editing message to website visitors shown below map
+* Added input field on 'MapDesigner&trade;' page for editing message to website visitors shown below map
 * Modified custom upgrade link on plugins page to be one-click, similar to other plugins
 * Few other admin styling changes for buttons
 * Fixed bug causing search results to not show all locations for a given radius when distance unit is set to 'km'

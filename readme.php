@@ -28,7 +28,7 @@ $txt=ereg_replace(" \=", "</strong>", $txt);
 //$txt=ereg_replace("\[(.*)\]\((a-z\.\:\/)\)", "<a href='\\2'>\\1</a>", $txt);
 //$txt=do_hyperlink($txt);
 
-//creating hyperlinks on top of labeled URLs (ones precded w/a label in brackets)
+//creating hyperlinks on top of labeled URLs (ones preceded w/a label in brackets)
 $txt=ereg_replace("\[([a-zA-Z0-9_/?&amp;\&\ \.%20,=-\+-]+)*\]\(([a-zA-Z]+://)(([.]?[a-zA-Z0-9_/?&amp;%20,=-\+-]+)*)\)", "<a onclick=\"window.parent.open('\\2'+'\\3');return false;\" href=\"#\">\\1</a>", $txt);
 
 //converting asterisked lines into HTML list items

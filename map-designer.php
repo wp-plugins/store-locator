@@ -187,7 +187,7 @@ $icon_notification_msg
 <tr><td valign='top'>".__("Destination Icon", $text_domain).":</td>
 <td valign='top'> <input name='icon2' size='45' value='$icon2' onchange=\"document.getElementById('prev2').src=this.value\">&nbsp;&nbsp;<img id='prev2' src='$icon2'align='top'> <br><div style=''>$icon2_str</div>
 </td></tr>
-<tr><td colspan='2'><div class=''><b>".__("Looking to create or find a unique icon? For ideas, visit", $text_domain)."<br> <a href='http://mapki.com/wiki/Icon_Image_Sets' target='_blank'>http://mapki.com/wiki/Icon_Image_Sets</a></b></div></td></tr></table>
+<tr><td colspan='2'><div class=''><b>".__("Looking to create or find a unique icon? For ideas, visit", $text_domain)."<br> <a href='https://www.geocoderpro.com/en/resources/map-icons-marker-pins/' target='_blank'>GeoCoder Pro</a> & <a href='http://code.google.com/p/google-maps-icons/' target='_blank'>Map Icons Collection</a></b></div></td></tr></table>
 </td></tr>
 <tr><td colspan='2'><input type='submit' value='".__("Update", $text_domain)."' class='button-primary'></td></tr></table></form>";
 

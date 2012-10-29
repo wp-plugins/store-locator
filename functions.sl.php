@@ -682,11 +682,11 @@ function do_hyperlink(&$text, $target="'_blank'", $type="both")
 {
   if ($type=="both" || $type=="protocol") {	
    // match protocol://address/path/
-   $text = ereg_replace("[a-zA-Z]+://([.]?[a-zA-Z0-9_/?&amp;%20,=-\+-])+", "<a href=\"\\0\" target=$target>\\0</a>", $text);
+   $text = ereg_replace("[a-zA-Z]+://([.]?[a-zA-Z0-9_/?&amp;%20,=-\+-\#])+", "<a href=\"\\0\" target=$target>\\0</a>", $text);
   }
   if ($type=="both" || $type=="noprotocol") {
    // match www.something
-   $text = ereg_replace("(^| )(www([.]?[a-zA-Z0-9_/=-\+-])*)", "\\1<a href=\"http://\\2\" target=$target>\\2</a>", $text);
+   $text = ereg_replace("(^| )(www([.]?[a-zA-Z0-9_/=-\+-\#])*)", "\\1<a href=\"http://\\2\" target=$target>\\2</a>", $text);
   }
 
 return $text;
