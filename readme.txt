@@ -2,9 +2,9 @@
 Contributors: viadat
 Donate link: http://www.viadat.com/donate/
 Tags: business locations, dealer locator, dealer locater, store locator, store locater, mapping, mapper, google, google maps, buddypress, shop locator, shop finder,  location finder, places, stores, maps, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, zipcode, zip code search
-Requires at least: 2.5
-Tested up to: 3.4.2
-Stable tag: 1.9.5
+Requires at least: 2.8
+Tested up to: 3.5.1
+Stable tag: 1.9.6
 
 A store locator plugin that gives you the ability to effectively display your important locations in an easily searchable manner using Google Maps.
 
@@ -45,6 +45,7 @@ If you need additional features, enhance your store locator with addons & themes
 * Victor Ukhimenko: Russian
 * [Rene](http://wpwebshop.com): Turkish
 * [Outshine Solutions](http://outshinesolutions.com): Hindi
+* [Diana S.](http://www.wpcouponshop.com): Serbian
 
 ([How to submit your translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/) | If you provide your web address, we'll link back to you)
 
@@ -73,6 +74,10 @@ If you need additional features, enhance your store locator with addons & themes
 As of version 1.2.37, you can modify the default 'store-locator.css' and place it under `/wp-content/uploads/sl-uploads/custom-css/`. The store locator will give priority to the 'store-locator.css' in the 'custom-css/' folder over the default 'store-locator.css' in the main 'store-locator/' folder. This allows you to upgrade the main store locator plugin without worrying about losing your custom styling. 
 
 == Changelog ==
+= 1.9.6 =
+* Added Serbian translation (Thank you [Diana S.](http://wpcouponshop.com)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use.
+* Additional updates/fixes added
+
 = 1.9.5 =
 * New links for custom icons on MapDesigner&trade; page
 * Minor fixes

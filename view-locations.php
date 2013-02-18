@@ -36,14 +36,14 @@ if ($num_ugc=$wpdb->get_var("SELECT COUNT(sl_id) FROM ".$wpdb->prefix."store_loc
 	print "<td style='text-align:center'>$cancel_link<input type='button' value='$ugc_button_text' class='button-primary' style='/*background-image:-moz-linear-gradient(center bottom, #900, maroon); background-color: #900; border:maroon*/' $onclick_text></td>";
 }
 if (empty($_GET['q'])){ $_GET['q']=""; }
-print "<td align='right' style='width:300px'><div style='float:right; padding-right:0px; width:100%'><input value='".$_GET['q']."' name='q'><input type='submit' value='".__("Search Locations", $text_domain)."' class='button-primary'></div>$hidden</td></tr></table></form><br>";
+print "<td align='right' style='width:300px'><div style='float:right; padding-right:0px; width:100%'><input value='".comma(stripslashes($_GET['q']))."' name='q'><input type='submit' value='".__("Search Locations", $text_domain)."' class='button-primary'></div>$hidden</td></tr></table></form><br>";
 
 initialize_variables();
 
 	if (!empty($_GET['delete'])) {
 		//If delete link is clicked
-		$wpdb->query("DELETE FROM ".$wpdb->prefix."store_locator WHERE sl_id='$_GET[delete]'");
-		sl_process_tags("", "delete", $_GET[delete]);
+		$wpdb->query($wpdb->prepare("DELETE FROM ".$wpdb->prefix."store_locator WHERE sl_id='%d'", $_GET['delete']));
+		sl_process_tags("", "delete", $_GET['delete']);
 	}
 	if (!empty($_POST) && !empty($_GET['edit']) && $_POST['act']!="delete") {
 		$field_value_str="";
@@ -55,7 +55,7 @@ initialize_variables();
 					$value=prepare_tag_string($value);
 					//print "after: $value \r\n"; die();
 				}
-				$field_value_str.=$key."='".trim(comma($value))."', ";				
+				$field_value_str.=$key."=".$wpdb->prepare("%s", trim(comma(stripslashes($value)))).", ";				
 				$_POST["$key"]=$value; 
 			}
 		}
@@ -64,11 +64,11 @@ initialize_variables();
 		$edit=$_GET['edit']; extract($_POST);
 		$the_address="$sl_address $sl_address2, $sl_city, $sl_state $sl_zip";
 		
-		$old_address=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."store_locator WHERE sl_id=$_GET[edit]", ARRAY_A);
+		$old_address=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."store_locator WHERE sl_id='".mysql_real_escape_string($_GET['edit'])."'", ARRAY_A);
 		//print "address: $the_address<br>";
 		//print "UPDATE ".$wpdb->prefix."store_locator SET $field_value_str WHERE sl_id='$_GET[edit]'"; exit;
 		//print "UPDATE ".$wpdb->prefix."store_locator SET $field_value_str WHERE sl_id='$_GET[edit]'"; exit;
-		$wpdb->query("UPDATE ".$wpdb->prefix."store_locator SET $field_value_str WHERE sl_id=$_GET[edit]");
+		$wpdb->query($wpdb->prepare("UPDATE ".$wpdb->prefix."store_locator SET $field_value_str WHERE sl_id='%d'", $_GET['edit']));
 		if(!empty($_POST['sl_tags'])){sl_process_tags($_POST['sl_tags'], "insert", $_GET['edit']);}
 		
 		if ($the_address!=$old_address[0]['sl_address']." ".$old_address[0]['sl_address2'].", ".$old_address[0]['sl_city'].", ".$old_address[0]['sl_state']." ".$old_address[0]['sl_zip'] || ($old_address[0]['sl_latitude']=="" || $old_address[0]['sl_longitude']=="")) {
@@ -77,11 +77,11 @@ initialize_variables();
 		print "<script>location.replace('".ereg_replace("&edit=$_GET[edit]", "", $_SERVER['REQUEST_URI'])."');</script>";
 	}
 	
-	if (!empty($_POST['act']) && $_POST['act']=="delete") {
+	if (!empty($_POST['act']) && !empty($_POST['sl_id']) && $_POST['act']=="delete") {
 		//If bulk delete is used
 		include("deleteLocations.php");
 	}
-	if (!empty($_POST['act']) && eregi("tag", $_POST['act'])) {
+	if (!empty($_POST['act']) && !empty($_POST['sl_id']) && eregi("tag", $_POST['act'])) {
 		//if bulk tagging is used
 		include("tagLocations.php");
 	}
@@ -100,12 +100,12 @@ initialize_variables();
 		if (is_array($sl_id)==1) {
 			$id_string="";
 			foreach ($sl_id as $value) {
-				$id_string.="$value,";
+				$id_string.=mysql_real_escape_string($value).",";
 			}
 			$id_string=substr($id_string, 0, strlen($id_string)-1);
 		}
 		else {
-			$id_string=$sl_id;
+			$id_string=mysql_real_escape_string($sl_id);
 		}
 		
 		$locs=$wpdb->get_results("SELECT * FROM ".$wpdb->prefix."store_locator WHERE sl_id IN ($id_string)", ARRAY_A);
@@ -176,7 +176,7 @@ if(!empty($_GET['ugc']) && $_GET['ugc']==1) {
 }
 
 //for search links
-	$numMembers=$wpdb->get_results("SELECT sl_id FROM " . $wpdb->prefix . "store_locator  $where");
+	$numMembers=$wpdb->get_results("SELECT sl_id FROM " . $wpdb->prefix . "store_locator $where");
 	$numMembers2=count($numMembers); 
 	$start=(empty($_GET['start']))? 0 : $_GET['start'];
 	$num_per_page=$sl_admin_locations_per_page; //edit this to determine how many locations to view per page of 'Manage Locations' page
@@ -210,8 +210,10 @@ print "<th><a href='".ereg_replace("&o=$_GET[o]&d=$_GET[d]", "", $_SERVER['REQUE
 
 print "<th>(Lat, Lon)</th>
 </tr></thead>";
-
-	if ($locales=$wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "store_locator  $where ORDER BY $o $d LIMIT $start,$num_per_page", ARRAY_A)) {
+	$o=mysql_real_escape_string($o); $d=mysql_real_escape_string($d);
+	$start=mysql_real_escape_string($start); $num_per_page=mysql_real_escape_string($num_per_page);
+	//print sprintf("SELECT * FROM " . $wpdb->prefix . "store_locator $where ORDER BY $o $d LIMIT %d,%d", $start, $num_per_page); //die();
+	if ($locales=$wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "store_locator $where ORDER BY $o $d LIMIT $start, $num_per_page" , ARRAY_A)) {
 		//function do_trim($a){return trim($a);}
 		
 		$colspan=(get_option('sl_location_table_view')!="Normal")? 	16 : 11;

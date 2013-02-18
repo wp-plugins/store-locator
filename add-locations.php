@@ -21,13 +21,11 @@ if (!empty($_POST['sl_store']) && $mode!="pca") {
 			}
 			$fieldList.="$key,";
 			$value=comma($value);
-			$valueList.="\"".stripslashes($value)."\",";
+			$valueList.=$wpdb->prepare("%s", stripslashes($value)).",";
 		}
 	}
 	$fieldList=substr($fieldList, 0, strlen($fieldList)-1);
 	$valueList=substr($valueList, 0, strlen($valueList)-1);
-	//$wpdb->query("INSERT into ". $wpdb->prefix . "store_locator (sl_store, sl_address, sl_city, sl_state, sl_zip) VALUES ('$_POST[sl_store]', '$_POST[sl_address]', '$_POST[sl_city]', '$_POST[sl_state]', '$_POST[sl_zip]')");
-	//print "INSERT into ". $wpdb->prefix . "store_locator ($fieldList) VALUES ($valueList)"; exit;
 	$wpdb->query("INSERT into ". $wpdb->prefix . "store_locator ($fieldList) VALUES ($valueList)");
 	$new_loc_id=mysql_insert_id();
 	$address="$_POST[sl_address], $_POST[sl_city], $_POST[sl_state] $_POST[sl_zip]";

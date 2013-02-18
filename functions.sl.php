@@ -323,7 +323,7 @@ function sl_install_tables() {
 			PRIMARY KEY  (sl_tag_id)
 			) ENGINE=innoDB  DEFAULT CHARACTER SET=utf8  DEFAULT COLLATE=utf8_unicode_ci;";
 	
-	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+	if($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE '%s'", $table_name)) != $table_name) {
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($sql);
 		add_option("sl_db_version", $sl_db_version);
@@ -347,7 +347,7 @@ function head_scripts() {
 
 	//Check if currently on page with shortcode
 	$_GET['p']=(!empty($_GET['p']))? $_GET['p'] : ""; $_GET['page_id']=(!empty($_GET['page_id']))? $_GET['page_id'] : "";
-	$on_sl_page=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE LOWER(post_content) LIKE '%[store-locator%' AND post_status IN ('publish', 'draft') AND (post_name='$pagename' OR ID='$_GET[p]' OR ID='$_GET[page_id]')", ARRAY_A);		
+	$on_sl_page=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE LOWER(post_content) LIKE '%[store-locator%' AND post_status IN ('publish', 'draft') AND (post_name='$pagename' OR ID='".mysql_real_escape_string($_GET['p'])."' OR ID='".mysql_real_escape_string($_GET['page_id'])."')", ARRAY_A);		
 	//Checking if code used in posts	
 	$sl_code_is_used_in_posts=$wpdb->get_results("SELECT post_name FROM ".$wpdb->prefix."posts WHERE LOWER(post_content) LIKE '%[store-locator%' AND post_type='post'");
 	//If shortcode used in posts, get post IDs, and put into array of numbers
@@ -624,10 +624,10 @@ function add_admin_stylesheet() {
 }
 /*---------------------------------*/
 function set_query_defaults() {
-	global $where, $o, $d;
-	
-	$where=($_GET['q']!="")? " WHERE sl_store LIKE '%$_GET[q]%' OR sl_address LIKE '%$_GET[q]%' OR sl_city LIKE '%$_GET[q]%' OR sl_state LIKE '%$_GET[q]%' OR sl_zip LIKE '%$_GET[q]%' OR sl_tags LIKE '%$_GET[q]%'" : "" ;
-	$o=(!empty($_GET['o']))? $_GET['o'] : "sl_store";
+	global $where, $o, $d, $wpdb;
+	//print sprintf(" WHERE sl_store LIKE '%%%s%%' OR sl_address LIKE '%%%s%%' OR sl_city LIKE '%%%s%%' OR sl_state LIKE '%%%s%%' OR sl_zip LIKE '%%%s%%' OR sl_tags LIKE '%%%s%%'", $_GET['q'], $_GET['q'], $_GET['q'], $_GET['q'], $_GET['q'], $_GET['q']); die();
+	$where=($_GET['q']!="")? $wpdb->prepare(" WHERE sl_store LIKE '%%%s%%' OR sl_address LIKE '%%%s%%' OR sl_city LIKE '%%%s%%' OR sl_state LIKE '%%%s%%' OR sl_zip LIKE '%%%s%%' OR sl_tags LIKE '%%%s%%'", $_GET['q'], $_GET['q'], $_GET['q'], $_GET['q'], $_GET['q'], $_GET['q']) : "" ;
+	$o=(!empty($_GET['o']))? mysql_real_escape_string($_GET['o']) : "sl_store";
 	$d=(empty($_GET['d']) || $_GET['d']=="DESC")? "ASC" : "DESC";
 }
 /*----------------------------------*/
@@ -734,7 +734,7 @@ function insert_matched_data() {
 		}
 		$value_string=substr($value_string,0, strlen($value_string)-1);
 		//print "INSERT INTO ".$wpdb->prefix."store_locator ($selected_fields) VALUES ($value_string) <br>"; die();
-		$wpdb->query("INSERT INTO ".$wpdb->prefix."store_locator ($selected_fields) VALUES ($value_string)");
+		$wpdb->query($wpdb->prepare("INSERT INTO ".$wpdb->prefix."store_locator (%s) VALUES (%s)", $selected_fields, $value_string));
 		$current_loc_id=mysql_insert_id();
 		$for_geo=$wpdb->get_results("SELECT CONCAT(sl_address, ', ', sl_city, ', ', sl_state, ' ', sl_zip) as the_address FROM ".$wpdb->prefix."store_locator WHERE sl_id='".mysql_insert_id()."'", ARRAY_A);
 		//var_dump($for_geo);  
@@ -777,24 +777,33 @@ function sl_process_tags($tag_string, $db_action="insert", $sl_id="") {
 	
 	//die($sl_id." - sl_id - start of process tags func"); 
 	
-	if (ereg(",", $sl_id) && !is_array($sl_id)) {
+	if (!is_array($sl_id) && ereg(",", $sl_id)) {
 		$id_string=$sl_id;
 		$sl_id=explode(",",$id_string);
+		$rplc_arr=array_fill(0, count($sl_id), "%d"); //var_dump($rplc_arr); //die();
+		$id_string=implode(",", array_map(array($wpdb, "prepare"), $rplc_arr, $sl_id));
 	} elseif (is_array($sl_id)) {
-		$id_string=implode(",", $sl_id);
+		$rplc_arr=array_fill(0, count($sl_id), "%d"); //var_dump($rplc_arr); //die();
+		$id_string=implode(",", array_map(array($wpdb, "prepare"), $rplc_arr, $sl_id));
 	} else {
-		$id_string=$sl_id;
+		$id_string=$wpdb->prepare("%d", $sl_id);
 	}
 	
-	if ($db_action=="insert") {
-		if (ereg(",", $tag_string)) {
-			$sl_tag_array=array_map('trim',explode(",",trim($tag_string)));
-			$sl_tag_array=array_map('strtolower', $sl_tag_array);
-		} else {
-			$sl_tag_array[]=strtolower(trim($tag_string));
-		}
-		$wpdb->query("DELETE FROM ".$wpdb->prefix."sl_tag WHERE sl_id IN ($id_string)"); //clear current tags for locations being modified
-		
+	//creating array of tags
+	if (ereg(",", $tag_string)) {
+		//$tag_string=preg_replace("/[ ]*/", "", $tag_string);
+		$tag_string=preg_replace('/[^A-Za-z0-9_\-,]/', '', $tag_string);
+		$sl_tag_array=array_map('trim',explode(",",trim($tag_string)));
+		$sl_tag_array=array_map('strtolower', $sl_tag_array);
+		//$rplc_arr=array_fill(0, count($sl_tag_array), "%s"); //var_dump($rplc_arr); //die();
+		//$sl_tag_array=array_map(array($wpdb, "prepare"), $rplc_arr, $sl_tag_array);
+	} else {
+		//$sl_tag_array[]=$wpdb->prepare("%s", strtolower(trim($tag_string)));
+		$sl_tag_array[]=strtolower(trim($tag_string));
+	}
+	//$wpdb->query("DELETE FROM ".$wpdb->prefix."sl_tag WHERE sl_id IN ($id_string)"); //clear current tags for locations being modified
+	
+	if ($db_action=="insert") {		
 		//build insert query
 		$query="INSERT INTO ".$wpdb->prefix."sl_tag (sl_tag_slug, sl_id) VALUES ";
 		if (!is_array($sl_id)) {
@@ -819,8 +828,12 @@ function sl_process_tags($tag_string, $db_action="insert", $sl_id="") {
 	} elseif ($db_action=="delete") {
 		if (trim($tag_string)=="") {
 			$query="DELETE FROM ".$wpdb->prefix."sl_tag WHERE sl_id IN ($id_string)";
+			//die($query);
 		} else {
-			$query="DELETE FROM ".$wpdb->prefix."sl_tag WHERE sl_id IN ($id_string) AND sl_tag_slug='".trim($tag_string)."'";
+			//var_dump($sl_tag_array); die();
+			$t_string=implode("','", $sl_tag_array); //die($t_string);
+			$query="DELETE FROM ".$wpdb->prefix."sl_tag WHERE sl_id IN ($id_string) AND sl_tag_slug IN ('".trim($t_string)."')";
+			//die($query."\n");
 		}
 	} 
 	$wpdb->query($query);
@@ -828,16 +841,20 @@ function sl_process_tags($tag_string, $db_action="insert", $sl_id="") {
 }
 /*-----------------------------------------------------------*/
 function prepare_tag_string($sl_tags) {
+	//$sl_tags=preg_replace('/[ ]*\&\#44\;[ ]*/', '&#44; ', $sl_tags);
+	$sl_tags=preg_replace('/\,+/', ', ', $sl_tags);
+	$sl_tags=preg_replace('/(\&\#44\;)+/', '&#44; ', $sl_tags);
+	$sl_tags=preg_replace('/[^A-Za-z0-9_\-,]/', '', $sl_tags);
 	if (substr($sl_tags, 0, 1) == ",") {
 		$sl_tags=substr($sl_tags, 1, strlen($sl_tags));
 	}
 	if (substr($sl_tags, strlen($sl_tags)-1, 1) != "," && trim($sl_tags)!="") {
 		$sl_tags.=",";
 	}
-	$sl_tags=preg_replace('/\s*,\s*/', ',', $sl_tags);
-	$sl_tags=preg_replace('/\s*\&\#44\;\s*/', '&#44;', $sl_tags);
 	$sl_tags=preg_replace('/\,+/', ', ', $sl_tags);
 	$sl_tags=preg_replace('/(\&\#44\;)+/', '&#44; ', $sl_tags);
+	$sl_tags=preg_replace('/[ ]*,[ ]*/', ', ', $sl_tags);
+	$sl_tags=preg_replace('/[ ]*\&\#44\;[ ]*/', '&#44; ', $sl_tags);
 	$sl_tags=trim($sl_tags);
 	return $sl_tags;
 }
