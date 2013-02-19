@@ -323,7 +323,7 @@ function sl_install_tables() {
 			PRIMARY KEY  (sl_tag_id)
 			) ENGINE=innoDB  DEFAULT CHARACTER SET=utf8  DEFAULT COLLATE=utf8_unicode_ci;";
 	
-	if($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE '%s'", $table_name)) != $table_name) {
+	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($sql);
 		add_option("sl_db_version", $sl_db_version);
