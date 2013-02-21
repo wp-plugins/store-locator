@@ -4,7 +4,7 @@ Donate link: http://www.viadat.com/donate/
 Tags: business locations, dealer locator, dealer locater, store locator, store locater, mapping, mapper, google, google maps, buddypress, shop locator, shop finder,  location finder, places, stores, maps, coordinates, latitude, longitude, geo, geocoding, shops, ecommerce, e-commerce, zipcode, zip code search
 Requires at least: 2.8
 Tested up to: 3.5.1
-Stable tag: 1.9.6.1
+Stable tag: 1.9.6.2
 
 A store locator plugin that gives you the ability to effectively display your important locations in an easily searchable manner using Google Maps.
 
