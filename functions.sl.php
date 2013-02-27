@@ -226,7 +226,7 @@ $api_key=get_option('store_locator_api_key');
 if (!defined("KEY")){define("KEY", "$api_key");}
 
 // Initialize delay in geocode speed
-$delay = 0;
+$delay = 100000;
 $base_url = "http://" . MAPS_HOST . "/maps/geo?output=csv&key=" . KEY;
 
 //Adding ccTLD (Top Level Domain) to help perform more accurate geocoding according to selected Google Maps Domain - 12/16/09
@@ -268,10 +268,10 @@ curl_close($cURL);
       $lng = $csvSplit[3];
 
 	if ($sl_id=="") {
-		$query = sprintf("UPDATE " . $wpdb->prefix ."store_locator SET sl_latitude = '%s', sl_longitude = '%s' WHERE sl_id = ".mysql_insert_id()." LIMIT 1;", mysql_real_escape_string($lat), mysql_real_escape_string($lng));
+		$query = sprintf("UPDATE " . $wpdb->prefix ."store_locator SET sl_latitude = '%s', sl_longitude = '%s' WHERE sl_id = '%s' LIMIT 1;", mysql_real_escape_string($lat), mysql_real_escape_string($lng), mysql_real_escape_string($wpdb->insert_id)); //die($query);
 	}
 	else {
-		$query = sprintf("UPDATE " . $wpdb->prefix ."store_locator SET sl_latitude = '%s', sl_longitude = '%s' WHERE sl_id = $sl_id LIMIT 1;", mysql_real_escape_string($lat), mysql_real_escape_string($lng));
+		$query = sprintf("UPDATE " . $wpdb->prefix ."store_locator SET sl_latitude = '%s', sl_longitude = '%s' WHERE sl_id = '%s' LIMIT 1;", mysql_real_escape_string($lat), mysql_real_escape_string($lng), mysql_real_escape_string($sl_id));
 	}
       $update_result = mysql_query($query);
 	if (!$update_result) {
@@ -729,14 +729,13 @@ function insert_matched_data() {
 			if ($val==trim($_POST["column{$sl_tags_position}"][$entry_number])) {
 				$val=prepare_tag_string($val);
 			}
-			$value_string.="'".$val."',";
+			$value_string.=$wpdb->prepare("%s", $val).",";
 			//die($value_string);
 		}
 		$value_string=substr($value_string,0, strlen($value_string)-1);
-		//print "INSERT INTO ".$wpdb->prefix."store_locator ($selected_fields) VALUES ($value_string) <br>"; die();
-		$wpdb->query($wpdb->prepare("INSERT INTO ".$wpdb->prefix."store_locator (%s) VALUES (%s)", $selected_fields, $value_string));
-		$current_loc_id=mysql_insert_id();
-		$for_geo=$wpdb->get_results("SELECT CONCAT(sl_address, ', ', sl_city, ', ', sl_state, ' ', sl_zip) as the_address FROM ".$wpdb->prefix."store_locator WHERE sl_id='".mysql_insert_id()."'", ARRAY_A);
+		$wpdb->query("INSERT INTO ".$wpdb->prefix."store_locator ($selected_fields) VALUES ($value_string)");
+		$current_loc_id=$wpdb->insert_id;
+		$for_geo=$wpdb->get_results("SELECT CONCAT(sl_address, ', ', sl_city, ', ', sl_state, ' ', sl_zip) as the_address FROM ".$wpdb->prefix."store_locator WHERE sl_id='".$current_loc_id."'", ARRAY_A);
 		//var_dump($for_geo);  
 		//exit();
 		do_geocoding($for_geo[0][the_address]);
@@ -807,7 +806,7 @@ function sl_process_tags($tag_string, $db_action="insert", $sl_id="") {
 		//build insert query
 		$query="INSERT INTO ".$wpdb->prefix."sl_tag (sl_tag_slug, sl_id) VALUES ";
 		if (!is_array($sl_id)) {
-			$main_sl_id=($sl_id=="")? mysql_insert_id() : $sl_id ;	
+			$main_sl_id=($sl_id=="")? $wpdb->insert_id : $sl_id ;	
 			foreach ($sl_tag_array as $value)  {
 				if (trim($value)!="") {
 					$query.="('$value', '$main_sl_id'),";

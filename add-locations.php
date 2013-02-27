@@ -27,7 +27,7 @@ if (!empty($_POST['sl_store']) && $mode!="pca") {
 	$fieldList=substr($fieldList, 0, strlen($fieldList)-1);
 	$valueList=substr($valueList, 0, strlen($valueList)-1);
 	$wpdb->query("INSERT into ". $wpdb->prefix . "store_locator ($fieldList) VALUES ($valueList)");
-	$new_loc_id=mysql_insert_id();
+	$new_loc_id=$wpdb->insert_id;
 	$address="$_POST[sl_address], $_POST[sl_city], $_POST[sl_state] $_POST[sl_zip]";
 	do_geocoding($address);
 	if (!empty($_POST['sl_tags'])){
