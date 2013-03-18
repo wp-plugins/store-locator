@@ -219,72 +219,55 @@ function choose_units($unit, $input_name) {
 }
 /*----------------------------*/
 function do_geocoding($address,$sl_id="") {
-
-global $wpdb, $text_domain;
-if (!defined("MAPS_HOST")){define("MAPS_HOST", get_option('sl_google_map_domain'));}
-$api_key=get_option('store_locator_api_key');
-if (!defined("KEY")){define("KEY", "$api_key");}
-
-// Initialize delay in geocode speed
-$delay = 100000;
-$base_url = "http://" . MAPS_HOST . "/maps/geo?output=csv&key=" . KEY;
-
-//Adding ccTLD (Top Level Domain) to help perform more accurate geocoding according to selected Google Maps Domain - 12/16/09
-$ccTLD_arr=explode(".", MAPS_HOST);
-$ccTLD=$ccTLD_arr[count($ccTLD_arr)-1];
-if ($ccTLD!="com") {
-	$base_url .= "&gl=".$ccTLD;
-	//die($base_url);
-}
-
-//Map Character Encoding
-if (get_option("sl_map_character_encoding")!="") {
-	$base_url .= "&oe=".get_option("sl_map_character_encoding");
-}
-
-// Iterate through the rows, geocoding each address
-    $request_url = $base_url . "&q=" . urlencode($address);
-   
-//New code to accomdate those without 'file_get_contents' functionality for their server - added 3/27/09 8:56am - provided by Daniel C. - thank you
-   if (extension_loaded("curl") && function_exists("curl_init")) {
-$cURL = curl_init();
-curl_setopt($cURL, CURLOPT_URL, $request_url);
-curl_setopt($cURL, CURLOPT_RETURNTRANSFER, 1);
-$csv = curl_exec($cURL);
-curl_close($cURL);  
-}else{
-     $csv = file_get_contents($request_url) or die("url not loading");
-}
-//End of new code
-
-    $csvSplit = split(",", $csv);
-    $status = $csvSplit[0];
-    $lat = $csvSplit[2];
-    $lng = $csvSplit[3];
-    if (strcmp($status, "200") == 0) {
-      // successful geocode
-      $geocode_pending = false;
-      $lat = $csvSplit[2];
-      $lng = $csvSplit[3];
-
-	if ($sl_id=="") {
-		$query = sprintf("UPDATE " . $wpdb->prefix ."store_locator SET sl_latitude = '%s', sl_longitude = '%s' WHERE sl_id = '%s' LIMIT 1;", mysql_real_escape_string($lat), mysql_real_escape_string($lng), mysql_real_escape_string($wpdb->insert_id)); //die($query);
+	global $wpdb, $text_domain;
+	if (!defined("MAPS_HOST")){define("MAPS_HOST", get_option('sl_google_map_domain'));}
+	$delay = 0; $base_url = "http://maps.googleapis.com/maps/api/geocode/json?";
+	if ($sensor!="" && !empty($sensor)) {$base_url .= "sensor=".$sensor;} else {$base_url .= "sensor=false";}
+	$request_url = $base_url . "&address=" . urlencode(trim($address));
+	$ccTLD_arr=explode(".", MAPS_HOST);
+	$ccTLD=trim($ccTLD_arr[count($ccTLD_arr)-1]);
+	if ($ccTLD!="com") {
+		$request_url .= "&region=".$ccTLD;
+		//die($request_url);
 	}
-	else {
-		$query = sprintf("UPDATE " . $wpdb->prefix ."store_locator SET sl_latitude = '%s', sl_longitude = '%s' WHERE sl_id = '%s' LIMIT 1;", mysql_real_escape_string($lat), mysql_real_escape_string($lng), mysql_real_escape_string($sl_id));
+	//New code to accomdate those without 'file_get_contents' functionality for their server - added 3/27/09 8:56am - provided by Daniel C. - thank you
+	if (extension_loaded("curl") && function_exists("curl_init")) {
+		$cURL = curl_init();
+		curl_setopt($cURL, CURLOPT_URL, $request_url);
+		curl_setopt($cURL, CURLOPT_RETURNTRANSFER, 1);
+		$resp_json = curl_exec($cURL);
+		curl_close($cURL);  
+	}else{
+		$resp_json = file_get_contents($request_url) or die("url not loading");
 	}
-      $update_result = mysql_query($query);
-	if (!$update_result) {
-        die("Invalid query: " . mysql_error());
-      }
-    } else if (strcmp($status, "620") == 0) {
-      // sent geocodes too fast
-      $delay += 100000;
+	//End of new code
+	$resp = json_decode($resp_json, true);
+	$status = $resp['status'];
+	$lat = (!empty($resp['results'][0]['geometry']['location']['lat']))? $resp['results'][0]['geometry']['location']['lat'] : "" ;
+	$lng = (!empty($resp['results'][0]['geometry']['location']['lng']))? $resp['results'][0]['geometry']['location']['lng'] : "" ;
+	if (strcmp($status, "OK") == 0) {
+		// successful geocode
+		$geocode_pending = false;
+		$lat = $resp['results'][0]['geometry']['location']['lat'];
+		$lng = $resp['results'][0]['geometry']['location']['lng'];
+
+		if ($sl_id==="") {
+			$query = sprintf("UPDATE ".$wpdb->prefix."store_locator SET sl_latitude = '%s', sl_longitude = '%s' WHERE sl_id = '%s' LIMIT 1;", mysql_real_escape_string($lat), mysql_real_escape_string($lng), mysql_real_escape_string($wpdb->insert_id)); //die($query); 
+		} else {
+			$query = sprintf("UPDATE ".$wpdb->prefix."store_locator SET sl_latitude = '%s', sl_longitude = '%s' WHERE sl_id = '%s' LIMIT 1;", mysql_real_escape_string($lat), mysql_real_escape_string($lng), mysql_real_escape_string($sl_id)); 
+		}
+		$update_result = mysql_query($query);
+		if (!$update_result) {
+			die("Invalid query: " . mysql_error());
+		}
+    } else if (strcmp($status, "OVER_QUERY_LIMIT") == 0) {
+		// sent geocodes too fast
+		$delay += 100000;
     } else {
-      // failure to geocode
-      $geocode_pending = false;
-      echo __("Address " . $address . " <font color=red>failed to geocode</font>. ", $text_domain);
-      echo __("Received status " . $status , $text_domain)."\n<br>";
+		// failure to geocode
+		$geocode_pending = false;
+		echo __("Address " . $address . " <font color=red>failed to geocode</font>. ", $text_domain);
+		echo __("Received status " . $status , $text_domain)."\n<br>";
     }
     usleep($delay);
 }
