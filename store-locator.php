@@ -2,13 +2,13 @@
 /*
 Plugin Name: Store Locator
 Plugin URI: http://www.viadat.com/store-locator
-Description: A full-featured map maker & location management interface for creating easily searchable WordPress store locators and address location maps using Google Maps. Trusted globally by some of the most well-known brands.
-Version: 2.0
+Description: A full-featured map maker & location management interface for creating WordPress store locators and address location maps using Google Maps
+Version: 2.0.1
 Author: Viadat Creations
 Author URI: http://www.viadat.com
 */
 
-$sl_version="2.0";
+$sl_version="2.0.1";
 $sl_db_version=2.0;
 include_once("sl-define.php");
 include_once(SL_INCLUDES_PATH."/copyfolder.lib.php");
