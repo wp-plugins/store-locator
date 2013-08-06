@@ -416,10 +416,7 @@ function sl_head_scripts() {
 	}
 	print "\n<!-- ========= End Google Maps Store Locator for WordPress ========== -->\n\n";
 }
-function sl_jq() {
-	wp_enqueue_script( 'jquery');
-	wp_enqueue_script( 'prettyPhoto', SL_JS_BASE."/jquery.prettyPhoto.js", "jQuery");
-}
+function sl_jq() {wp_enqueue_script( 'jquery');}
 add_action('wp_enqueue_scripts', 'sl_jq');
 /*-----------------------------------*/
 function sl_add_options_page() {
@@ -1205,7 +1202,7 @@ $form="
 	$form.=(function_exists("do_sl_hook"))? do_sl_header() : "" ;
 $form.="<table width='100%' cellspacing='0px' cellpadding='0px' style='/*border:solid silver 1px*/'> 
      <tr>
-        <td width='100%' valign='top' id='map_td'> <div id='sl_map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' width='$width$width_units;' $hide><tr><td class='sl_footer_left_column'><a href='http://www.viadat.com/store-locator' target='_blank'>LotsOfLocales&trade;</a></td><td class='sl_footer_right_column'> <a href='http://www.viadat.com' target='_blank' title='Viadat Creations - Map Maker for Creating Store Locators or Any Address Maps Using WordPress & Google Maps'>Viadat Creations</a></td></tr></table>
+        <td width='100%' valign='top' id='map_td'> <div id='sl_map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' width='$width$width_units;' $hide><tr><td class='sl_footer_left_column'><a href='http://www.viadat.com/store-locator' target='_blank'>LotsOfLocales&trade;</a></td><td class='sl_footer_right_column'> <a href='http://www.viadat.com' target='_blank' title='Map Maker for Creating Store Locators or Any Address Maps Using WordPress & Google Maps'>Viadat Creations</a></td></tr></table>
 		</td>
       </tr>
 	  <tr id='cm_mapTR'>
