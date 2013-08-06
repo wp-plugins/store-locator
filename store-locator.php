@@ -8,7 +8,7 @@ Author: Viadat Creations
 Author URI: http://www.viadat.com
 */
 
-$sl_version="2.0.1";
+$sl_version="2.0.2";
 $sl_db_version=2.0;
 include_once("sl-define.php");
 include_once(SL_INCLUDES_PATH."/copyfolder.lib.php");

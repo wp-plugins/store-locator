@@ -416,11 +416,8 @@ function sl_head_scripts() {
 	}
 	print "\n<!-- ========= End Google Maps Store Locator for WordPress ========== -->\n\n";
 }
-/*function sl_jq() {
-	wp_enqueue_script( 'jquery');
-	wp_enqueue_script( 'prettyPhoto', SL_JS_BASE."/jquery.prettyPhoto.js", "jQuery");
-}
-add_action('wp_enqueue_scripts', 'sl_jq');*/
+function sl_jq() {wp_enqueue_script( 'jquery');}
+add_action('wp_enqueue_scripts', 'sl_jq');
 /*-----------------------------------*/
 function sl_add_options_page() {
 	global $sl_dir, $sl_base, $sl_uploads_base, $text_domain, $sl_top_nav_links;
