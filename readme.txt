@@ -120,7 +120,7 @@ If you need additional features, enhance your store locator with addons & themes
 = 2.0.3 =
 * Improved Version 1.x.x to Version 2.0.x transition -- better map loading on Store Locator page
 
-__New in v2.0: __
+* __New in v2.0: __
 * Fully Uses Google Maps API V3 -- both for displaying maps, geocoding locations, and performing reverse geocoding.  Transition from V2 is automatic and seamless -- no extra steps on your part.
 * New default fields added: Fax & Email Address
 * Streamlined interface
