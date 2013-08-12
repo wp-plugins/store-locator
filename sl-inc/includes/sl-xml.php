@@ -25,7 +25,7 @@ $_GET=array_filter($_GET); //removing any empty $_GET items that may disrupt que
 $sl_param_where_clause="";
 if (function_exists("do_sl_hook")){ do_sl_hook("sl_xml_query"); }
 
-if ($mode=='gen') {
+if (!empty($mode) && $mode=='gen') {
 	// Get parameters from URL
 	$center_lat = $lat;
 	$center_lng = $lng;

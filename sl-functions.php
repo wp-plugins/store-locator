@@ -359,7 +359,7 @@ function sl_install_tables() {
 function sl_head_scripts() {
 	global $sl_dir, $sl_base, $sl_uploads_base, $sl_path, $sl_uploads_path, $wpdb, $sl_version, $pagename, $sl_map_language, $post, $sl_vars; 		
 	
-	print "\n<!-- ========= Google Maps Store Locator for WordPress (v$sl_version) | http://www.viadat.com/store-locator/ ========== -->\n";
+	print "\n<!-- ========= WordPress Store Locator (v$sl_version) | http://www.viadat.com/store-locator/ ========== -->\n";
 	//print "<!-- ========= Learn More & Download Here: http://www.viadat.com/store-locator ========== -->\n";
 		
 	//Check if currently on page with shortcode
@@ -412,9 +412,9 @@ function sl_head_scripts() {
 		if ($sl_page_ids) {
 			foreach ($sl_page_ids as $value) { print "$value[ID],";}
 		}
-		print ")-->";
+		print ")-->\n";
 	}
-	print "\n<!-- ========= End Google Maps Store Locator for WordPress ========== -->\n\n";
+	print "<!-- ========= End WordPress Store Locator ========== -->\n\n";
 }
 function sl_jq() {wp_enqueue_script( 'jquery');}
 add_action('wp_enqueue_scripts', 'sl_jq');
@@ -737,36 +737,42 @@ function sl_dyn_js($post_content=""){
 	$dl=(trim($sl_vars['directions_label'])!="")? parseToXML($sl_vars['directions_label']) : "Directions";
 	$du=(trim($sl_vars['distance_unit'])!="")? $sl_vars['distance_unit'] : "miles";
 	$oc=(trim($sl_vars['map_overview_control'])!="")? $sl_vars['map_overview_control'] : 0;
-
+	$ic=(trim($sl_vars['icon'])!="")? $sl_vars['icon'] : SL_ICONS_BASE."/droplet_green.png";
+	$ic2=(trim($sl_vars['icon2'])!="")? $sl_vars['icon2'] : SL_ICONS_BASE."/droplet_red.png";
+	$gmc=(trim($sl_vars['google_map_country'])!="")? parseToXML($sl_vars['google_map_country']) : "United States" ;
+	$gmd=(trim($sl_vars['google_map_domain'])!="")? $sl_vars['google_map_domain'] : "maps.google.com" ;
+	$lld=(trim($sl_vars['load_locations_default'])!="")? $sl_vars['load_locations_default'] : 1 ;
+	$geo=(trim($sl_vars['geolocate'])!="")? $sl_vars['geolocate'] : 0 ;
+	
 print  
 "var sl_base='".SL_BASE."';
 var sl_uploads_base='".SL_UPLOADS_BASE."';
 var sl_addons_base=sl_uploads_base+'".str_replace(SL_UPLOADS_BASE, '', SL_ADDONS_BASE)."';
 var sl_includes_base=sl_base+'".str_replace(SL_BASE, '', SL_INCLUDES_BASE)."';
-var sl_map_home_icon='".$sl_vars['icon']."'; 
-var sl_map_end_icon='".$sl_vars['icon2']."'; 
-var sl_google_map_country='".parseToXML($sl_vars['google_map_country'])."'; 
-var sl_google_map_domain='".$sl_vars['google_map_domain']."'; 
+var sl_map_home_icon='".$ic."'; 
+var sl_map_end_icon='".$ic2."'; 
+var sl_google_map_country='".$gmc."'; 
+var sl_google_map_domain='".$gmd."'; 
 var sl_zoom_level=$zl; 
 var sl_map_type=$mt; 
 var sl_website_label='$wl'; 
 var sl_directions_label='$dl';
-var sl_load_locations_default='".$sl_vars['load_locations_default']."'; 
-var sl_geolocate='".$sl_vars['geolocate']."'; 
+var sl_load_locations_default='".$lld."'; 
+var sl_geolocate='".$geo."'; 
 var sl_distance_unit='$du'; 
 var sl_map_overview_control='$oc';\n";
-	if (preg_match("@".SL_UPLOADS_BASE."@", $sl_vars['icon'])){
-		$home_icon_path=str_replace(SL_UPLOADS_BASE, SL_UPLOADS_PATH, $sl_vars['icon']);
+	if (preg_match("@".SL_UPLOADS_BASE."@", $ic)){
+		$home_icon_path=str_replace(SL_UPLOADS_BASE, SL_UPLOADS_PATH, $ic);
 	} else {
-		$home_icon_path=str_replace(SL_BASE, SL_PATH, $sl_vars['icon']);
+		$home_icon_path=str_replace(SL_BASE, SL_PATH, $ic);
 	}
 	$home_size=(function_exists("getimagesize") && file_exists($home_icon_path))? getimagesize($home_icon_path) : array(0 => 26, 1 => 35);
 	print "var sl_map_home_icon_width=$home_size[0];\n";
 	print "var sl_map_home_icon_height=$home_size[1];\n";
-	if (preg_match("@".SL_UPLOADS_BASE."@", $sl_vars['icon2'])){
-		$end_icon_path=str_replace(SL_UPLOADS_BASE, SL_UPLOADS_PATH, $sl_vars['icon2']);
+	if (preg_match("@".SL_UPLOADS_BASE."@", $ic2)){
+		$end_icon_path=str_replace(SL_UPLOADS_BASE, SL_UPLOADS_PATH, $ic2);
 	} else {
-		$end_icon_path=str_replace(SL_BASE, SL_PATH, $sl_vars['icon2']);
+		$end_icon_path=str_replace(SL_BASE, SL_PATH, $ic2);
 	}
 	$end_size=(function_exists("getimagesize") && file_exists($end_icon_path))? getimagesize($end_icon_path) : array(0 => 26, 1 => 35);
 	print "var sl_map_end_icon_width=$end_size[0];\n";
@@ -969,7 +975,7 @@ $txt=preg_replace_callback("@$h3_start( )*([^<.]*)( )*</h3>@s", create_function(
 	'return "<h3 style=\'font-family:Georgia; margin-bottom:0.05em; margin-top:0.3em\'><a name=\"".comma($matches[2])."\"></a>{$matches[1]}$matches[2]</h3>";'), $txt);
 
 //creating hyperlinks on top of labeled URLs (ones preceded w/a label in brackets)
-$txt=preg_replace("@\[([a-zA-Z0-9_/?&amp;\&\ \.%20,=\-\+\-]+)*\]\(([a-zA-Z]+://)(([.]?[a-zA-Z0-9_/?&amp;%20,=\-\+\-]+)*)\)@s", "<a onclick=\"window.parent.open('\\2'+'\\3');return false;\" href=\"#\">\\1</a>", $txt);
+$txt=preg_replace("@\[([a-zA-Z0-9_/?&amp;\&\ \.%20,=\-\+\-]+)*\]\(([a-zA-Z]+://)(([.]?[a-zA-Z0-9_/?&amp;%20,=\-\+\-\#]+)*)\)@s", "<a onclick=\"window.parent.open('\\2'+'\\3');return false;\" href=\"#\">\\1</a>", $txt);
 
 //converting asterisked lines into HTML list items
 /*$txt=preg_replace("@\*[ ]?[ ]?([a-zA-Z0-9_/?&amp;\&\ \.%20,=\-\+\-\(\)\{\}\`\'\<\>\"\#\:]+)*(\r\n)?@s", "<li style='margin-left:15px; margin-bottom:0px;'>\\1</li>", $txt);*/
