@@ -388,7 +388,7 @@ function sl_head_scripts() {
 		print "<script src='http://maps.googleapis.com/maps/api/js?{$sens}{$lang_loc}{$region_loc}{$key}' type='text/javascript'></script>\n";
 		//print "<script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>\n";
 		print "<script src='".SL_JS_BASE."/functions.js' type='text/javascript'></script>\n";
-		if (empty($_POST)) {
+		if (empty($_POST) && 1==2) {
 			$nm=(!empty($post->post_name))? $post->post_name : $pagename ;
 			$p=(!empty($post->ID))? $post->ID : mysql_real_escape_string($_GET['p']) ;
 			//$pg=(!empty($post->page_ID))? $post->post_ID : mysql_real_escape_string($_GET['page_id']) ;
