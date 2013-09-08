@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 2.1
+Stable tag: 2.2
 
 A full-featured map maker & location management plugin for creating WordPress store locators and address location maps using Google Maps
 
@@ -116,11 +116,27 @@ If you need additional features, enhance your store locator with addons & themes
 = Using Template Shortcode =
 1. There are two types of template shortcode: ... ([Addons Platform](http://www.viadat.com/products-page/) needed; then install the 'Advanced Theme Manager' addon ... further documentation included)
 
-== Changelog ==
-= 2.1 =
-* Improved Version 1.x.x to Version 2.x.x transition -- better map loading on Store Locator page
+== Screenshots ==
 
-* New in v2.0:
+1. News & Upgrades: See the Latest News and Available Addons for Your Store Locator
+2. Manage Locations: Easily Manage a Few or Many Locations, Sortable by Name, City, etc.
+3. Add Locations: Once You Add a Location, it is Automatically Given Coordinates
+4. MapDesigner&trade;: Choose the Important Options For the Look & Feel of Your Map
+5. Addons Platform: Increase Your Store Locator's Capabilities With Numerous Addons & Themes that are Included
+6. Quickly Upload Many Locations From a Spreadsheet to Save Time (Addon: CSV/XML Importer/Exporter)
+7. Bulk Update More than just the Tags Field (Addon: Multiple-Field Updater)
+8. Basic Store Locator Interface
+9. Upgraded Store Locator w/Active Theme and Addons Enhancing the Interface and Functionality (Addons: Multiple are Featured)
+10. SEO-Friendly Page of an Individual Location (Addon: Location Pages)
+
+== Changelog ==
+= 2.2 =
+* Improved loading of XML of locations for those loading locations by default
+* Re-introducing "News & Upgrades" page
+* Added Screenshots
+* Now uses more stable Google Maps API V3 
+
+* New since v2.0:
 * Fully Uses Google Maps API V3 -- both for displaying maps, geocoding locations, and performing reverse geocoding.  Transition from V2 is automatic and seamless -- no extra steps on your part.
 * New default fields added: Fax & Email Address
 * Streamlined interface
@@ -130,7 +146,10 @@ If you need additional features, enhance your store locator with addons & themes
 * New option to perform automatic search based on visitor's current location (auto-location)
 * 40+ new Google maps country domains
 * New address map icons
-* LotsOfLocales&trade; Addons Platform: boosts your Store Locator's abilities dramatically, based off of your most-requested features & paid customizations: 11+ free Flagship addons. 8 listed above in 'Description' section, 3 visible only to those with the Addons Platform installed, 1 yet-to-be-released, 4+ currently in development, and compatible with the 3 main addons prior to Store Locator 2.0 (CSV/XML Importer/Exporter, DB Importer, & Multiple Field Updater; the Point, Click, Add Mapper will be retired).  For those who purchased addons prior to 2.0, you can re-visit the email link sent to you when you purchased the addon, then re-download and install the updated version which makes it compatible with 2.0.
+* LotsOfLocales&trade; Addons Platform: boosts your Store Locator's abilities dramatically, based off of your most-requested features & paid customizations: 11+ free G2 addons. 8 listed above in 'Description' section, 3 visible only to those with the Addons Platform installed, 1 yet-to-be-released, 4+ currently in development, and compatible with the 3 main addons prior to Store Locator 2.0 (CSV/XML Importer/Exporter, DB Importer, & Multiple Field Updater; the Point, Click, Add Mapper will be retired).  For those who purchased addons prior to 2.0, you can re-visit the email link sent to you when you purchased the addon, then re-download and install the updated version which makes it compatible with 2.0.
+
+= 2.1 =
+* Improved Version 1.x.x to Version 2.x.x transition -- better map loading on Store Locator page
 
 = 1.9.7 =
 * Update for geocoding of locations for those previously having Google Geocoding API issues

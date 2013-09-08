@@ -5,7 +5,7 @@ include_once (SL_ACTIONS_PATH."/lastRSS.php");
 // create lastRSS object
 $rss = new lastRSS; 
 // setup transparent cache
-$rss->cache_dir = SL_UPLOADS_PATH.'/cache'; 
+$rss->cache_dir = SL_CACHE_PATH; 
 $rss->cache_time = 3600*12; // 12 hrs
 
 // load some RSS file

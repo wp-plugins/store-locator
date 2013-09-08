@@ -381,11 +381,11 @@ function sl_head_scripts() {
 		$google_map_domain=($sl_vars['google_map_domain']!="")? $sl_vars['google_map_domain'] : "maps.google.com";
 		
 		//print "<meta name='viewport' content='initial-scale=1.0, user-scalable=no' />\n";
-		$sens=(!empty($sl_vars['sensor']))? "sensor=".$sl_vars['sensor'] : "sensor=false" ;
+		$sens=(!empty($sl_vars['sensor']))? "&sensor=".$sl_vars['sensor'] : "&sensor=false" ;
 		$lang_loc=(!empty($sl_vars['map_language']))? "&language=".$sl_vars['map_language'] : "" ; 
 		$region_loc=(!empty($sl_vars['map_region']))? "&region=".$sl_vars['map_region'] : "" ;
 		$key=(!empty($sl_vars['api_key']))? "&key=".$sl_vars['api_key'] : "" ;
-		print "<script src='http://maps.googleapis.com/maps/api/js?{$sens}{$lang_loc}{$region_loc}{$key}' type='text/javascript'></script>\n";
+		print "<script src='http://maps.googleapis.com/maps/api/js?v=3{$sens}{$lang_loc}{$region_loc}{$key}' type='text/javascript'></script>\n";
 		//print "<script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>\n";
 		print "<script src='".SL_JS_BASE."/functions.js' type='text/javascript'></script>\n";
 		if (empty($_POST) && 1==2) {
@@ -421,10 +421,12 @@ add_action('wp_enqueue_scripts', 'sl_jq');
 /*-----------------------------------*/
 function sl_add_options_page() {
 	global $sl_dir, $sl_base, $sl_uploads_base, $text_domain, $sl_top_nav_links;
+	$parent_url = SL_PARENT_URL; //SL_PAGES_DIR.'/information.php';
 	
-	$sl_menu_pages['main'] = array('title' => __("Store Locator", SL_TEXT_DOMAIN), 'capability' => 'administrator', 'page_url' =>  SL_PAGES_DIR.'/locations.php', 'icon' => SL_BASE.'/images/logo.ico.png', 'menu_position' => 25.1);
-	$sl_menu_pages['sub']['locations'] = array('parent_url' => SL_PAGES_DIR.'/locations.php', 'title' => __("Locations", SL_TEXT_DOMAIN), 'capability' => 'administrator', 'page_url' => SL_PAGES_DIR.'/locations.php');
-	$sl_menu_pages['sub']['map-designer'] = array('parent_url' => SL_PAGES_DIR.'/locations.php', 'title' => __("MapDesigner&trade;", SL_TEXT_DOMAIN), 'capability' => 'administrator', 'page_url' => SL_PAGES_DIR.'/mapdesigner.php');
+	$sl_menu_pages['main'] = array('title' => __("Store Locator", SL_TEXT_DOMAIN), 'capability' => 'administrator', 'page_url' =>  $parent_url, 'icon' => SL_BASE.'/images/logo.ico.png', 'menu_position' => 25.1);
+	$sl_menu_pages['sub']['information'] = array('parent_url' => $parent_url, 'title' => __("News & Upgrades", SL_TEXT_DOMAIN), 'capability' => 'administrator', 'page_url' => $parent_url);
+	$sl_menu_pages['sub']['locations'] = array('parent_url' => $parent_url, 'title' => __("Locations", SL_TEXT_DOMAIN), 'capability' => 'administrator', 'page_url' => SL_PAGES_DIR.'/locations.php');
+	$sl_menu_pages['sub']['mapdesigner'] = array('parent_url' => $parent_url, 'title' => __("MapDesigner&trade;", SL_TEXT_DOMAIN), 'capability' => 'administrator', 'page_url' => SL_PAGES_DIR.'/mapdesigner.php');
 	
 	sl_menu_pages_filter($sl_menu_pages);
 	
@@ -665,14 +667,14 @@ $ty['text'] = urlencode(__("Love it! I've made my site more user-friendly with",
 $ty['text2'] = urlencode(__("Great! I can now easily display my locations using", SL_TEXT_DOMAIN)." LotsOfLocales - #GoogleMaps #StoreLocator #WordPress");
 $ty['is_included']=(basename($file) != basename($_SERVER['SCRIPT_FILENAME']) )? true : false;
 if (!$ty['is_included']) {
-	$ty['thanks_msg'] = __("Always working towards giving you & your clients the best. Your voice is valuable towards doing that. Help us do so below.", SL_TEXT_DOMAIN)."<br><br>";
+	$ty['thanks_msg'] = __("<b>Let us know how fantastic you think WordPress Store Locator is!</b> <br><a href='#' class='star_button'>Go to our page in the WordPress plugin repository and rate us</a>.<br><br><b>Any problems?</b><br><a href='http://docs.viadat.com/' target='_blank'>Documentation</a> is available or <a href='http://www.viadat.com/contact/' target='_blank'>contact us</a>.", SL_TEXT_DOMAIN)."<br><br>";
 	$ty['thanks_msg_style'] = "style='line-height:20px; font-familty:helvetica; text-align:left; font-size:15px'";
-	$ty['thanks_heading'] = "<br>".__("Thank You For using LotsOfLocales&trade;", SL_TEXT_DOMAIN)."<br><br>";
-	$ty['action_call'] =  __("Here's How You Can Help:", SL_TEXT_DOMAIN);
+	$ty['thanks_heading'] = "<br>".__("We Want You to Know ...", SL_TEXT_DOMAIN)."<br><br>";
+	$ty['action_call'] =  __("Nifty Buttons to Spread the Word!", SL_TEXT_DOMAIN);
 	$ty['action_call_style'] = "style='font-size:20px; text-align:left; display:block;  font-family:Georgia;'";
 	$ty['action_buttons_style'] = "style='text-align:left; padding-left:0px;font-weight:normal;font-size:15px'";
 } else {
-	$ty['thanks_msg'] = __("Working to give you & your clients the best. Your voice is valuable towards doing that. Here's how you can help:", SL_TEXT_DOMAIN)."";
+	$ty['thanks_msg'] = __("<b>Let us know how fantastic you think WordPress Store Locator is!</b> <br><a href='#' class='star_button'>Go to our page in the WordPress plugin repository and rate us</a>.<br><br><b>Any problems?</b><br><a href='http://docs.viadat.com/' target='_blank'>Documentation</a> is available or <a href='http://www.viadat.com/contact/' target='_blank'>contact us</a>.", SL_TEXT_DOMAIN)."";
 	$ty['thanks_msg_style'] = "";
 	$ty['thanks_heading'] ="";
 	$ty['action_call'] ="";

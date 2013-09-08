@@ -1,24 +1,24 @@
 <?php
 //global $sl_dir, $sl_base, $sl_path, $sl_uploads_path, $sl_uploads_base, $text_domain;
-$sl_siteurl=get_option('siteurl'); $sl_blog_charset=get_option('blog_charset'); $sl_admin_email=get_option('admin_email'); $sl_site_name=get_option('blogname');
+$sl_siteurl=get_option('siteurl'); $sl_blog_charset=get_option('blog_charset'); $sl_admin_email=get_option('admin_email');
 $sl_dir=dirname(plugin_basename(__FILE__)); //plugin absolute server directory name
 $sl_pub_dir=$sl_dir."/sl-pub";
 $sl_inc_dir=$sl_dir."/sl-inc";
 $sl_admin_dir=$sl_dir."/sl-admin";
 $sl_base=plugins_url('', __FILE__); //URL to plugin directory
 $sl_path=substr(plugin_dir_path(__FILE__), 0, -1); //absolute server path to plugin directory; substr() to remove trailing slash
-$sl_uploads_arr=wp_upload_dir();
-$sl_uploads_base=$sl_uploads_arr['baseurl']."/sl-uploads"; //URL to store locator uploads directory
+$sl_uploads=wp_upload_dir();
+$sl_uploads_base=$sl_uploads['baseurl']."/sl-uploads"; //URL to store locator uploads directory
 $sl_upload_base=$sl_uploads_base; //added 's' to end for consistency. maintains for older versions.
-$sl_uploads_path=$sl_uploads_arr['basedir']."/sl-uploads"; //absolute server path to store locator uploads directory
+$sl_uploads_path=$sl_uploads['basedir']."/sl-uploads"; //absolute server path to store locator uploads directory
 $sl_upload_path=$sl_uploads_path; //added 's' to end for consistency. maintains for older versions.
 $top_nav_base="/".substr($_SERVER["PHP_SELF"],1)."?page=";
-$admin_nav_base=admin_url()."admin.php?page=";
+$admin_nav_base=$sl_siteurl."/wp-admin/admin.php?page="; //die($admin_nav_base); 
 $text_domain="lol";
 $view_link="| <a href='".$admin_nav_base.$sl_admin_dir."/pages/locations.php'>".__("Manage Locations", $text_domain)."</a> <script>setTimeout(function(){jQuery('.sl_admin_success').fadeOut('slow');}, 6000);</script>";
 $web_domain=str_replace("www.","",$_SERVER['HTTP_HOST']);
 
-define('SL_SITEURL', $sl_siteurl); define('SL_BLOG_CHARSET', $sl_blog_charset); define('SL_ADMIN_EMAIL', $sl_admin_email); define('SL_SITE_NAME', $sl_site_name);
+define('SL_SITEURL', $sl_siteurl); define('SL_BLOG_CHARSET', $sl_blog_charset); define('SL_ADMIN_EMAIL', $sl_admin_email);
 define('SL_DIR', $sl_dir);
 	define('SL_PUB_DIR', $sl_dir);
 		define('SL_CSS_DIR', SL_PUB_DIR."/css");
@@ -94,8 +94,12 @@ define('SL_IMAGES_PATH', SL_UPLOADS_PATH."/images");
 define('SL_LANGUAGES_PATH', SL_UPLOADS_PATH."/languages");
 define('SL_THEMES_PATH', SL_UPLOADS_PATH."/themes");
 
+define('SL_INFORMATION_PAGE', SL_TOP_NAV_BASE.SL_PAGES_DIR."/information.php");
 define('SL_MANAGE_LOCATIONS_PAGE', SL_TOP_NAV_BASE.SL_PAGES_DIR."/locations.php");
 	define('SL_ADD_LOCATIONS_PAGE', SL_MANAGE_LOCATIONS_PAGE."&pg=add-locations");
-
 define('SL_MAP_DESIGNER_PAGE', SL_TOP_NAV_BASE.SL_PAGES_DIR."/mapdesigner.php");
+define('SL_MAPDESIGNER_PAGE', SL_MAP_DESIGNER_PAGE); //either/or works - for consistency
+
+define('SL_PARENT_PAGE', SL_INFORMATION_PAGE); //Initial nav page
+define('SL_PARENT_URL', preg_replace("@".preg_quote(SL_TOP_NAV_BASE)."@", "",SL_PARENT_PAGE)); //Initial nav page (w/o top-nav base)
 ?>
