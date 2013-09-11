@@ -37,6 +37,9 @@
 	font-weight: normal;
 	font-size: 8px;
 }
+div.feedburnerFeedBlock ul {
+	margin-top:0px;	
+}
 
 div.feedburnerFeedBlock ul  , .sl_product_rss {
 	margin-left: 0;
@@ -45,14 +48,22 @@ div.feedburnerFeedBlock ul  , .sl_product_rss {
 }
 
 div.feedburnerFeedBlock ul li span.headline {
+	/*display: block;
+	margin: 12px 0 0 0;*/
 	font-weight: bold;
-	display: block;
-	margin: 12px 0 0 0;
+	font-size: 18px;
+	line-height: 18px;
+	font-family: Georgia;
 }
 
-div.feedburnerFeedBlock ul li span.headline {
+div.feedburnerFeedBlock h2 {
+	font-size:15px;
 	font-weight: bold;
 }
+div.feedburnerFeedBlock .feedflare {
+	padding-bottom: 30px;
+}
+
 .map_designer_section td {
 	border-bottom:none;
 }

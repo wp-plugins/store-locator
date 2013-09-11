@@ -73,7 +73,7 @@ global $sl_search_label, $sl_zoom_level, $sl_use_city_search, $sl_use_name_searc
 global $sl_radius_label, $sl_website_label, $sl_directions_label, $sl_num_initial_displayed, $sl_load_locations_default;
 global $sl_distance_unit, $sl_map_overview_control, $sl_admin_locations_per_page, $sl_instruction_message;
 global $sl_map_character_encoding, $sl_start, $sl_map_language, $sl_map_region, $sl_sensor, $sl_geolocate;
-global $sl_map_type, $sl_remove_credits, $sl_api_key; 
+global $sl_map_type, $sl_remove_credits, $sl_api_key, $sl_location_not_found_message, $sl_no_results_found_message; 
 global $sl_vars;
 
 //$sl_vars=sl_data('sl_vars');
@@ -103,6 +103,12 @@ $sl_map_character_encoding=$sl_vars['map_character_encoding'];
 
 if ($sl_vars['instruction_message'] === NULL) {	$sl_vars['instruction_message']="Enter Your Address or Zip Code Above.";	}
 $sl_instruction_message=$sl_vars['instruction_message'];
+
+if (empty($sl_vars['location_not_found_message']) || $sl_vars['location_not_found_message'] === NULL) {	$sl_vars['location_not_found_message']="";	}
+$sl_location_not_found_message=$sl_vars['location_not_found_message'];
+
+if (empty($sl_vars['no_results_found_message']) || $sl_vars['no_results_found_message'] === NULL) {	$sl_vars['no_results_found_message']="No Results Found";	}
+$sl_no_results_found_message=$sl_vars['no_results_found_message'];
 
 if (strlen(trim($sl_vars['admin_locations_per_page'])) == 0) {	$sl_vars['admin_locations_per_page']="100";	}
 $sl_admin_locations_per_page=$sl_vars['admin_locations_per_page'];
@@ -302,6 +308,7 @@ function sl_install_tables() {
 			sl_address2 varchar(255) NULL,
 			sl_city varchar(255) NULL,
 			sl_state varchar(255) NULL,
+			sl_country varchar(255) NULL,
 			sl_zip varchar(255) NULL,
 			sl_latitude varchar(255) NULL,
 			sl_longitude varchar(255) NULL,
@@ -672,7 +679,7 @@ if (!$ty['is_included']) {
 	$ty['thanks_heading'] = "<br>".__("We Want You to Know ...", SL_TEXT_DOMAIN)."<br><br>";
 	$ty['action_call'] =  __("Nifty Buttons to Spread the Word!", SL_TEXT_DOMAIN);
 	$ty['action_call_style'] = "style='font-size:20px; text-align:left; display:block;  font-family:Georgia;'";
-	$ty['action_buttons_style'] = "style='text-align:left; padding-left:0px;font-weight:normal;font-size:15px'";
+	$ty['action_buttons_style'] = "style='text-align:left; padding-top:11px; padding-left:0px;font-weight:normal;font-size:15px'";
 } else {
 	$ty['thanks_msg'] = __("<b>Let us know how fantastic you think WordPress Store Locator is!</b> <br><a href='#' class='star_button'>Go to our page in the WordPress plugin repository and rate us</a>.<br><br><b>Any problems?</b><br><a href='http://docs.viadat.com/' target='_blank'>Documentation</a> is available or <a href='http://www.viadat.com/contact/' target='_blank'>contact us</a>.", SL_TEXT_DOMAIN)."";
 	$ty['thanks_msg_style'] = "";
@@ -745,6 +752,8 @@ function sl_dyn_js($post_content=""){
 	$gmd=(trim($sl_vars['google_map_domain'])!="")? $sl_vars['google_map_domain'] : "maps.google.com" ;
 	$lld=(trim($sl_vars['load_locations_default'])!="")? $sl_vars['load_locations_default'] : 1 ;
 	$geo=(trim($sl_vars['geolocate'])!="")? $sl_vars['geolocate'] : 0 ;
+	$nrf=(trim($sl_vars['no_results_found_message'])!="")? addslashes($sl_vars['no_results_found_message']) : "No Results Found";
+	$lnf=(trim($sl_vars['location_not_found_message'])!="")? addslashes($sl_vars['location_not_found_message']) : "";
 	
 print  
 "var sl_base='".SL_BASE."';
@@ -762,7 +771,9 @@ var sl_directions_label='$dl';
 var sl_load_locations_default='".$lld."'; 
 var sl_geolocate='".$geo."'; 
 var sl_distance_unit='$du'; 
-var sl_map_overview_control='$oc';\n";
+var sl_map_overview_control='$oc';
+var sl_no_results_found_message='$nrf';
+var sl_location_not_found_message='$lnf';\n";
 	if (preg_match("@".SL_UPLOADS_BASE."@", $ic)){
 		$home_icon_path=str_replace(SL_UPLOADS_BASE, SL_UPLOADS_PATH, $ic);
 	} else {
@@ -1080,6 +1091,7 @@ $sl_vars=sl_data('sl_vars');
 ### Addons Platform Load ###
 if (file_exists(SL_ADDONS_PATH."/addons-platform/addons-platform.php")) {
 // && (preg_match("@$sl_dir@", $_SERVER['REQUEST_URI']) || preg_match('@widgets@', $_SERVER['REQUEST_URI']) || !preg_match('@wp-admin@', $_SERVER['REQUEST_URI']))) {
+	sl_initialize_variables(); // needed
 	include_once(SL_ADDONS_PATH."/addons-platform/addons-platform.php");
 }
 
@@ -1150,7 +1162,7 @@ $cs_options.="<option value='$value[city_state]'>$value[city_state]</option>";
 	$button_style=(file_exists($theme_path."/search_button.png"))? "type='image' src='$submit_img' $mousedown $mouseover" : "type='submit'";
 	$button_style.=" onclick=\"showLoadImg('show', 'loadImg');\""; //added 3/30/12 for loading/processing gif image
 	//print "$submit_img | ".SL_UPLOADS_PATH."/themes/".$sl_vars['theme']."/search_button.png";
-	$hide=($sl_vars['remove_credits']==1)? "style='display:none;'" : "";
+	$hide=($sl_vars['remove_credits']==1)? "display:none;" : "";
 	
 $form="
 <div id='sl_div'>
@@ -1208,16 +1220,15 @@ $form="
 	<td><img src='$loading_img' id='loadImg' style='opacity:0; filter:alpha(opacity=0); height:28px; vertical-align:bottom; position:relative; '></td>
 	</tr></table>";
 	$form.=(function_exists("do_sl_hook"))? do_sl_header() : "" ;
-$form.="<table width='100%' cellspacing='0px' cellpadding='0px' style='/*border:solid silver 1px*/'> 
+$form.="<table style='width:100%;/*border:solid silver 1px*/' cellspacing='0px' cellpadding='0px' > 
      <tr>
-        <td width='100%' valign='top' id='map_td'> <div id='sl_map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' width='$width$width_units;' $hide><tr><td class='sl_footer_left_column'><a href='http://www.viadat.com/store-locator' target='_blank'>LotsOfLocales&trade;</a></td><td class='sl_footer_right_column'> <a href='http://www.viadat.com' target='_blank' title='Map Maker for Creating Store Locators or Any Address Maps Using WordPress & Google Maps'>Viadat Creations</a></td></tr></table>
+        <td style='width:100%' valign='top' id='map_td'> <div id='sl_map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' style='width:$width$width_units;{$hide}' ><tr><td class='sl_footer_left_column'><a href='http://www.viadat.com/store-locator' target='_blank'>LotsOfLocales&trade;</a></td><td class='sl_footer_right_column'> <a href='http://www.viadat.com' target='_blank' title='Map Maker for Creating Store Locators or Any Address Maps Using WordPress & Google Maps'>Viadat Creations</a></td></tr></table>
 		</td>
       </tr>
 	  <tr id='cm_mapTR'>
         <td width='' valign='top' style='/*display:hidden; border-right:solid silver 1px*/' id='map_sidebar_td'> <div id='map_sidebar' style='width:$width$width_units;/* $height$height_units; */'> <div class='text_below_map'>$sl_instruction_message</div></div>
         </td></tr>
   </table></form>
-<p><!--script type=\"text/javascript\">if (document.getElementById(\"map\")){sl_load();}</script--></p>
 </div>";
 
 	//ereg("\[STORE-LOCATOR [tag=\"(.*)\"]?\]", $matched); 

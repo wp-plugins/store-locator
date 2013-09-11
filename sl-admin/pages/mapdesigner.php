@@ -22,7 +22,9 @@ if (!empty($_POST)) {
 	$sl_vars['radius_label']=$_POST['sl_radius_label'];
 	$sl_vars['website_label']=$_POST['sl_website_label'];
 	$sl_vars['directions_label']=$_POST['sl_directions_label'];
-	$sl_vars['instruction_message']=$_POST['sl_instruction_message'];
+	$sl_vars['instruction_message']=stripslashes($_POST['sl_instruction_message']);
+	$sl_vars['location_not_found_message']=stripslashes($_POST['sl_location_not_found_message']);
+	$sl_vars['no_results_found_message']=stripslashes($_POST['sl_no_results_found_message']);
 	$sl_vars['zoom_level']=$_POST['zoom_level'];
 	$sl_vars['use_city_search']=(empty($_POST['sl_use_city_search']))? 0 : $_POST['sl_use_city_search'];
 	//$sl_vars['use_name_search']=($_POST['sl_use_name_search']==="")? 0 : $_POST['sl_use_name_search'];
@@ -183,7 +185,13 @@ print "
 <tr--><td colspan='2'><input name='sl_instruction_message' value=\"".$sl_instruction_message."\" size='50'><br><span style='font-size:80%'>".__("Instruction Message to Users", SL_TEXT_DOMAIN)."</span></td>
 <!--td></td>
 <td></td-->
-</tr></table>
+</tr>
+<tr><td>
+<input name='sl_location_not_found_message' value=\"".$sl_location_not_found_message."\" ><br><span style='font-size:80%'>".__("Location Doesn't Exist Message", SL_TEXT_DOMAIN)."</span>
+</td><td colspan='2'>
+<input name='sl_no_results_found_message' value=\"".$sl_no_results_found_message."\" size='50'><br><span style='font-size:80%'>".__("No Results Are Found Message", SL_TEXT_DOMAIN)."</span>
+</td></tr>
+</table>
 
 </td></tr>
 <tr><td colspan='1' class='left_side' style='vertical-align:top; border-bottom:0px'><h2>".__("Dimensions", SL_TEXT_DOMAIN)."</h2>

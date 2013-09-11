@@ -6,7 +6,7 @@ function xml_out($buff) {
 }
 ob_start("xml_out");
 header("Content-type: text/xml");
-include("sl-env.php");
+include("sl-inc/includes/sl-env.php");
 
 // Opens a connection to a MySQL server
 $connection=mysql_connect ($host, $username, $password);
