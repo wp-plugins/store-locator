@@ -364,7 +364,7 @@ function sl_install_tables() {
 }
 /*-------------------------------*/
 function sl_head_scripts() {
-	global $sl_dir, $sl_base, $sl_uploads_base, $sl_path, $sl_uploads_path, $wpdb, $sl_version, $pagename, $sl_map_language, $post, $sl_vars; 		
+	global $sl_dir, $sl_base, $sl_uploads_base, $sl_path, $sl_uploads_path, $wpdb, $sl_version, $pagename, $sl_map_language, $post, $sl_vars, $sl_version; 		
 	
 	print "\n<!-- ========= WordPress Store Locator (v$sl_version) | http://www.viadat.com/store-locator/ ========== -->\n";
 	//print "<!-- ========= Learn More & Download Here: http://www.viadat.com/store-locator ========== -->\n";
@@ -404,7 +404,7 @@ function sl_head_scripts() {
 			//sl_dyn_js($on_sl_page[0]['post_content']);
 			sl_dyn_js();
 		}
-		print "<script src='".SL_JS_BASE."/store-locator.js' type='text/javascript'></script>\n";
+		print "<script src='".SL_JS_BASE."/store-locator.js?v=$sl_version' type='text/javascript'></script>\n";
 		//if store-locator.css exists in custom-css/ folder in uploads/ dir it takes precedence over, store-locator.css in store-locator plugin directory to allow for css customizations to be preserved after updates
 		$has_custom_css=(file_exists(SL_CUSTOM_CSS_PATH."/store-locator.css"))? SL_CUSTOM_CSS_BASE : SL_CSS_BASE; 
 		print "<link  href='".$has_custom_css."/store-locator.css' type='text/css' rel='stylesheet'/>\n";
