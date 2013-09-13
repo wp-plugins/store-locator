@@ -74,7 +74,7 @@ global $sl_radius_label, $sl_website_label, $sl_directions_label, $sl_num_initia
 global $sl_distance_unit, $sl_map_overview_control, $sl_admin_locations_per_page, $sl_instruction_message;
 global $sl_map_character_encoding, $sl_start, $sl_map_language, $sl_map_region, $sl_sensor, $sl_geolocate;
 global $sl_map_type, $sl_remove_credits, $sl_api_key, $sl_location_not_found_message, $sl_no_results_found_message; 
-global $sl_vars;
+global $sl_load_results_with_locations_default, $sl_vars;
 
 //$sl_vars=sl_data('sl_vars');
 //$sl_google_map_domain=sl_data('sl_google_map_domain');
@@ -121,6 +121,9 @@ $sl_distance_unit=$sl_vars['distance_unit'];
 
 if (strlen(trim($sl_vars['load_locations_default'])) == 0) {	$sl_vars['load_locations_default']="1";	}
 $sl_load_locations_default=$sl_vars['load_locations_default'];
+
+if (strlen(trim($sl_vars['load_results_with_locations_default'])) == 0) {	$sl_vars['load_results_with_locations_default']="1";	}
+$sl_load_results_with_locations_default=$sl_vars['load_results_with_locations_default'];
 
 if (strlen(trim($sl_vars['num_initial_displayed'])) == 0) {	$sl_vars['num_initial_displayed']="25";	}
 $sl_num_initial_displayed=$sl_vars['num_initial_displayed'];
@@ -676,8 +679,8 @@ $ty['is_included']=(basename($file) != basename($_SERVER['SCRIPT_FILENAME']) )? 
 if (!$ty['is_included']) {
 	$ty['thanks_msg'] = __("<b>Let us know how fantastic you think WordPress Store Locator is!</b> <br><a href='#' class='star_button'>Go to our page in the WordPress plugin repository and rate us</a>.<br><br><b>Any problems?</b><br><a href='http://docs.viadat.com/' target='_blank'>Documentation</a> is available or <a href='http://www.viadat.com/contact/' target='_blank'>contact us</a>.", SL_TEXT_DOMAIN)."<br><br>";
 	$ty['thanks_msg_style'] = "style='line-height:20px; font-familty:helvetica; text-align:left; font-size:15px'";
-	$ty['thanks_heading'] = "<br>".__("We Want You to Know ...", SL_TEXT_DOMAIN)."<br><br>";
-	$ty['action_call'] =  __("Nifty Buttons to Spread the Word!", SL_TEXT_DOMAIN);
+	$ty['thanks_heading'] = "<br>".__("Want to Help Us Improve WordPress?", SL_TEXT_DOMAIN)."<br><br>";
+	$ty['action_call'] =  __("Buttons to Spread the Word!", SL_TEXT_DOMAIN);
 	$ty['action_call_style'] = "style='font-size:20px; text-align:left; display:block;  font-family:Georgia;'";
 	$ty['action_buttons_style'] = "style='text-align:left; padding-top:11px; padding-left:0px;font-weight:normal;font-size:15px'";
 } else {
@@ -751,6 +754,7 @@ function sl_dyn_js($post_content=""){
 	$gmc=(trim($sl_vars['google_map_country'])!="")? parseToXML($sl_vars['google_map_country']) : "United States" ;
 	$gmd=(trim($sl_vars['google_map_domain'])!="")? $sl_vars['google_map_domain'] : "maps.google.com" ;
 	$lld=(trim($sl_vars['load_locations_default'])!="")? $sl_vars['load_locations_default'] : 1 ;
+	$lrwld=(trim($sl_vars['load_results_with_locations_default'])!="")? $sl_vars['load_results_with_locations_default'] : 1 ;
 	$geo=(trim($sl_vars['geolocate'])!="")? $sl_vars['geolocate'] : 0 ;
 	$nrf=(trim($sl_vars['no_results_found_message'])!="")? addslashes($sl_vars['no_results_found_message']) : "No Results Found";
 	$lnf=(trim($sl_vars['location_not_found_message'])!="")? addslashes($sl_vars['location_not_found_message']) : "";
@@ -769,6 +773,7 @@ var sl_map_type=$mt;
 var sl_website_label='$wl'; 
 var sl_directions_label='$dl';
 var sl_load_locations_default='".$lld."'; 
+var sl_load_results_with_locations_default='".$lrwld."'; 
 var sl_geolocate='".$geo."'; 
 var sl_distance_unit='$du'; 
 var sl_map_overview_control='$oc';
@@ -1118,8 +1123,8 @@ if (!function_exists("sl_template")){
 		$unit_display=($sl_vars['distance_unit']=="km")? "km" : "mi";
 		$r_options="";
 		foreach ($r_array as $value) {
-			$s=(ereg("\(.*\)", $value))? " selected='selected' " : "" ;
-			$value=ereg_replace("[^0-9]", "", $value);
+			$s=(preg_match("@\(.*\)@", $value))? " selected='selected' " : "" ;
+			$value=preg_replace("@[^0-9]@", "", $value);
 			$r_options.="<option value='$value' $s>$value $unit_display</option>";
 		}
 		
@@ -1231,10 +1236,10 @@ $form.="<table style='width:100%;/*border:solid silver 1px*/' cellspacing='0px' 
   </table></form>
 </div>";
 
-	//ereg("\[STORE-LOCATOR [tag=\"(.*)\"]?\]", $matched); 
+	//preg_match("@\[STORE-LOCATOR [tag=\"(.*)\"]?\]@", $matched); 
 	//global $map_tag=$matched[1];
 	
-	return eregi_replace("\[store-locator(.*)?\]", $form, $content);
+	return preg_replace("@\[store-locator(.*)?\]@i", $form, $content);
 	}
     }
 }

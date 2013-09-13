@@ -101,14 +101,14 @@ if (!empty($_POST) && function_exists("do_sl_hook")){ do_sl_hook("sl_admin_form_
 if (function_exists("do_sl_hook")) { do_sl_hook("sl_admin_data"); } 
 ?>
 <div id="slideout">
-	<div id="clickme"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style='font-family:georgia; position:relative; top:-4px;'>Dashboard</b>
+	<div id="clickme"><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style='font-family:georgia; position:relative; top:-4px;'><?php print __("Dashboard", SL_TEXT_DOMAIN); ?></b>
 	</div>
 	<div id="slidecontent">
 	   <div id='slidecontainer'>
-		<div style='width:50%; float:left'><?php sl_module("thanks", "Rate Us!", "240px");  ?></div>
-		<div style='width:50%; float:right'><?php sl_module("readme", "Information & ReadMe Instructions", "240px");  ?></div>
-		<div style='width:50%; float:left'><?php sl_module("news", "Latest News", "270px"); ?></div>
-		<div style='width:50%; float:left'><?php sl_module("keys", "Activation Keys<img style='float:right; opacity:0; height:20px;' id='module-keys' src='".SL_IMAGES_BASE_ORIGINAL."/loading.gif'>", "270px"); ?></div>
+		<div style='width:50%; float:left'><?php sl_module("thanks", __("Rate Us", SL_TEXT_DOMAIN)."!", "240px");  ?></div>
+		<div style='width:50%; float:right'><?php sl_module("readme", __("Information & ReadMe Instructions", SL_TEXT_DOMAIN), "240px");  ?></div>
+		<div style='width:50%; float:left'><?php sl_module("news", __("Latest News", SL_TEXT_DOMAIN), "270px"); ?></div>
+		<div style='width:50%; float:left'><?php sl_module("keys", __("Activation Keys", SL_TEXT_DOMAIN)."<img style='float:right; opacity:0; height:20px;' id='module-keys' src='".SL_IMAGES_BASE_ORIGINAL."/loading.gif'>", "270px"); ?></div>
 	   </div>
 	</div>
 </div>

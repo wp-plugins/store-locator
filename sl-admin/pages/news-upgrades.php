@@ -66,7 +66,7 @@ print "</td>
 print "
 <table width='100%' height='350px'><thead><tr>
 <th width=''>".
-__("We Want You to Know ...", SL_TEXT_DOMAIN).
+__("For Your Information", SL_TEXT_DOMAIN).
 "</th></tr></thead>
 <tr>
 <td><div style='overflow:scroll; height:350px'> ";

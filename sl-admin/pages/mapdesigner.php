@@ -30,6 +30,7 @@ if (!empty($_POST)) {
 	//$sl_vars['use_name_search']=($_POST['sl_use_name_search']==="")? 0 : $_POST['sl_use_name_search'];
 	$sl_vars['remove_credits']=(empty($_POST['sl_remove_credits']))? 0 : $_POST['sl_remove_credits'];
 	$sl_vars['load_locations_default']=(empty($_POST['sl_load_locations_default']))? 0 : $_POST['sl_load_locations_default'];
+	$sl_vars['load_results_with_locations_default']=(empty($_POST['sl_load_results_with_locations_default']))? 0 : $_POST['sl_load_results_with_locations_default'];
 	$sl_vars['map_type']=$_POST['sl_map_type'];
 	$sl_vars['num_initial_displayed']=$_POST['sl_num_initial_displayed'];
 	$sl_vars['map_overview_control']=(empty($_POST['sl_map_overview_control']))? 0 : $_POST['sl_map_overview_control'];
@@ -66,8 +67,8 @@ foreach ($map_lang as $key=>$value) {
 $map_lang_select.= "</optgroup></select><!--/td></tr-->";
 $update_button="<input type='submit' value='".__("Update", SL_TEXT_DOMAIN)."' class='button-primary'>";
 
-print "<form method='post' name='mapDesigner'><table class='widefat'><thead><tr><th colspan='2'>".__("MapDesigner&trade;", SL_TEXT_DOMAIN)." <div style='float:right'><small>API Key (<a rel='sl_pop' href='#api-key-info'>?</a>): </small>
-<div id='api-key-info' style='display:none'><h3 style='margin-top:0px'>Google Maps API Key</h3>".__("Google Maps API V3 actually doesn't require an API Key, however, if needed (it appears that high usage requires a key)", SL_TEXT_DOMAIN).", <a target='_blank' href='https://developers.google.com/maps/documentation/javascript/tutorial#api_key'>".__("get your key here", SL_TEXT_DOMAIN)."</a></div> {$api_key_field}&nbsp;{$your_location_select}&nbsp;{$map_lang_select}&nbsp;&nbsp;<input type='submit' value='".__("Update", SL_TEXT_DOMAIN)."' class='button-primary' style=''><div></th><!--td><".__("Designer", SL_TEXT_DOMAIN)."--></td--></tr></thead>";
+print "<form method='post' name='mapDesigner'><table class='widefat'><thead><tr><th colspan='2'>".__("MapDesigner&trade;", SL_TEXT_DOMAIN)." <div style='float:right'><small>".__("API Key ", SL_TEXT_DOMAIN)."(<a rel='sl_pop' href='#api-key-info'>?</a>): </small>
+<div id='api-key-info' style='display:none'><h3 style='margin-top:0px'>".__("Google Maps", SL_TEXT_DOMAIN)." ".__("API Key", SL_TEXT_DOMAIN)."</h3>".__("Google Maps API V3 actually doesn't require an API Key, however, if needed (it appears that high usage requires a key)", SL_TEXT_DOMAIN).", <a target='_blank' href='https://developers.google.com/maps/documentation/javascript/tutorial#api_key'>".__("get your key here", SL_TEXT_DOMAIN)."</a></div> {$api_key_field}&nbsp;{$your_location_select}&nbsp;{$map_lang_select}&nbsp;&nbsp;<input type='submit' value='".__("Update", SL_TEXT_DOMAIN)."' class='button-primary' style=''><div></th><!--td><".__("Designer", SL_TEXT_DOMAIN)."--></td--></tr></thead>";
 sl_initialize_variables();
 $icon_str="";$icon2_str="";
 
@@ -136,6 +137,7 @@ $checked3=($sl_vars['remove_credits']==1)? " checked " : "";
 $checked4=($sl_vars['load_locations_default']==1)? " checked " : "";
 $checked5=($sl_vars['map_overview_control']==1)? " checked " : "";
 $checked6=($sl_vars['geolocate']==1)? " checked " : "";
+$checked7=($sl_vars['load_results_with_locations_default']==1)? " checked " : "";
 
 $map_type["".__("Normal", SL_TEXT_DOMAIN).""]="google.maps.MapTypeId.ROADMAP";
 $map_type["".__("Normal + Terrain (Physical)", SL_TEXT_DOMAIN).""]="google.maps.MapTypeId.TERRAIN";
@@ -159,7 +161,7 @@ print "
 <tr><td><input name='sl_use_city_search' value='1' type='checkbox' $checked>&nbsp;".__("Search By City", SL_TEXT_DOMAIN)."</td>
 <td><input name='sl_map_overview_control' value='1' type='checkbox' $checked5>&nbsp;".__("Show Map Inset Box", SL_TEXT_DOMAIN)."</td></tr>
 <tr><td><input name='sl_geolocate' value='1' type='checkbox' $checked6>&nbsp;".__("Try to Auto-Locate User", SL_TEXT_DOMAIN)."</td>
-<td><input name='sl_load_locations_default' value='1' type='checkbox' $checked4>&nbsp;".__("Auto-Load Locations", SL_TEXT_DOMAIN)."</td></tr>
+<td><input name='sl_load_locations_default' value='1' type='checkbox' $checked4>&nbsp;".__("Auto-Load Locations", SL_TEXT_DOMAIN)."&nbsp;&nbsp;(<input name='sl_load_results_with_locations_default' value='1' type='checkbox' $checked7>&nbsp;".__("with Results Listing", SL_TEXT_DOMAIN)."&nbsp;(<a href='#info_load_results_default' rel='sl_pop'>?</a>)<div style='display:none;' id='info_load_results_default'>".__("<h2 style='margin-top:0px'>Search Results Listing By Default</h2>Determine whether or not both the map icons and the results listing show when loading locations by default. <br><Br>No results listings are shown even if this is checked, but 'Auto-Load Locations' is unchecked", SL_TEXT_DOMAIN).".</div>)</td></tr>
 <!--tr><td></td>
 <td></td></tr>
 <tr><td></td>
@@ -197,7 +199,7 @@ print "
 <tr><td colspan='1' class='left_side' style='vertical-align:top; border-bottom:0px'><h2>".__("Dimensions", SL_TEXT_DOMAIN)."</h2>
 <table class='map_designer_section'><tr><td><nobr>".__("Zoom Level", SL_TEXT_DOMAIN).":</nobr></td>
 <td>$zoom</td></tr>
-<tr><td><nobr>".__("Map Dimensions", SL_TEXT_DOMAIN)." (H x W):</nobr></td>
+<tr><td><nobr>".__("Map Dimensions (H x W)", SL_TEXT_DOMAIN).":</nobr></td>
 <td><input name='height' value='$sl_height' size='3'>&nbsp;".choose_units($sl_height_units, "height_units")." <span style='font-size:1.2em; vertical-align:middle'>X</span> <input name='width' value='$sl_width' size='3'>&nbsp;".choose_units($sl_width_units, "width_units")."</td></tr>
 <!--tr><td><nobr>".__("Map Width", SL_TEXT_DOMAIN).":</nobr></td>
 <td><input name='width' value='$sl_width'>&nbsp;".choose_units($sl_width_units, "width_units")."</td></tr-->
@@ -219,8 +221,8 @@ $icon_notification_msg
 <tr><td valign='top'>".__("Choose Theme", SL_TEXT_DOMAIN)."</td><td valign='top'> <select name='theme' onchange=\"\"><option value=''>".__("No Theme Selected", SL_TEXT_DOMAIN)."</option>$theme_str</select>&nbsp;&nbsp;&nbsp;<a href='http://www.viadat.com/products-page/store-locator-themes/' target='_blank'>".__("Get&nbsp;Themes", SL_TEXT_DOMAIN)." &raquo;</a></td></tr>
 <tr><td>".__("Remove Credits", SL_TEXT_DOMAIN).":</td>
 <td><input name='sl_remove_credits' value='1' type='checkbox' $checked3></td></tr>
-<tr><td valign='top' style='white-space:nowrap'><input name='icon' size='20' value='$sl_vars[icon]' onchange=\"document.getElementById('prev').src=this.value\"><img id='prev' src='$sl_vars[icon]' align='top' rel='sl_pop' href='#home_icon' style='cursor:pointer;cursor:hand;height:60%;'> <br><span style='font-size:80%'>".__("Home Icon", SL_TEXT_DOMAIN)."&nbsp;(".__("Click icon to change", SL_TEXT_DOMAIN).")</span><div id='home_icon' style='display:none;'>$icon_str</div></td>
-<td valign='top' style='white-space:nowrap'>  <input name='icon2' size='20' value='$sl_vars[icon2]' onchange=\"document.getElementById('prev2').src=this.value\"><img id='prev2' src='$sl_vars[icon2]' align='top' rel='sl_pop' href='#end_icon' style='cursor:pointer;cursor:hand;height:60%;'> <br><div id='end_icon' style='display:none;'>$icon2_str</div><span style='font-size:80%'>".__("Destination Icon", SL_TEXT_DOMAIN)." </span></td></tr>
+<tr><td valign='top' style='white-space:nowrap'><input name='icon' size='20' value='$sl_vars[icon]' onchange=\"document.getElementById('prev').src=this.value\"><img id='prev' src='$sl_vars[icon]' align='top' rel='sl_pop' href='#home_icon' style='cursor:pointer;cursor:hand;height:60%;'> <br><span style='font-size:80%'>".__("Home Icon", SL_TEXT_DOMAIN)."&nbsp;(".__("Click icon to change", SL_TEXT_DOMAIN).")</span><div id='home_icon' style='display:none;'><h2 style='margin-top:0px'>".__("Choose", SL_TEXT_DOMAIN)." ".__("Home Icon", SL_TEXT_DOMAIN)."</h2>$icon_str</div></td>
+<td valign='top' style='white-space:nowrap'>  <input name='icon2' size='20' value='$sl_vars[icon2]' onchange=\"document.getElementById('prev2').src=this.value\"><img id='prev2' src='$sl_vars[icon2]' align='top' rel='sl_pop' href='#end_icon' style='cursor:pointer;cursor:hand;height:60%;'> <br><div id='end_icon' style='display:none;'><h2 style='margin-top:0px'>".__("Choose", SL_TEXT_DOMAIN)." ".__("Destination Icon", SL_TEXT_DOMAIN)."</h2>$icon2_str</div><span style='font-size:80%'>".__("Destination Icon", SL_TEXT_DOMAIN)." </span></td></tr>
 <!--tr><td valign='top'></td>
 <td valign='top'>
 </td></tr-->
