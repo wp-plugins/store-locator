@@ -671,7 +671,7 @@ function sl_process_tags($tag_string, $db_action="insert", $sl_id="") {
 }
 /*-----------------------------------------------------------*/
 function sl_ty($file){
-$ty['http'] = $_SERVER['HTTPS'] == 'on' ? 'https://':'http://';
+$ty['http'] = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://':'http://';
 $ty['url']	= urlencode("http://locl.es/Lcatr");
 $ty['text'] = urlencode(__("Love it! I've made my site more user-friendly with", SL_TEXT_DOMAIN)." LotsOfLocales - #WordPress #StoreLocator #GoogleMaps");
 $ty['text2'] = urlencode(__("Great! I can now easily display my locations using", SL_TEXT_DOMAIN)." LotsOfLocales - #GoogleMaps #StoreLocator #WordPress");

@@ -10,7 +10,7 @@
 <?php } ?>
    <!--div--><strong <?php print $action_call_style; ?>> <?php print $action_call; ?></strong>
     <p <?php print $action_buttons_style; ?>>
-	<!--br--><strong style='font-size:1.5em;'><img src='<?php print SL_IMAGES_BASE_ORIGINAL."/sl_star.jpg"; ?>'></strong>&nbsp;<input type='button' class='button-primary star_button'  href="" value='  Rate Us!  ' />
+	<!--br--><strong style='font-size:1.5em;'><img src='<?php print SL_IMAGES_BASE_ORIGINAL."/sl_star.jpg"; ?>'></strong>&nbsp;<input type='button' class='button-primary star_button'  href="" value='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rate Us!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' />
 	<br><br><strong style='font-size:1.5em;'><img src='<?php print SL_IMAGES_BASE_ORIGINAL."/sl_twitter.jpg"; ?>'></strong>&nbsp;<input type='button' class='button-primary twitter_button' rel="<?php print $text; ?>+<?php print $url; ?>" value='Tell Others! (Tweet #1)' />
 	<input type='button' class='button-primary twitter_button' rel="<?php print $text2; ?>+<?php print $url; ?>" value='Tell Others! (Tweet #2)' />
     </p>
