@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.0
 Tested up to: 3.6.1
-Stable tag: 2.4
+Stable tag: 2.5
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -74,6 +74,7 @@ If you need additional features, enhance your store locator with addons & themes
 * [Rene](http://wpwebshop.com): Turkish
 * [Outshine Solutions](http://outshinesolutions.com): Hindi
 * [Diana S.](http://www.wpcouponshop.com): Serbian
+* [Esa Immonen](http://www.probeautyscandinavia.com): Finnish
 
 ([How to submit your translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/) | If you provide your web address, we'll link back to you)
 
@@ -114,6 +115,10 @@ If you need additional features, enhance your store locator with addons & themes
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 2.5 =
+* Added Finnish translation (Thank you [Esa Immonen](http://www.probeautyscandinavia.com)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
+* Store Locator CSS updates/improvements
+
 = 2.4 =
 * New option in MapDesigner&trade; admin page to decide whether or not to show search results listing in addition to map icons when loading locations by default
 * Updated deprecated regex functions, to faster ones

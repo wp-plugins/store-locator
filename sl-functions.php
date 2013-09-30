@@ -387,7 +387,7 @@ function sl_head_scripts() {
 	//print_r($post_ids_array);
 	
 	//If on page with store locator shortcode, on an archive, search, or 404 page while shortcode has been used in a post, on the front page, or a specific post with shortcode, display code, otherwise, don't
-	if ($on_sl_page || is_search() || ((is_archive() || is_404()) && $sl_code_is_used_in_posts) || is_front_page() || is_single($post_ids_array) || function_exists('show_sl_scripts')) {
+	if ($on_sl_page || is_search() || ((is_front_page() || is_archive() || is_404()) && $sl_code_is_used_in_posts) || is_single($post_ids_array) || function_exists('show_sl_scripts')) {
 		$google_map_domain=($sl_vars['google_map_domain']!="")? $sl_vars['google_map_domain'] : "maps.google.com";
 		
 		//print "<meta name='viewport' content='initial-scale=1.0, user-scalable=no' />\n";
@@ -397,7 +397,7 @@ function sl_head_scripts() {
 		$key=(!empty($sl_vars['api_key']))? "&key=".$sl_vars['api_key'] : "" ;
 		print "<script src='http://maps.googleapis.com/maps/api/js?v=3{$sens}{$lang_loc}{$region_loc}{$key}' type='text/javascript'></script>\n";
 		//print "<script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>\n";
-		print "<script src='".SL_JS_BASE."/functions.js' type='text/javascript'></script>\n";
+		print "<script src='".SL_JS_BASE."/functions.js?v=$sl_version' type='text/javascript'></script>\n";
 		if (empty($_POST) && 1==2) {
 			$nm=(!empty($post->post_name))? $post->post_name : $pagename ;
 			$p=(!empty($post->ID))? $post->ID : mysql_real_escape_string($_GET['p']) ;
@@ -671,7 +671,7 @@ function sl_process_tags($tag_string, $db_action="insert", $sl_id="") {
 }
 /*-----------------------------------------------------------*/
 function sl_ty($file){
-$ty['http'] = $_SERVER['HTTPS'] = 'on' ? 'https://':'http://';
+$ty['http'] = $_SERVER['HTTPS'] == 'on' ? 'https://':'http://';
 $ty['url']	= urlencode("http://locl.es/Lcatr");
 $ty['text'] = urlencode(__("Love it! I've made my site more user-friendly with", SL_TEXT_DOMAIN)." LotsOfLocales - #WordPress #StoreLocator #GoogleMaps");
 $ty['text2'] = urlencode(__("Great! I can now easily display my locations using", SL_TEXT_DOMAIN)." LotsOfLocales - #GoogleMaps #StoreLocator #WordPress");

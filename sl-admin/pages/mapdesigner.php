@@ -67,7 +67,7 @@ foreach ($map_lang as $key=>$value) {
 $map_lang_select.= "</optgroup></select><!--/td></tr-->";
 $update_button="<input type='submit' value='".__("Update", SL_TEXT_DOMAIN)."' class='button-primary'>";
 
-print "<form method='post' name='mapDesigner'><table class='widefat'><thead><tr><th colspan='2'>".__("MapDesigner&trade;", SL_TEXT_DOMAIN)." <div style='float:right'><small>".__("API Key ", SL_TEXT_DOMAIN)."(<a rel='sl_pop' href='#api-key-info'>?</a>): </small>
+print "<form method='post' name='mapDesigner'><table class='widefat'><thead><tr><th colspan='2'>".__("MapDesigner&trade;", SL_TEXT_DOMAIN)." <div style='float:right'><small>".__("API Key", SL_TEXT_DOMAIN)." (<a rel='sl_pop' href='#api-key-info'>?</a>): </small>
 <div id='api-key-info' style='display:none'><h3 style='margin-top:0px'>".__("Google Maps", SL_TEXT_DOMAIN)." ".__("API Key", SL_TEXT_DOMAIN)."</h3>".__("Google Maps API V3 actually doesn't require an API Key, however, if needed (it appears that high usage requires a key)", SL_TEXT_DOMAIN).", <a target='_blank' href='https://developers.google.com/maps/documentation/javascript/tutorial#api_key'>".__("get your key here", SL_TEXT_DOMAIN)."</a></div> {$api_key_field}&nbsp;{$your_location_select}&nbsp;{$map_lang_select}&nbsp;&nbsp;<input type='submit' value='".__("Update", SL_TEXT_DOMAIN)."' class='button-primary' style=''><div></th><!--td><".__("Designer", SL_TEXT_DOMAIN)."--></td--></tr></thead>";
 sl_initialize_variables();
 $icon_str="";$icon2_str="";

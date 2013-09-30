@@ -82,10 +82,11 @@ background-color:transparent !important;
 	/*padding:0px;*/
 	margin: 0px;
 }
-#sl_div #map { 
+#sl_div #sl_map { 
 	color:black; 
 	font-weight:normal;
 	overflow:hidden;
+	margin: 0px;
 }
 
 /***** Popup Info Window for Specific Location *****/
@@ -139,6 +140,8 @@ background-color:transparent !important;
 /*****Search Results Area *****/
 .searchResultsTable {
 	width:100%;
+	background-color: transparent;
+	box-shadow: none;
 }
 .searchResultsTable td {
 	line-height:12px;
@@ -181,6 +184,7 @@ background-color:transparent !important;
 	padding:4px;
 	border-bottom:solid silver 1px;
 	background-color:transparent;
+	margin: 0px;
 }
 .results_entry:hover {
 	/*hover color of search result*/
