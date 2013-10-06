@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.0
 Tested up to: 3.6.1
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -26,14 +26,14 @@ Its strength is in its flexibility to allow you to easily manage any number of l
 = LotsOfLocales&trade; Addons Platform =
 [Addons Platform](http://docs.viadat.com/Main_Page#Addons) provides you with a growing number of __free__ Generation 2 (G2; comes with the Addons Platform) addons & themes to save you time, provide you highly-advanced features, and impress your clients. Below is a list of some of the addons available, starting in Store Locator Version 2 ([view documentation](http://docs.viadat.com/Main_Page#Addons) for more details on each):
 
-* __Categorizer__
-* __Multiple Mapper__
-* __Advanced Theme Manager__
-* __Location Pages__
-* __CSV Importer/Exporter G2__
-* __DB Importer G2__
-* __Multiple-Field Updater G2__
-* __Custom Field Manager__
+* [Categorizer](http://docs.viadat.com/Categorizer)
+* [Multiple Mapper](http://docs.viadat.com/Multiple_Mapper)
+* [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager)
+* [Location Pages](http://docs.viadat.com/Location_Pages)
+* [CSV Importer/Exporter G2](http://docs.viadat.com/CSV_Importer_Exporter_G2)
+* [DB Importer G2](http://docs.viadat.com/DB_Importer_G2)
+* [Multiple-Field Updater G2](http://docs.viadat.com/Multiple_Field_Updater_G2)
+* [Custom Field Manager](http://docs.viadat.com/Custom_Field_Manager)
 
 The above addons are only a few of the addons available via the Addons Platform -- install them with one click directly from your admin interface's Addons Marketplace.  These G2 addons also communicate with each other to make full benefit of the Addons Platform's API. 
 
@@ -84,7 +84,7 @@ If you need additional features, enhance your store locator with addons & themes
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Sign up for a Google Maps API Key for your domain. Instructions: https://developers.google.com/maps/documentation/javascript/tutorial#api_key
 4. Add your locations through the 'Locations' page in the Store Locator admin panel
-5. Place the shortcode `[STORE-LOCATOR]` in the body of a page or a post to display your store locator (See 'Creating Multiple Store Locators' section for details on adding parameters to the shortcode, which would allow for multiple store locators on your website)
+5. Place the shortcode `[STORE-LOCATOR]` in the body of a page or a post to display your store locator
 
 = Addons =
 1. Unzip & Upload the entire addon folder to the `/wp-content/uploads/sl-uploads/addons` directory
@@ -115,6 +115,9 @@ If you need additional features, enhance your store locator with addons & themes
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 2.5.2 =
+* Small bugfix
+
 = 2.5.x =
 * Added Finnish translation (Thank you [Esa Immonen](http://www.probeautyscandinavia.com)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
 * Store Locator CSS updates/improvements

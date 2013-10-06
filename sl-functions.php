@@ -387,7 +387,7 @@ function sl_head_scripts() {
 	//print_r($post_ids_array);
 	
 	//If on page with store locator shortcode, on an archive, search, or 404 page while shortcode has been used in a post, on the front page, or a specific post with shortcode, display code, otherwise, don't
-	if ($on_sl_page || is_search() || ((is_front_page() || is_archive() || is_404()) && $sl_code_is_used_in_posts) || is_single($post_ids_array) || function_exists('show_sl_scripts')) {
+	if ($on_sl_page || is_search() || ((is_archive() || is_404()) && $sl_code_is_used_in_posts) || is_front_page() || is_single($post_ids_array) || function_exists('show_sl_scripts')) {
 		$google_map_domain=($sl_vars['google_map_domain']!="")? $sl_vars['google_map_domain'] : "maps.google.com";
 		
 		//print "<meta name='viewport' content='initial-scale=1.0, user-scalable=no' />\n";
