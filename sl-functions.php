@@ -80,7 +80,7 @@ global $sl_load_results_with_locations_default, $sl_vars;
 //$sl_google_map_domain=sl_data('sl_google_map_domain');
 if (empty($sl_vars)){
 	//transition from individual variables to single array of variables
-	$sl_vars['height']=sl_data('sl_map_height'); $sl_vars['width']=sl_data('sl_map_width'); $sl_vars['width_units']=sl_data('sl_map_width_units'); $sl_vars['height_units']=sl_data('sl_map_height_units'); $sl_vars['radii']=sl_data('sl_map_radii'); $sl_vars['icon']=sl_data('sl_map_home_icon'); $sl_vars['icon2']=sl_data('sl_map_end_icon2'); $sl_vars['google_map_domain']=sl_data('sl_google_map_domain'); $sl_vars['google_map_country']=sl_data('sl_google_map_country'); $sl_vars['theme']=sl_data('sl_map_theme'); $sl_vars['location_table_view']=sl_data('sl_location_table_view'); $sl_vars['search_label']=sl_data('sl_search_label'); $sl_vars['zoom_level']=sl_data('sl_zoom_level'); $sl_vars['use_city_search']=sl_data('sl_use_city_search'); $sl_vars['use_name_search']=sl_data('sl_use_name_search'); $sl_vars['name']=sl_data('sl_name'); $sl_vars['radius_label']=sl_data('sl_radius_label'); $sl_vars['website_label']=sl_data('sl_website_label'); $sl_vars['directions_label']=sl_data('sl_directions_label'); $sl_vars['num_initial_displayed']=sl_data('sl_num_initial_displayed'); $sl_vars['load_locations_default']=sl_data('sl_load_locations_default'); $sl_vars['distance_unit']=sl_data('sl_distance_unit'); $sl_vars['map_overview_control']=sl_data('sl_map_overview_control'); $sl_vars['admin_locations_per_page']=sl_data('sl_admin_locations_per_page'); $sl_vars['instruction_message']=sl_data('sl_instruction_message'); $sl_vars['map_character_encoding']=sl_data('sl_map_character_encoding'); $sl_vars['start']=sl_data('sl_start'); $sl_vars['map_language']=sl_data('sl_map_language'); $sl_vars['map_region']=sl_data('sl_map_region'); $sl_vars['sensor']=sl_data('sl_sensor'); $sl_vars['geolocate']=sl_data('sl_geolocate'); $sl_vars['map_type']=sl_data('sl_map_type'); $sl_vars['remove_credits']=sl_data('sl_remove_credits'); $sl_vars['api_key']=sl_data('store_locator_api_key');
+	$sl_vars['height']=get_option('sl_map_height'); $sl_vars['width']=get_option('sl_map_width'); $sl_vars['width_units']=get_option('sl_map_width_units'); $sl_vars['height_units']=get_option('sl_map_height_units'); $sl_vars['radii']=get_option('sl_map_radii'); $sl_vars['icon']=get_option('sl_map_home_icon'); $sl_vars['icon2']=get_option('sl_map_end_icon2'); $sl_vars['google_map_domain']=get_option('sl_google_map_domain'); $sl_vars['google_map_country']=get_option('sl_google_map_country'); $sl_vars['theme']=get_option('sl_map_theme'); $sl_vars['location_table_view']=get_option('sl_location_table_view'); $sl_vars['search_label']=get_option('sl_search_label'); $sl_vars['zoom_level']=get_option('sl_zoom_level'); $sl_vars['use_city_search']=get_option('sl_use_city_search'); $sl_vars['use_name_search']=get_option('sl_use_name_search'); $sl_vars['name']=get_option('sl_name'); $sl_vars['radius_label']=get_option('sl_radius_label'); $sl_vars['website_label']=get_option('sl_website_label'); $sl_vars['directions_label']=get_option('sl_directions_label'); $sl_vars['num_initial_displayed']=get_option('sl_num_initial_displayed'); $sl_vars['load_locations_default']=get_option('sl_load_locations_default'); $sl_vars['distance_unit']=get_option('sl_distance_unit'); $sl_vars['map_overview_control']=get_option('sl_map_overview_control'); $sl_vars['admin_locations_per_page']=get_option('sl_admin_locations_per_page'); $sl_vars['instruction_message']=get_option('sl_instruction_message'); $sl_vars['map_character_encoding']=get_option('sl_map_character_encoding'); $sl_vars['start']=get_option('sl_start'); $sl_vars['map_language']=get_option('sl_map_language'); $sl_vars['map_region']=get_option('sl_map_region'); $sl_vars['sensor']=get_option('sl_sensor'); $sl_vars['geolocate']=get_option('sl_geolocate'); $sl_vars['map_type']=get_option('sl_map_type'); $sl_vars['remove_credits']=get_option('sl_remove_credits'); $sl_vars['api_key']=get_option('store_locator_api_key');
 }
 
 if (strlen(trim($sl_vars['geolocate'])) == 0) {	$sl_vars['geolocate']="0";	}
@@ -222,7 +222,7 @@ function sl_do_geocoding($address,$sl_id="") {
 	global $wpdb, $text_domain, $sl_vars;
 
 	// Initialize delay in geocode speed
-	$delay = 0; $ccTLD=$sl_vars['map_region']; $sensor=$sl_vars['sensor'];
+	$delay = 200000; $ccTLD=$sl_vars['map_region']; $sensor=$sl_vars['sensor'];
 	$base_url = "http://maps.googleapis.com/maps/api/geocode/json?";
 
 	if ($sensor!="" && !empty($sensor)) {$base_url .= "sensor=".$sensor;} else {$base_url .= "sensor=false";}
@@ -290,7 +290,7 @@ function sl_do_geocoding($address,$sl_id="") {
     usleep($delay);
   } else {
   	//print __("Geocoding bypassed ", SL_TEXT_DOMAIN);
-  }
+  } @ob_flush(); flush();
 }
 /*-------------------------------*/
 function sl_install_tables() {
@@ -677,14 +677,14 @@ $ty['text'] = urlencode(__("Love it! I've made my site more user-friendly with",
 $ty['text2'] = urlencode(__("Great! I can now easily display my locations using", SL_TEXT_DOMAIN)." LotsOfLocales - #GoogleMaps #StoreLocator #WordPress");
 $ty['is_included']=(basename($file) != basename($_SERVER['SCRIPT_FILENAME']) )? true : false;
 if (!$ty['is_included']) {
-	$ty['thanks_msg'] = __("<b>Let us know how fantastic you think WordPress Store Locator is!</b> <br><a href='#' class='star_button'>Go to our page in the WordPress plugin repository and rate us</a>.<br><br><b>Any problems?</b><br><a href='http://docs.viadat.com/' target='_blank'>Documentation</a> is available or <a href='http://www.viadat.com/contact/' target='_blank'>contact us</a>.", SL_TEXT_DOMAIN)."<br><br>";
+	$ty['thanks_msg'] = __("<b>Let us know how fantastic you think WordPress Store Locator is!</b> <br><a href='#' class='star_button'>Give your review / rating now</a>.<br><br><b>Any problems?</b><br><a href='http://docs.viadat.com/' target='_blank'>Documentation</a> / <a href='http://www.viadat.com/contact/' target='_blank'>Contact us</a>.", SL_TEXT_DOMAIN)."<br><br>";
 	$ty['thanks_msg_style'] = "style='line-height:20px; font-familty:helvetica; text-align:left; font-size:15px'";
 	$ty['thanks_heading'] = "<br>".__("Want to Help Us Improve WordPress?", SL_TEXT_DOMAIN)."<br><br>";
 	$ty['action_call'] =  __("Buttons to Spread the Word!", SL_TEXT_DOMAIN);
 	$ty['action_call_style'] = "style='font-size:20px; text-align:left; display:block;  font-family:Georgia;'";
 	$ty['action_buttons_style'] = "style='text-align:left; padding-top:11px; padding-left:0px;font-weight:normal;font-size:15px'";
 } else {
-	$ty['thanks_msg'] = __("<b>Let us know how fantastic you think WordPress Store Locator is!</b> <br><a href='#' class='star_button'>Go to our page in the WordPress plugin repository and rate us</a>.<br><br><b>Any problems?</b><br><a href='http://docs.viadat.com/' target='_blank'>Documentation</a> is available or <a href='http://www.viadat.com/contact/' target='_blank'>contact us</a>.", SL_TEXT_DOMAIN)."";
+	$ty['thanks_msg'] = __("<b>Let us know how fantastic you think WordPress Store Locator is!</b> <br><a href='#' class='star_button'>Give your review / rating now</a>.<br><br><b>Any problems?</b><br><a href='http://docs.viadat.com/' target='_blank'>Documentation</a> / <a href='http://www.viadat.com/contact/' target='_blank'>Contact us</a>.", SL_TEXT_DOMAIN)."";
 	$ty['thanks_msg_style'] = "";
 	$ty['thanks_heading'] ="";
 	$ty['action_call'] ="";
@@ -1227,7 +1227,7 @@ $form="
 	$form.=(function_exists("do_sl_hook"))? do_sl_header() : "" ;
 $form.="<table style='width:100%;/*border:solid silver 1px*/' cellspacing='0px' cellpadding='0px' > 
      <tr>
-        <td style='width:100%' valign='top' id='map_td'> <div id='sl_map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' style='width:$width$width_units;{$hide}' ><tr><td class='sl_footer_left_column'><a href='http://www.viadat.com/store-locator' target='_blank'>LotsOfLocales&trade;</a></td><td class='sl_footer_right_column'> <a href='http://www.viadat.com' target='_blank' title='Map Maker for Creating Store Locators or Any Address Maps Using WordPress & Google Maps'>Viadat Creations</a></td></tr></table>
+        <td style='width:100%' valign='top' id='map_td'> <div id='sl_map' style='width:$width$width_units; height:$height$height_units'></div><table cellpadding='0px' class='sl_footer' style='width:$width$width_units;{$hide}' ><tr><td class='sl_footer_left_column'><a href='http://www.viadat.com/store-locator' target='_blank' title='WordPress Store Locator -- LotsOfLocales&trade;'>WordPress Store Locator</a></td><td class='sl_footer_right_column'> <a href='http://www.viadat.com' target='_blank' title='Map Maker for Creating Store Locators or Any Address Maps Using WordPress & Google Maps'>Viadat Creations</a></td></tr></table>
 		</td>
       </tr>
 	  <tr id='cm_mapTR'>

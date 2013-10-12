@@ -24,7 +24,7 @@ __("Latest News", SL_TEXT_DOMAIN).
 </thead>
 <tr>
 <td width='50%'>
-<div style='overflow:scroll; height:350px; padding:7px;'>
+<div style='overflow:scroll; height:450px; padding:7px;'>
 
 <script src='http://feeds2.feedburner.com/Viadat?format=sigpro' type='text/javascript' ></script><!--noscript><p>Subscribe to RSS headline updates from: <a href='http://feeds2.feedburner.com/Viadat'></a><br/>Powered by FeedBurner</p> </noscript-->";
 
@@ -63,7 +63,7 @@ $c++;
 print "</td>
 </tr></table>";
 
-print "
+/*print "
 <table width='100%' height='350px'><thead><tr>
 <th width=''>".
 __("For Your Information", SL_TEXT_DOMAIN).
@@ -72,77 +72,17 @@ __("For Your Information", SL_TEXT_DOMAIN).
 <td><div style='overflow:scroll; height:350px'> ";
 include(SL_INCLUDES_PATH."/thank-you.php");
 print "</div></td></tr></table>";
-
-
-/*print "
-<table width='100%'>
-<thead><tr>
-<th colspan='1'>".
-__("Activation Keys", SL_TEXT_DOMAIN).
-"</th>
-</tr></thead>
-<tr>
-<td colspan='1'><div style='overflow:scroll; height:300px; padding:7px;'>";
-
-
-if ($_POST) {
-	sl_update_keys($_POST);
-	//include(SL_ACTIONS_PATH."/updateLicenses.php");
-	//if (function_exists("do_sl_hook")) {do_sl_hook("sl_update_activation_keys");}
-}
-
-if (is_dir(SL_ADDONS_PATH)) {
-	$a_lic_arr=array();
-	$lic_str="";
-	$ao_dir=opendir(SL_ADDONS_PATH); $ctr=0;
-	print "<table width='100%' border='0'><tr>"; 
-	while (false !== ($a_lic=readdir($ao_dir))) {
-		if (!preg_match("@^\.{1,2}.*$@", $a_lic) && !preg_match("@\.(php|txt|htm(l)?)@", $a_lic)) {
-
-			$style="style='border:red; background-color:salmon'";
-			if (sl_data('sl_activation_'.$a_lic)!="") {
-				$a_lic_arr["sl_activation_".$a_lic]=sl_data('sl_activation_'.$a_lic);
-				$style="style='border:green; background-color:LightGreen'";
-			}
-			if (sl_data('sl_license_'.$a_lic)!="") {
-				$a_lic_arr["sl_license_".$a_lic]=sl_data('sl_license_'.$a_lic);
-			
-			}
-			$a_lic_arr["sl_license_".$a_lic]=(!empty($a_lic_arr["sl_license_".$a_lic]))? $a_lic_arr["sl_license_".$a_lic] : "";
-			$a_lic_arr["sl_activation_".$a_lic]=(!empty($a_lic_arr["sl_activation_".$a_lic]))? $a_lic_arr["sl_activation_".$a_lic] : "";
-			$lic_str.="<td><div class='sl_admin_success' $style><b>".ucwords(str_replace("-", " ", $a_lic))."</b></div>
-<table style='border:none'>
-<tr>
-<td>".__("Key", SL_TEXT_DOMAIN).":&nbsp;&nbsp;<!--/td></tr>
-<tr><td--><input name='sl_license_".$a_lic."' value='".$a_lic_arr["sl_license_".$a_lic]."' size='20'>
-<input name='sl_activation_".$a_lic."' value='".$a_lic_arr["sl_activation_".$a_lic]."' type='hidden'></td></tr>
-</table>
-</td>";
-
-			if ($ctr%2==1) {$lic_str.="</tr><tr>";}
-			$ctr++; 
-		}
-	}
-	print "</table>";
-}
-
-print "<form method='post' name='licenseForm'><table style='border:none'><tr>$lic_str</tr></table>
-<br><input class='button-primary' type='submit' value='".__("Activate", SL_TEXT_DOMAIN)."'>&nbsp;&nbsp;".__("Looking for more addons & themes", SL_TEXT_DOMAIN)."? <a href='http://www.viadat.com/products-page/'>".__("It's all right here", SL_TEXT_DOMAIN)."</a><br><br>
-</form>
-
-</div>
-</td></tr></table>";
 */
 
 print "</td>
-<td rowspan='2' valign='top' style='padding:0px'>
+<td rowspan='1' valign='top' style='padding:0px'>
 
 <table width='100%'><thead><tr>
 <th width=''>".
 __("Addons & Themes", SL_TEXT_DOMAIN).
 "</th></tr></thead>
 <tr>
-<td><div style='overflow:scroll; height:750px; padding:7px;'>";
+<td><div style='overflow:scroll; height:460px; padding:7px; padding-top:0px;'>";
 ?>
 <?php
 
@@ -161,7 +101,7 @@ $c=1;
 foreach ($rs['items'] as $value) {
 
 if ($c<=100) {
-	print "<li style='list-style-type:none; margin-top:10px; margin-bottom:0px;'><A href=\"$value[link]\" target='_blank' class='home_rss' style='font-size:16px'>
+	print "<li style='list-style-type:none; margin-top:10px; margin-bottom:0px;'><A href=\"$value[link]\" target='_blank' class='home_rss' style='font-size:18px; font-family: Georgia;'>
 	<b>$value[title]</b></a></li>
 	<!--br-->
 	<div class='home_rss'> ".

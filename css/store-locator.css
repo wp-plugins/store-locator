@@ -139,9 +139,10 @@ background-color:transparent !important;
 
 /*****Search Results Area *****/
 .searchResultsTable {
-	width:100%;
+	width:100% !important;
 	background-color: transparent;
 	box-shadow: none;
+	background-color:transparent !important;
 }
 .searchResultsTable td {
 	line-height:12px;
