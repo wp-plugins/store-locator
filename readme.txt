@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.0
 Tested up to: 3.6.1
-Stable tag: 2.6
+Stable tag: 2.6.1
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -75,6 +75,7 @@ If you need additional features, enhance your store locator with addons & themes
 * [Outshine Solutions](http://outshinesolutions.com): Hindi
 * [Diana S.](http://www.wpcouponshop.com): Serbian
 * [Esa Immonen](http://www.probeautyscandinavia.com): Finnish
+* [Quickloop](http://quickloop.ro): Romanian
 
 ([How to submit your translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/) | If you provide your web address, we'll link back to you)
 
@@ -115,13 +116,10 @@ If you need additional features, enhance your store locator with addons & themes
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
-= 2.6 =
+= 2.6.x =
 * Added Romanian translation (thank you [Quickloop](http://quickloop.ro)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
 * Store Locator CSS updates
 * v1.x -> v2.x transition updates/improvements
-
-= 2.5.2 =
-* Small bugfix
 
 = 2.5.x =
 * Added Finnish translation (Thank you [Esa Immonen](http://www.probeautyscandinavia.com)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
