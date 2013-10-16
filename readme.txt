@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.0
 Tested up to: 3.6.1
-Stable tag: 2.6.1
+Stable tag: 2.7
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -26,14 +26,14 @@ Its strength is in its flexibility to allow you to easily manage any number of l
 = LotsOfLocales&trade; Addons Platform =
 [Addons Platform](http://docs.viadat.com/Main_Page#Addons) provides you with a growing number of __free__ Generation 2 (G2; comes with the Addons Platform) addons & themes to save you time, provide you highly-advanced features, and impress your clients. Below is a list of some of the addons available, starting in Store Locator Version 2 ([view documentation](http://docs.viadat.com/Main_Page#Addons) for more details on each):
 
-* [Categorizer](http://docs.viadat.com/Categorizer)
-* [Multiple Mapper](http://docs.viadat.com/Multiple_Mapper)
-* [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager)
-* [Location Pages](http://docs.viadat.com/Location_Pages)
-* [CSV Importer/Exporter G2](http://docs.viadat.com/CSV_Importer_Exporter_G2)
-* [DB Importer G2](http://docs.viadat.com/DB_Importer_G2)
-* [Multiple-Field Updater G2](http://docs.viadat.com/Multiple_Field_Updater_G2)
-* [Custom Field Manager](http://docs.viadat.com/Custom_Field_Manager)
+* Categorizer
+* Multiple Mapper
+* Advanced Theme Manager
+* Location Pages
+* CSV Importer/Exporter G2
+* DB Importer G2
+* Multiple-Field Updater G2
+* Custom Field Manager
 
 The above addons are only a few of the addons available via the Addons Platform -- install them with one click directly from your admin interface's Addons Marketplace.  These G2 addons also communicate with each other to make full benefit of the Addons Platform's API. 
 
@@ -116,6 +116,12 @@ If you need additional features, enhance your store locator with addons & themes
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 2.7 =
+* Store Locator interface CSS update
+* Admin updates - now displays version number, informational updates caching
+* Important fixes / updates - JS & folders
+* FAQs update - more detailed
+
 = 2.6.x =
 * Added Romanian translation (thank you [Quickloop](http://quickloop.ro)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
 * Store Locator CSS updates
@@ -164,42 +170,11 @@ If you need additional features, enhance your store locator with addons & themes
 * Added Serbian translation (Thank you [Diana S.](http://wpcouponshop.com)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use.
 * Additional updates/fixes added
 
-= 1.9.5 =
-* New links for custom icons on MapDesigner&trade; page
-* Minor fixes
-
-= 1.9.4 =
-* Added South Africa as a country option
-* Bug fixes
-* CSS fixes
-
-= 1.9.2 =
-* Added Philippines as a country option for one's map
-
 = 1.9.1 =
 * Update/fix for re-geocoding (thank you Seb M.)
 
-= 1.9 =
-* Tagging fixes
-* CSS fixes
-* Bug fixes
-
-= 1.8.1 =
-* Translator update
-
 = 1.8 =
 * Added Hindi translation (Thank you [Outshine Solutions](http://outshinesolutions.com)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use.
-
-= 1.7 =
-* Improved tagging
-* More efficient loading of admin Javascript & CSS
-* Improved code for devs using 'WP_DEBUG' mode
-* CSS fix
-
-= 1.6 =
-* Much improved processing image next to search button - important to update from 1.5
-* Tag management improvement/fixes
-* Bug fixes
 
 = 1.5 =
 * Circular loading/processing image next to search button during search to know that locator is actively performing search
@@ -207,27 +182,6 @@ If you need additional features, enhance your store locator with addons & themes
 * Smoother initial loading of locations by default
 * Numerous CSS fixes to map interface
 * Ability to determine maximum number of locations shown in search results for DB health (uses same value for number of locations loaded by default)
-
-= 1.4.1 =
-* Bug fix for 'Mangage Locations' page not showing locations if Google API Key isn't entered yet
-
-= 1.4 =
-* Functionality to bulk re-geocode ungeocoded locations on 'Manage Locations' page (button only appears if you have any ungeocoded locations)
-* Small admin CSS fix
-* Updated link to get Google Maps API key
-
-= 1.3 =
-* New horizontal top navigation for Store Locator admin pages
-* Made 'Directions' link label on map & results list editable from MapDesigner&trade; page
-* Better response messages during key validation
-* Cleaned up 'News & Upgrades' page; updated navigation links of 'Manage Locations'
-* Google API Key submission/important message for new users, instead of restricting view of other pages 
-
-= 1.2.43 =
-* Bug fixes
-
-= 1.2.42.1 =
-* Added new translators to readme
 
 = 1.2.42 =
 * Added Russian translation (Thank you Victor Ukhimenko)
@@ -250,27 +204,9 @@ If you need additional features, enhance your store locator with addons & themes
 * Added Dutch translation (Thank you [Willem-Jan](http://www.ezhome.nl/)). Place translation in `/wp-content/uploads/sl-uploads/languages/` to use.
 * Added translation wrappers to text currently without them
 
-= 1.2.39.2 =
-* Small fix of XML issue when displaying locations by default on map load if ampersand (&) is used in a location's URL
-
 = 1.2.39.1 =
 * Updated the Czech translation (Thanks to [Josef](http://pepa.rudice.eu/))
 * Small fix to make URLs of icons point to correct directory on first use
-
-= 1.2.39 =
-* 'NOT NULL' changed to 'NULL' when creating database table fields to prevent table creation error for some users
-* Missing search button image bug fixed
-* 'Insufficient permissions' issue fixed that's occuring for some users when viewing past the first page of locations on 'Manage Locations' page
-* Styling of hover color, background color, other styling of individual search results div moved to 'store-locator.css' for easier customization
-* Styling updates of address search form elements above the map being mis-aligned by some themes
-* ReadMe in admin section styling update for better readibility
-* Minor admin dashboard rss widget improvements (bugfix/styling)
-
-= 1.2.38 =
-* Small fix with JS/CSS section message on non-store locator pages
-* Notification message added to admin panel for those switching from 'wordpress-store-locator-location-finder' to 'store-locator' to re-select their icons on the 'MapDesigner&trade;' page to avoid blank icons on map
-* Higher number options for 'Locations Per Page' on 'Manage Locations' page
-* For those who don't use the default WordPress plugin updater, but instead download and paste on top of an old version, it checks if addons, themes, languages, images moved to 'wp-content/uploads/sl-uploads' and copies them over if they haven't been already
 
 = 1.2.37.1 =
 * Moved more inline styles classes & ids in 'store-locator.css' for better styling of store locator map
@@ -286,68 +222,39 @@ If you need additional features, enhance your store locator with addons & themes
 * Moved inline styles to stylesheet classes for search result text and columns, and for text in info bubble on map.  Fully customizable from 'store-locator.css' now.
 * NOTE: As a result of the updated directory structure, you no longer need to worry about losing any of your customizations (CSS, addons, themes, icons, images, languages)! Place any customizations that you make into the corresponding folder in the 'wp-content/uploads/sl-uploads' directory and they will be safe during upgrades to newer, better versions (For example: if place 'store-locator.css' in the 'wp-content/uploads/sl-uploads/custom-css' folder, the plugin will use those styles instead of the styles of any 'store-locator.css' in the main `store-locator` directory.  So, when an update is performed --- you don't lose your style customizations!)
 
-= 1.2.36 =
-* Added option to select character encoding set on 'Localization & Google API Key' page. Should help with supporting characters in many different languages.
-
-= 1.2.35.1 =
-* Removed non-working Google Map Country Domains (Hungary, Kenya, Malaysia, South Africa, Thailand -- seems they have map domains, but can't be embedded on websites yet)
-
-= 1.2.35 =
-* Improved restricted loading of JS, CSS to pages & posts on which store locator shortcode has been placed (and the archive pages only if shortcode is placed into any posts, and the home and search pages)
-* Added input field on 'MapDesigner&trade;' page for editing message to website visitors shown below map
-* Modified custom upgrade link on plugins page to be one-click, similar to other plugins
-* Few other admin styling changes for buttons
-* Fixed bug causing search results to not show all locations for a given radius when distance unit is set to 'km'
-* Improved geocoding on locations for each Google Map Country Domain. Added param that should make geocoding more accurate depending on which country you've selected
-
-= 1.2.34 =
-* Fixed 50+ XHTML validation issues (HTML generated by plugin should now validate as XHTML 1.0 Transitional)
-* Updated 'Localization & Google API Key' page layout
-* Added new Google Maps country domains
-* Multiple minor interface improvements across admin pages
-
-= 1.2.33.1 =
-* Small XHTML validation fix
-* Removed restriction of loading javascript & CSS to only pages with store locator shortcode for time-being
-
-= 1.2.33 =
-* Fixed gray / blank map issue due to CSS from certain themes affecting map tile images
-* Cleaned up header javascript, CSS appearance
-* Fixed 'store-locator-js.php' issue causing gray / blank map for some users due to their servers
-* Restricted loading of javascript, CSS to only pages on which store locator shortcode has been placed
-
-= 1.2.32 =
-* Fixed directions link by better handling of '#' (and other symbols) in addresses
-
-= 1.2.31 =
-* Fixed small bug with display of URL on "View Locations" page for each location
-* Beautified the update form for individual locations on the "View Locations" page
-
-= 1.2.30 =
-* Improved handling of URLs for each location. Now, URL will still show up even if you omit the "http://" at the beginning
-* Beautified the default input form on the "Add Locations" page
-
-= 1.2.29 =
-* Fix for some maps having issues showing results in certain browsers
-
-= 1.2.28.4 =
-* Minor fix to prevent duplicate of the same city from showing up in the city dropdown options
-
-= 1.2.28.3 =
-* Fixes the "The Google Maps API rejected your request ..." error on the "Add Locations" page.  Good catch by forum user 'Israel' of http://earthsoutlet.com .
-
-= 1.2.28.2 =
-* Incorporated fix for "Warning: Cannot modify header information Ð headers already sent ..." error occuring for those that have updated to WordPress Version 2.8.1.  Fix provided by forum user 'mikeycnp' here: http://rosile.com/2009/07/wp-store-locator-fix/ --- thank you mikeyncp.  Users, please make sure to leave thank you comment on http://rosile.com .
-
-= 1.2.28.1 =
-* Fixed "You do not have sufficient permissions to access this page." issue occuring for those that have updated to WordPress Version 2.8.1
-* Added this Changelog
-
 == Frequently Asked Questions ==
 Make sure to check http://docs.viadat.com for the most updated information
 
+= I'm getting 'failed to geocode' error messages! Why? =
+* Have you updated your Store Locator? [It's mandatory to be using Store Locator v2.x](http://www.viadat.com/2013/10/important-update-store-locator-v2-uses-google-maps-api-v3) if you want anything to work
+
+= Bought the CSV Importer ... =
+* Nearly all your questions [have been answered here](http://docs.viadat.com/CSV_Importer_Geocoder_Exporter_XML_Exporter). If you follow these instructions & answers exactly, you should be fine
+
+= I'm using an updated Store Locator, but still no luck geocoding when adding a location =
+* [Google's Geocoding API v3 has 2,500 geocode per day limit](https://developers.google.com/maps/documentation/geocoding/index#Limits), so you may need to wait several hours, and try to add your locations again
+
+= Is this plugin USA-only? / Does it support locations in multiple countries? =
+This plugin in not USA-only, and yes, it supports locations all over the world -- as long as the Google Maps API properly supports it:
+
+* On the MapDesigner admin page (v2.x), you can select your main country. This gives the Google Maps API a region to focus on
+* [For non-USA addresses, use the 'State' field for the Country / Region](http://docs.viadat.com/Main_Page#How_do_I_enter_non-US_addresses.3F) containing the city & location you are submitting (regions, such as country, province, territory, arrondissement, protectorate, S.A.R, state, etc.). When you use any of these types of regions, the Google Maps API will still geocode (give coordinates) to them
+* [It has been translated](http://docs.viadat.com/Main_Page#Special_Thanks_to_Translators) into 15+ languages -- if you would like to [provide a new or updated translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/), please do so
+
+= Oh no! I'm seeing a 'Google Maps is disabled', or other Google Maps error messages on my website when viewing my Store Locator =
+* Are you using Store Locator v1.9.7 or earlier?  You must update immediately
+
+= If I need to rename my folder from the older 'wordpress-store-locator-location-finder' to 'store-locator', will I lose my locations? =
+* No. You won't lose them. And make sure to re-select your home & end map markers in MapDesigner after renaming
+
+= How can I have more than one Store Locator map on my website? =
+* The [Multiple Mapper addon](http://docs.viadat.com/Multiple_Mapper)
+
+= I would like to show different icons for different locations -- can that be done? =
+* Yes, the [Categorizer addon](http://docs.viadat.com/Categorizer)
+
 = Do I need a Google Account to use this store locator? =
-Yes, you will need a Google account in order to retrieve an API for your maps to work properly
+Since Store Locator v2.x, which uses Google Maps API v3, it is not required like it was in Google Maps API v2. However, high-usage sites may still need an API key to monitor usage. Thus, if needed:
 
 1. To sign up for a Google Account, visit: https://www.google.com/accounts/
 2. To sign up for a Google Maps API Key, visit: https://developers.google.com/maps/documentation/javascript/tutorial#api_key
