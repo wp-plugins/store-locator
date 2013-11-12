@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.1
 Tested up to: 3.7.1
-Stable tag: 2.11.2
+Stable tag: 2.12
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -116,10 +116,15 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 2.12 =
+* Fixed issue causing 'geo_success' warning in Firefox. Better auto-location for Firefox browsers now.
+* Addon/Theme Updates:
+* [addon] [Categorizer](http://docs.viadat.com/Categorizer) - updates: category search form; readme file
+
 = 2.11.x =
 * Faster environment load
 * Added debugging abilities
-* Addon & Theme Updates:
+* Addon/Theme Updates:
 * [addon] [Addons Platform](http://docs.viadat.com/Addons_Platform) - update: navigation flexibility, admin display
 * [addon] [Custom Field Manager](http://docs.viadat.com/Custom_Field_Manager) - enhancement/fix: prefixing when adding new custom field; default db field type filled in
 * [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - enhancement: new display filtering feature
