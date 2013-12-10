@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.1
 Tested up to: 3.7.1
-Stable tag: 2.13.1
+Stable tag: 2.14
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -116,6 +116,10 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 2.14 =
+* Update for better directory/file management. Should improve overall/addons' functionality, display of web content such as search buttons on sites w/more strict or custom hosting setups (such as GoDaddy)
+* Same-origin fix for websites that allow display of both 'www.domain.com' and 'domain.com' versions of their sites, to make sure locations load properly on both versions
+
 = 2.13.1 =
 * Fix for properly registering option choosing whether to display search results when loading locations by default
 * Minor fix for city dropdown option
