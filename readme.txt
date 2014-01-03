@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.1
 Tested up to: 3.8
-Stable tag: 2.15.1
+Stable tag: 2.16
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -43,25 +43,6 @@ Its strength is in its flexibility to allow you to easily manage any number of l
 = Upgrades =
 If you need additional features, enhance your store locator with addons & themes. [Upgrade Here](http://www.viadat.com/products-page/)
 
-== More Information & Special Thanks ==
-= Addons Platform =
-The [Addons Platform](http://docs.viadat.com/Main_Page#Addons) provides you with a growing number of __free__ Generation 2 (G2; comes with the Addons Platform) addons & themes to save you time, provide you highly-advanced features, and impress your clients. Below is a list of some of the addons available, starting in Store Locator Version 2 ([view documentation](http://docs.viadat.com/Main_Page#Addons) for more details on each):
-
-* Categorizer
-* Multiple Mapper
-* Advanced Theme Manager
-* Location Pages
-* CSV Importer/Exporter G2
-* DB Importer G2
-* Multiple-Field Updater G2
-* Custom Field Manager
-
-The above addons are only a few of the addons available via the Addons Platform -- install them with one click directly from your admin interface's Addons Marketplace.  These G2 addons also communicate with each other to make full benefit of the Addons Platform's API. 
-
-All addons available previous to Store Locator 2.0 are now called "G1" (Generation 1) addons, and can still be used, with or without the Addons Platform installed (if you purchased an addon prior to 2.0, re-download it via the emailed link of your purchase and install a slighty updated version that allows it to work with 2.0).  
-
-In addition to the 8 addons listed above, there are currently 8 additional bonus addons -- visible to those with the Addons Platform installed: Currently, 3 are active, 1 is yet-to-be-released, and 4 more addons are in development.
-
 = Special Thanks to Translators (Email new translations to info{at}viadat{dot}com) =
 * Simon Schmid: German (Deutsche), Italian (Italiano), Czech (Cestina), French (Francais)
 * Gwyn Fisher: Spanish (Espanol)
@@ -79,6 +60,25 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 * [Quickloop](http://quickloop.ro): Romanian
 
 ([How to submit your translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/) | If you provide your web address, we'll link back to you)
+
+== More Information ==
+= Addons Platform =
+The [Addons Platform](http://docs.viadat.com/Main_Page#Addons) provides you with a growing number of __free__ Generation 2 (G2; comes with the Addons Platform) addons & themes to save you time, provide you highly-advanced features, and impress your clients. Below is a list of some of the addons available, starting in Store Locator Version 2 ([view documentation](http://docs.viadat.com/Main_Page#Addons) for more details on each):
+
+* Categorizer
+* Multiple Mapper
+* Advanced Theme Manager
+* Location Pages
+* CSV Importer/Exporter G2
+* DB Importer G2
+* Multiple-Field Updater G2
+* Custom Field Manager
+
+The above addons are only a few of the addons available via the Addons Platform -- install them with one click directly from your admin interface's Addons Marketplace.  These G2 addons also communicate with each other to make full benefit of the Addons Platform's API. 
+
+All addons available previous to Store Locator 2.0 are now called "G1" (Generation 1) addons, and can still be used, with or without the Addons Platform installed (if you purchased an addon prior to 2.0, re-download it via the emailed link of your purchase and install a slighty updated version that allows it to work with 2.0).  
+
+In addition to the 8 addons listed above, there are currently 8 additional bonus addons -- visible to those with the Addons Platform installed: Currently, 3 are active, 1 is yet-to-be-released, and 4 more addons are in development.
 
 == Installation ==
 = Main Plugin =
@@ -116,6 +116,11 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 2.16 =
+* More WP 3.8 integration updates
+* Location Management / Admin CSS improvements
+* MapDesigner update
+
 = 2.15.x =
 * Several Store Locator admin updates due to significant WP admin interface changes introduced in WordPress v3.8.  Elements fixed include:
 * Pull-Out Dashboard & Modules
