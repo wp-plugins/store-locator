@@ -1,9 +1,9 @@
 === WordPress Store Locator ===
 Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
-Requires at least: 3.1
-Tested up to: 3.8
-Stable tag: 2.17
+Requires at least: 3.3
+Tested up to: 3.8.1
+Stable tag: 2.18
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -19,7 +19,7 @@ Its strength is in its flexibility to allow you to easily manage any number of l
 * __Now uses Google Maps V3__
 * Streamlined admin interface (more powerful yet much simplier)
 * Implemented much faster code (reduced database use {insert/update/delete} in code by 81.4% & applied fastest functions throughout)
-* __LotsOfLocales&trade; Dashboard:__ Pull-out interface that provides you with the latest Store Locator news, installation & usage instructions, your website's hosting server information, available shortcode parameters to create multiple maps of specific groups of locations, general settings, and the activation interface for the Addons Platform & G1 (Generation 1) addons
+* __Admin Dashboard:__ Pull-out interface that provides you with the latest Store Locator news, installation & usage instructions, your website's hosting server information, available shortcode parameters to create multiple maps of specific groups of locations, general settings, and the activation interface for the Addons Platform & G1 (Generation 1) addons
 * __Availability of the Addons Platform:__ (more details in Other Notes)
 * Ability to auto-locate your website visitors in order to show locations based on where visitor is currently located
 * 40+ new Google Maps country domains
@@ -34,7 +34,7 @@ Its strength is in its flexibility to allow you to easily manage any number of l
 * You can use it for numerous countries, which will continue to be added as Google adds new countries to their Google Maps API.  See the documentation for the latest
 * Supports international languages/translations and character sets 
 * Allows you to use unique map icons or your own custom map icons --- great for branding your map
-* Gives your map the desired look by using our MapDesigner&trade; interface in the WordPress admin section
+* Gives your map the desired look by using our MapDesigner&trade; settings interface in the WordPress admin section
 * Pick other cool Google Maps options, such as an inset box, zoom level, map types (street, satellite, hybrid, physical), and more
 * You can use miles or kilometers
 * Automatically restricts loading of Javascript & CSS to only pages that display the map (or that might need access to the JS & CSS) for better site performance
@@ -115,6 +115,13 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 2.18 =
+* Front-end interface CSS enhancement
+* New Store Locator admin menu for convenient access from WordPress Admin Toolbar
+* Modular & Pull-out Admin Dashboard updates
+* WP Admin dashboard news bugfix
+* Version bump: WP 3.3 (due to menu in WP Admin Toolbar)
+
 = 2.17 =
 * Dashboard/Admin update/fix
 * Functional update
