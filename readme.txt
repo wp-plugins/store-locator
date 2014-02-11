@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.3
 Tested up to: 3.8.1
-Stable tag: 2.19
+Stable tag: 2.20
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -83,13 +83,13 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 = Main Plugin =
 1. Upload the `store-locator` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Sign up for a Google Maps API Key for your domain. Instructions: https://developers.google.com/maps/documentation/javascript/tutorial#api_key
-4. Add your locations through the 'Locations' page in the Store Locator admin panel
-5. Place the shortcode `[STORE-LOCATOR]` in the body of a page or a post to display your store locator
+3. Sign up for a Google Maps API Key for your domain (not required in Maps V3, unless needed for high usage sites). Instructions: https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+4. Add your locations through the 'Locations' page in the Store Locator admin area
+5. Place the shortcode `[STORE-LOCATOR]` in the body of a Page or a Post to display your store locator
 
 = Addons =
 1. Unzip & Upload the entire addon folder to the `/wp-content/uploads/sl-uploads/addons` directory
-2. Activate the addon by updating the Activation Key that you receive after purchase at the bottom of the "News & Upgrades" Page
+2. Activate the addon by submitting the activation key (which you receive after purchasing it) to the "Activation Keys" section of your pull-out admin dashboard (If you have the Addons Platform installed, you submit activation keys on the 'Addons' > 'Settings' page)
 
 = Themes =
 1. Unzip & Upload the entire theme folder to the `/wp-content/uploads/sl-uploads/themes` directory
@@ -115,6 +115,9 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 2.20 =
+* Update to allow Store Locator to load JS/CSS and display, even if theme is missing the standard head hooks
+
 = 2.19 =
 * Update to allow Store Locator to display on all post types, including custom post types
 
