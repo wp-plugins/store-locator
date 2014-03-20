@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.3
 Tested up to: 3.8.1
-Stable tag: 2.22
+Stable tag: 3.0
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -14,6 +14,14 @@ Its strength is in its flexibility to allow you to easily manage any number of l
 
 = Important Links =
 [All Downloads](http://www.viadat.com/store-locator/) | [Addons & Themes](http://www.viadat.com/products-page/) | [New Features & Updates Blog](http://www.viadat.com/category/store-locator/) | [Documentation](http://docs.viadat.com/)
+
+= New in Version 3 =
+* Introducing: [Early Access Stage 1 - Individual Addons](http://www.viadat.com/products-page/early-access/) -- Limited access; first come, first serve
+* New: [Addons Platform Lite](http://docs.viadat.com/Addons_Platform_Lite) -- All the power of the full Addons Platform to power your addons, at a fraction of the price.  Buy individual addons as needed.
+* New: [Super Geocoder](http://docs.viadat.com/Super_Geocoder) addon -- Avoid upgrading to more expensive hosting, or buying dedicated IP addresses -- successfully geocodes even when the default geocoder runs in Google's geocoding quotas (requires Store Locator v3.0+)
+* Now, in addition to using the shortcode `[STORE-LOCATOR]` on Pages & Posts, display on Store Locator in PHP page templates if needed (explained in changelog & [docs](http://docs.viadat.com)). 
+* Several new icons with shadowing; several current icons refreshed with shadowing for 3D effect on map
+
 
 = New in Version 2 =
 * __Now uses Google Maps V3__
@@ -115,9 +123,21 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.0 (March 20, 2014) =
+* Introducing: [Early Access Stage 1 - Individual Addons](http://www.viadat.com/products-page/early-access/) -- Limited access; first come, first serve
+* [addon - update] [Location Pages](http://docs.viadat.com/Location_Pages) -- bug fix when displaying map relating to categories & fix relating to conditional template shortcode
+* [addon - update] [CSV Importer/Exporter](http://docs.viadat.com/CSV_Importer_Geocoder_Exporter_XML_Exporter) (original) -- Integrated re-geocoding capabilities, to allow bulk re-geocoding for any imported locations that weren't given coordinates on initial import (re-geocoding should work w/Store Locator v2.9+)
+* [addon - update] [CSV Importer/Exporter G2](http://docs.viadat.com/CSV_Importer_Exporter_G2) -- also added re-geocoding capabilities (re-geocoding capabilities needs Store Locator v3.0+)
+* [new G2 addon] [Super Geocoder](http://docs.viadat.com/Super_Geocoder) -- Avoid upgrading to more expensive hosting, or buying dedicated IP addresses -- successfully geocodes even when the default geocoder runs in Google's geocoding quotas (requires Store Locator v3.0+)
+* [new] [Addons Platform Lite](http://docs.viadat.com/Addons_Platform_Lite) -- All the power of the full Addons Platform to power your G2 addons, at a fraction of the price; buy addons individually as needed (requires Store Locator v3.0+)
+* [update] [Addons Platform](http://docs.viadat.com/Addons_Platform_Lite) -- Addons API updates; code & Windows compatibility fixes
+* In addition to using the shortcode `[STORE-LOCATOR]` on Pages & Posts, display on page templates with code: `if (function_exists("sl_template")) {print sl_template("[STORE-LOCATOR]");}`
+* Several new icons with shadowing; newer current icons refreshed with shadowing for 3D effect on map
+* Added constants for Addons Platforms, removed hard-coding
+
 = 2.22 =
 * Uploads directory creation class updated (to avoid collisions with other plugins with the same library)
-* Google Maps API Javascript - `&` in querystring updated to `&amp;amp;` for XHTML validation
+* Google Maps API Javascript - `&` in querystring updated to `&amp;` for XHTML validation
 
 = 2.21 =
 * Added Turkey & Cyprus as country options in MapDesigner
@@ -325,6 +345,10 @@ This plugin in not USA-only, and yes, it supports locations all over the world -
 * [For non-USA addresses, use the 'State' field for the Country / Region](http://docs.viadat.com/Main_Page#How_do_I_enter_non-US_addresses.3F) containing the city & location you are submitting (regions, such as country, province, territory, arrondissement, protectorate, S.A.R, state, etc.). When you use any of these types of regions, the Google Maps API will still geocode (give coordinates) to them
 * [It has been translated](http://docs.viadat.com/Main_Page#Special_Thanks_to_Translators) into 15+ languages -- if you would like to [provide a new or updated translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/), please do so
 
+= Can I display the Store Locator in a page template instead of using shortcode in a Page or a Post? =
+* Yes, in your page template, instead of `do_shortcode("[STORE-LOCATOR]")` add the code:`if (function_exists("sl_template")) {print sl_template("[STORE-LOCATOR]");}`
+* Additionally, for versions prior to Store Locator v3.0, you would also need to add the following to your theme's functions.php file:`if (!function_exists("show_sl_scripts")){	function show_sl_scripts(){}}`
+
 = Oh no! I'm seeing a 'Google Maps is disabled', or other Google Maps error messages on my website when viewing my Store Locator =
 * Are you using Store Locator v1.9.7 or earlier?  You must update immediately
 
@@ -369,6 +393,7 @@ This plugin is compatible with all countries that have Google Map domains. This 
 * Chile
 * China
 * Congo
+* Cyprus
 * Czech Republic
 * Djibouti
 * Dem. Republic of Congo
@@ -424,6 +449,7 @@ This plugin is compatible with all countries that have Google Map domains. This 
 * Tanzania
 * Thailand
 * Togo
+* Turkey
 * Uganda
 * United Arab Emirates
 * United Kingdom
