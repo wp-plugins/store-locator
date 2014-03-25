@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.3
 Tested up to: 3.8.1
-Stable tag: 3.0.1
+Stable tag: 3.0.2
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -124,7 +124,7 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 
 == Changelog ==
 = 3.0.x (March 20, 2014) =
-* Introducing: [Early Access Stage 1 - Individual Addons](http://www.viadat.com/products-page/early-access/) -- Earliest entrants receive higher status
+* __Introducing:__ [Early Access Stage 1 - Individual Addons](http://www.viadat.com/products-page/early-access/) -- Earliest entrants receive higher status
 * [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: bug fix when displaying map relating to categories & fix relating to conditional template shortcode
 * [addon] [CSV Importer/Exporter](http://docs.viadat.com/CSV_Importer_Geocoder_Exporter_XML_Exporter) (original) - update: Integrated re-geocoding capabilities, to allow bulk re-geocoding for any imported locations that weren't given coordinates on initial import (re-geocoding should work w/Store Locator v2.9+)
 * [addon] [CSV Importer/Exporter G2](http://docs.viadat.com/CSV_Importer_Exporter_G2) - update: also added re-geocoding capabilities (re-geocoding capabilities needs Store Locator v3.0+)
@@ -133,9 +133,10 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 * [update] [Addons Platform](http://docs.viadat.com/Addons_Platform_Lite) -- Addons API updates; code & Windows compatibility fixes
 * In addition to using the shortcode `[STORE-LOCATOR]` on Pages & Posts, display on page templates with code: `if (function_exists("sl_template")) {print sl_template("[STORE-LOCATOR]");}`
 * Several new icons with shadowing; newer current icons refreshed with shadowing for 3D effect on map
-* Added constants for Addons Platforms, removed hard-coding; updated logic in 3.0.1
+* Added constants for Addons Platforms, removed hard-coding; updated logic in 3.0.1, 3.0.2
 * Added constant for the site's name, used by addons
 * 'sl-uploads' folder permission granting update (for folders copied from) 'store-locator'
+* Existence checks/updates of variables for 1st-time users
 
 = 2.22 =
 * Uploads directory creation class updated (to avoid collisions with other plugins with the same library)
