@@ -2,8 +2,8 @@
 Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.3
-Tested up to: 3.8.1
-Stable tag: 3.0.2
+Tested up to: 3.8.2
+Stable tag: 3.1
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -123,6 +123,10 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.1 (April 11, 2014) =
+* WP v3.8.2 compatibility testing / updates of MapDesigner, Addons Marketplace displays for WP v3.8.x (& still backward-compatible for pre-WP v3.8 admin)
+* [addon] [Super Geocoder](http://docs.viadat.com/Super_Geocoder) - update: now fully shows settings & shows all functionality for those who have installed it via Addons Platform.  If already installed, delete `super-geocoder` folder from `/sl-uploads/addons/` directory, then search Addons Marketplace for 'geocoder' and click 'Install Now' button to re-install it.
+
 = 3.0.x (March 20, 2014) =
 * __Introducing:__ [Early Access Stage 1 - Individual Addons](http://www.viadat.com/products-page/early-access/) -- Earliest entrants receive higher status
 * [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: bug fix when displaying map relating to categories & fix relating to conditional template shortcode
