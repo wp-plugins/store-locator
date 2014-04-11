@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
 Requires at least: 3.3
 Tested up to: 3.8.2
-Stable tag: 3.1.2
+Stable tag: 3.1.3
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -21,18 +21,6 @@ Its strength is in its flexibility to allow you to easily manage any number of l
 * __New:__ [Super Geocoder](http://docs.viadat.com/Super_Geocoder) addon -- Avoid upgrading to more expensive hosting, or buying dedicated IP addresses -- successfully geocodes even when the default geocoder runs in Google's geocoding quotas (requires Store Locator v3.0+)
 * Now, in addition to using the shortcode `[STORE-LOCATOR]` on Pages & Posts, display on Store Locator in PHP page templates if needed (explained in changelog & [docs](http://docs.viadat.com)). 
 * Several new icons with shadowing; several current icons refreshed with shadowing for 3D effect on map
-
-
-= New in Version 2 =
-* __Now uses Google Maps V3__
-* Streamlined admin interface (more powerful yet much simplier)
-* Implemented much faster code (reduced database use {insert/update/delete} in code by 81.4% & applied fastest functions throughout)
-* __Admin Dashboard:__ Pull-out interface that provides you with the latest Store Locator news, installation & usage instructions, your website's hosting server information, available shortcode parameters to create multiple maps of specific groups of locations, general settings, and the activation interface for the Addons Platform & G1 (Generation 1) addons
-* __Availability of the Addons Platform:__ (more details in Other Notes)
-* Ability to auto-locate your website visitors in order to show locations based on where visitor is currently located
-* 40+ new Google Maps country domains
-* New address map icons
-* __New default fields:__ Fax & Email Address
 
 = Target Users =
 * Those of you who create sites for clients using WordPress
@@ -146,30 +134,12 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 * Uploads directory creation class updated (to avoid collisions with other plugins with the same library)
 * Google Maps API Javascript - `&` in querystring updated to `&amp;` for XHTML validation
 
-= 2.21 =
-* Added Turkey & Cyprus as country options in MapDesigner
-
-= 2.20 =
-* Update to allow Store Locator to load JS/CSS and display, even if theme is missing the standard head hooks
-
-= 2.19 =
-* Update to allow Store Locator to display on all post types, including custom post types
-
 = 2.18 =
 * Front-end interface CSS enhancement
 * New Store Locator admin menu for convenient access from WordPress Admin Toolbar
 * Modular & Pull-out Admin Dashboard updates
 * WP Admin dashboard news bugfix
 * Version bump: WP 3.3 (due to menu in WP Admin Toolbar)
-
-= 2.17 =
-* Dashboard/Admin update/fix
-* Functional update
-
-= 2.16 =
-* More WP 3.8 integration updates
-* Location Management / Admin CSS improvements
-* MapDesigner update
 
 = 2.15.x =
 * Several Store Locator admin updates due to significant WP admin interface changes introduced in WordPress v3.8.  Elements fixed include:
@@ -179,20 +149,6 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 * Addons Platform Settings page
 * Admin CSS fixes
 * Still maintains good appearance for pre-WP v3.8 installs also
-
-= 2.14 =
-* Update for better directory/file management. Should improve overall/addons' functionality, display of web content such as search buttons on sites w/more strict or custom hosting setups (such as GoDaddy)
-* Same-origin fix for websites that allow display of both 'www.domain.com' and 'domain.com' versions of their sites, to make sure locations load properly on both versions
-
-= 2.13.1 =
-* Fix for properly registering option choosing whether to display search results when loading locations by default
-* Minor fix for city dropdown option
-
-= 2.13 =
-* Pull-out Dashboard fixes: operates more gracefully for those with certain functionality absent (file_get_contents, cURL, etc)
-* Fixed issue of blank admin area for small segment of users
-* Added SL_VERSION to defined constants
-* Interface/marker Infowindow CSS update
 
 = 2.12.x =
 * Fixed issue causing 'geo_success' warning in Firefox. Better auto-location for Firefox browsers now.
@@ -209,30 +165,6 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 * [addon] [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager) - enhancement: new display filtering feature
 * [theme] Compact RIght - custom search button
 
-= 2.10 =
-* Admin area notification updates
-* HTTPS support for those using secure site connections for e-commerce, etc.
-* Location management interface/view update
-* Minimum required version bumped up to WP v3.1 (due to 'wp_dequeue_script' function)
-* Google Maps region biasing. Focuses user searches better based on country selected in MapDesigner admin section
-* Very important fix to maintain data integrity for some doing dev to live server transitions (had given some sensor warnings)
-
-= 2.9 =
-* Location management interface refresh/improvement (location management bar w/forms & links -- much better)
-* Admin CSS updates/improvements
-* Important admin/addons notification updates
-
-= 2.8.x =
-* Location management fixes/patches
-* Admin Interface updates - Manage Locations, admin menu
-* File view update
-
-= 2.7.x =
-* Store Locator interface CSS update
-* Admin updates - now displays version number, informational updates caching
-* Important fixes / updates - JS & folders
-* FAQs update - more detailed
-
 = 2.6.x =
 * Added Romanian translation (thank you [Quickloop](http://quickloop.ro)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
 * Store Locator CSS updates
@@ -241,26 +173,6 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 = 2.5.x =
 * Added Finnish translation (Thank you [Esa Immonen](http://www.probeautyscandinavia.com)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
 * Store Locator CSS updates/improvements
-
-= 2.4 =
-* New option in MapDesigner&trade; admin page to decide whether or not to show search results listing in addition to map icons when loading locations by default
-* Updated deprecated regex functions, to faster ones
-* Wrapped new strings for [translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return)
-
-= 2.3.x =
-* New fields in MapDesigner&trade; admin page to modify the messages to website visitors when a searched location doesn't exist or there are no results after performing a search
-* Further location loading enhancements
-* Admin CSS Update for News & Upgrades Page
-* Image updates
-
-= 2.2 =
-* Improved loading of XML of locations for those loading locations by default
-* Re-introducing "News & Upgrades" page
-* Added Screenshots
-* Now uses more stable Google Maps API V3 
-
-= 2.1 =
-* Improved Version 1.x.x to Version 2.x.x transition -- better map loading on Store Locator page
 
 = 2.0 =
 * Fully Uses Google Maps API V3 -- both for displaying maps, geocoding locations, and performing reverse geocoding.  Transition from V2 is automatic and seamless -- no extra steps on your part.
@@ -273,65 +185,6 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 * 40+ new Google maps country domains
 * New address map icons
 * Addons Platform: boosts your Store Locator's abilities dramatically, based off of your most-requested features & paid customizations: 11+ free G2 addons. 8 listed above in 'Description' section, 3 visible only to those with the Addons Platform installed, 1 yet-to-be-released, 4+ currently in development, and compatible with the 3 main addons prior to Store Locator 2.0 (CSV/XML Importer/Exporter, DB Importer, & Multiple Field Updater; the Point, Click, Add Mapper will be retired).  For those who purchased addons prior to 2.0, you can re-visit the email link sent to you when you purchased the addon, then re-download and install the updated version which makes it compatible with 2.0.
-
-= 1.9.7 =
-* Update for geocoding of locations for those previously having Google Geocoding API issues
-
-= 1.9.6.x =
-* Added Serbian translation (Thank you [Diana S.](http://wpcouponshop.com)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use.
-* Additional updates/fixes added
-
-= 1.9.1 =
-* Update/fix for re-geocoding (thank you Seb M.)
-
-= 1.8 =
-* Added Hindi translation (Thank you [Outshine Solutions](http://outshinesolutions.com)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use.
-
-= 1.5 =
-* Circular loading/processing image next to search button during search to know that locator is actively performing search
-* Zooms out when showing 1 location on initial load or search is zoomed in too close
-* Smoother initial loading of locations by default
-* Numerous CSS fixes to map interface
-* Ability to determine maximum number of locations shown in search results for DB health (uses same value for number of locations loaded by default)
-
-= 1.2.42 =
-* Added Russian translation (Thank you Victor Ukhimenko)
-* Added Turkish translation (Thank you [Rene](http://wpwebshop.com))
-* Updated Norwegian translation to proper abbreviation (no_NO -> nb_NO). Copy translations into `/wp-content/uploads/sl-uploads/languages/` to use.
-* Several CSS fixes, noticeable only for certain themes
-
-= 1.2.41 =
-* Added Portuguese translation (Thank you [Marcelo V. Araujo](http://www.mgerais.net))
-
-= 1.2.40 =
-* Added updated French translation (Thank you [Reno](http://www.creaprime.fr))
-* Added Norwegian translation (Thank you [Alf Vidar Snaeland](http://www.fastfrilans.no))
-* Added Simplified Chinese translation (Thank you [Laifeilim](http://www.fileem.com)). Copy translations into `/wp-content/uploads/sl-uploads/languages/` to use
-* Small fix for export link path
-* Small fix for navigation links when viewing locations and clicking 'Next' or 'Previous'
-* Added translation wrappers to labels 'Update Central' ('News & Upgrades' page) and 'Additional Information' ('Add Locations' page)
-
-= 1.2.39.3 =
-* Added Dutch translation (Thank you [Willem-Jan](http://www.ezhome.nl/)). Place translation in `/wp-content/uploads/sl-uploads/languages/` to use.
-* Added translation wrappers to text currently without them
-
-= 1.2.39.1 =
-* Updated the Czech translation (Thanks to [Josef](http://pepa.rudice.eu/))
-* Small fix to make URLs of icons point to correct directory on first use
-
-= 1.2.37.1 =
-* Moved more inline styles classes & ids in 'store-locator.css' for better styling of store locator map
-* Updated automatic folder creation and moving of addons, themes, languages, images, etc. in the 'uploads/sl-uploads' folder.  
-* Very important -- make sure to update from version 1.2.37 to avoid any map issues
-
-= 1.2.37 =
-* Updated default database, server, & connection character set and collation.  Should complete international language support.
-* A few XHTML Transitional 1.0 validation fixes
-* Different url encoding for map directions
-* Directory structure update: Upgrades (addons, themes), icons, languages, images, custom css moved to 'wp-content/uploads/sl-uploads' directory (moved automatically).  
-* WordPress default one-click updater is now active again.  (Custom quick updater introduced in version 1.2.21 is no longer needed)
-* Moved inline styles to stylesheet classes for search result text and columns, and for text in info bubble on map.  Fully customizable from 'store-locator.css' now.
-* NOTE: As a result of the updated directory structure, you no longer need to worry about losing any of your customizations (CSS, addons, themes, icons, images, languages)! Place any customizations that you make into the corresponding folder in the 'wp-content/uploads/sl-uploads' directory and they will be safe during upgrades to newer, better versions (For example: if place 'store-locator.css' in the 'wp-content/uploads/sl-uploads/custom-css' folder, the plugin will use those styles instead of the styles of any 'store-locator.css' in the main `store-locator` directory.  So, when an update is performed --- you don't lose your style customizations!)
 
 == Frequently Asked Questions ==
 Make sure to check http://docs.viadat.com for the most updated information
