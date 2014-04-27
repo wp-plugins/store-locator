@@ -1,9 +1,9 @@
 === WordPress Store Locator ===
 Contributors: viadat
-Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, ajax, shop locator, shop finder, shortcode, location finder, places, widget, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, map creator, mapping software, map tools, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, store locator map
+Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
-Tested up to: 3.8.2
-Stable tag: 3.1.3
+Tested up to: 3.9
+Stable tag: 3.2
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -15,12 +15,23 @@ Its strength is in its flexibility to allow you to easily manage any number of l
 = Important Links =
 [All Downloads](http://www.viadat.com/store-locator/) | [Addons & Themes](http://www.viadat.com/products-page/) | [New Features & Updates Blog](http://www.viadat.com/category/store-locator/) | [Documentation](http://docs.viadat.com/)
 
-= New in Version 3 =
-* __Introducing:__ [Early Access Stage 1 - Individual Addons](http://www.viadat.com/products-page/early-access/) -- earliest entrants gain higher status
-* __New:__ [Addons Platform Lite](http://docs.viadat.com/Addons_Platform_Lite) -- All the power of the full Addons Platform to power your addons, at a fraction of the price.  Buy individual addons as needed.
+= New in Version 3 (Released March 20, 2014) =
+* __New:__ [Individual Addons](http://www.viadat.com/products-page/early-access/) -- select addons to use as needed
+* __New:__ [Addons Platform Lite](http://docs.viadat.com/Addons_Platform_Lite) -- All the power of the full Addons Platform to power your addons, at a fraction of the price.
 * __New:__ [Super Geocoder](http://docs.viadat.com/Super_Geocoder) addon -- Avoid upgrading to more expensive hosting, or buying dedicated IP addresses -- successfully geocodes even when the default geocoder runs in Google's geocoding quotas (requires Store Locator v3.0+)
 * Now, in addition to using the shortcode `[STORE-LOCATOR]` on Pages & Posts, display on Store Locator in PHP page templates if needed (explained in changelog & [docs](http://docs.viadat.com)). 
 * Several new icons with shadowing; several current icons refreshed with shadowing for 3D effect on map
+
+= New in Version 2 (Released August 3rd, 2013) =
+* __Now uses Google Maps V3__
+* Streamlined admin interface (more powerful yet much simplier)
+* Implemented much faster code (reduced database use {insert/update/delete} in code by 81.4% & applied fastest functions throughout)
+* __Admin Dashboard:__ Pull-out interface that provides you with the latest Store Locator news, installation & usage instructions, your website's hosting server information, available shortcode parameters to create multiple maps of specific groups of locations, general settings, and the activation interface for the Addons Platform & G1 (Generation 1) addons
+* __Availability of the Addons Platform:__ (more details in Other Notes)
+* Ability to auto-locate your website visitors in order to show locations based on where visitor is currently located
+* 40+ new Google Maps country domains
+* New address map icons
+* __New default fields:__ Fax & Email Address
 
 = Target Users =
 * Those of you who create sites for clients using WordPress
@@ -50,6 +61,7 @@ The [Addons Platform](http://docs.viadat.com/Main_Page#Addons) provides you with
 * DB Importer G2
 * Multiple-Field Updater G2
 * Custom Field Manager
+* Super Geocoder
 
 The above addons are only a few of the addons available via the Addons Platform -- install them with one click directly from your admin interface's Addons Marketplace.  These G2 addons also communicate with each other to make full benefit of the Addons Platform's API. 
 
@@ -111,6 +123,11 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.2 (April 27, 2014) =
+* [addon] [Categorizer](http://docs.viadat.com/Categorizer) - update: Added ability for users to customize "Default" label associated with un-categorized locations
+* Updated geocoding to a secure (HTTPS) connection
+* Map interface CSS updates
+
 = 3.1.x (April 11, 2014) =
 * WP v3.8.2 compatibility testing / updates of MapDesigner, Addons Marketplace displays for WP v3.8.x (& still backward-compatible for pre-WP v3.8 admin)
 * [addon] [Super Geocoder](http://docs.viadat.com/Super_Geocoder) - update: now fully shows settings & shows all functionality for those who have installed it via Addons Platform.  If already installed, delete `super-geocoder` folder from `/sl-uploads/addons/` directory, then search Addons Marketplace for 'geocoder' and click 'Install Now' button to re-install it.
