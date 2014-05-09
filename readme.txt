@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 3.9
-Stable tag: 3.2.1
+Stable tag: 3.3
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -123,6 +123,16 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.3 (May 8, 2014) =
+* [addon] [Advanced Theme Manager](http://docs.viadat.com/Categorizer) - update: complimentary SL Starter theme included
+* [addon] "F.T." (bonus) - update: new option in settings to determine whether or not to use automatic address updating
+* [addon] "F.T." (bonus) - update: displays full address at all times below map
+* [theme] SL Starter - new
+* [update] [Addons Platform Lite](http://docs.viadat.com/Addons_Platform_Lite) -- improved default file/folder permissions
+* New option to modify city search dropdown label in MapDesigner
+* Updated mysql_real_escape_string() -> esc_sql() (for later WP/PHP versions)
+* Increased default Locations in Results
+
 = 3.2.x (April 27, 2014) =
 * [addon] [Categorizer](http://docs.viadat.com/Categorizer) - update: Added ability for users to customize "Default" label associated with un-categorized locations
 * Updated geocoding to a secure (HTTPS) connection
@@ -206,8 +216,9 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 == Frequently Asked Questions ==
 Make sure to check http://docs.viadat.com for the most updated information
 
-= I'm getting 'failed to geocode' error messages! Why? =
+= I'm getting 'failed to geocode' error messages -- why? =
 * Have you updated your Store Locator? [It's mandatory to be using Store Locator v2.x](http://www.viadat.com/2013/10/important-update-store-locator-v2-uses-google-maps-api-v3) if you want anything to work
+* Since Store Locator v3.0, the [Super Geocoder](http://docs.viadat.com/Super_Geocder) addon geocodes locations not geocoding due to reaching Google geocoding quota limits (based on your website's IP address)
 
 = Bought the CSV Importer ... =
 * Nearly all your questions [have been answered here](http://docs.viadat.com/CSV_Importer_Geocoder_Exporter_XML_Exporter). If you follow these instructions & answers exactly, you should be fine
@@ -226,7 +237,7 @@ This plugin in not USA-only, and yes, it supports locations all over the world -
 * Yes, in your page template, instead of `do_shortcode("[STORE-LOCATOR]")` add the code:`if (function_exists("sl_template")) {print sl_template("[STORE-LOCATOR]");}`
 * Additionally, for versions prior to Store Locator v3.0, you would also need to add the following to your theme's functions.php file:`if (!function_exists("show_sl_scripts")){	function show_sl_scripts(){}}`
 
-= Oh no! I'm seeing a 'Google Maps is disabled', or other Google Maps error messages on my website when viewing my Store Locator =
+= I'm seeing a 'Google Maps is disabled', or other Google Maps error messages on my website when viewing my Store Locator =
 * Are you using Store Locator v1.9.7 or earlier?  You must update immediately
 
 = If I need to rename my folder from the older 'wordpress-store-locator-location-finder' to 'store-locator', will I lose my locations? =
