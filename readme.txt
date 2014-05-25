@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 3.9
-Stable tag: 3.3
+Stable tag: 3.4
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -71,7 +71,7 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 
 = Special Thanks to Translators (Email new translations to info{at}viadat{dot}com) =
 * Simon Schmid: German (Deutsche), Italian (Italiano), Czech (Cestina), French (Francais)
-* Gwyn Fisher: Spanish (Espanol)
+* Gwyn Fisher: Spanish (Espanol - es_MX)
 * [Josef Klimosz](http://pepa.rudice.eu/): Czech (Cestina)(updated)
 * [Willem-Jan Korsten](http://www.ezhome.nl/): Dutch (Nederlands)
 * [Marcelo V. Araujo](http://www.mgerais.net/): Portuguese (Portugues)
@@ -84,6 +84,7 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 * [Diana S.](http://www.wpcouponshop.com): Serbian
 * [Esa Immonen](http://www.probeautyscandinavia.com): Finnish
 * [Quickloop](http://quickloop.ro): Romanian
+* [Andrew Kurtis - WebHostingHub](http://www.webhostinghub.com/): Spanish (Espansol - es_ES) 
 
 ([How to submit your translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/) | If you provide your web address, we'll link back to you)
 
@@ -107,9 +108,13 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 1. There are some default icons in the `/wp-content/plugins/store-locator/icons` directory
 2. Add your own custom icons in to `/wp-content/uploads/sl-uploads/custom-icons`
 
+= Custom Images =
+1. You can create your own custom 'search_button.{...}png' images and place them under `/wp-content/uploads/sl-uploads/images/`
+2. The store locator will give priority to the 'search_button.{...}png' images in the `/wp-content/uploads/sl-uploads/images/` folder over the default 'search_button.{...}png' images in the main `store-locator/` folder, allowing for store locator plugin updates without worrying about losing your custom button images
+
 = Custom CSS (Stylesheet) =
 1. You can modify the default 'store-locator.css' and place it under `/wp-content/uploads/sl-uploads/custom-css/`
-2. The store locator will give priority to the 'store-locator.css' in the `/wp-content/uploads/sl-uploads/custom-css/` folder over the default 'store-locator.css' in the main `store-locator/` folder. This allows you to upgrade the main store locator plugin without worrying about losing your custom styling.
+2. The store locator will give priority to the 'store-locator.css' in the `/wp-content/uploads/sl-uploads/custom-css/` folder over the default 'store-locator.css' in the main `store-locator/` folder. This allows you to update the main store locator plugin without worrying about losing your custom styling.
 
 == Screenshots ==
 1. Showcase of Store Locator Usage By Well-Known Organizations, With Some Having Customized it to Their Brands
@@ -122,9 +127,15 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 8. Bulk Update More than just the Tags Field (Addon: Multiple-Field Updater)
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
-== Changelog ==
+== Changelog 
+= 3.4 (May 25, 2014) =
+* Fixed stray jQuery code showing up in default location addition form
+* Properly linked to Advanced Theme Manager(http://docs.viadat.com/Advanced_Theme_Manager) addon in readme
+* Added info for creating custom search button images to readme
+* Added Spanish (es_ES) translation (thank you [Andrew Kurtis - WebHostingHub](http://www.webhostinghub.com/)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
+	 
 = 3.3 (May 8, 2014) =
-* [addon] [Advanced Theme Manager](http://docs.viadat.com/Categorizer) - update: complimentary SL Starter theme included
+* [addon] [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager) - update: complimentary SL Starter theme included
 * [addon] "F.T." (bonus) - update: new option in settings to determine whether or not to use automatic address updating
 * [addon] "F.T." (bonus) - update: displays full address at all times below map
 * [theme] SL Starter - new
