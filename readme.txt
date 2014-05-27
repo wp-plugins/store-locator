@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 3.9
-Stable tag: 3.4
+Stable tag: 3.4.1
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -76,15 +76,15 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 * [Willem-Jan Korsten](http://www.ezhome.nl/): Dutch (Nederlands)
 * [Marcelo V. Araujo](http://www.mgerais.net/): Portuguese (Portugues)
 * [Reno](http://www.creaprime.fr): French (Francais)(updated)
-* [Alf Vidar Snaeland](http://www.fastfrilans.no): Norwegian (Norsk)
-* [Laifeilim](http://www.fileem.com): Simplified Chinese
+* Alf Vidar Snaeland: Norwegian (Norsk)
+* Laifeilim: Simplified Chinese
 * Victor Ukhimenko: Russian
 * [Rene](http://wpwebshop.com): Turkish
 * [Outshine Solutions](http://outshinesolutions.com): Hindi
 * [Diana S.](http://www.wpcouponshop.com): Serbian
 * [Esa Immonen](http://www.probeautyscandinavia.com): Finnish
-* [Quickloop](http://quickloop.ro): Romanian
-* [Andrew Kurtis - WebHostingHub](http://www.webhostinghub.com/): Spanish (Espansol - es_ES) 
+* Quickloop: Romanian
+* [Andrew Kurtis - WebHostingHub](http://www.webhostinghub.com/): Spanish (Espanol - es_ES) 
 
 ([How to submit your translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/) | If you provide your web address, we'll link back to you)
 
@@ -127,12 +127,13 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 8. Bulk Update More than just the Tags Field (Addon: Multiple-Field Updater)
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
-== Changelog 
-= 3.4 (May 25, 2014) =
+== Changelog ==
+= 3.4.x (May 25, 2014) =
 * Fixed stray jQuery code showing up in default location addition form
 * Properly linked to Advanced Theme Manager(http://docs.viadat.com/Advanced_Theme_Manager) addon in readme
 * Added info for creating custom search button images to readme
 * Added Spanish (es_ES) translation (thank you [Andrew Kurtis - WebHostingHub](http://www.webhostinghub.com/)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
+* Restored changelog
 	 
 = 3.3 (May 8, 2014) =
 * [addon] [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager) - update: complimentary SL Starter theme included
@@ -204,7 +205,7 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 * [theme] Compact RIght - custom search button
 
 = 2.6.x =
-* Added Romanian translation (thank you [Quickloop](http://quickloop.ro)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
+* Added Romanian translation (thank you Quickloop). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
 * Store Locator CSS updates
 * v1.x -> v2.x transition updates/improvements
 
