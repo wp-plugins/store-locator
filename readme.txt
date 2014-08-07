@@ -2,8 +2,8 @@
 Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
-Tested up to: 3.9
-Stable tag: 3.4.1
+Tested up to: 3.9.2
+Stable tag: 3.5
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -128,14 +128,28 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
-= 3.4.x (May 25, 2014) =
+= 3.5 =
+* Important CSS update
+* [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: Location page slug input field information is now visible (had been affected by WP v3.8 interface CSS changes)
+* [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: HTML template moved to now be stored in the Store Locator database to prevent overwriting of the template file during each update (__IMPORTANT, If modifications have already been made to your 'location-template.php' file, make sure to save a copy to your computer before updating Location Pages__.  'location-template.php' will become 'location-sample-template.php' moving forward, used as a default template for first-time users). After this update, you will no longer need to worry about your template being overwritten during updates
+* [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: Added template shortcode usage examples to readme file for reference
+* [addon] [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager) - update: Increased flexibility in theming Store Locator map interface
+* [addon] [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager) - update: Several new map layout template shortcodes: sl_form_search, sl_form_button, sl_form_cities, sl_form_radius, hook_sl_header, sl_form_start, sl_form_end
+* [addon] [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager) - update: Now even further responsive-design ready
+* [addon] "U.L.S." (bonus) - update: Options for more customization of message to users after submission
+* [addon] "U.L.S." (bonus) - update: Options for more customization of message to admin after submission
+* [addon] "U.L.S." (bonus) - update: More customization options for custom display / hiding of form fields
+* [addon] "U.L.S." (bonus) - update: Options for more customization of message to users after admin interaction
+
+
+= 3.4.x =
 * Fixed stray jQuery code showing up in default location addition form
-* Properly linked to Advanced Theme Manager(http://docs.viadat.com/Advanced_Theme_Manager) addon in readme
+* Properly linked to [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager) addon in readme
 * Added info for creating custom search button images to readme
 * Added Spanish (es_ES) translation (thank you [Andrew Kurtis - WebHostingHub](http://www.webhostinghub.com/)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
 * Restored changelog
 	 
-= 3.3 (May 8, 2014) =
+= 3.3 =
 * [addon] [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager) - update: complimentary SL Starter theme included
 * [addon] "F.T." (bonus) - update: new option in settings to determine whether or not to use automatic address updating
 * [addon] "F.T." (bonus) - update: displays full address at all times below map
@@ -145,16 +159,16 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 * Updated mysql_real_escape_string() -> esc_sql() (for later WP/PHP versions)
 * Increased default Locations in Results
 
-= 3.2.x (April 27, 2014) =
+= 3.2.x =
 * [addon] [Categorizer](http://docs.viadat.com/Categorizer) - update: Added ability for users to customize "Default" label associated with un-categorized locations
 * Updated geocoding to a secure (HTTPS) connection
 * Map interface CSS updates
 
-= 3.1.x (April 11, 2014) =
+= 3.1.x  =
 * WP v3.8.2 compatibility testing / updates of MapDesigner, Addons Marketplace displays for WP v3.8.x (& still backward-compatible for pre-WP v3.8 admin)
 * [addon] [Super Geocoder](http://docs.viadat.com/Super_Geocoder) - update: now fully shows settings & shows all functionality for those who have installed it via Addons Platform.  If already installed, delete `super-geocoder` folder from `/sl-uploads/addons/` directory, then search Addons Marketplace for 'geocoder' and click 'Install Now' button to re-install it.
 
-= 3.0.x (March 20, 2014) =
+= 3.0.x =
 * __Introducing:__ [Early Access Stage 1 - Individual Addons](http://www.viadat.com/products-page/early-access/) -- Earliest entrants receive higher status
 * [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: bug fix when displaying map relating to categories & fix relating to conditional template shortcode
 * [addon] [CSV Importer/Exporter](http://docs.viadat.com/CSV_Importer_Geocoder_Exporter_XML_Exporter) (original) - update: Integrated re-geocoding capabilities, to allow bulk re-geocoding for any imported locations that weren't given coordinates on initial import (re-geocoding should work w/Store Locator v2.9+)
