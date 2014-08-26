@@ -2,8 +2,8 @@
 Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
-Tested up to: 3.9.2
-Stable tag: 3.5.1
+Tested up to: 4.0
+Stable tag: 3.6
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -41,7 +41,7 @@ Its strength is in its flexibility to allow you to easily manage any number of l
 * You can use it for numerous countries, which will continue to be added as Google adds new countries to their Google Maps API.  See the documentation for the latest
 * Supports international languages/translations and character sets 
 * Allows you to use unique map icons or your own custom map icons --- great for branding your map
-* Gives your map the desired look by using our MapDesigner&trade; settings interface in the WordPress admin section
+* Gives your map the desired look by using our MapDesigner settings interface in the WordPress admin section
 * Pick other cool Google Maps options, such as an inset box, zoom level, map types (street, satellite, hybrid, physical), and more
 * You can use miles or kilometers
 * Automatically restricts loading of Javascript & CSS to only pages that display the map (or that might need access to the JS & CSS) for better site performance
@@ -102,7 +102,7 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 
 = Themes =
 1. Unzip & Upload the entire theme folder to the `/wp-content/uploads/sl-uploads/themes` directory
-2. Select theme from the theme dropdown menu under the "Design" section on the "MapDesigner&trade;" Page
+2. Select theme from the theme dropdown menu under the "Design" section on the "MapDesigner" Page
 
 = Icons =
 1. There are some default icons in the `/wp-content/plugins/store-locator/icons` directory
@@ -121,13 +121,19 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 2. News & Upgrades: See the Latest News and Available Addons for Your Store Locator
 3. Manage Locations: Easily Manage a Few or Many Locations, Sortable by Name, City, etc.
 4. Add Locations: Once You Add a Location, it is Automatically Given Coordinates
-5. MapDesigner&trade;: Choose the Important Options For the Look & Feel of Your Map
+5. MapDesigner: Choose the Important Options For the Look & Feel of Your Map
 6. Addons Platform: Increase Your Store Locator's Capabilities With Numerous Addons & Themes that are Included
 7. Quickly Upload Many Locations From a Spreadsheet to Save Time (Addon: CSV/XML Importer/Exporter)
 8. Bulk Update More than just the Tags Field (Addon: Multiple-Field Updater)
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.6 =
+* Quicker map load when auto-locating user by their position
+* Update to News & Upgrades
+* Much Improved toolbar navigation & updated tab navigation
+* [addon] "U.L.S." (bonus) - update: admin / settings submission fields update
+
 = 3.5.x =
 * Important CSS update
 * [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: Location page slug input field information is now visible (had been affected by WP v3.8 interface CSS changes)
