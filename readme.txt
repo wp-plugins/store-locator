@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 3.7.2
+Stable tag: 3.8
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -128,6 +128,15 @@ In addition to the 8 addons listed above, there are currently 8 additional bonus
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.8 =
+* Update to temp directory used during imports
+* Important fix for location management of individual locations to redirect properly after making an update
+* [addon] [CSV Importer](http://docs.viadat.com/CSV_Importer_Geocoder_Exporter_XML_Exporter) - update: fix for function declaration
+* [addon] [CSV Importer](http://docs.viadat.com/CSV_Importer_Geocoder_Exporter_XML_Exporter) - update: updated location of temporary file created for export to the 'wp-content/uploads/sl-uploads/addons' directory (needs to be writeable / 755 permissions)
+* [addon] [CSV Importer](http://docs.viadat.com/CSV_Importer_Geocoder_Exporter_XML_Exporter) - update: added email, fax to export & import options
+* [addon] [CSV Importer G2](http://docs.viadat.com/CSV_Importer_Exporter_G2) - update: updated location of temporary file created for export to the 'wp-content/uploads/sl-uploads/addons' directory (needs to be writeable / 755 permissions)
+* [addon] [CSV Importer G2](http://docs.viadat.com/CSV_Importer_Exporter_G2) - update: name-spaced important functions
+
 = 3.7.x =
 * Much smoother map loading during auto-location of users
 * jQuery updates to deprecated functions
