@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 3.10
+Stable tag: 3.10.1
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -127,10 +127,10 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
-= 3.10 =
+= 3.10.x =
 * Update to deprecated or soon-to-be-deprecated DB functionality, for improved performance
 * Update of functionality to WP DB class where applicable
-* Fixes aimed at resolving any jQuery conflicts w/other plugins/themes
+* Fixes aimed at resolving any jQuery conflicts w/other plugins/themes (rolled back in v3.10.1 -- appears to conflict with themes by with prettyPhoto and/or avia JS framework)
 
 = 3.9 =
 * Bug fix to avoid empty query error when user wants to update location that contains a percent sign ('%') in its fields
