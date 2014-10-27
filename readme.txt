@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 3.10.2
+Stable tag: 3.11
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -127,6 +127,13 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.11 =
+* Slight update to folder creation for languages, custom images, icons, CSS, addons, etc (recursive)
+* Notification to users if cURL isn't active on server, important for geocoding, other functionality
+* [theme] [Streamline Theme](http://www.viadat.com/products-page/store-locator-themes/streamline-theme/) - new: Responsive theme ready to give your store locator a highly-professional appearance ([Addons Platform](http://docs.viadat.com/Addons_Platform) users: install via Addons Marketplace in Store Locator admin; [Early Access](http://www.viadat.com/products-page/early-access/) members: login to view themes)
+* [theme] [Debonair Theme](http://www.viadat.com/products-page/store-locator-themes/debonair-theme/) - new: Responsive, vibrant theme ready to infuse color into your users' interface experience
+* [theme] [Compact Right Theme](http://www.viadat.com/products-page/store-locator-themes/compact-right-theme/) - update: custom search button added
+
 = 3.10.x =
 * Update to deprecated or soon-to-be-deprecated DB functionality, for improved performance (rolled back in v3.10.2 -- mysqli_* functions appears to be buggy for some)
 * Update of functionality to WP DB class where applicable
