@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 3.14
+Stable tag: 3.15
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -127,6 +127,12 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.15 =
+* [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: Now, in addition to entering base custom page slug, one can further customize page URL by choosing a Store Locator database field such as city, state, zip, etc instead of the ID (custom fields can also be chosen, if any exist)
+* [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: Permalinks structure of pages is now automatically applied once customized from Location Pages admin section; no need to manually save permalinks under WP admin settings
+* Validation button for addons displayed in pull-out dashboard
+* PHP version displayed along with Store Locator version in navigation
+
 = 3.14 =
 * Removed/commented out non-critical hook function meant to load jQuery in scenario wp_head() was absent; removal done to avoid image gallery/portfolio conflict within a certain theme
 * Base plugin & [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: Foreign characters now also converted to their non-accented equivalent characters when page neat titles are generated, for better readability for international location names
