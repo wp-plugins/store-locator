@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 3.15
+Stable tag: 3.16
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -127,6 +127,13 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.16 =
+* Small admin interface update
+* [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: Info bubble now shows when clicking the map marker on a single location page
+* [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: New in-page directions & labeling options now available. Start / end point submitted via info bubble and directions display on map and step-by-step panel
+* [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update:  New shortcode 'sl_directions_results', which displays step-by-step driving directions. Default template updated to contain 'sl_directions_results'. Shortcode also shown in side menu that lists all available shortcode parameters
+* [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update:  Line breaks now show in all data fields, providing more readability for fields such as 'sl_description', for example
+
 = 3.15 =
 * [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: Now, in addition to entering base custom page slug, one can further customize page URL by choosing a Store Locator database field such as city, state, zip, etc instead of the ID (custom fields can also be chosen, if any exist)
 * [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - update: Permalinks structure of pages is now automatically applied once customized from Location Pages admin section; no need to manually save permalinks under WP admin settings
