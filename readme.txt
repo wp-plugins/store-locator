@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 3.17
+Stable tag: 3.18
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -127,6 +127,12 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.18 =
+* Updated navigation functionality / flexibility for adding navigational elements
+* Reduced database load coming from navigational header related to notices
+* New notice allowing users to see & update folders / files that don't currently have proper 755 / 644 permissions, respectively
+* Small bugfix, MapDesigner settings page
+
 = 3.17 =
 * Improved / added flexibility to environment / config loading
 * Smaller geocoding delay, for even quicker importing
