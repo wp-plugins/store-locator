@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.2
-Stable tag: 3.21
+Stable tag: 3.22
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -68,22 +68,24 @@ The [Addons Platform](http://docs.viadat.com/Main_Page#Addons) provides you with
 
 All addons available previous to Store Locator 2.0 are now called "G1" (Generation 1) addons, and can still be used, with or without the Addons Platform installed (if you purchased an addon prior to Store Locator 2.0, re-download it via the emailed link of your purchase and install a slighty updated version that allows it to work with 2.0).  
 
-= Special Thanks to Translators (Email new translations to info{at}viadat{dot}com) =
-* Simon Schmid: German (Deutsche), Italian (Italiano), Czech (Cestina), French (Francais)
-* Gwyn Fisher: Spanish (Espanol - es_MX)
-* [Josef Klimosz](http://pepa.rudice.eu/): Czech (Cestina)(updated)
-* [Willem-Jan Korsten](http://www.ezhome.nl/): Dutch (Nederlands)
-* [Marcelo V. Araujo](http://www.mgerais.net/): Portuguese (Portugues)
-* [Reno](http://www.creaprime.fr): French (Francais)(updated)
-* Alf Vidar Snaeland: Norwegian (Norsk)
-* Laifeilim: Simplified Chinese
-* Victor Ukhimenko: Russian
-* [Rene](http://wpwebshop.com): Turkish
-* [Outshine Solutions](http://outshinesolutions.com): Hindi
-* [Diana S.](http://www.wpcouponshop.com): Serbian
-* [Esa Immonen](http://www.probeautyscandinavia.com): Finnish
-* Quickloop: Romanian
-* [Andrew Kurtis - WebHostingHub](http://www.webhostinghub.com/): Spanish (Espanol - es_ES) 
+= Special Thanks to Translators (Email new translations to info {at} viadat {dot} com) =
+* de_DE 	| German (Deutsche) - Simon Schmid 
+* it_IT 	| Italian (Italiano) - Simon Schmid
+* cs_CZ 	| Czech (Cestina) - Simon Schmid; [Josef Klimosz](http://pepa.rudice.eu/) (updated)
+* fr_FR 	| French (Français) - Simon Schmid; [Reno](http://www.creaprime.fr) (updated)
+* es_MX 	| Mexican Spanish (Español) - Gwyn Fisher
+* nl_NL 	| Dutch (Nederlands) - [Willem-Jan Korsten](http://www.ezhome.nl/)
+* pt_BR 	| Brazilian Portuguese (Português do Brasil) - [Marcelo V. Araujo](http://www.mgerais.net/)
+* nb_NO 	| Norwegian (Norsk bokmål) - Alf Vidar Snaeland
+* zh_CN 	| Simplified Chinese - Laifeilim
+* ru_RU 	| Russian (Русский) - Victor Ukhimenko
+* tr_TR 	| Turkish (Turkce) - [Rene](http://wpwebshop.com)
+* hi_IN 	| Hindi - [Outshine Solutions](http://outshinesolutions.com)
+* sr_RS 	| Serbian (Српски језик) - [Diana S.](http://www.wpcouponshop.com)
+* fi_FI 	| Finnish - [Esa Immonen](http://www.probeautyscandinavia.com)
+* ro_RO 	| Romanian (Română) - Quickloop
+* es_ES 	| Spanish (Español) - [Andrew Kurtis - WebHostingHub](http://www.webhostinghub.com/)
+* zh_TW 	| Traditional Chinese - [Ronnie Wu](http://www.primagefactory.com/howto/)
 
 ([How to submit your translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/) | If you provide your web address, we'll link back to you)
 
@@ -127,6 +129,10 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.22 =
+* Added Traditional Chinese (zh_TW) translation (thank you [Ronnie Wu](http://www.primagefactory.com/howto/)). Copy translation files into `/wp-content/uploads/sl-uploads/languages/`. WP 4.0+ users, go to General > Settings > "Site Language" option to choose language.  Pre-WP 4.0 users, set the 'WPLANG' constant in 'wp-config.php' to the proper language code ('zh_TW', for example) in order to choose language.
+* Translator credits - layout update in readme, better readability
+
 = 3.21 =
 * [Addons Platform](http://docs.viadat.com/Addons_Platform) update notifier -- displays in navigation, to keep Addons Platform (Full & Lite) users aware when newer versions are available for most up-to-date functionality
 
