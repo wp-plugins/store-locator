@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.2
-Stable tag: 3.22.1
+Stable tag: 3.23
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -129,6 +129,11 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.23 =
+* 3rd-tier navigation preparation for even more friendly UI.  Reduces clicks to reach deeper pages.  Will also speed usage once [Addons Platform](http://docs.viadat.com/Addons_Platform) (Full / LIte) receives updates to maximizes navigational levels.
+* Navigational structure enhancements
+* Admin CSS updates / enhancements
+
 = 3.22.x =
 * Added Traditional Chinese (zh_TW) translation (thank you [Ronnie Wu](http://www.primagefactory.com/howto/)). Copy translation files into `/wp-content/uploads/sl-uploads/languages/`. WP 4.0+ users, go to General > Settings > "Site Language" option to choose language.  Pre-WP 4.0 users, set the 'WPLANG' constant in 'wp-config.php' to the proper language code ('zh_TW', for example) in order to choose language.
 * Translator credits - layout update in readme, better readability
