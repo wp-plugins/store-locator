@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.2
-Stable tag: 3.23
+Stable tag: 3.23.1
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -129,7 +129,7 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
-= 3.23 =
+= 3.23.1 =
 * 3rd-tier navigation preparation for even more friendly UI.  Reduces clicks to reach deeper pages.  Will also speed usage once [Addons Platform](http://docs.viadat.com/Addons_Platform) (Full / LIte) receives updates to maximizes navigational levels.
 * Navigational structure enhancements
 * Admin CSS updates / enhancements
@@ -314,11 +314,6 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 * Admin CSS fixes
 * Still maintains good appearance for pre-WP v3.8 installs also
 
-= 2.12.x =
-* Fixed issue causing 'geo_success' warning in Firefox. Better auto-location for Firefox browsers now.
-* Addon/Theme Updates:
-* [addon] [Categorizer](http://docs.viadat.com/Categorizer) - updates: category search form; readme file
-
 = 2.11.x =
 * Faster environment load
 * Added debugging abilities
@@ -328,15 +323,6 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 * [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - enhancement: new display filtering feature
 * [addon] [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager) - enhancement: new display filtering feature
 * [theme] Compact RIght - custom search button
-
-= 2.6.x =
-* Added Romanian translation (thank you Quickloop). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
-* Store Locator CSS updates
-* v1.x -> v2.x transition updates/improvements
-
-= 2.5.x =
-* Added Finnish translation (Thank you [Esa Immonen](http://www.probeautyscandinavia.com)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
-* Store Locator CSS updates/improvements
 
 = 2.0 =
 * Fully Uses Google Maps API V3 -- both for displaying maps, geocoding locations, and performing reverse geocoding.  Transition from V2 is automatic and seamless -- no extra steps on your part.
