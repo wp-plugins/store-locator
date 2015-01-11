@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.2
-Stable tag: 3.24
+Stable tag: 3.25
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -69,23 +69,23 @@ The [Addons Platform](http://docs.viadat.com/Main_Page#Addons) provides you with
 All addons available previous to Store Locator 2.0 are now called "G1" (Generation 1) addons, and can still be used, with or without the Addons Platform installed (if you purchased an addon prior to Store Locator 2.0, re-download it via the emailed link of your purchase and install a slighty updated version that allows it to work with 2.0).  
 
 = Special Thanks to Translators (Email new translations to info {at} viadat {dot} com) =
-* de_DE 	| German (Deutsche) - Simon Schmid 
-* it_IT 	| Italian (Italiano) - Simon Schmid
-* cs_CZ 	| Czech (Čeština) - Simon Schmid; [Josef Klimosz](http://pepa.rudice.eu/) (updated)
-* fr_FR 	| French (Français) - Simon Schmid; [Reno](http://www.creaprime.fr) (updated)
-* es_MX 	| Mexican Spanish (Español) - Gwyn Fisher
-* nl_NL 	| Dutch (Nederlands) - [Willem-Jan Korsten](http://www.ezhome.nl/)
-* pt_BR 	| Brazilian Portuguese (Português do Brasil) - [Marcelo V. Araujo](http://www.mgerais.net/)
-* nb_NO 	| Norwegian (Norsk bokmål) - Alf Vidar Snaeland
-* zh_CN 	| Simplified Chinese (简体中文) - Laifeilim
-* ru_RU 	| Russian (Русский) - Victor Ukhimenko
-* tr_TR 	| Turkish (Türkçe) - [Rene](http://wpwebshop.com)
-* hi_IN 	| Hindi (हमानक हिन्दी) - [Outshine Solutions](http://outshinesolutions.com)
-* sr_RS 	| Serbian (Српски језик) - [Diana S.](http://www.wpcouponshop.com)
-* fi_FI 	| Finnish (Suomi) - [Esa Immonen](http://www.probeautyscandinavia.com)
-* ro_RO 	| Romanian (Română) - Quickloop
-* es_ES 	| Spanish (Español) - [Andrew Kurtis - WebHostingHub](http://www.webhostinghub.com/)
-* zh_TW 	| Traditional Chinese (繁體中文) - [Ronnie Wu](http://www.primagefactory.com/howto/)
+* de_DE	| German (Deutsche) - Simon Schmid 
+* it_IT	| Italian (Italiano) - Simon Schmid
+* cs_CZ	| Czech (Čeština) - Simon Schmid; [Josef Klimosz](http://pepa.rudice.eu/) (updated)
+* fr_FR	| French (Français) - Simon Schmid; [Reno](http://www.creaprime.fr) (updated)
+* es_MX	| Mexican Spanish (Español) - Gwyn Fisher
+* nl_NL	| Dutch (Nederlands) - [Willem-Jan Korsten](http://www.ezhome.nl/)
+* pt_BR	| Brazilian Portuguese (Português do Brasil) - [Marcelo V. Araujo](http://www.mgerais.net/)
+* nb_NO	| Norwegian (Norsk bokmål) - Alf Vidar Snaeland
+* zh_CN	| Simplified Chinese (简体中文) - Laifeilim
+* ru_RU	| Russian (Русский) - Victor Ukhimenko
+* tr_TR	| Turkish (Türkçe) - [Rene](http://wpwebshop.com)
+* hi_IN	| Hindi (हमानक हिन्दी) - [Outshine Solutions](http://outshinesolutions.com)
+* sr_RS	| Serbian (Српски језик) - [Diana S.](http://www.wpcouponshop.com)
+* fi_FI	| Finnish (Suomi) - [Esa Immonen](http://www.probeautyscandinavia.com)
+* ro_RO	| Romanian (Română) - Quickloop
+* es_ES	| Spanish (Español) - [Andrew Kurtis - WebHostingHub](http://www.webhostinghub.com/)
+* zh_TW	| Traditional Chinese (繁體中文) - [Ronnie Wu](http://www.primagefactory.com/howto/)
 
 ([How to submit your translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/) | If you provide your web address, we'll link back to you)
 
@@ -129,6 +129,11 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.25 =
+* In-CSS custom styling instructions notice
+* FAQs update
+* Addons Platform notifier paused, re-planned. Will show once update occurs again.
+
 = 3.24 =
 * Fix allowing HTTPS-prefixed hyperlinks to display correctly in admin & user interfaces
 * CSS stylesheet caching update on admin & user-interface stylesheets
@@ -384,7 +389,8 @@ Since Store Locator v2.x, which uses Google Maps API v3, it is not required like
 
 = How Do I use a Translation? =
 1. Place .po & .mo translation files into the `/wp-content/uploads/sl-uploads/languages` folder, and then change the `WPLANG` constant to the corresponding language abbreviation in the `wp-config.php` file in the root wordpress directory
-2. Example: to use French, make sure `lol-fr_FR.po` & `lol-fr_FR.mo` are in the `/wp-content/uploads/sl-uploads/languages` folder, then make sure to update the code in `wp-config.php` to read `define('WPLANG', 'fr_FR')`, and Voila, Il sera en francais (It will be in French).
+2. Example - using French (pre-WP 4.0): make sure `lol-fr_FR.po` & `lol-fr_FR.mo` are in the `/wp-content/uploads/sl-uploads/languages` folder, then make sure to update the code in `wp-config.php` to read `define('WPLANG', 'fr_FR')`, and Voila, Il sera en francais (It will be in French).
+3. Example - using French (WP 4.0+):  go to General > Settings > "Site Language" option to choose French language (may need to first install language pack)
 
 = Which countries is this compatible with? =
 This plugin is compatible with all countries that have Google Map domains. This includes:
@@ -425,6 +431,7 @@ This plugin is compatible with all countries that have Google Map domains. This 
 * Hungary
 * India
 * Indonesia
+* Israel
 * Italy
 * Japan
 * Kenya
