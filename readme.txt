@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.2-alpha
-Stable tag: 3.32
+Stable tag: 3.32.1
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -129,7 +129,7 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
-= 3.32 =
+= 3.32.1 =
 * User-facing interface update
 * Initial-condition layout improvement for new users using default display options & for scenario where user has city dropdown on, but no full cities to display, search input field displays in full width
 
@@ -341,13 +341,6 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 * Uploads directory creation class updated (to avoid collisions with other plugins with the same library)
 * Google Maps API Javascript - `&` in querystring updated to `&amp;` for XHTML validation
 
-= 2.18 =
-* Front-end interface CSS enhancement
-* New Store Locator admin menu for convenient access from WordPress Admin Toolbar
-* Modular & Pull-out Admin Dashboard updates
-* WP Admin dashboard news bugfix
-* Version bump: WP 3.3 (due to menu in WP Admin Toolbar)
-
 = 2.15.x =
 * Several Store Locator admin updates due to significant WP admin interface changes introduced in WordPress v3.8.  Elements fixed include:
 * Pull-Out Dashboard & Modules
@@ -356,16 +349,6 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 * Addons Platform Settings page
 * Admin CSS fixes
 * Still maintains good appearance for pre-WP v3.8 installs also
-
-= 2.11.x =
-* Faster environment load
-* Added debugging abilities
-* Addon/Theme Updates:
-* [addon] [Addons Platform](http://docs.viadat.com/Addons_Platform) - update: navigation flexibility, admin display
-* [addon] [Custom Field Manager](http://docs.viadat.com/Custom_Field_Manager) - enhancement/fix: prefixing when adding new custom field; default db field type filled in
-* [addon] [Location Pages](http://docs.viadat.com/Location_Pages) - enhancement: new display filtering feature
-* [addon] [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager) - enhancement: new display filtering feature
-* [theme] Compact RIght - custom search button
 
 = 2.0 =
 * Fully Uses Google Maps API V3 -- both for displaying maps, geocoding locations, and performing reverse geocoding.  Transition from V2 is automatic and seamless -- no extra steps on your part.
