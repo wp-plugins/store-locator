@@ -3,12 +3,12 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.2-alpha
-Stable tag: 3.32.1
+Stable tag: 3.33
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
 == Description ==
-Power your site with this WordPress-integrated map making & location management system possessing mapping tools to create store locators, store finders, and other location address maps. Manage and display a few or thousands of your important stores, points of interest, or product locations anywhere on Earth using Google Maps. 
+Power your site with this WordPress-integrated map making & location management system possessing some of the best free mapping tools to create store locators, store finders, and other location address maps. Manage and display a few or thousands of your important stores, points of interest, or product locations anywhere on Earth using Google Maps. 
 
 Its strength is best seen in its flexibility to allow you to easily manage any number of locations from your WordPress admin interface and the several addons featuring top-level features that are available to further boost its capabilities. Also referred to as an address map, address location map, locator map, store finder, dealer locator (locater), shop finder, and zip code or zipcode search. 
 
@@ -27,7 +27,7 @@ Its strength is best seen in its flexibility to allow you to easily manage any n
 * Streamlined admin interface (more powerful yet much simplier)
 * Implemented much faster code (reduced database use {insert/update/delete} in code by 81.4% & applied fastest functions throughout)
 * __Admin Dashboard:__ Pull-out interface that provides you with the latest Store Locator news, installation & usage instructions, your website's hosting server information, available shortcode parameters to create multiple maps of specific groups of locations, general settings, and the activation interface for the Addons Platform & G1 (Generation 1) addons
-* __Availability of the Addons Platform:__ (more details in Other Notes)
+* __Availability of the [Addons Platform](http://docs.viadat.com/Addons_Platform):__
 * Ability to auto-locate your website visitors in order to show locations based on where visitor is currently located
 * 40+ new Google Maps country domains
 * New address map icons
@@ -51,17 +51,17 @@ Its strength is best seen in its flexibility to allow you to easily manage any n
 If you need additional features, enhance your store locator with addons & themes. [Upgrade Here](http://www.viadat.com/products-page/)
 
 = Addons Platform =
-The [Addons Platform](http://docs.viadat.com/Main_Page#Addons) provides you with a growing number of Generation 2 (G2; comes with the Addons Platform) addons & themes to save you time, provide you highly-advanced features, and impress your clients. Below is a list of the G2 addons available ([view documentation](http://docs.viadat.com/Main_Page#Addons) for more details on each):
+The [Addons Platform](http://docs.viadat.com/Addons_Platform) provides you with a growing number of Generation 2 (G2; comes with the Addons Platform) addons & themes to save you time, provide you highly-advanced features, and impress your clients. Below is a list of the G2 addons available ([view documentation](http://docs.viadat.com/Main_Page#Addons) for more details on each):
 
-* Categorizer
-* Multiple Mapper
-* Advanced Theme Manager
-* Location Pages
-* CSV Importer/Exporter G2
-* DB Importer G2
-* Multiple-Field Updater G2
-* Custom Field Manager
-* Super Geocoder
+* [Categorizer](http://docs.viadat.com/Categorizer)
+* [Multiple Mapper](http://docs.viadat.com/Multiple_Mapper)
+* [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager)
+* [Location Pages](http://docs.viadat.com/Location_Pages)
+* [CSV Importer/Exporter G2](http://docs.viadat.com/CSV_Importer_Exporter_G2)
+* [DB Importer G2](http://docs.viadat.com/DB_Importer_G2)
+* [Multiple-Field Updater G2](http://docs.viadat.com/Multiple_Field_Updater_G2)
+* [Custom Field Manager](http://docs.viadat.com/Custom_Field_Manager)
+* [Super Geocoder](http://docs.viadat.com/Super_Geocoder)
 * "U.L.S" (bonus addon - [Addons Platform](http://docs.viadat.com/Addons_Platform) users & [Early Access](http://www.viadat.com/products-page/early-access/) members)
 * "F.T" (bonus addon)
 * "S.S" (bonus addon)
@@ -129,6 +129,10 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.33 =
+* Modified Store Locator database interfacing functionality back to default
+* Store Locator template modification / re-organization or functionality, variables
+
 = 3.32.1 =
 * User-facing interface update
 * Initial-condition layout improvement for new users using default display options & for scenario where user has city dropdown on, but no full cities to display, search input field displays in full width
