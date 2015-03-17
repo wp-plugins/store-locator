@@ -32,7 +32,7 @@ $sl_mdo['labels'][] = array("label" => "Location Doesn't Exist", "input_template
 $sl_mdo['labels'][] = array("label" => "No Results Are Found", "input_template" => "<input name='sl_no_results_found_message' value=\"".$sl_no_results_found_message."\" size='14'>");
 $sl_mdo['labels'][] = array("label" => "Hours", "input_template" => "<input name='sl_hours_label' value=\"".$sl_hours_label."\" size='14'>");
 
-$sl_mdo['labels'][] = array("label" => "Phone", "input_template" => "<input name='sl_phone_label' value=\"".$sl_phone_label."\" size='14'>", "more_info"=>"Yea, yea", "more_info_label"=>"z_phone");
+$sl_mdo['labels'][] = array("label" => "Phone", "input_template" => "<input name='sl_phone_label' value=\"".$sl_phone_label."\" size='14'>");
 $sl_mdo['labels'][] = array("label" => "Fax", "input_template" => "<input name='sl_fax_label' value=\"".$sl_fax_label."\" size='14'>");
 $sl_mdo['labels'][] = array("label" => "Email", "input_template" => "<input name='sl_email_label' value=\"".$sl_email_label."\" size='14'>");
 ###End Labels###
