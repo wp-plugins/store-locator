@@ -3,14 +3,14 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, geocoding, jquery, shops, page, zipcode, zip code, zip code search, store finder, address map, address location map, map maker, proximity search, map creator, mapping software, map tools, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.2-alpha
-Stable tag: 3.46
+Stable tag: 3.46.1
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
 == Description ==
 Power your site with this WordPress-integrated map making & location management system possessing some of the best free mapping tools to create store locators, store finders, and other location address maps. Manage and display a few or thousands of your important stores, points of interest, or product locations anywhere on Earth using Google Maps. 
 
-Its strength is best seen in its flexibility to allow you to easily manage any number of locations from your WordPress admin interface and its ability to allow you to boost its capabilities by adding several top-level features provided by addons & themes, powered by its [Addons Platform](http://docs.viadat.com/Addons_Platform).  It's also referred to as an address map, address location map, locator map, store finder, dealer locator (locater), shop finder, and zip code or zipcode search. 
+Its strength is best seen in its flexibility to allow you to easily manage any number of locations from your WordPress admin interface and the several addons featuring top-level features that are available to further boost its capabilities. Also referred to as an address map, address location map, locator map, store finder, dealer locator (locater), shop finder, and zip code or zipcode search. 
 
 = Important Links =
 [All Downloads](http://www.viadat.com/store-locator/) | [Addons & Themes](http://www.viadat.com/products-page/) | [New Features & Updates Blog](http://www.viadat.com/category/store-locator/) | [Documentation](http://docs.viadat.com/)
@@ -27,7 +27,7 @@ Its strength is best seen in its flexibility to allow you to easily manage any n
 * Streamlined admin interface (more powerful yet much simplier)
 * Implemented much faster code (reduced database use {insert/update/delete} in code by 81.4% & applied fastest functions throughout)
 * __Admin Dashboard:__ Pull-out interface that provides you with the latest Store Locator news, installation & usage instructions, your website's hosting server information, available shortcode parameters to create multiple maps of specific groups of locations, general settings, and the activation interface for the Addons Platform & G1 (Generation 1) addons
-* __Availability of the [Addons Platform](http://docs.viadat.com/Addons_Platform)__
+* __Availability of the [Addons Platform](http://docs.viadat.com/Addons_Platform):__
 * Ability to auto-locate your website visitors in order to show locations based on where visitor is currently located
 * 40+ new Google Maps country domains
 * New address map icons
@@ -129,7 +129,7 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
-= 3.46 =
+= 3.46.x =
 * MapDesigner functionality update to create separate layers for data & inputs' displays - data saving functionality
 
 = 3.45.x =
