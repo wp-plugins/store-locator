@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, best google maps, geocoding, jquery, shops, page, zipcode, zip code, zip code search, custom google maps, store finder, address map, google map, address location map, map maker, proximity search, map creator, gmaps, mapping software, google map plugin, map tools, google maps, google map widget, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.2
-Stable tag: 3.53
+Stable tag: 3.54
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -129,6 +129,12 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.54 =
+* [addon] [Super Geocoder](http://docs.viadat.com/Super_Geocoder) - update: Database usage improvement -- cut DB load dramatically when updating location data (90%+ improvement)
+* [addon] [Super Geocoder](http://docs.viadat.com/Super_Geocoder) - update: Adjusted feedback usage, better status information display
+* [addon] [Super Geocoder](http://docs.viadat.com/Super_Geocoder) - update: Logic improvements for significant increase in success rate
+* [addon] [Super Geocoder](http://docs.viadat.com/Super_Geocoder) - update: Using multi-func version of geo (vs single-func version, until smoother)
+
 = 3.53 =
 * [addon] [Super Geocoder](http://docs.viadat.com/Super_Geocoder) - update: highly-improved looping and feedback usage during multi-location processing
 * Important admin dashboard notices improvement and updates
