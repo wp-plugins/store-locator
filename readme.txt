@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, best google maps, geocoding, jquery, shops, page, zipcode, zip code, zip code search, custom google maps, store finder, address map, google map, address location map, map maker, proximity search, map creator, gmaps, mapping software, google map plugin, map tools, google maps, google map widget, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.2
-Stable tag: 3.57
+Stable tag: 3.58
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -129,6 +129,11 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.58 =
+* [addon] [Super Geocoder](http://docs.viadat.com/Super_Geocoder) - update: Updated addon output, in order to not interfere with other addons or functions printing to the same hook
+* [addon] [Categorizer](http://docs.viadat.com/Categorizer) - update: case-insensitive merging of tags from locations
+* FAQ updates
+
 = 3.57 =
 * Admin notice check interval adjustment - file permissions
 * [addon] [Categorizer](http://docs.viadat.com/Categorizer) - update: dropdown menu option for tags filtering
@@ -484,6 +489,13 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 == Frequently Asked Questions ==
 Make sure to check http://docs.viadat.com for the most updated information
 
+= My Store Locator seems to all of a sudden not display locations / My addon isn't validating -- just a spinning image in the pull-out Dashboard =
+* Are you 'hardening' / blocking your 'wp-content' directory with a security plugin, php.ini, robots.txt or .htaccess (sometimes wp-content/.htaccess)?  Blocking wp-content functionality completely will disrupt proper Store Locator & addon operation.
+* For Store Locator not displaying locations:  when on your Store Locator page, turn on Firefox Firebug or Google Chrome Developer Tools, and view Console > All.  Oftentimes you may see 'Multiple instances of Google API' error, which is caused by another plugin or your theme including it a 2nd time, or you will see a number of other JavaScript errors that your website is outputing (usually from other plugins) that can affect the map's display -- resolving these usually fixes most problems. 
+
+= Can I display {certain information} in search results? =
+* Yes, the [Advanced Theme Manager addon](http://docs.viadat.com/Advanced_Theme_Manager), which comes with a complimentary theme, called 'SL Starter'. Copy 'sl-starter' folder from your 'advanced-theme-manager' folder into 'wp-content/uploads/sl-uploads/themes/', select SL Starter under 'Design' section in MapDesigner, and modify its templates under Store Locator > Addons > Settings > Advanced Theme Manager as needed
+
 = I'm getting 'failed to geocode' error messages -- why? =
 * Have you updated your Store Locator? [It's mandatory to be using Store Locator v2.x](http://www.viadat.com/2013/10/important-update-store-locator-v2-uses-google-maps-api-v3) if you want anything to work
 * Since Store Locator v3.0, the [Super Geocoder](http://docs.viadat.com/Super_Geocder) addon geocodes locations not geocoding due to reaching Google geocoding quota limits (based on your website's IP address)
@@ -497,7 +509,7 @@ Make sure to check http://docs.viadat.com for the most updated information
 = Is this plugin USA-only? / Does it support locations in multiple countries? =
 This plugin in not USA-only, and yes, it supports locations all over the world -- as long as the Google Maps API properly supports it:
 
-* On the MapDesigner admin page (v2.x), you can select your main country. This gives the Google Maps API a region to focus on
+* On the MapDesigner admin page (v2.x+), you can select your main country. This gives the Google Maps API a region to focus on
 * [For non-USA addresses, use the 'State' field for the Country / Region](http://docs.viadat.com/Main_Page#How_do_I_enter_non-US_addresses.3F) containing the city & location you are submitting (regions, such as country, province, territory, arrondissement, protectorate, S.A.R, state, etc.). When you use any of these types of regions, the Google Maps API will still geocode (give coordinates) to them
 * [It has been translated](http://docs.viadat.com/Main_Page#Special_Thanks_to_Translators) into 15+ languages -- if you would like to [provide a new or updated translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/), please do so
 
@@ -512,7 +524,7 @@ This plugin in not USA-only, and yes, it supports locations all over the world -
 * No. You won't lose them. And make sure to re-select your home & end map markers in MapDesigner after renaming
 
 = How can I have more than one Store Locator map on my website? =
-* The [Multiple Mapper addon](http://docs.viadat.com/Multiple_Mapper)
+* Yes, the [Multiple Mapper addon](http://docs.viadat.com/Multiple_Mapper)
 
 = I would like to show different icons for different locations -- can that be done? =
 * Yes, the [Categorizer addon](http://docs.viadat.com/Categorizer)
