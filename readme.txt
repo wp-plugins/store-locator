@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, best google maps, geocoding, jquery, shops, page, zipcode, zip code, zip code search, custom google maps, store finder, address map, google map, address location map, map maker, proximity search, map creator, gmaps, mapping software, google map plugin, map tools, google maps, google map widget, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.2.3-alpha
-Stable tag: 3.74
+Stable tag: 3.74.1
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -82,11 +82,11 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 * tr_TR	| Turkish (Türkçe) - [Rene](http://wpwebshop.com)
 * hi_IN	| Hindi (हमानक हिन्दी) - [Outshine Solutions](http://outshinesolutions.com)
 * sr_RS	| Serbian (Српски језик) - [Diana S.](http://www.wpcouponshop.com)
-* fi	| Finnish (Suomi) - [Esa Immonen](http://www.probeautyscandinavia.com)
+* fi		| Finnish (Suomi) - [Esa Immonen](http://www.probeautyscandinavia.com)
 * ro_RO	| Romanian (Română) - Quickloop
 * es_ES	| Spanish (Español) - [Andrew Kurtis - WebHostingHub](http://www.webhostinghub.com/)
 * zh_TW	| Traditional Chinese (繁體中文) - [Ronnie Wu](http://www.primagefactory.com/howto/)
-* uk	| Ukrainian (Українська) - [Ivanka Skakun from Everycloud](http://www.everycloudtech.com/)
+* uk		| Ukrainian (Українська) - [Ivanka Skakun from Everycloud](http://www.everycloudtech.com/)
 
 ([How to submit your translation](http://www.viadat.com/2009/02/store-locator-translation-files-wanted-you-might-just-get-something-nice-in-return/) | If you provide your web address, we'll link back to you)
 
@@ -130,7 +130,7 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
-= 3.74 =
+= 3.74.x =
 * Map interface CSS styling update related to some themes
 * Added Ukrainian (uk) translation (thank you [Ivanka Skakun](http://www.everycloudtech.com/)). Copy translation files into `/wp-content/uploads/sl-uploads/languages/`. WP 4.0+ users, go to General > Settings > "Site Language" option to choose language.  Pre-WP 4.0 users, set the 'WPLANG' constant in 'wp-config.php' to the proper language code ('uk', for example) in order to choose language.
 * Finnish language naming update (fi_FI -> fi)
