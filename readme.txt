@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, best google maps, geocoding, jquery, shops, page, zipcode, zip code, zip code search, custom google maps, store finder, address map, google map, address location map, map maker, proximity search, map creator, gmaps, mapping software, google map plugin, map tools, google maps, google map widget, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.3
-Stable tag: 3.77
+Stable tag: 3.78
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -129,7 +129,13 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 8. Bulk Update More than just the Tags Field (Addon: Multiple-Field Updater)
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
-== Changelog ===
+== Changelog ==
+= 3.78 =
+* Data fix
+* Informational / instructions fix w/changelog
+* Admin CSS update - nowrap MapDesigner td - better/more consistent appearance
+* Additional checks when reading icon / theme dirs; trailing slash removed from icon path
+
 = 3.77 =
 * Compatibility update
 * Prelim icon path checks
@@ -148,7 +154,7 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 
 = 3.74.x =
 * Map interface CSS styling update related to some themes
-* Added Ukrainian (uk) translation (thank you [Ivanka Skakun](http://www.everycloudtech.com/)). Copy translation files into `/wp-content/uploads/sl-uploads/languages/`. WP 4.0+ users, go to General > Settings > "Site Language" option to choose language.  Pre-WP 4.0 users, set the 'WPLANG' constant in 'wp-config.php' to the proper language code ('uk', for example) in order to choose language.
+* Added Ukrainian (uk) translation (thank you [Ivanka Skakun](http://www.viadat.com/go/ivanka-skakun/)). Copy translation files into `/wp-content/uploads/sl-uploads/languages/`. WP 4.0+ users, go to General > Settings > "Site Language" option to choose language.  Pre-WP 4.0 users, set the 'WPLANG' constant in 'wp-config.php' to the proper language code ('uk', for example) in order to choose language.
 * Finnish language naming update (fi_FI -> fi)
 
 = 3.73 =
@@ -396,7 +402,7 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 * Admin CSS updates / enhancements
 
 = 3.22.x =
-* Added Traditional Chinese (zh_TW) translation (thank you [Ronnie Wu](http://www.primagefactory.com/howto/)). Copy translation files into `/wp-content/uploads/sl-uploads/languages/`. WP 4.0+ users, go to General > Settings > "Site Language" option to choose language.  Pre-WP 4.0 users, set the 'WPLANG' constant in 'wp-config.php' to the proper language code ('zh_TW', for example) in order to choose language.
+* Added Traditional Chinese (zh_TW) translation (thank you [Ronnie Wu](http://www.viadat.com/go/ronnie-wu/)). Copy translation files into `/wp-content/uploads/sl-uploads/languages/`. WP 4.0+ users, go to General > Settings > "Site Language" option to choose language.  Pre-WP 4.0 users, set the 'WPLANG' constant in 'wp-config.php' to the proper language code ('zh_TW', for example) in order to choose language.
 * Translator credits - layout update in readme, better readability
 * v3.22.1 - translation credits/thanks & foreign language names updated to proper spellings
 * v3.22.1 - [Addons Platform](http://docs.viadat.com/Addons_Platform) update notifier 12-hr information caching for less filesystem / data load for more efficient admin pages loading
@@ -518,7 +524,7 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 * Fixed stray jQuery code showing up in default location addition form
 * Properly linked to [Advanced Theme Manager](http://docs.viadat.com/Advanced_Theme_Manager) addon in readme
 * Added info for creating custom search button images to readme
-* Added Spanish (es_ES) translation (thank you [Andrew Kurtis - WebHostingHub](http://www.webhostinghub.com/)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
+* Added Spanish (es_ES) translation (thank you [Andrew Kurtis - WebHostingHub](http://www.viadat.com/go/andrew-kurtis/)). Copy translation into `/wp-content/uploads/sl-uploads/languages/` to use
 * Restored changelog
 	 
 = 3.3 =
