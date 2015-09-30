@@ -3,7 +3,7 @@ Contributors: viadat
 Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, best google maps, geocoding, jquery, shops, page, zipcode, zip code, zip code search, custom google maps, store finder, address map, google map, address location map, map maker, proximity search, map creator, gmaps, mapping software, google map plugin, map tools, google maps, google map widget, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.3
-Stable tag: 3.78
+Stable tag: 3.79
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -130,6 +130,11 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
+= 3.79 =
+* Admin CSS updates - location management
+* Prelim location selection interface tweaks
+* Small updates
+
 = 3.78 =
 * Data fix
 * Informational / instructions fix w/changelog
@@ -653,6 +658,7 @@ This plugin is compatible with all countries that have Google Map domains. This 
 * Belgium
 * Belize
 * Benin
+* Bolivia
 * Botswana
 * Brazil
 * Bulgaria
@@ -667,6 +673,7 @@ This plugin is compatible with all countries that have Google Map domains. This 
 * Djibouti
 * Dem. Republic of Congo
 * Denmark
+* Ecuador
 * Ethiopia
 * Finland
 * France
@@ -675,6 +682,8 @@ This plugin is compatible with all countries that have Google Map domains. This 
 * Germany
 * Ghana
 * Greece
+* Guatemala
+* Guyana
 * Hong Kong
 * Hungary
 * India
@@ -697,6 +706,8 @@ This plugin is compatible with all countries that have Google Map domains. This 
 * New Zealand
 * Nigeria
 * Norway
+* Paraguay
+* Peru
 * Philippines
 * Poland
 * Portugal
@@ -724,6 +735,7 @@ This plugin is compatible with all countries that have Google Map domains. This 
 * United Arab Emirates
 * United Kingdom
 * United States
+* Uruguay
 * Venezuela
 * Zambia
 * Zimbabwe
