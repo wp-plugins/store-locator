@@ -1,9 +1,9 @@
 === WordPress Store Locator ===
 Contributors: viadat
-Tags: business locations, admin, dealer locator, dealer locater, store locator, post, store locater, mapping, mapper, google, google maps, locator, ajax, shop locator, shop finder, shortcode, location finder, places, widget, proximity, zipcode locator, geocoder, stores, plugin, maps, coordinates, latitude, longitude, posts, geo, best google maps, geocoding, jquery, shops, page, zipcode, zip code, zip code search, custom google maps, store finder, address map, google map, address location map, map maker, proximity search, map creator, gmaps, mapping software, google map plugin, map tools, google maps, google map widget, zip code locator, mapping tools, locator maps, map of addresses, map multiple locations, wordpress locator, zipcode search, store locator map
+Tags: business locations, dealer locator, store locator, mapping, mapper, google, google maps, locator, shop locator, shop finder, shortcode, location finder, places, proximity, zipcode locator, geocoder, stores, maps, coordinates, latitude, longitude, geo, best google maps, easy map, google maps plugin, location, map, map directions, map markers, map plugin, map widget, marker, wp google map, wp google maps, wp maps, geocoding, shops, zipcode, zip code, zip code search, custom google maps, store finder, address map, google map, map maker, proximity search, map creator, gmaps, mapping software, google map plugin, map tools, google maps, google map widget, zip code locator, mapping tools, locator maps, wordpress locator, zipcode search, store locator map
 Requires at least: 3.3
 Tested up to: 4.3
-Stable tag: 3.82
+Stable tag: 3.83
 
 A WordPress-integrated map & location management interface. Quickly create store locator maps -- provides several top-level addon features
 
@@ -130,7 +130,11 @@ All addons available previous to Store Locator 2.0 are now called "G1" (Generati
 9. Examples of the Store Locator's Basic and Upgraded User Interfaces
 
 == Changelog ==
-= 3.82 =
+= 3.83 =
+* Version update notification improvement
+* Better error mgmt
+
+= 3.82.x =
 * Location admin page - GUI / keyboard mgmt improvement - shortcut delete off when filling in search / tags text input
 * Location admin page - GUI / keyboard mgmt improvement - check toggle off when clicking edit / delete links
 * Properly assigned unique IDs for every location's edit & delete links
